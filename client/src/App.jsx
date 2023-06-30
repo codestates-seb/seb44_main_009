@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/main/Home";
-import Products from "./pages/main/Products";
-import Login from "./pages/user/sign/Login";
-import SignUp from "./pages/user/sign/SignUp";
+import HomePage from "./pages/main/HomePage";
+import ProductsPage from "./pages/main/ProductsPage";
+import LoginPage from "./pages/user/sign/LoginPage";
+import SignUpPage from "./pages/user/sign/SignUpPage";
 
 // Header, Footer 구현하기 쉽도록 넣어 둠 >> 1차 머지 후, 삭제 예정
 import Header from "./components/header/Header";
@@ -13,10 +13,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="" element={<HomePage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
 
           {/* Header, Footer 구현하기 쉽도록 넣어 둠 >> 1치 머지 후, 삭제 예정 */}
           <Route path="/header" element={<Header />} />
