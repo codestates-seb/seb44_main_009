@@ -1,8 +1,8 @@
-package com.main.MainProject.order;
+package com.main.MainProject.order.dto;
 
 public class OrderDto {
 
-    public static class orderPost{
+    public static class post{
 
     }
 
