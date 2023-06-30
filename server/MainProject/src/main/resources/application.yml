@@ -1,3 +1,4 @@
+
 #기본 설정
 spring:
   profiles:
@@ -23,3 +24,4 @@ server:
   servlet:
     encoding:
       force-response: true
+
