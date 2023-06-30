@@ -8,4 +8,8 @@ export const LoginButton = styled.button`
 
   border: 1px solid #383838;
   border-radius: 30px;
+
+  &:hover {
+    background-color: gray;
+  }
 `;
