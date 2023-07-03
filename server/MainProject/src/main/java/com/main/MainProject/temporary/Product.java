@@ -1,7 +1,5 @@
 package com.main.MainProject.temporary;
 
-import com.main.MainProject.order.entity.Order;
-
 import javax.persistence.*;
 
 @Entity
@@ -17,12 +15,6 @@ public class Product {
     private String content;
     private int count;
 
-    @ManyToOne
-    private Cart cart;
-
-    @ManyToOne
-    private Order order;
-
-    @ManyToOne()
-    private Product product;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private CartProduct cartProduct;
 }

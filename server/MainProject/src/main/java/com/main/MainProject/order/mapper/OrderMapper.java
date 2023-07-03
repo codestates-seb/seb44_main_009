@@ -9,10 +9,10 @@ import java.util.List;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface OrderMapper {
-    Order postDtoToOrder(OrderDto.post postDto);
-    Order patchDtoToOrder(OrderDto.patch patchDto);
+    Order postDtoToOrder(OrderDto.Post postDto);
+    Order patchDtoToOrder(OrderDto.Patch patchDto);
 
-    OrderDto.response orderToResponse(Order order);
+    OrderDto.Response orderToResponse(Order order);
 
-    List<OrderDto.response> ordersToResponses(List<Order> orders);
+    List<OrderDto.Response> ordersToResponses(List<Order> orders);
 }

@@ -1,12 +1,10 @@
 package com.main.MainProject.order.entity;
 
 import com.main.MainProject.temporary.Member;
-import com.main.MainProject.temporary.OrderProduct;
+import com.main.MainProject.temporary.CartProduct;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Value;
-import org.hibernate.procedure.spi.ParameterRegistrationImplementor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -35,7 +33,7 @@ public class Order {
     private Member member;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderProduct> orderProductList = new ArrayList<>();
+    private List<CartProduct> cartProductList = new ArrayList<>();
 
     private enum Reviewstatus{
         IMPOSSIBLE_REVIEW("리뷰 작성 불가"),

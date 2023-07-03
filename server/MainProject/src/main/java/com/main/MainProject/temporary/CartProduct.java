@@ -1,12 +1,15 @@
 package com.main.MainProject.temporary;
 
+import com.main.MainProject.cart.entity.Cart;
+import com.main.MainProject.order.entity.Order;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class OrderProduct {
+public class CartProduct {
     @Id
     private Long productId;
 
@@ -19,4 +22,8 @@ public class OrderProduct {
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 }

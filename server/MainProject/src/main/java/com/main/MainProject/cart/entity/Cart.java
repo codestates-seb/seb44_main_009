@@ -1,4 +1,6 @@
-package com.main.MainProject.temporary;
+package com.main.MainProject.cart.entity;
+
+import com.main.MainProject.temporary.CartProduct;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,6 +14,6 @@ public class Cart {
 
     private int totalPrice;
 
-    private List<OrderProduct> orderProductList = new ArrayList<>();
+    private List<CartProduct> cartProductList = new ArrayList<>();
 
 }

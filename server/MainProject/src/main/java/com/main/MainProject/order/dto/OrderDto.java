@@ -2,15 +2,15 @@ package com.main.MainProject.order.dto;
 
 public class OrderDto {
 
-    public static class post{
+    public static class Post{
 
     }
 
-    public static class patch{
+    public static class Patch {
 
     }
 
-    public static class response{
+    public static class Response {
 
     }
 }
