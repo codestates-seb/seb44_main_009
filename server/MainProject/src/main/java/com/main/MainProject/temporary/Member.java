@@ -1,11 +1,9 @@
 package com.main.MainProject.temporary;
 
+import com.main.MainProject.cart.entity.Cart;
 import com.main.MainProject.order.entity.Order;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +20,9 @@ public class Member {
 
     private Address address;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "member", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private Cart cart;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Order> orderList = new ArrayList<>();
 }

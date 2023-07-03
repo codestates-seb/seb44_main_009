@@ -7,10 +7,12 @@ import java.util.List;
 public class CartDto {
 
     public static class Patch{
-        CartProduct cartProducts;
+        private List<CartProduct> cartProductList;
     }
 
     public static class Response{
+        private List<CartProduct> cartProductList;
 
+        private int totalPrice;
     }
 }

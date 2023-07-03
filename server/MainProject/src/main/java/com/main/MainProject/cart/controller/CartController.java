@@ -1,13 +1,18 @@
 package com.main.MainProject.cart.controller;
 
+import com.main.MainProject.cart.dto.CartDto;
+import com.main.MainProject.cart.entity.Cart;
+import com.main.MainProject.cart.mapper.CartMapper;
+import com.main.MainProject.cart.service.CartService;
+import com.main.MainProject.dto.SingleResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 
 @RestController
 @RequestMapping("/cart")
@@ -16,14 +21,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class CartController {
     private final static String CART_DEFAULT_URL = "/cart";
 
+    private final CartService cartService;
+    private final CartMapper mapper;
 
-    @PatchMapping("")
-    public ResponseEntity updateCart(){
-        return new ResponseEntity<>(HttpStatus.OK);
+    public CartController(CartService cartService,
+                          CartMapper mapper) {
+        this.cartService = cartService;
+        this.mapper = mapper;
     }
 
-    @GetMapping("")
-    public ResponseEntity getCart(){
-        return new ResponseEntity<>(HttpStatus.OK);
+    @PatchMapping("/update/{cart-id}")
+    public ResponseEntity updateCart(@PathVariable("cart-id") @Positive long cartId,
+                                     @Valid @RequestBody CartDto.Patch requestBody) {
+        Cart cart = cartService.updateCart(cartId, mapper.cartPatchToCartProducts(requestBody));
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.cartToResponse(cart)), HttpStatus.OK);
+    }
+
+    @GetMapping("/{cart-id}")
+    public ResponseEntity getCart(@PathVariable("cart-id") @Positive long cartId){
+        Cart cart = cartService.findVerifiedCart(cartId);
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.cartToResponse(cart)), HttpStatus.OK);
     }
 }

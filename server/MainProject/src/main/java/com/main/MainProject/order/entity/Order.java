@@ -1,5 +1,7 @@
 package com.main.MainProject.order.entity;
 
+import com.main.MainProject.audit.Auditable;
+import com.main.MainProject.temporary.Address;
 import com.main.MainProject.temporary.Member;
 import com.main.MainProject.temporary.CartProduct;
 import lombok.Getter;
@@ -14,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity(name = "ORDERS")
-public class Order {
+public class Order extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +29,8 @@ public class Order {
     @Enumerated(value = EnumType.STRING)
     @Column(length = 20, nullable = false)
     private Reviewstatus reviewstatus = Reviewstatus.IMPOSSIBLE_REVIEW;
+
+    private Address address;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -49,18 +53,23 @@ public class Order {
     }
 
     public enum OrderStatus{
-        BEFORE_PAYMENT("결제 미완료"),
-        AFTER_PAYMENT("결제 완료"),
-        PREPARING_PRODUCT("상품 준비중"),
-        SHIPPING_START("배송 시작"),
-        PRODUCT_SHIPPING("배송 중"),
-        SHIPPING_COMPLIETED("배송 완료");
+        BEFORE_PAYMENT(1, "결제 미완료"),
+        AFTER_PAYMENT(2, "결제 완료"),
+        PREPARING_PRODUCT(3, "상품 준비중"),
+        SHIPPING_START(4, "배송 시작"),
+        PRODUCT_SHIPPING(5, "배송 중"),
+        SHIPPING_COMPLIETED(6, "배송 완료"),
+        ORDER_CANCEL(7, "취소된 주문");
 
         @Getter
         private String status;
 
-        OrderStatus(String status) {
+        @Getter
+        private int stepNumber;
+
+        OrderStatus(int stepNumber, String status) {
             this.status = status;
+            this.stepNumber = stepNumber;
         }
     }
 
