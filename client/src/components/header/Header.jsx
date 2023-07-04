@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import logo from "../../image/logo.png";
+import LoginBtn from "./HeaderLoginBtn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
@@ -80,20 +81,6 @@ const IconStyle = styled.div`
   height: 45px;
 `;
 
-const WriteStyle = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #383838;
-  color: #fff;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 12px;
-  margin-right: 24px;
-  width: 45px;
-  height: 45px;
-`;
-
 function Header() {
   return (
     <HeaderContainer>
@@ -110,9 +97,7 @@ function Header() {
         <IconStyle>
           <FontAwesomeIcon icon={faBasketShopping} />
         </IconStyle>
-        <Link to="/login">
-          <WriteStyle>로그인</WriteStyle>
-        </Link>
+        <LoginBtn />
       </ButtonContainer>
     </HeaderContainer>
   );
