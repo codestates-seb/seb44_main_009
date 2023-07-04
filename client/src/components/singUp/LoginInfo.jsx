@@ -1,5 +1,5 @@
-import EmailInput from "./EmailInput";
-import PasswordInput from "./PasswordInput";
+import EmailInput from "./loginInfo/EmailInput";
+import PasswordInput from "./loginInfo/PasswordInput";
 import { LoginInfoWrapper } from "./styles/LoginInfoWrapper.styled";
 
 export default function LoginInfo({ children }) {
