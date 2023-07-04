@@ -1,6 +1,6 @@
 import { LoginModalBtn } from "./styles/LoginModalBtn";
-import { LoginModalContainer } from "./styles/LoginModalContainer";
-import { LoginModalMessage } from "./styles/LoginModalMessage";
+import { LoginModalContainer } from "../styles/LoginModalContainer";
+import { LoginModalMessage } from "../styles/LoginModalMessage";
 
 export default function LoginModal() {
   return (

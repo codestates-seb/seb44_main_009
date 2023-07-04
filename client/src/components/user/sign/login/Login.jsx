@@ -1,6 +1,6 @@
-import Inputs from "./Inputs";
-import LinkBtn from "./LinkBtn";
-import LoginBtn from "./LoginBtn";
+import Inputs from "./input/Inputs";
+import LinkBtn from "./button/LinkBtn";
+import LoginBtn from "./button/LoginBtn";
 import { LoginContainer } from "./styles/LoginContainer.styled";
 
 export default function Login({ children }) {
