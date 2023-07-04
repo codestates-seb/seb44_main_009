@@ -2,10 +2,14 @@ package com.main.MainProject.temporary;
 
 import com.main.MainProject.cart.entity.Cart;
 import com.main.MainProject.order.entity.Order;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
 public class CartProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +26,6 @@ public class CartProduct {
     private Cart cart;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", insertable = false, updatable = false)
     private Order order;
 }

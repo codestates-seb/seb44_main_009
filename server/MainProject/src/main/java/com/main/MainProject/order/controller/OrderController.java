@@ -36,8 +36,8 @@ public class OrderController {
     //주문하기
     @PostMapping("/buy/{cart-id}/{member-id}")
     public ResponseEntity createOrder(@PathVariable("cart-id")long cartId,
-                                      @Valid @RequestBody OrderDto.Post post){
-        Order order =  orderService.createOrder(mapper.orderPostDtoToOrder(post));
+                                      @Valid @RequestBody OrderDto.Address requestBody){
+        Order order =  orderService.createOrder(cartId, mapper.addressDtoToAddress(requestBody));
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.CREATED);
     }
@@ -45,8 +45,8 @@ public class OrderController {
     //배송지변경(배송출발 이전만 가능)
     @PatchMapping("/request/{order-id}/{member-id}")
     public ResponseEntity updateAddressOrder(@PathVariable("order-id")long orderId,
-                                             @Valid @RequestBody OrderDto.Patch patch){
-        Address address = mapper.orderPatchDtoToAddress(patch);
+                                             @Valid @RequestBody OrderDto.Address requestBody){
+        Address address = mapper.addressDtoToAddress(requestBody);
         Order order = orderService.updateOrder(orderId, address);
 
         return new ResponseEntity<>(

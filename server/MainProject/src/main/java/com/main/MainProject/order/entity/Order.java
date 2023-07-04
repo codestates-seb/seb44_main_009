@@ -34,18 +34,24 @@ public class Order extends Auditable {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+//    @ManyToOne
+//    @JoinColumn(name = "member_id")
+//    private Member member;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartProduct> cartProductList = new ArrayList<>();
 
-    public Order(List<CartProduct> cartProductList) {
-        this.cartProductList = cartProductList;
+    public void addCartProduct(CartProduct cartProduct) {
+        cartProduct.setOrder(this);
+        cartProductList.add(cartProduct);
     }
 
-    private enum Reviewstatus{
+    public void removeCartProduct(CartProduct cartProduct) {
+        cartProduct.setOrder(null);
+        cartProductList.remove(cartProduct);
+    }
+
+    public enum Reviewstatus{
         IMPOSSIBLE_REVIEW("리뷰 작성 불가"),
         POSSIBLE_REVIEW("리뷰 작성 가능"),
         REVIEW_WIITE("리뷰 작성 완료");

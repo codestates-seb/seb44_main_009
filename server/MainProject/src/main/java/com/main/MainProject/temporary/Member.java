@@ -18,12 +18,13 @@ public class Member {
 
     private String nickname;
 
-    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Address address;
 
-    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Cart cart;
+//    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Address address;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<Order> orderList = new ArrayList<>();
+//    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Cart cart;
+
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST, orphanRemoval = true)
+//    private List<Order> orderList = new ArrayList<>();
 }

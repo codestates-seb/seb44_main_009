@@ -8,17 +8,19 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
+@Entity
 public class Address {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long addressId;
-    @OneToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
 
-    @OneToMany(mappedBy = "address", cascade = CascadeType.PERSIST, orphanRemoval = true)
+//    @OneToOne
+//    @JoinColumn(name = "member_id")
+//    private Member member;
+
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orderList = new ArrayList<>();
 
     private String reciverName;
@@ -33,7 +35,8 @@ public class Address {
 
     private String request;
 
-    public Address(String reciverName, int zipcode, String addressName, String addressDetails, String telNum, String request) {
+    public Address(String reciverName, int zipcode, String addressName,
+                   String addressDetails, String telNum, String request) {
         this.reciverName = reciverName;
         this.zipcode = zipcode;
         this.addressName = addressName;

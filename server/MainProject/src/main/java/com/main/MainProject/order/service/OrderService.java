@@ -1,10 +1,16 @@
 package com.main.MainProject.order.service;
 
+import com.main.MainProject.cart.entity.Cart;
+import com.main.MainProject.cart.repository.CartRepository;
+import com.main.MainProject.cart.service.CartService;
 import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
+import com.main.MainProject.order.dto.OrderDto;
 import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.order.repository.OrderRepository;
 import com.main.MainProject.temporary.Address;
+import com.main.MainProject.temporary.AddressRepository;
+import com.main.MainProject.temporary.CartProduct;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Id;
@@ -13,14 +19,27 @@ import java.util.Optional;
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final CartService cartService;
 
-    public OrderService(OrderRepository orderRepository) {
+    private AddressRepository addressRepository;
+
+    public OrderService(OrderRepository orderRepository, CartService cartService, AddressRepository addressRepository) {
         this.orderRepository = orderRepository;
+        this.cartService = cartService;
+        this.addressRepository = addressRepository;
     }
 
-    public Order createOrder(Order order){
+    public Order createOrder(long cartId, Address address){
+        Cart cart = cartService.findVerifiedCart(cartId);
         //TODO: 상품 수량 확인
         //TODO: 상품 수량 반영
+        //TODO: 멤버 불어오기와 주소지 가져오기 혹은 저장하기
+        addressRepository.save(address);
+
+        Order order = new Order();
+        order.setAddress(address);
+        cart.getCartProductList().stream().forEach(cartProduct -> cartProduct.setOrder(order));
+
         return orderRepository.save(order);
     }
 

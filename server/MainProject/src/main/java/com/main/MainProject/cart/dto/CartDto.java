@@ -2,7 +2,6 @@ package com.main.MainProject.cart.dto;
 
 import com.main.MainProject.temporary.CartProduct;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 
 import java.util.List;
@@ -19,8 +18,16 @@ public class CartDto {
     @AllArgsConstructor
     @Getter
     public static class Response{
-        private List<CartProduct> cartProductList;
+        private List<CartDto.cartProductResponse> cartProductList;
 
-        private int totalPrice;
+        private int totalOrderPrice;
+    }
+
+    @AllArgsConstructor
+    @Getter
+    public static class cartProductResponse{
+        private String productName;
+        private int quentity;
+        private int totalProductPrice;
     }
 }

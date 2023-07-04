@@ -1,19 +1,67 @@
 package com.main.MainProject.order.mapper;
 
+import com.main.MainProject.cart.dto.CartDto;
 import com.main.MainProject.order.dto.OrderDto;
 import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.temporary.Address;
+import com.main.MainProject.temporary.CartProduct;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface OrderMapper {
-    Order orderPostDtoToOrder(OrderDto.Post postDto);
-    Address orderPatchDtoToAddress(OrderDto.Patch patchDto);
+    Address addressDtoToAddress(OrderDto.Address addressDto);
 
-    OrderDto.Response orderToResponse(Order order);
+    OrderDto.Address addressToAddressDto(Address address);
+
+    default OrderDto.Response orderToResponse(Order order){
+        if ( order == null ) {
+            return null;
+        }
+
+        List<OrderDto.cartProductResponse> cartProductList = order.getCartProductList().stream()
+                .filter(cartProduct -> cartProduct != null && cartProduct.getProduct() != null)
+                .map(cartProduct -> cartProductToCartProductResponse(cartProduct))
+                .collect(Collectors.toList());
+
+        Address address = null;
+
+        address = order.getAddress();
+
+        int totalPrice = order.getCartProductList().stream()
+                .filter(cartProduct -> cartProduct != null && cartProduct.getProduct() != null)
+                .mapToInt(cartProduct -> cartProduct.getProduct().getPrice() * cartProduct.getQuentity())
+                .sum();
+
+        Order.OrderStatus shippingStatus = order.getOrderStatus();
+        Order.Reviewstatus reviewStatus = order.getReviewstatus();
+
+        OrderDto.Response response =
+                new OrderDto.Response( cartProductList, totalPrice, addressToAddressDto(address), shippingStatus, reviewStatus );
+
+        return response;
+    }
+
+    default OrderDto.cartProductResponse cartProductToCartProductResponse(CartProduct cartProduct){
+        if ( cartProduct == null ) {
+            return null;
+        }
+        int quentity = 0;
+
+        quentity = cartProduct.getQuentity();
+
+        String productName =  cartProduct.getProduct().getProductName();
+        int totalProductPrice = cartProduct.getProduct().getPrice() * quentity;
+
+        OrderDto.cartProductResponse cartProductResponse =
+                new OrderDto.cartProductResponse( productName, quentity, totalProductPrice );
+
+        return cartProductResponse;
+    }
 
     List<OrderDto.Response> ordersToResponses(List<Order> orders);
 }

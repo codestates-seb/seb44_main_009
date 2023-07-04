@@ -25,6 +25,9 @@ public enum ExceptionCode {
     //주문을 찾을 수 없습니다
     ORDER_NOT_FOUND(404, "order not found"),
 
+    //카트가 비어있습니다
+    CART_IS_EMPTY(500, "cart is empty"),
+
     //주문을 취소할 수 없습니다
     CANNOT_CHANGE_ORDER(403, "Order can not change");
 

@@ -26,7 +26,8 @@ public class Cart {
         this.cartProductList = cartProductList;
     }
 
-    @OneToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    //TODO: 회원과 연관관계 추가하기
+//    @OneToOne
+//    @JoinColumn(name = "member_id")
+//    private Member member;
 }
