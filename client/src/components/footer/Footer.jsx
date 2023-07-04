@@ -1,12 +1,12 @@
+import {
+  faBars,
+  faHeart,
+  faHouse,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { FooterContainer } from "./styles/FooterContainer.styled";
 import { FooterWrapper } from "./styles/FooterWrapper.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHouse,
-  faBars,
-  faHeart,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
 
 function Footer() {
   return (
