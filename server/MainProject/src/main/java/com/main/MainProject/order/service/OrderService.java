@@ -24,7 +24,7 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public Order updateOrder(long memberId, long orderId, Address address){
+    public Order updateOrder(long orderId, Address address){
         //TODO: memebrId 회원인지 확인 추가
         Order order = verficatedOrder(orderId);
 

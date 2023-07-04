@@ -31,9 +31,11 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    //TODO: {member-id}부분은 모두 로그인 확인용으로 jwt적용시 수정필요
+    
     //주문하기
-    @PostMapping("/{member-id}")
-    public ResponseEntity createOrder(@PathVariable("member-id")long memberId,
+    @PostMapping("/buy/{cart-id}/{member-id}")
+    public ResponseEntity createOrder(@PathVariable("cart-id")long cartId,
                                       @Valid @RequestBody OrderDto.Post post){
         Order order =  orderService.createOrder(mapper.orderPostDtoToOrder(post));
         return new ResponseEntity<>(
@@ -41,26 +43,25 @@ public class OrderController {
     }
 
     //배송지변경(배송출발 이전만 가능)
-    @PatchMapping("/{member-id}/{order-id}")
-    public ResponseEntity updateAddressOrder(@PathVariable("member-id")long memberId,
-                                             @PathVariable("order-id")long orderId,
+    @PatchMapping("/request/{order-id}/{member-id}")
+    public ResponseEntity updateAddressOrder(@PathVariable("order-id")long orderId,
                                              @Valid @RequestBody OrderDto.Patch patch){
         Address address = mapper.orderPatchDtoToAddress(patch);
-        Order order = orderService.updateOrder(memberId, orderId, address);
+        Order order = orderService.updateOrder(orderId, address);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.OK);
     }
 
     //회원의 모든 정보 불러오기
-    @GetMapping("/{member-id}")
+    @GetMapping("/buylist/{member-id}")
     public ResponseEntity getorders(){
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //주문상세 불러오기
-    @GetMapping("/{member-id}/{order-id}")
+    @GetMapping("/{order-id}/{member-id}")
     public ResponseEntity getOrder(@PathVariable("member-id")long memberId,
                                    @PathVariable("order-id")long orderId){
         Order order = orderService.getOrder(memberId, orderId);
@@ -70,7 +71,7 @@ public class OrderController {
     }
 
     //주문취소
-    @DeleteMapping("/{member-id}/{order-id}")
+    @DeleteMapping("/delete/{order-id}/{member-id}")
     public ResponseEntity cancleOrder(@PathVariable("member-id")long memberId,
                                       @PathVariable("order-id")long orderId){
         orderService.cancelOrder(memberId, orderId);

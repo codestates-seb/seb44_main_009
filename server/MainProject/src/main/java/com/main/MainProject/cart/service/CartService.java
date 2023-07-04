@@ -18,7 +18,7 @@ public class CartService {
         this.cartRepository = cartRepository;
     }
 
-    //멤버 생성시 사용
+    //TODO: 멤버 생성시 사용
     public void createCart(){
         Cart cart = new Cart();
         cartRepository.save(cart);
