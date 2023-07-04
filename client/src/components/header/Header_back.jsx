@@ -6,7 +6,7 @@ import { LogoImage } from "./styles/LogoImage.styled";
 import { IconWrapper } from "./styles/IconWrapper.styled";
 import { HeaderWrapper } from "./styles/HeaderWrapper.styled";
 import { ButtonContainer } from "./styles/ButtonContainer.styled";
-import { IconStyle } from "@fortawesome/fontawesome-svg-core";
+import { IconStyle } from "./styles/IconStyle.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
