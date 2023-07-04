@@ -13,10 +13,10 @@ function SignUpPage() {
       <SignUpPageWrapper>
         <SignUpPageTitle>회원가입</SignUpPageTitle>
         <SignUp>
-          <SignUp.LonginInfo>
+          <SignUp.LoginInfo>
             <LoginInfo.EmailInput />
             <LoginInfo.PasswordInput />
-          </SignUp.LonginInfo>
+          </SignUp.LoginInfo>
           <SignUp.UserInfo>
             <UserInfo.NameInput />
             <UserInfo.NickNameInput />
