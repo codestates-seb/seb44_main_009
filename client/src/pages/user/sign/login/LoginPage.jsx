@@ -3,10 +3,12 @@ import { LoginPageWrapper } from "./styles/LoginPageWrapper.styled";
 import { LoginPageTitle } from "./styles/LoginPageTitle";
 import { LoginPageContainer } from "./styles/LoginPageContainer.styled";
 import Inputs from "../../../../components/login/Inputs";
+import Header from "../../../../components/header/Header";
 
 function LoginPage() {
   return (
     <LoginPageContainer>
+      <Header />
       <LoginPageWrapper>
         <LoginPageTitle>로그인</LoginPageTitle>
         <Login>
