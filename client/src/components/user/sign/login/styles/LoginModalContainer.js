@@ -1,14 +1,12 @@
 import { styled } from "styled-components";
 
-export const LoginPageWrapper = styled.div`
+export const LoginModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 18px;
 
-  width: 834px;
-  height: 100%;
   border: 1px solid #383838;
-  border-radius: 0 0 30px 30px;
+  border-radius: 30px;
   padding: 24px;
 `;
