@@ -4,7 +4,6 @@ import { LoginPageTitle } from "./styles/LoginPageTitle";
 import { LoginPageContainer } from "./styles/LoginPageContainer.styled";
 import Inputs from "../../../../components/login/Inputs";
 import Header from "../../../../components/header/Header";
-import LoginModal from "../../../../components/login/LoginModal";
 
 function LoginPage() {
   return (
