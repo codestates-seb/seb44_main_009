@@ -1,17 +1,17 @@
-//import { styled } from "styled-components";
+import { styled } from "styled-components";
 import ProductList from "../../components/mainProduct/ProductList";
+import { dummyproducts } from "../../dummy";
 
-// import {
-//   WarmToneCategory,
-//   CoolToneCategory,
-// } from "../../components/Category/Styles/ColorCategoryStyles";
-
+const Borderdiv = styled.div`
+  border: 2px solid black;
+  max-width: 834px;
+  padding: 24px;
+`;
 function ProductsPage() {
   return (
-    <div>
-      Products
-      <ProductList></ProductList>
-    </div>
+    <Borderdiv>
+      <ProductList products={dummyproducts}></ProductList>
+    </Borderdiv>
   );
 }
 

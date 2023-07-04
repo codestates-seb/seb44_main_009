@@ -12,15 +12,23 @@ const ProductListContainer = styled.div`
   justify-content: start;
 `;
 
-const ProductList = () => {
-  //   const isWarmTone = products => {
-  //     return products.color === "warm";
-  //   };
+const ProductList = ({ products }) => {
+  const isWarmTone = products => {
+    return products.color === "warm";
+  };
 
   return (
     <Container>
       <ProductListContainer>
-        <Product></Product>
+        {products.map(product => (
+          <Product
+            key={product.id}
+            imageSrc={product.imageSrc}
+            name={product.name}
+            price={product.price}
+            isWarmTone={isWarmTone(product)}
+          />
+        ))}
       </ProductListContainer>
     </Container>
   );
