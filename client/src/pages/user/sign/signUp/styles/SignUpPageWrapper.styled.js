@@ -9,4 +9,10 @@ export const SignUpPageWrapper = styled.div`
   height: 924px;
   border: 1px solid #383838;
   padding: 24px;
+
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
