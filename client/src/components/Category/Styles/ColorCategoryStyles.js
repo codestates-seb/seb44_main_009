@@ -5,13 +5,14 @@ import { Warm, Cool, RightArrow } from "../../../image/index"; // 예시로 넣�
 const Container = styled.div`
   display: flex;
   align-items: center;
+  margin-left: 50px;
 `;
 
 const Text = styled.div`
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 5px;
 `;
 
 const Image = styled.img`
@@ -20,7 +21,7 @@ const Image = styled.img`
 `;
 
 const Margin = styled.div`
-  margin-right: 550px;
+  margin-right: 460px;
 `;
 
 export const ColorCategory = ({ imageSrc, altText, labelText }) => {

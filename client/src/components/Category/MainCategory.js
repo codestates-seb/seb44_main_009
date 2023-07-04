@@ -2,7 +2,6 @@ import {
   CategoryWrapper,
   CategoryItem,
   CategoryImage,
-  GlobalStyle,
   CategoryName,
 } from "./Styles/CategoryStyles";
 import { Coat, Jean, Shirt, Skirt, Dress, Accessary } from "../../image/index";
@@ -19,7 +18,6 @@ const categories = [
 const CategoryList = () => {
   return (
     <div>
-      <GlobalStyle />
       <CategoryWrapper>
         {categories.map((category, index) => (
           <CategoryItem key={index}>

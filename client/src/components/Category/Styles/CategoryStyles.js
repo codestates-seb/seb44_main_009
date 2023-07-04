@@ -1,12 +1,4 @@
-import { styled, createGlobalStyle } from "styled-components";
-
-export const GlobalStyle = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`;
+import { styled } from "styled-components";
 
 export const CategoryWrapper = styled.div`
   display: flex;
