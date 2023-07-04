@@ -1,8 +1,8 @@
 import { UserInfoWapper } from "./styles/UserInfoWapper.styled";
-import AddressInput from "./AddressInput";
-import NameInput from "./NameInput";
-import NickNameInput from "./NickNameInput";
-import PhoneNumberInput from "./PhoneNumberInput";
+import AddressInput from "./userInfo/AddressInput";
+import NameInput from "./userInfo/NameInput";
+import NickNameInput from "./userInfo/NickNameInput";
+import PhoneNumberInput from "./userInfo/PhoneNumberInput";
 
 export default function UserInfo({ children }) {
   return <UserInfoWapper>{children}</UserInfoWapper>;
