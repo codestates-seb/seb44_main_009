@@ -1,9 +1,9 @@
 import EmailInput from "./EmailInput";
 import PasswordInput from "./PasswordInput";
-import { LoginInputWapper } from "./styles/LoginInputWapper.styled";
+import { LoginInputWrapper } from "./styles/LoginInputWrapper.styled";
 
 export default function Inputs({ children }) {
-  return <LoginInputWapper>{children}</LoginInputWapper>;
+  return <LoginInputWrapper>{children}</LoginInputWrapper>;
 }
 
 Inputs.Email = EmailInput;

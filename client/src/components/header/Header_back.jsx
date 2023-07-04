@@ -3,28 +3,27 @@ import logo from "../../image/logo.png";
 import LoginBtn from "./HeaderLoginBtn";
 import { HeaderContainer } from "./styles/HeaderContainer.styled";
 import { LogoImage } from "./styles/LogoImage.styled";
-import { InputContainer } from "./styles/InputContainer.styled";
-import { SearchIconContainer } from "./styles/SearchIconContainer.styled";
+import { IconWrapper } from "./styles/IconWrapper.styled";
+import { HeaderWrapper } from "./styles/HeaderWrapper.styled";
 import { ButtonContainer } from "./styles/ButtonContainer.styled";
 import { IconStyle } from "./styles/IconStyle.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMagnifyingGlass,
+  faAngleLeft,
   faBasketShopping,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Header() {
+function Header_back() {
   return (
     <HeaderContainer>
-      <Link to="/">
-        <LogoImage src={logo} alt="logo" />
-      </Link>
-      <InputContainer>
-        <input type="text" />
-        <SearchIconContainer>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </SearchIconContainer>
-      </InputContainer>
+      <IconWrapper>
+        <FontAwesomeIcon icon={faAngleLeft} />
+      </IconWrapper>
+      <HeaderWrapper>
+        <Link to="/">
+          <LogoImage src={logo} alt="logo" />
+        </Link>
+      </HeaderWrapper>
       <ButtonContainer>
         <IconStyle>
           <FontAwesomeIcon icon={faBasketShopping} />
@@ -35,4 +34,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Header_back;
