@@ -1,10 +1,10 @@
 import { LoginLinkBtn } from "./styles/LoginLinkBtn.styeld";
-import { LoginLinkBtnWapper } from "./styles/LoginLinkBtnWapper.styled";
+import { LoginLinkBtnWrapper } from "./styles/LoginLinkBtnWrapper.styled";
 
 export default function LinkBtn() {
   return (
-    <LoginLinkBtnWapper>
+    <LoginLinkBtnWrapper>
       <LoginLinkBtn to="/signup">회원가입</LoginLinkBtn>
-    </LoginLinkBtnWapper>
+    </LoginLinkBtnWrapper>
   );
 }

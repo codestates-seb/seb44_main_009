@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const LoginInputWapper = styled.div`
+export const LoginInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
