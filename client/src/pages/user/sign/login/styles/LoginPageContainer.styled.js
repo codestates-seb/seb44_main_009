@@ -6,5 +6,4 @@ export const LoginPageContainer = styled.div`
   align-items: center;
 
   height: 1000px;
-  border: 1px solid red;
 `;

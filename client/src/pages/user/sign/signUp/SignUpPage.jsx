@@ -1,3 +1,4 @@
+import Header from "../../../../components/header/Header";
 import LoninInfo from "../../../../components/singUp/LoginInfo";
 import SignUp from "../../../../components/singUp/SignUp";
 import UserInfo from "../../../../components/singUp/UserInfo";
@@ -8,6 +9,7 @@ import { SignUpPageWrapper } from "./styles/SignUpPageWrapper.styled";
 function SignUpPage() {
   return (
     <SignUpPageContainer>
+      <Header />
       <SignUpPageWrapper>
         <SignUpPageTitle>회원가입</SignUpPageTitle>
         <SignUp>
