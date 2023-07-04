@@ -15,8 +15,8 @@ function App() {
       <BrowserRouter>
         <GlobalStyle />
         <Routes>
-          <Route path="" element={<HomePage />} />
-          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product" element={<ProductsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
 
