@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import LogoImg from "../../../../image/logo.png";
+import LogoImg from "../../../../../image/logo.png";
 
 export const LoginPageTitle = styled.div`
   font-size: 32px;
