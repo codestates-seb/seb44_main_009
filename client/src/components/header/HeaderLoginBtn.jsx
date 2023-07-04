@@ -1,21 +1,7 @@
 import { useRecoilState } from "recoil";
 import { auth } from "../../atoms/auth";
 import { Link } from "react-router-dom";
-import { styled } from "styled-components";
-
-const WriteStyle = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #383838;
-  color: #fff;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 12px;
-  margin-right: 24px;
-  width: 45px;
-  height: 45px;
-`;
+import { HeaderWriteStyle } from "./styles/HeaderWriteStyle.styled";
 
 function HeaderLoginBtn() {
   const [authState, setAuthState] = useRecoilState(auth);
@@ -31,11 +17,11 @@ function HeaderLoginBtn() {
     <>
       {authState.isLogin ? (
         <Link to="/">
-          <WriteStyle onClick={handleLogout}>로그아웃</WriteStyle>
+          <HeaderWriteStyle onClick={handleLogout}>로그아웃</HeaderWriteStyle>
         </Link>
       ) : (
         <Link to="/login">
-          <WriteStyle>로그인</WriteStyle>
+          <HeaderWriteStyle>로그인</HeaderWriteStyle>
         </Link>
       )}
     </>
