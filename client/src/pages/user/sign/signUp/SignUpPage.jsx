@@ -1,7 +1,7 @@
 import Header from "../../../../components/header/Header";
-import LoninInfo from "../../../../components/singUp/LoginInfo";
-import SignUp from "../../../../components/singUp/SignUp";
-import UserInfo from "../../../../components/singUp/UserInfo";
+import LoginInfo from "../../../../components/user/sign/signUp/loginInfo/LoginInfo";
+import SignUp from "../../../../components/user/sign/signUp/SignUp";
+import UserInfo from "../../../../components/user/sign/signUp/userInfo/UserInfo";
 import { SignUpPageContainer } from "./styles/SignUpPageContainer.styled";
 import { SignUpPageTitle } from "./styles/SignUpPageTitle.styled";
 import { SignUpPageWrapper } from "./styles/SignUpPageWrapper.styled";
@@ -13,10 +13,10 @@ function SignUpPage() {
       <SignUpPageWrapper>
         <SignUpPageTitle>회원가입</SignUpPageTitle>
         <SignUp>
-          <SignUp.LoninInfo>
-            <LoninInfo.EmailInput />
-            <LoninInfo.PasswordInput />
-          </SignUp.LoninInfo>
+          <SignUp.LonginInfo>
+            <LoginInfo.EmailInput />
+            <LoginInfo.PasswordInput />
+          </SignUp.LonginInfo>
           <SignUp.UserInfo>
             <UserInfo.NameInput />
             <UserInfo.NickNameInput />
