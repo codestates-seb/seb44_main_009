@@ -30,6 +30,8 @@ public class Order extends Auditable {
     @Column(length = 20, nullable = false)
     private Reviewstatus reviewstatus = Reviewstatus.IMPOSSIBLE_REVIEW;
 
+    @ManyToOne
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @ManyToOne
@@ -38,6 +40,10 @@ public class Order extends Auditable {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartProduct> cartProductList = new ArrayList<>();
+
+    public Order(List<CartProduct> cartProductList) {
+        this.cartProductList = cartProductList;
+    }
 
     private enum Reviewstatus{
         IMPOSSIBLE_REVIEW("리뷰 작성 불가"),

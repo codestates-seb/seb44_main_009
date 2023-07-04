@@ -3,16 +3,14 @@ package com.main.MainProject.temporary;
 import com.main.MainProject.cart.entity.Cart;
 import com.main.MainProject.order.entity.Order;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class CartProduct {
     @Id
-    private Long productId;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long cartProductId;
+    @Column(nullable = false)
     private int quentity;
 
     @ManyToOne

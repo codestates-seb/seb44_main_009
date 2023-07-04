@@ -5,7 +5,6 @@ import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.order.repository.OrderRepository;
 import com.main.MainProject.temporary.Address;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Id;

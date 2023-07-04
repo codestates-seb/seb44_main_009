@@ -5,7 +5,6 @@ import com.main.MainProject.cart.repository.CartRepository;
 import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.temporary.CartProduct;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,13 +24,13 @@ public class CartService {
         cartRepository.save(cart);
     }
 
-    public Cart updateCart(long cartId, List<CartProduct> cartProductList) {
+    public Cart updateCart(long cartId, Cart cart) {
         Cart findCart = findVerifiedCart(cartId);
 
-        if (!cartProductList.isEmpty()) {
+        if (!cart.getCartProductList().isEmpty()) {
             List<CartProduct> findCartProductList = findCart.getCartProductList();
-            findCartProductList.removeIf(cartProductList::contains);
-            findCartProductList.addAll(cartProductList);
+            findCartProductList.removeIf(cart.getCartProductList()::contains);
+            findCartProductList.addAll(cart.getCartProductList());
         }
 
         cartRepository.save(findCart);

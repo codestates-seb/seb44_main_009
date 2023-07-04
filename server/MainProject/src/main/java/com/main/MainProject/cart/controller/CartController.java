@@ -33,7 +33,7 @@ public class CartController {
     @PatchMapping("/update/{cart-id}")
     public ResponseEntity updateCart(@PathVariable("cart-id") @Positive long cartId,
                                      @Valid @RequestBody CartDto.Patch requestBody) {
-        Cart cart = cartService.updateCart(cartId, mapper.cartPatchToCartProducts(requestBody));
+        Cart cart = cartService.updateCart(cartId, mapper.cartPatchToCart(requestBody));
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.cartToResponse(cart)), HttpStatus.OK);
     }

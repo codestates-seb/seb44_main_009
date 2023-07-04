@@ -1,6 +1,8 @@
 package com.main.MainProject.temporary;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -16,5 +18,5 @@ public class Product {
     private int count;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private CartProduct cartProduct;
+    private List<CartProduct> cartProductList = new ArrayList<>();
 }

@@ -12,6 +12,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CartMapper {
-    List<CartProduct> cartPatchToCartProducts(CartDto.Patch requestBody);
+    Cart cartPatchToCart(CartDto.Patch requestBody);
     CartDto.Response cartToResponse(Cart cart);
 }
