@@ -10,7 +10,7 @@ import {
 
 const Product = ({ imageSrc, name, price, color }) => {
   return (
-    <div>
+    <span>
       <ProductContainer>
         {/* a속성으로 감싸 링크 전달하기  */}
         <ProductImage src={imageSrc} alt="Product Image" />
@@ -22,7 +22,7 @@ const Product = ({ imageSrc, name, price, color }) => {
           <ProductPrice>{price}</ProductPrice>
         </ProductPriceInfo>
       </ProductContainer>
-    </div>
+    </span>
   );
 };
 export default Product;

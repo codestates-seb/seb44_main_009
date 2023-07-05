@@ -2,7 +2,10 @@ import { styled } from "styled-components";
 
 export const ProductContainer = styled.div`
   display: flex;
-  max-width: 150px; // Product의 최대 넓이
+  width: 300px; // Product의 최대 넓이
+  // max-width: 150px;
+  //4개씩 렌더링
+  max-width: 150px;
   flex-direction: column;
   //align-items: center;
   padding: 8px;
