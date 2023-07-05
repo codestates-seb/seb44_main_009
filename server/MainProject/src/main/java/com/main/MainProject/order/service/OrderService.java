@@ -14,6 +14,7 @@ import com.main.MainProject.temporary.CartProduct;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Id;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -67,10 +68,12 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-//    public Order getOrderList(/*memberId*/){
-//        //TODO: 존재하는회원인지 확인
-//        //TODO: 회원정보 불러오기
-//    }
+    public List<Order> getOrderList(/*memberId*/){
+        //TODO: 존재하는회원인지 확인
+        //TODO: 회원정보 불러오기
+        List<Order> orderList = orderRepository.findAll();
+        return orderList;
+    }
 
     public Order getOrder(long memberId, long orderId){
         //TODO: 존재하는회원인지 확인

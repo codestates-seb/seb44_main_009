@@ -16,6 +16,8 @@ public interface OrderMapper {
 
     OrderDto.Address addressToAddressDto(Address address);
 
+    List<OrderDto.OrderResponse> orderToOderResponse(List<Order> orderList);
+
     default OrderDto.ResponseDetail orderToResponse(Order order){
         if ( order == null ) {
             return null;
@@ -39,7 +41,7 @@ public interface OrderMapper {
         Order.Reviewstatus reviewStatus = order.getReviewstatus();
 
         OrderDto.ResponseDetail responseDetail =
-                new OrderDto.ResponseDetail( cartProductList, totalPrice, addressToAddressDto(address), shippingStatus, reviewStatus );
+                new OrderDto.ResponseDetail(order.getOrderId(), cartProductList, totalPrice, addressToAddressDto(address), shippingStatus, reviewStatus );
 
         return responseDetail;
     }

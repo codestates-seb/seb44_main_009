@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -56,8 +57,10 @@ public class OrderController {
     //회원의 모든 정보 불러오기
     @GetMapping("/buylist/{member-id}")
     public ResponseEntity getorders(){
+        List<Order> orderList = orderService.getOrderList();
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(
+                mapper.orderToOderResponse(orderList), HttpStatus.OK);
     }
 
     //주문상세 불러오기

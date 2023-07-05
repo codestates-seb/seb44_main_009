@@ -27,7 +27,17 @@ public class OrderDto {
 
     @AllArgsConstructor
     @Getter
+    public static class OrderResponse{
+        private Long orderId;
+        private Order.OrderStatus shippingStatus;
+        private Order.Reviewstatus reviewStatus;
+    }
+
+    @AllArgsConstructor
+    @Getter
     public static class ResponseDetail {
+        private Long orderId;
+
         private List<cartProductResponse> cartProductList;
 
         private int totalPrice;
