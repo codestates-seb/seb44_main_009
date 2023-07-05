@@ -2,9 +2,9 @@
 spring:
   profiles: mysql
   datasource:
-    url: jdbc:mysql://localhost:{데이터베이스 포트 번호}/{데이터베이스 이름}?useSSL=false&allowPublicKeyRetrieval=true&useLegacyAuth=false
-    username: {데이터베이스 유저 이름}
-    password: {데이터베이스 비밀번호}
+    url: jdbc:mysql://localhost:3306/onlineshopping?useSSL=false&allowPublicKeyRetrieval=true&useLegacyAuth=false
+    username: root
+    password: Toblerone00!!
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
