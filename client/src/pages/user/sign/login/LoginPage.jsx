@@ -8,8 +8,8 @@ import Header from "../../../../components/header/Header";
 function LoginPage() {
   return (
     <LoginPageContainer>
+      <Header />
       <LoginPageWrapper>
-        <Header />
         <LoginPageTitle>로그인</LoginPageTitle>
         <Login>
           <Login.Inputs>
