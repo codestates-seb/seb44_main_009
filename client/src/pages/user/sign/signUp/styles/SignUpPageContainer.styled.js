@@ -1,8 +1,9 @@
 import { styled } from "styled-components";
 
 export const SignUpPageContainer = styled.div`
-  /* display: flex; */
-  /* justify-content: center; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  height: 1024px;
+  height: 1000px;
 `;
