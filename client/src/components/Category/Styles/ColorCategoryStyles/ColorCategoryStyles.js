@@ -1,28 +1,9 @@
 //import React from "react";
-import { styled } from "styled-components";
-import { Warm, Cool, RightArrow } from "../../../image/index"; // 예시로 넣은 이미지
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 50px;
-`;
-
-const Text = styled.div`
-  font-size: 18px;
-  font-weight: 600;
-  margin-left: 10px;
-  margin-right: 5px;
-`;
-
-const Image = styled.img`
-  width: 32px;
-  height: 32px;
-`;
-
-const Margin = styled.div`
-  margin-right: 460px;
-`;
+import { Warm, Cool, RightArrow } from "../../../../image/index"; // 예시로 넣은 이미지
+import { Container } from "./Container";
+import { Image } from "./Image";
+import { Margin } from "./Margin";
+import { Text } from "./Text";
 
 export const ColorCategory = ({ imageSrc, altText, labelText }) => {
   return (

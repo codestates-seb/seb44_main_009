@@ -3,7 +3,7 @@ import {
   CategoryItem,
   CategoryImage,
   CategoryName,
-} from "./Styles/CategoryStyles";
+} from "./Styles/CategoryStyles/CategoryStyles";
 import { Coat, Jean, Shirt, Skirt, Dress, Accessary } from "../../image/index";
 
 //const categories = ["상의", "원피스", "팬츠", "스커트", "아우터", "잡화"];
