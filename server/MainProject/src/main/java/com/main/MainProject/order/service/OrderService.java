@@ -38,7 +38,11 @@ public class OrderService {
 
         Order order = new Order();
         order.setAddress(address);
-        cart.getCartProductList().stream().forEach(cartProduct -> cartProduct.setOrder(order));
+        cart.getCartProductList().stream().forEach(cartProduct -> order.addCartProduct(cartProduct));
+
+        System.out.println("주문 상품 갯수: " + order.getCartProductList().size());
+        //카트 비우기
+        cart.getCartProductList().stream().forEach(cartProduct -> cartProduct.setCart(null));
 
         return orderRepository.save(order);
     }
@@ -88,6 +92,7 @@ public class OrderService {
             throw new BusinessLogicException(ExceptionCode.ORDER_NOT_FOUND);
         }
 
+        orderRepository.save(findOrder);
     }
 
     public Order verficatedOrder(long orderId){

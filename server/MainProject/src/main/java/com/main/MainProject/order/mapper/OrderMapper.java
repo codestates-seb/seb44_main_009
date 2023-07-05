@@ -1,6 +1,5 @@
 package com.main.MainProject.order.mapper;
 
-import com.main.MainProject.cart.dto.CartDto;
 import com.main.MainProject.order.dto.OrderDto;
 import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.temporary.Address;
@@ -8,7 +7,6 @@ import com.main.MainProject.temporary.CartProduct;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +16,7 @@ public interface OrderMapper {
 
     OrderDto.Address addressToAddressDto(Address address);
 
-    default OrderDto.Response orderToResponse(Order order){
+    default OrderDto.ResponseDetail orderToResponse(Order order){
         if ( order == null ) {
             return null;
         }
@@ -40,10 +38,10 @@ public interface OrderMapper {
         Order.OrderStatus shippingStatus = order.getOrderStatus();
         Order.Reviewstatus reviewStatus = order.getReviewstatus();
 
-        OrderDto.Response response =
-                new OrderDto.Response( cartProductList, totalPrice, addressToAddressDto(address), shippingStatus, reviewStatus );
+        OrderDto.ResponseDetail responseDetail =
+                new OrderDto.ResponseDetail( cartProductList, totalPrice, addressToAddressDto(address), shippingStatus, reviewStatus );
 
-        return response;
+        return responseDetail;
     }
 
     default OrderDto.cartProductResponse cartProductToCartProductResponse(CartProduct cartProduct){
@@ -63,5 +61,5 @@ public interface OrderMapper {
         return cartProductResponse;
     }
 
-    List<OrderDto.Response> ordersToResponses(List<Order> orders);
+    List<OrderDto.ResponseDetail> ordersToResponses(List<Order> orders);
 }

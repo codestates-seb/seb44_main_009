@@ -26,6 +26,6 @@ public class CartProduct {
     private Cart cart;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", insertable = false, updatable = false)
+    @JoinColumn(name = "order_id")
     private Order order;
 }
