@@ -1,3 +1,5 @@
+import { styled } from "styled-components";
+
 import {
   ProductContainer,
   ProductImage,
@@ -7,7 +9,12 @@ import {
   ProductNameInfo,
   ProductColor,
 } from "./Styles/Product/ProductStyles";
-
+const ProductColorContainer = styled.div`
+  display: flex; // 가로 정렬을 위한 flex 설정
+  max-width: 100%;
+  max-height: 100%;
+  justify-content: flex-end;
+`;
 const Product = ({ imageSrc, name, price, color }) => {
   return (
     <span>
@@ -17,9 +24,12 @@ const Product = ({ imageSrc, name, price, color }) => {
         <ProductNameInfo>
           <ProductName>{name}</ProductName>
         </ProductNameInfo>
-
+        <ProductColorContainer>
+          {color.map((c, index) => (
+            <ProductColor key={index} color={c} />
+          ))}
+        </ProductColorContainer>
         <ProductPriceInfo>
-          <ProductColor color={color} />
           <ProductPrice>{price}</ProductPrice>
         </ProductPriceInfo>
       </ProductContainer>

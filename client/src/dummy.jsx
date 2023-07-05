@@ -2,12 +2,16 @@ import { Coat, Skirt } from "./image/index";
 export const dummyproducts = [
   {
     id: 1,
-    imageSrc: Coat,
-    name: "웜1",
-    price: "1000원",
+
+    name: "7글자 ",
+    price: "1002원",
+    color: ["yellow", "pink", "red"],
+    content: "의류 상세 설명",
+    count: "상품잔여개수",
     personalcolor: "warm",
     cartegory: "상의",
-    color: "yellow",
+    size: ["S", "M", "L"],
+    imageSrc: Coat, // 로컬 이미지파일
   },
   {
     id: 2,
@@ -16,7 +20,7 @@ export const dummyproducts = [
     price: "2000원",
     personalcolor: "warm",
     cartegory: "상의",
-    color: "pink",
+    color: ["pink", "skyblue"],
   },
   {
     id: 3,
@@ -25,7 +29,7 @@ export const dummyproducts = [
     price: "3000원",
     personalcolor: "warm",
     cartegory: "상의",
-    color: "black",
+    color: ["black"],
   },
   {
     id: 4,
@@ -34,7 +38,7 @@ export const dummyproducts = [
     price: "4000원",
     personalcolor: "warm",
     cartegory: "상의",
-    color: "blue",
+    color: ["blue"],
   },
   {
     id: 5,
@@ -43,7 +47,7 @@ export const dummyproducts = [
     price: "100원",
     personalcolor: "cool",
     cartegory: "상의",
-    color: "purpple",
+    color: ["purpple"],
   },
   {
     id: 6,
@@ -52,7 +56,7 @@ export const dummyproducts = [
     price: "200원",
     personalcolor: "cool",
     cartegory: "상의",
-    color: "purpple",
+    color: ["purpple"],
   },
   {
     id: 7,
@@ -61,7 +65,7 @@ export const dummyproducts = [
     price: "300원",
     personalcolor: "cool",
     cartegory: "상의",
-    color: "orange",
+    color: ["orange", " gray"],
   },
   {
     id: 8,
@@ -70,7 +74,7 @@ export const dummyproducts = [
     price: "400원",
     personalcolor: "cool",
     cartegory: "상의",
-    color: "gray",
+    color: ["gray"],
   },
   {
     id: 9,
@@ -79,7 +83,7 @@ export const dummyproducts = [
     price: "400원",
     personalcolor: "cool",
     cartegory: "상의",
-    color: "skyblue",
+    color: ["skyblue"],
   },
   {
     id: 10,
@@ -88,7 +92,7 @@ export const dummyproducts = [
     price: "400원",
     personalcolor: "warm",
     cartegory: "상의",
-    color: "black",
+    color: ["black"],
   },
   {
     id: 11,
@@ -97,6 +101,6 @@ export const dummyproducts = [
     price: "400원",
     personalcolor: "cool",
     cartegory: "상의",
-    color: "white",
+    color: ["white"],
   },
 ];
