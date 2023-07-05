@@ -22,9 +22,18 @@ const CategoryContainer = styled.div`
 `;
 const Borderdiv = styled.div`
   border: 2px solid black;
-  max-width: 834px;
-  height: 1000px;
+  width: 834px;
+  height: 100%;
+  overflow: hidden;
   padding: 24px;
+`;
+
+const MainContainer = styled.div`
+  height: 1000px;
+  width: 834px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const HomePage = () => {
@@ -37,7 +46,7 @@ const HomePage = () => {
   const slicedWarmProducts = WarmfilteredProducts.slice(0, 4);
   const slicedCoolProducts = CoolfilteredProducts.slice(0, 4);
   return (
-    <div>
+    <MainContainer>
       <Header></Header>
       <Borderdiv>
         <CategoryContainer>
@@ -57,7 +66,7 @@ const HomePage = () => {
         <MarginBottomTom />
       </Borderdiv>
       <Footer></Footer>
-    </div>
+    </MainContainer>
   );
 };
 

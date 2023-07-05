@@ -43,6 +43,7 @@ export const dummyproducts = [
     price: "100원",
     personalcolor: "cool",
     cartegory: "상의",
+    color: "purpple",
   },
   {
     id: 6,
