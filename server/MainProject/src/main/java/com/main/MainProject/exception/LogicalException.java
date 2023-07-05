@@ -1,8 +1,8 @@
 package com.main.MainProject.exception;
+
 import lombok.Getter;
 
-public class LogicalException extends RuntimeException {
-
+public class LogicalException extends RuntimeException{
     @Getter
     private ExceptionCode exceptionCode;
 
