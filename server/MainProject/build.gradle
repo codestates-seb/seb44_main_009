@@ -36,9 +36,6 @@ dependencies {
 	//mapper 자동화
 	implementation 'org.mapstruct:mapstruct:1.5.1.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.1.Final'
-
-	//mysql
-	implementation 'mysql:mysql-connector-java:8.0.32'
 }
 
 tasks.named('test') {
