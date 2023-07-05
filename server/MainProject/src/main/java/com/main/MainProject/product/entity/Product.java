@@ -1,5 +1,6 @@
-package com.main.MainProject.product.domain;
+package com.main.MainProject.product.entity;
 
+import com.main.MainProject.product.category.entity.Category;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,13 +8,15 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Builder
-@AllArgsConstructor
+@Setter
+//@Builder
+//@AllArgsConstructor
 @NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
+
     @Column(nullable = false, length = 20, unique = true)
     private String name; // 상품 이름
 
@@ -31,16 +34,22 @@ public class Product {
 
     @Column
     @Enumerated(value = EnumType.STRING)
+//    @Builder.Default
     private ProductStatus productStatus = ProductStatus.PRODUCT_ON_SALE;
 
-    @ManyToOne
+    @Column(nullable = false, length = 20)
+    private String personalColor;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
     @Column(nullable = false)
+//    @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(nullable = false, name = "LAST_MODIFIED_AT")
+//    @Builder.Default
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
     public enum ProductStatus {
