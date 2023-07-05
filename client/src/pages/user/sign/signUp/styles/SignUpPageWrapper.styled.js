@@ -6,8 +6,9 @@ export const SignUpPageWrapper = styled.div`
   align-items: center;
 
   width: 834px;
-  height: 924px;
+  height: 100%;
   border: 1px solid #383838;
+  border-radius: 0 0 30px 30px;
   padding: 24px;
 
   overflow-y: scroll;
