@@ -1,8 +1,12 @@
+import { ListAmount } from "../styles/ListAmount";
+import { ListTitle } from "../styles/ListTitle";
+import { MyListWrapper } from "../styles/MyListWrapper";
+
 export default function MyOrders() {
   return (
-    <div>
-      <div>주문 내역</div>
-      <div>0</div>
-    </div>
+    <MyListWrapper>
+      <ListTitle>주문 내역</ListTitle>
+      <ListAmount>0</ListAmount>
+    </MyListWrapper>
   );
 }

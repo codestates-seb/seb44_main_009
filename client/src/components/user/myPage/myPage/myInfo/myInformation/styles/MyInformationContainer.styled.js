@@ -1,9 +1,9 @@
 import { styled } from "styled-components";
 
-export const MyReceiptContainer = styled.div`
+export const MyInformationContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 
-  width: 600px;
+  width: 290px;
 `;

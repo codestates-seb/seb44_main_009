@@ -5,7 +5,11 @@ import PurchasedReviewBtn from "./purchasedReviewBtn/PurchasedReviewBtn";
 import { PurchasedContainer } from "./styles/PurchasedContainer";
 
 export default function Purchased({ children }) {
-  return <PurchasedContainer>{children}</PurchasedContainer>;
+  return (
+    <>
+      <PurchasedContainer>{children}</PurchasedContainer>
+    </>
+  );
 }
 
 Purchased.Img = PurchasedImg;

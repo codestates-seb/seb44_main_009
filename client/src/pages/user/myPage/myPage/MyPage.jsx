@@ -7,6 +7,7 @@ import MyInfo from "../../../../components/user/myPage/myPage/myInfo/MyInfo";
 import MyList from "../../../../components/user/myPage/myPage/myList/MyList";
 import MyReceipt from "../../../../components/user/myPage/myPage/myReceipt/MyReceipt";
 import Purchased from "../../../../components/user/myPage/myPage/myReceipt/purchased/Purchased";
+import { PurchasedWraaper } from "./styles/PurchasedWraaper";
 
 export default function MyPage() {
   return (
@@ -28,8 +29,10 @@ export default function MyPage() {
           <MyReceipt.Title />
           <MyReceipt.Purchased>
             <Purchased.Img />
-            <Purchased.Name />
-            <Purchased.Price />
+            <PurchasedWraaper>
+              <Purchased.Name />
+              <Purchased.Price />
+            </PurchasedWraaper>
             <Purchased.ReviewBtn />
           </MyReceipt.Purchased>
         </MyReceipt>

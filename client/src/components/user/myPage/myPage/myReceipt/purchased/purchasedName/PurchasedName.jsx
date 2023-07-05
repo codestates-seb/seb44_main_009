@@ -1,8 +1,11 @@
+import { PurchasedInfoDetail } from "../styles/PurchasedInfoDetail";
+import { PurchasedInfoTitle } from "../styles/PurchasedInfoTitle";
+
 export default function PurchasedName() {
   return (
     <div>
-      <span>상품명:</span>
-      <span>맨투맨</span>
+      <PurchasedInfoTitle>상품명: </PurchasedInfoTitle>
+      <PurchasedInfoDetail>맨투맨</PurchasedInfoDetail>
     </div>
   );
 }

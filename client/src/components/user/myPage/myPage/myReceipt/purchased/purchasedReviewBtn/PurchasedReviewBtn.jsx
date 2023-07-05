@@ -1,3 +1,10 @@
+import { ReviewButton } from "./styles/PurchasedReviewButton";
+import { ReviewButtonWrapper } from "./styles/ReviewButtonWrapper";
+
 export default function PurchasedReviewBtn() {
-  return <button>리뷰 쓰기</button>;
+  return (
+    <ReviewButtonWrapper>
+      <ReviewButton>리뷰 쓰기</ReviewButton>
+    </ReviewButtonWrapper>
+  );
 }
