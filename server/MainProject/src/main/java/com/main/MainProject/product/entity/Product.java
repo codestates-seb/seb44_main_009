@@ -1,13 +1,10 @@
 package com.main.MainProject.product.entity;
 
 import com.main.MainProject.product.category.entity.Category;
-import com.main.MainProject.temporary.CartProduct;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -70,7 +67,4 @@ public class Product {
             this.description = description;
         }
     }
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartProduct> cartProductList = new ArrayList<>();
 }
