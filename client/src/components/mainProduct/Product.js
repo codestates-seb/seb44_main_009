@@ -16,9 +16,10 @@ const Product = ({ imageSrc, name, price, color }) => {
         <ProductImage src={imageSrc} alt="Product Image" />
         <ProductNameInfo>
           <ProductName>{name}</ProductName>
-          <ProductColor>{color}</ProductColor>
         </ProductNameInfo>
+
         <ProductPriceInfo>
+          <ProductColor color={color} />
           <ProductPrice>{price}</ProductPrice>
         </ProductPriceInfo>
       </ProductContainer>

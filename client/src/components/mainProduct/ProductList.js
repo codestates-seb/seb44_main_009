@@ -34,6 +34,7 @@ const ProductList = ({ products }) => {
                   imageSrc={product.imageSrc}
                   name={product.name}
                   price={product.price}
+                  color={product.color}
                   isWarmTone={isWarmTone(product)}
                 />
               ))}

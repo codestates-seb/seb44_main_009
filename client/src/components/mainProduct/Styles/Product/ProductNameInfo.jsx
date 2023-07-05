@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const ProductNameInfo = styled.div`
+export const ProductNameInfo = styled.span`
   max-width: 100%;
   max-height: 100%;
   text-align: left;
