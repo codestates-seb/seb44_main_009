@@ -1,6 +1,6 @@
 //import React from "react";
 import { styled } from "styled-components";
-import { Warm, Cool, RightArrow } from "../../../image/index"; // 예시로 넣은 이미지
+import { Warm, Cool, RightArrow } from "../../../../image/index"; // 예시로 넣은 이미지
 
 const Container = styled.div`
   display: flex;

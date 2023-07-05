@@ -6,7 +6,7 @@ import {
   ProductPriceInfo,
   ProductNameInfo,
   ProductColor,
-} from "./Styles/ProductStyles";
+} from "./Styles/Product/ProductStyles";
 
 const Product = ({ imageSrc, name, price, color }) => {
   return (
