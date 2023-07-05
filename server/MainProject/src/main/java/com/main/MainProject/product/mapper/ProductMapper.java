@@ -1,8 +1,10 @@
 package com.main.MainProject.product.mapper;
 
-import com.main.MainProject.product.domain.Product;
-import com.main.MainProject.product.dto.ProductDto;
+import com.main.MainProject.product.entity.Product;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+import java.util.List;
 
 import static com.main.MainProject.product.dto.ProductDto.*;
 
@@ -12,5 +14,9 @@ public interface ProductMapper {
 
     Product productPatchDtoToProduct(ProductPatchDto productPatchDto);
 
+    @Mapping(source = "category.name", target = "categoryName")
     ProductResponseDto productToProductResponseDto(Product product);
+
+    List<ProductResponseDto> productsToProductResponseDtos(List<Product> products);
+
 }
