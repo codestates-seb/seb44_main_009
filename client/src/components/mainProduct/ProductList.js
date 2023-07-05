@@ -1,28 +1,49 @@
-//import React from "react";
-import { styled } from "styled-components";
 import Product from "./Product";
+import {
+  ContainerBox,
+  ProductListContainer,
+  Margin,
+} from "./Styles/ProductList/ProductListStyles";
 
-const Container = styled.div`
-  max-width: 800px;
-  margin-left: 50px;
-`;
-const ProductListContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-`;
-
-const ProductList = () => {
-  //   const isWarmTone = products => {
-  //     return products.color === "warm";
-  //   };
-
+const ProductList = ({ products }) => {
+  const isWarmTone = products => {
+    return products.color === "warm";
+  };
+  const productGroups = Array.from(
+    { length: Math.ceil(products.length / 4) },
+    (_, index) => products.slice(index * 4, index * 4 + 4),
+  );
   return (
-    <Container>
+    <ContainerBox>
       <ProductListContainer>
-        <Product></Product>
+        {/* {products.map(product => (
+          <Product
+            key={product.id}
+            imageSrc={product.imageSrc}
+            name={product.name}
+            price={product.price}
+            isWarmTone={isWarmTone(product)}
+          />
+        ))} */}
+        {productGroups.map((group, groupIndex) => (
+          <div key={groupIndex}>
+            <ProductListContainer>
+              {group.map(product => (
+                <Product
+                  key={product.id}
+                  imageSrc={product.imageSrc}
+                  name={product.name}
+                  price={product.price}
+                  color={product.color}
+                  isWarmTone={isWarmTone(product)}
+                />
+              ))}
+            </ProductListContainer>
+            <Margin />
+          </div>
+        ))}
       </ProductListContainer>
-    </Container>
+    </ContainerBox>
   );
 };
 export default ProductList;
