@@ -10,7 +10,7 @@ public class MemberResponseDto {
     private Long memberId;
     private String korName;
     private String email;
-    private Long phoneNumber;
+    private String phoneNumber;
     private String nickName;
     private String address;
     private String personalColor;
