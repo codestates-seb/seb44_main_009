@@ -2,6 +2,7 @@ package com.main.MainProject.temporary;
 
 import com.main.MainProject.cart.entity.Cart;
 import com.main.MainProject.order.entity.Order;
+import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.review.Review;
 import lombok.Getter;
 import lombok.Setter;

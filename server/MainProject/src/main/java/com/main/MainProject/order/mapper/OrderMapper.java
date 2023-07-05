@@ -54,7 +54,7 @@ public interface OrderMapper {
 
         quentity = cartProduct.getQuentity();
 
-        String productName =  cartProduct.getProduct().getProductName();
+        String productName =  cartProduct.getProduct().getName();
         int totalProductPrice = cartProduct.getProduct().getPrice() * quentity;
 
         OrderDto.cartProductResponse cartProductResponse =

@@ -3,14 +3,10 @@ package com.main.MainProject.cart.mapper;
 
 import com.main.MainProject.cart.dto.CartDto;
 import com.main.MainProject.cart.entity.Cart;
-import com.main.MainProject.order.dto.OrderDto;
 import com.main.MainProject.temporary.CartProduct;
-import com.main.MainProject.temporary.Product;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,7 +41,7 @@ public interface CartMapper {
 
         quentity = cartProduct.getQuentity();
 
-        String productName =  cartProduct.getProduct().getProductName();
+        String productName =  cartProduct.getProduct().getName();
         int totalProductPrice = cartProduct.getProduct().getPrice() * quentity;
 
         CartDto.cartProductResponse cartProductResponse =

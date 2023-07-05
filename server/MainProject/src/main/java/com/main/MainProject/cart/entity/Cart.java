@@ -1,11 +1,8 @@
 package com.main.MainProject.cart.entity;
 
-import com.main.MainProject.audit.Auditable;
 import com.main.MainProject.temporary.CartProduct;
-import com.main.MainProject.temporary.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;

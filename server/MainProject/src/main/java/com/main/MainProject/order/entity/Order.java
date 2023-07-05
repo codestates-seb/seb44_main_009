@@ -2,7 +2,6 @@ package com.main.MainProject.order.entity;
 
 import com.main.MainProject.audit.Auditable;
 import com.main.MainProject.temporary.Address;
-import com.main.MainProject.temporary.Member;
 import com.main.MainProject.temporary.CartProduct;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
