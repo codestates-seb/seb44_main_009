@@ -1,4 +1,4 @@
-import Inputs from "../user/sign/login/input/Inputs";
+import Inputs from "./Inputs";
 import LinkBtn from "./LinkBtn";
 import LoginBtn from "./LoginBtn";
 import { LoginContainer } from "./styles/LoginContainer.styled";
