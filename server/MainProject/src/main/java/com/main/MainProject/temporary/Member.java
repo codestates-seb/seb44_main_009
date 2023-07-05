@@ -2,6 +2,7 @@ package com.main.MainProject.temporary;
 
 import com.main.MainProject.cart.entity.Cart;
 import com.main.MainProject.order.entity.Order;
+import com.main.MainProject.review.Review;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,5 +27,8 @@ public class Member {
 //    private Cart cart;
 
 //    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST, orphanRemoval = true)
-//    private List<Order> orderList = new ArrayList<>();
+//    private List<Order> orderList = new ArrayList<>()
+
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Review> reviewList = new ArrayList<>();
 }
