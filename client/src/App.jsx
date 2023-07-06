@@ -7,6 +7,9 @@ import CartPage from "./pages/user/Cart/CartPage";
 import GlobalStyle from "./GlobalStyle";
 import MyPage from "./pages/user/myPage/myPage/MyPage";
 import ReviewUpdatePage from "./pages/user/Review/ReviewUpdatePage";
+import ProfilePage from "./pages/user/profile/ProfilePage";
+import ProfileEditPage from "./pages/user/myPage/profileEdit/ProfileEditPage";
+
 
 function App() {
   return (
@@ -21,6 +24,8 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/Review" element={<ReviewUpdatePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/edit" element={<ProfileEditPage />} />
         </Routes>
       </BrowserRouter>
     </div>
