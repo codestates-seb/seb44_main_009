@@ -10,25 +10,22 @@ import ReviewUpdatePage from "./pages/user/Review/ReviewUpdatePage";
 import ProfilePage from "./pages/user/profile/ProfilePage";
 import ProfileEditPage from "./pages/user/myPage/profileEdit/ProfileEditPage";
 
-
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <GlobalStyle />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/Products" element={<ProductsPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/Review" element={<ReviewUpdatePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/profile/edit" element={<ProfileEditPage />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <GlobalStyle />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/Products" element={<ProductsPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/Review" element={<ReviewUpdatePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile/edit" element={<ProfileEditPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
