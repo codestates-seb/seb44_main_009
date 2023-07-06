@@ -54,6 +54,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -86,6 +87,12 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.main.MainProject.qna.entity" />
+      <recent name="com.main.MainProject.qna.repository" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.MainProjectApplication">
     <configuration name="MainProjectApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.main.MainProject.MainProjectApplication" />

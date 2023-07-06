@@ -1,16 +1,15 @@
 package com.main.MainProject.member.controller;
 
 
+import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.member.dto.MemberPatchDto;
 import com.main.MainProject.member.dto.MemberSignUpDto;
 import com.main.MainProject.member.entity.Member;
 import com.main.MainProject.member.mapper.MemberMapper;
 import com.main.MainProject.member.service.MemberService;
 import com.main.MainProject.response.ListResponseDto;
-import com.main.MainProject.response.SingleResponseDto;
 import com.main.MainProject.util.UriCreator;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
