@@ -1,4 +1,4 @@
-package com.main.MainProject.response;
+package com.main.MainProject.dto;
 
 import lombok.Getter;
 

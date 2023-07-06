@@ -1,19 +1,15 @@
 package com.main.MainProject.order.service;
 
 import com.main.MainProject.cart.entity.Cart;
-import com.main.MainProject.cart.repository.CartRepository;
 import com.main.MainProject.cart.service.CartService;
 import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
-import com.main.MainProject.order.dto.OrderDto;
 import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.order.repository.OrderRepository;
-import com.main.MainProject.temporary.Address;
-import com.main.MainProject.temporary.AddressRepository;
-import com.main.MainProject.temporary.CartProduct;
+import com.main.MainProject.address.Address;
+import com.main.MainProject.address.AddressRepository;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,11 +35,11 @@ public class OrderService {
 
         Order order = new Order();
         order.setAddress(address);
-        cart.getCartProductList().stream().forEach(cartProduct -> order.addCartProduct(cartProduct));
+        cart.getOrderProductList().stream().forEach(cartProduct -> order.addCartProduct(cartProduct));
 
-        System.out.println("주문 상품 갯수: " + order.getCartProductList().size());
+        System.out.println("주문 상품 갯수: " + order.getOrderProductList().size());
         //카트 비우기
-        cart.getCartProductList().stream().forEach(cartProduct -> cartProduct.setCart(null));
+        cart.getOrderProductList().stream().forEach(cartProduct -> cartProduct.setCart(null));
 
         return orderRepository.save(order);
     }

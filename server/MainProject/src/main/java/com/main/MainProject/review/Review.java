@@ -1,7 +1,7 @@
 package com.main.MainProject.review;
 
 import com.main.MainProject.audit.Auditable;
-import com.main.MainProject.temporary.CartProduct;
+import com.main.MainProject.order.entity.OrderProduct;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,16 +31,6 @@ public class Review extends Auditable {
 //    @JoinColumn(name = "member_id")
 //    private Member member;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-    private List<CartProduct> cartProductList = new ArrayList<>();
+    private OrderProduct orderProduct;
 
-    public void addCartProduct(CartProduct cartProduct) {
-        cartProduct.setReview(this);
-        cartProductList.add(cartProduct);
-    }
-
-    public void removeCartProduct(CartProduct cartProduct) {
-        cartProduct.setReview(null);
-        cartProductList.remove(cartProduct);
-    }
 }

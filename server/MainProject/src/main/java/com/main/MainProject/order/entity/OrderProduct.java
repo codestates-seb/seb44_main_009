@@ -1,6 +1,5 @@
-package com.main.MainProject.temporary;
+package com.main.MainProject.order.entity;
 
-import com.main.MainProject.cart.entity.Cart;
 import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.review.Review;
@@ -12,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class CartProduct {
+public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartProductId;
@@ -23,9 +22,9 @@ public class CartProduct {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
+//    @ManyToOne
+//    @JoinColumn(name = "cart_id")
+//    private Cart cart;
 
     @ManyToOne
     @JoinColumn(name = "order_id")

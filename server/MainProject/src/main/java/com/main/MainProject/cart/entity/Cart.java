@@ -1,6 +1,6 @@
 package com.main.MainProject.cart.entity;
 
-import com.main.MainProject.temporary.CartProduct;
+import com.main.MainProject.order.entity.OrderProduct;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,11 +16,11 @@ public class Cart {
     private Long cartId;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-    private List<CartProduct> cartProductList = new ArrayList<>();
+    private List<OrderProduct> orderProductList = new ArrayList<>();
 
 
-    public Cart(List<CartProduct> cartProductList) {
-        this.cartProductList = cartProductList;
+    public Cart(List<OrderProduct> orderProductList) {
+        this.orderProductList = orderProductList;
     }
 
     //TODO: 회원과 연관관계 추가하기

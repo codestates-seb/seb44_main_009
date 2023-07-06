@@ -3,7 +3,7 @@ package com.main.MainProject.cart.mapper;
 
 import com.main.MainProject.cart.dto.CartDto;
 import com.main.MainProject.cart.entity.Cart;
-import com.main.MainProject.temporary.CartProduct;
+import com.main.MainProject.order.entity.OrderProduct;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -19,11 +19,11 @@ public interface CartMapper {
             return null;
         }
 
-        List<CartDto.cartProductResponse> cartProductList = cart.getCartProductList().stream()
+        List<CartDto.cartProductResponse> cartProductList = cart.getOrderProductList().stream()
                 .map(cartProduct -> cartProductToCartProductResponse(cartProduct))
                 .collect(Collectors.toList());
 
-        int totalPrice = cart.getCartProductList().stream()
+        int totalPrice = cart.getOrderProductList().stream()
                 .filter(cartProduct -> cartProduct != null && cartProduct.getProduct() != null)
                 .mapToInt(cartProduct -> cartProduct.getProduct().getPrice() * cartProduct.getQuentity())
                 .sum();
@@ -33,16 +33,16 @@ public interface CartMapper {
         return response;
     }
 
-    default CartDto.cartProductResponse cartProductToCartProductResponse(CartProduct cartProduct){
-        if ( cartProduct == null ) {
+    default CartDto.cartProductResponse cartProductToCartProductResponse(OrderProduct orderProduct){
+        if ( orderProduct == null ) {
             return null;
         }
         int quentity = 0;
 
-        quentity = cartProduct.getQuentity();
+        quentity = orderProduct.getQuentity();
 
-        String productName =  cartProduct.getProduct().getName();
-        int totalProductPrice = cartProduct.getProduct().getPrice() * quentity;
+        String productName =  orderProduct.getProduct().getName();
+        int totalProductPrice = orderProduct.getProduct().getPrice() * quentity;
 
         CartDto.cartProductResponse cartProductResponse =
                 new CartDto.cartProductResponse( productName, quentity, totalProductPrice );

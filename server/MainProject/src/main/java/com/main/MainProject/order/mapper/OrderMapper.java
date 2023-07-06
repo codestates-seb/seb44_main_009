@@ -2,8 +2,8 @@ package com.main.MainProject.order.mapper;
 
 import com.main.MainProject.order.dto.OrderDto;
 import com.main.MainProject.order.entity.Order;
-import com.main.MainProject.temporary.Address;
-import com.main.MainProject.temporary.CartProduct;
+import com.main.MainProject.address.Address;
+import com.main.MainProject.order.entity.OrderProduct;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -23,7 +23,7 @@ public interface OrderMapper {
             return null;
         }
 
-        List<OrderDto.cartProductResponse> cartProductList = order.getCartProductList().stream()
+        List<OrderDto.cartProductResponse> cartProductList = order.getOrderProductList().stream()
                 .filter(cartProduct -> cartProduct != null && cartProduct.getProduct() != null)
                 .map(cartProduct -> cartProductToCartProductResponse(cartProduct))
                 .collect(Collectors.toList());
@@ -32,7 +32,7 @@ public interface OrderMapper {
 
         address = order.getAddress();
 
-        int totalPrice = order.getCartProductList().stream()
+        int totalPrice = order.getOrderProductList().stream()
                 .filter(cartProduct -> cartProduct != null && cartProduct.getProduct() != null)
                 .mapToInt(cartProduct -> cartProduct.getProduct().getPrice() * cartProduct.getQuentity())
                 .sum();
@@ -46,16 +46,16 @@ public interface OrderMapper {
         return responseDetail;
     }
 
-    default OrderDto.cartProductResponse cartProductToCartProductResponse(CartProduct cartProduct){
-        if ( cartProduct == null ) {
+    default OrderDto.cartProductResponse cartProductToCartProductResponse(OrderProduct orderProduct){
+        if ( orderProduct == null ) {
             return null;
         }
         int quentity = 0;
 
-        quentity = cartProduct.getQuentity();
+        quentity = orderProduct.getQuentity();
 
-        String productName =  cartProduct.getProduct().getName();
-        int totalProductPrice = cartProduct.getProduct().getPrice() * quentity;
+        String productName =  orderProduct.getProduct().getName();
+        int totalProductPrice = orderProduct.getProduct().getPrice() * quentity;
 
         OrderDto.cartProductResponse cartProductResponse =
                 new OrderDto.cartProductResponse( productName, quentity, totalProductPrice );

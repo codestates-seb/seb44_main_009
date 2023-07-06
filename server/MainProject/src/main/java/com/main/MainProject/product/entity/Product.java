@@ -1,7 +1,7 @@
 package com.main.MainProject.product.entity;
 
+import com.main.MainProject.order.entity.OrderProduct;
 import com.main.MainProject.product.category.entity.Category;
-import com.main.MainProject.temporary.CartProduct;
 import lombok.*;
 
 import javax.persistence.*;
@@ -72,5 +72,5 @@ public class Product {
     }
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartProduct> cartProductList = new ArrayList<>();
+    private List<OrderProduct> orderProductList = new ArrayList<>();
 }

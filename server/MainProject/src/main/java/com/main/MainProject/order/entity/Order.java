@@ -1,8 +1,7 @@
 package com.main.MainProject.order.entity;
 
 import com.main.MainProject.audit.Auditable;
-import com.main.MainProject.temporary.Address;
-import com.main.MainProject.temporary.CartProduct;
+import com.main.MainProject.address.Address;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,16 +37,16 @@ public class Order extends Auditable {
 //    private Member member;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartProduct> cartProductList = new ArrayList<>();
+    private List<OrderProduct> orderProductList = new ArrayList<>();
 
-    public void addCartProduct(CartProduct cartProduct) {
-        cartProduct.setOrder(this);
-        cartProductList.add(cartProduct);
+    public void addCartProduct(OrderProduct orderProduct) {
+        orderProduct.setOrder(this);
+        orderProductList.add(orderProduct);
     }
 
-    public void removeCartProduct(CartProduct cartProduct) {
-        cartProduct.setOrder(null);
-        cartProductList.remove(cartProduct);
+    public void removeCartProduct(OrderProduct orderProduct) {
+        orderProduct.setOrder(null);
+        orderProductList.remove(orderProduct);
     }
 
     public enum Reviewstatus{

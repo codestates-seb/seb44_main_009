@@ -1,4 +1,4 @@
-package com.main.MainProject.temporary;
+package com.main.MainProject.address;
 
 import com.main.MainProject.order.entity.Order;
 import lombok.Getter;
