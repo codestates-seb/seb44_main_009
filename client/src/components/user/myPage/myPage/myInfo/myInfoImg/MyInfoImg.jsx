@@ -1,6 +1,6 @@
 import profile from "../../../../../../image/profileImg.jpg";
-import { ProfileImg } from "./styles/ProfileImg.styled";
+import MyProfileImg from "../../../profile/myPersonalColor/myProfileImg/MyProfileImg";
 
 export default function MyInfoImg() {
-  return <ProfileImg src={profile} alt="프로필" />;
+  return <MyProfileImg src={profile} alt="프로필" />;
 }
