@@ -1,9 +1,4 @@
-import { styled } from "styled-components";
-
-const QuantityDropdown = styled.select`
-  border: 1px solid #ccc;
-  border-radius: 10px;
-`;
+import { QuantityDropdown } from "./styles/QuantityDropdown.styled";
 
 function CartQuantityDropdown({ value, onChange }) {
   return (

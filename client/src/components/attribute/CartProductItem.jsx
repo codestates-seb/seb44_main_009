@@ -1,106 +1,20 @@
 import { useState } from "react";
-import { styled } from "styled-components";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Accessary } from "../../image/index";
 import CartOptionModal from "./CartOptionModal";
 import CartQuantityDropdown from "./CartQuantityDropdown";
-
-const ProductWrapper = styled.div`
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-`;
-
-const CheckboxContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Checkbox = styled.input`
-  transform: scale(1.7);
-  margin-right: 12px;
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  border: 2px solid #c4c4c4;
-  border-radius: 4px;
-  cursor: pointer;
-  outline: none;
-  &:checked {
-    background-color: #ff5160;
-    border-color: #ff5160;
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    left: 3px;
-    width: 4px;
-    height: 8px;
-    border: solid #fff;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-  }
-`;
-
-const ColumnStyle = styled.div`
-  flex-direction: column;
-  width: 100%;
-`;
-
-const ProductDetail = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-`;
-
-const ProductImage = styled.img`
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-`;
-
-const ProductView = styled.div`
-  width: 100%;
-  padding-left: 12px;
-`;
-
-const RemoveButton = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  color: #ccc;
-`;
-
-const ProductInfo = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 16px 14px 14px;
-  height: 48px;
-  background-color: #ececec;
-  color: gray;
-  border-radius: 3px;
-`;
-
-const OptionContainer = styled.div`
-  display: flex;
-  margin-top: 12px;
-  gap: 18px;
-  height: 30px;
-  & > * {
-    flex: 1;
-  }
-`;
-
-const Button = styled.button`
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  cursor: pointer;
-`;
+import { ProductWrapper } from "./styles/ProdcutWrapper.styled";
+import { CheckboxContainer } from "./styles/CheckboxContainer.styled";
+import { Checkbox } from "./styles/Checkbox.styled";
+import { ColumnStyle } from "./styles/ColumnStyle.styled";
+import { ProductDetail } from "./styles/ProductDetail.styled";
+import { ProductImage } from "./styles/ProdcutImage.styled";
+import { ProductView } from "./styles/ProductView.styled";
+import { RemoveButton } from "./styles/RemoveButton.styled";
+import { ProductInfo } from "./styles/ProductInfo.styled";
+import { OptionContainer } from "./styles/OptionContainer.styled";
+import { Button } from "./styles/Button.styled";
 
 function CartProductItem({ isChecked, handleCheckboxChange }) {
   const [quantity, setQuantity] = useState(1);
