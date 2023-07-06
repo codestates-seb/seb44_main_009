@@ -51,6 +51,9 @@ const FooterContainer = styled.footer`
   position: fixed;
   bottom: 0;
   background-color: #fff;
+  transition: transform 0.3s ease-in-out;
+  transform: ${props =>
+    props.isModalOpen ? "translateY(100%)" : "translateY(0)"};
 `;
 
 const CartBackContainer = styled.div`
@@ -59,10 +62,16 @@ const CartBackContainer = styled.div`
 
 function CartPage() {
   const [isChecked, setIsChecked] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCheckboxChange = e => {
     setIsChecked(e.target.checked);
   };
+
+  const handleCartToggle = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <BackContainer>
       <StickyStyle>
@@ -80,6 +89,9 @@ function CartPage() {
             <CartProductItem
               isChecked={isChecked}
               handleCheckboxChange={handleCheckboxChange}
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+              handleCartToggle={handleCartToggle}
             />
           </ProductContainer>
         </CartWrapper>

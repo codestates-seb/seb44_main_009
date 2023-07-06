@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { styled } from "styled-components";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { styled, keyframes } from "styled-components";
+import { faXmark, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Accessary } from "../../image/index";
 
@@ -105,10 +105,139 @@ const QuantityDropdown = styled.select`
   border-radius: 10px;
 `;
 
+const slideUpAnimation = keyframes`
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+`;
+
+const ModalContainer = styled.div`
+  position: fixed;
+  bottom: 100px;
+  left: 8px;
+  width: 834px;
+  height: 85%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  animation: ${slideUpAnimation} 0.3s ease-in-out;
+`;
+
+const ModalContent = styled.div`
+  background-color: #fff;
+  width: 834px;
+  height: 70%;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const CancelButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  height: 100%;
+  width: 48%;
+  margin-right: 12px;
+  font-size: 14px;
+`;
+
+const ChangeButton = styled.button`
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 100%;
+  width: 48%;
+  font-size: 14px;
+`;
+
+const DropdownContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const DropdownButton = styled.button`
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+`;
+
+const DropdownIcon = styled.span`
+  display: inline-block;
+  margin-left: auto;
+  transform: ${({ isOpen }) => (isOpen ? "rotate(180deg)" : "rotate(0deg)")};
+  transition: transform 0.3s ease;
+`;
+
+const DropdownMenu = styled.ul`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px 0;
+  width: 100%;
+  max-height: 120px;
+  overflow-y: auto;
+  z-index: 1;
+`;
+
+const DropdownMenuItem = styled.li`
+  padding: 8px 16px;
+  cursor: pointer;
+  &:hover {
+    background-color: #f1f1f1;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  height: 40px;
+`;
+
 function CartProductItem({ isChecked, handleCheckboxChange }) {
   const [quantity, setQuantity] = useState(1);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
+
   const handleQuantityChange = e => {
     setQuantity(e.target.value);
+  };
+
+  const handleCartToggle = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
+  const handleCancel = () => {
+    setIsCartOpen(false);
+  };
+
+  const handleDropdownToggle = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleOptionSelect = option => {
+    setSelectedOption(option);
+    setDropdownOpen(false);
   };
   return (
     <ProductWrapper>
@@ -136,7 +265,7 @@ function CartProductItem({ isChecked, handleCheckboxChange }) {
           <div>색상/사이즈</div>
         </ProductInfo>
         <OptionContainer>
-          <Button>옵션변경</Button>
+          <Button onClick={handleCartToggle}>옵션변경</Button>
           <QuantityDropdown value={quantity} onChange={handleQuantityChange}>
             {Array.from({ length: 100 }, (_, index) => {
               const value = index + 1;
@@ -152,6 +281,43 @@ function CartProductItem({ isChecked, handleCheckboxChange }) {
           </QuantityDropdown>
         </OptionContainer>
       </ColumnStyle>
+      {isCartOpen && (
+        <ModalContainer>
+          <ModalContent>
+            <DropdownContainer>
+              <DropdownButton onClick={handleDropdownToggle}>
+                {selectedOption ? selectedOption : "옵션 선택"}
+                <DropdownIcon isOpen={dropdownOpen}>
+                  <FontAwesomeIcon icon={faChevronDown} />
+                </DropdownIcon>
+              </DropdownButton>
+              {dropdownOpen && (
+                <DropdownMenu>
+                  <DropdownMenuItem
+                    onClick={() => handleOptionSelect("옵션 1")}
+                  >
+                    옵션 1
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => handleOptionSelect("옵션 2")}
+                  >
+                    옵션 2
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => handleOptionSelect("옵션 3")}
+                  >
+                    옵션 3
+                  </DropdownMenuItem>
+                </DropdownMenu>
+              )}
+            </DropdownContainer>
+            <ButtonContainer>
+              <CancelButton onClick={handleCancel}>취소</CancelButton>
+              <ChangeButton>변경하기</ChangeButton>
+            </ButtonContainer>
+          </ModalContent>
+        </ModalContainer>
+      )}
     </ProductWrapper>
   );
 }
