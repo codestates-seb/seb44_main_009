@@ -6,6 +6,7 @@ import SignUpPage from "./pages/user/sign/signUp/SignUpPage";
 import CartPage from "./pages/user/Cart/CartPage";
 import GlobalStyle from "./GlobalStyle";
 import MyPage from "./pages/user/myPage/myPage/MyPage";
+import ProfilePage from "./pages/user/profile/ProfilePage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
     </div>
