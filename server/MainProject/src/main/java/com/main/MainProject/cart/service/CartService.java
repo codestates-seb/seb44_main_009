@@ -27,11 +27,11 @@ public class CartService {
     public Cart updateCart(long cartId, Cart cart) {
         Cart findCart = findVerifiedCart(cartId);
 
-        if (!cart.getOrderProductList().isEmpty()) {
-            List<OrderProduct> findOrderProductList = findCart.getOrderProductList();
-            findOrderProductList.removeIf(cart.getOrderProductList()::contains);
-            findOrderProductList.addAll(cart.getOrderProductList());
-        }
+//        if (!cart.getCartProductList().isEmpty()) {
+//            List<OrderProduct> findOrderProductList = findCart.getCartProductList();
+//            findOrderProductList.removeIf(cart.getOrderProductList()::contains);
+//            findOrderProductList.addAll(cart.getOrderProductList());
+//        }
 
         cartRepository.save(findCart);
         return findCart;

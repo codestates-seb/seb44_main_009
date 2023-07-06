@@ -23,9 +23,9 @@ public interface OrderMapper {
             return null;
         }
 
-        List<OrderDto.cartProductResponse> cartProductList = order.getOrderProductList().stream()
-                .filter(cartProduct -> cartProduct != null && cartProduct.getProduct() != null)
-                .map(cartProduct -> cartProductToCartProductResponse(cartProduct))
+        List<OrderDto.orderProductResponse> cartProductList = order.getOrderProductList().stream()
+                .filter(orderProduct -> orderProduct != null && orderProduct.getProduct() != null)
+                .map(orderProduct -> orderProductToCartProductResponse(orderProduct))
                 .collect(Collectors.toList());
 
         Address address = null;
@@ -34,7 +34,7 @@ public interface OrderMapper {
 
         int totalPrice = order.getOrderProductList().stream()
                 .filter(cartProduct -> cartProduct != null && cartProduct.getProduct() != null)
-                .mapToInt(cartProduct -> cartProduct.getProduct().getPrice() * cartProduct.getQuentity())
+                .mapToInt(cartProduct -> cartProduct.getProduct().getPrice() * cartProduct.getQuantity())
                 .sum();
 
         Order.OrderStatus shippingStatus = order.getOrderStatus();
@@ -46,21 +46,21 @@ public interface OrderMapper {
         return responseDetail;
     }
 
-    default OrderDto.cartProductResponse cartProductToCartProductResponse(OrderProduct orderProduct){
+    default OrderDto.orderProductResponse orderProductToCartProductResponse(OrderProduct orderProduct){
         if ( orderProduct == null ) {
             return null;
         }
         int quentity = 0;
 
-        quentity = orderProduct.getQuentity();
+        quentity = orderProduct.getQuantity();
 
         String productName =  orderProduct.getProduct().getName();
         int totalProductPrice = orderProduct.getProduct().getPrice() * quentity;
 
-        OrderDto.cartProductResponse cartProductResponse =
-                new OrderDto.cartProductResponse( productName, quentity, totalProductPrice );
+        OrderDto.orderProductResponse orderProductResponse =
+                new OrderDto.orderProductResponse( productName, quentity, totalProductPrice );
 
-        return cartProductResponse;
+        return orderProductResponse;
     }
 
     List<OrderDto.ResponseDetail> ordersToResponses(List<Order> orders);

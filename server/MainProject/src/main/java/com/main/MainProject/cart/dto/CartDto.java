@@ -1,6 +1,5 @@
 package com.main.MainProject.cart.dto;
 
-import com.main.MainProject.order.entity.OrderProduct;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,7 +10,7 @@ public class CartDto {
     @Getter
     @AllArgsConstructor
     public static class Patch{
-        private List<OrderProduct> orderProductList;
+        private List<CartDto> orderProductList;
     }
 
 

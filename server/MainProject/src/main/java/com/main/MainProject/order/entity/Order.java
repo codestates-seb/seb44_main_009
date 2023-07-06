@@ -39,12 +39,12 @@ public class Order extends Auditable {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderProduct> orderProductList = new ArrayList<>();
 
-    public void addCartProduct(OrderProduct orderProduct) {
+    public void addOrderProduct(OrderProduct orderProduct) {
         orderProduct.setOrder(this);
         orderProductList.add(orderProduct);
     }
 
-    public void removeCartProduct(OrderProduct orderProduct) {
+    public void removeOrderProduct(OrderProduct orderProduct) {
         orderProduct.setOrder(null);
         orderProductList.remove(orderProduct);
     }

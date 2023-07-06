@@ -38,7 +38,7 @@ public class OrderDto {
     public static class ResponseDetail {
         private Long orderId;
 
-        private List<cartProductResponse> cartProductList;
+        private List<orderProductResponse> cartProductList;
 
         private int totalPrice;
 
@@ -52,7 +52,7 @@ public class OrderDto {
 
     @AllArgsConstructor
     @Getter
-    public static class cartProductResponse{
+    public static class orderProductResponse{
         private String productName;
         private int quentity;
         private int totalProductPrice;
