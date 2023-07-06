@@ -28,7 +28,7 @@ public class ReviewController {
     }
 
     //리뷰 생성
-    @PostMapping("/{order-id}/{product-id}/{member-id}")
+    @PostMapping("/create/{order-id}/{product-id}/{member-id}")
     public ResponseEntity createReview(@PathVariable("order-id")long orderId,
                                        @PathVariable("product-id")long productId,
                                        @PathVariable("member-id")long memberId,
@@ -39,7 +39,7 @@ public class ReviewController {
     }
 
     //리뷰 수정
-    @PatchMapping("/{review-id}/{member-id}")
+    @PatchMapping("/update/{review-id}/{member-id}")
     public ResponseEntity updateReview(@PathVariable("review-id")long reviewId,
                                        @PathVariable("member-id")long memberId,
                                        @Valid @RequestBody ReviewDto.RequestDTO requestBody){
@@ -49,14 +49,14 @@ public class ReviewController {
     }
 
     //개별 리뷰 조회
-    @GetMapping("/{review-id}")
+    @GetMapping("/find/{review-id}")
     public ResponseEntity getReview(@PathVariable("review-id")long reviewId){
         Review review = reviewService.getReview(reviewId);
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewToResponse(review)), HttpStatus.OK);
     }
 
     //상품별 모든 리뷰 조회
-    @GetMapping("/{product-id}")
+    @GetMapping("/findByProduct/{product-id}")
     public ResponseEntity getAllReviewsByProduct(@PathVariable("product-id")long productId){
         List<Review> reviewList = reviewService.getAllReviewsByProduct(productId);
 
@@ -64,7 +64,7 @@ public class ReviewController {
     }
 
     //멤버별 리뷰 조회
-    @GetMapping("/{member-id}")
+    @GetMapping("/findByMember/{member-id}")
     public ResponseEntity getAllReviewsByMember(@PathVariable("member-id")long memberId){
         List<Review> reviewList = reviewService.getAllReviewsByMember(memberId);
 
@@ -72,7 +72,7 @@ public class ReviewController {
     }
 
     //리뷰 삭제
-    @GetMapping("/{review-id}/{member-id}")
+    @GetMapping("/delete/{review-id}/{member-id}")
     public ResponseEntity deleteReview(@PathVariable("review-id")long reviewId,
                                        @PathVariable("member-id")long memberId){
         reviewService.deleteReview(reviewId, memberId);

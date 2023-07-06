@@ -36,16 +36,6 @@ public class Order extends Auditable {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderProduct> orderProductList = new ArrayList<>();
 
-    public void addOrderProduct(OrderProduct orderProduct) {
-        orderProduct.setOrder(this);
-        orderProductList.add(orderProduct);
-    }
-
-    public void removeOrderProduct(OrderProduct orderProduct) {
-        orderProduct.setOrder(null);
-        orderProductList.remove(orderProduct);
-    }
-
     public enum OrderStatus{
         BEFORE_PAYMENT(1, "결제 미완료"),
         AFTER_PAYMENT(2, "결제 완료"),

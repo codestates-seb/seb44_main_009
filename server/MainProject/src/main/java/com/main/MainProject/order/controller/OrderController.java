@@ -37,8 +37,9 @@ public class OrderController {
     //주문하기
     @PostMapping("/buy/{cart-id}/{member-id}")
     public ResponseEntity createOrder(@PathVariable("cart-id")long cartId,
+                                      @PathVariable("member-id")long memberId,
                                       @Valid @RequestBody OrderDto.Address requestBody){
-        Order order =  orderService.createOrder(cartId, mapper.addressDtoToAddress(requestBody));
+        Order order =  orderService.createOrder(cartId, mapper.addressDtoToAddress(requestBody), memberId);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.CREATED);
     }
@@ -49,6 +50,15 @@ public class OrderController {
                                              @Valid @RequestBody OrderDto.Address requestBody){
         Address address = mapper.addressDtoToAddress(requestBody);
         Order order = orderService.updateOrder(orderId, address);
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.OK);
+    }
+
+    //배송완료
+    @PatchMapping("update/{order-id}")
+    public ResponseEntity updateShippingStatus(@PathVariable("order-id")long orderId){
+        Order order = orderService.shippingCompleted(orderId);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.OK);

@@ -74,7 +74,7 @@ public class Member extends Auditable {
         }
     }
 
-    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)

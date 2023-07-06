@@ -45,10 +45,9 @@ public class OrderProduct {
         }
     }
 
-    public OrderProduct(int quantity, Product product, Order order) {
+    public OrderProduct(int quantity, Product product) {
         this.quantity = quantity;
         this.product = product;
-        this.order = order;
     }
 }
 

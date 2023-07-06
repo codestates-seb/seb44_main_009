@@ -14,6 +14,7 @@ import javax.persistence.*;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class CartProduct {
     @Id
@@ -29,4 +30,10 @@ public class CartProduct {
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
+
+    public CartProduct(int quantity, Product product, Cart cart) {
+        this.quantity = quantity;
+        this.product = product;
+        this.cart = cart;
+    }
 }

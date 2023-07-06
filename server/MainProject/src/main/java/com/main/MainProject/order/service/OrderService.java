@@ -8,6 +8,7 @@ import com.main.MainProject.member.entity.Member;
 import com.main.MainProject.member.service.MemberService;
 import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.order.entity.OrderProduct;
+import com.main.MainProject.order.repository.OrderProductRepository;
 import com.main.MainProject.order.repository.OrderRepository;
 import com.main.MainProject.address.Address;
 import com.main.MainProject.address.AddressRepository;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -28,40 +30,42 @@ public class OrderService {
     private  final AddressRepository addressRepository;
 
     private final MemberService memberService;
-    private final ProductService productService;
 
-    public OrderService(OrderRepository orderRepository,
-                        CartService cartService,
-                        AddressRepository addressRepository,
-                        MemberService memberService,
-                        ProductService productService) {
+    private final OrderProductRepository orderProductRepository;
+
+    public OrderService(OrderRepository orderRepository, CartService cartService, AddressRepository addressRepository,
+                        MemberService memberService, OrderProductRepository orderProductRepository) {
         this.orderRepository = orderRepository;
         this.cartService = cartService;
         this.addressRepository = addressRepository;
         this.memberService = memberService;
-        this.productService = productService;
+        this.orderProductRepository = orderProductRepository;
     }
 
-    public Order createOrder(long cartId, Address address){
+    public Order createOrder(long cartId, Address address, long memberId){
         Cart findCart = cartService.findVerifiedCart(cartId);
 //        //TODO: 상품 수량 확인
 //        //TODO: 상품 수량 반영
-//        //TODO: 멤버 불어오기와 주소지 가져오기 혹은 저장하기
+        Member findMember = memberService.findVerifiedMember(memberId);
         addressRepository.save(address);
-//
         Order order = new Order();
+        order.setMember(findMember);
         order.setAddress(address);
-        List<OrderProduct> orderProductList = new ArrayList<>();
-        findCart.getCartProductList().stream()
-                .forEach(cartProduct -> orderProductList.add(cartProductToOrderProduct(order, cartProduct)));
 
+        List<OrderProduct> orderProductList = findCart.getCartProductList().stream()
+                        .map(cartProduct -> cartProductToOrderProduct(order, cartProduct))
+                        .collect(Collectors.toList());
+
+        order.setOrderProductList(orderProductList);
         cartService.cartClear(findCart);
 
-        return orderRepository.save(order);
+        return orderRepository.saveAndFlush(order);
     }
 
     private OrderProduct cartProductToOrderProduct(Order order, CartProduct cartProduct){
-        return new OrderProduct(cartProduct.getQuantity(), cartProduct.getProduct(), order);
+        OrderProduct orderProduct = new OrderProduct(cartProduct.getQuantity(), cartProduct.getProduct());
+        orderProduct.setOrder(order);
+        return orderProduct;
     }
 
     public Order updateOrder(long orderId, Address address){

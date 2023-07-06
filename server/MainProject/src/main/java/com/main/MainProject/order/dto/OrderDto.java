@@ -14,7 +14,7 @@ public class OrderDto {
     @AllArgsConstructor
     @Getter
     public static class Address {
-        private String reciverName;
+        private String receiverName;
 
         private int zipcode;
 
@@ -43,7 +43,7 @@ public class OrderDto {
 
         private int totalPrice;
 
-        Address address;
+        OrderDto.Address address;
 
         private Order.OrderStatus shippingStatus;
     }

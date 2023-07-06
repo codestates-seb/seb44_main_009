@@ -6,6 +6,7 @@ import com.main.MainProject.address.Address;
 import com.main.MainProject.order.entity.OrderProduct;
 import com.main.MainProject.product.cartProduct.CartProduct;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public interface OrderMapper {
 
     OrderDto.Address addressToAddressDto(Address address);
 
+    @Mapping(source = "order.OrderStatus", target = "shippingStatus")
     List<OrderDto.OrderResponse> orderToOderResponse(List<Order> orderList);
 
     default OrderDto.ResponseDetail orderToResponse(Order order){
