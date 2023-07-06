@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -18,10 +16,11 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long addressId;
 
-    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orderList = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    Order order;
 
-    private String reciverName;
+    private String receiverName;
 
     private int zipcode;
 
@@ -33,9 +32,9 @@ public class Address {
 
     private String request;
 
-    public Address(String reciverName, int zipcode, String addressName,
+    public Address(String receiverName, int zipcode, String addressName,
                    String addressDetails, String telNum, String request) {
-        this.reciverName = reciverName;
+        this.receiverName = receiverName;
         this.zipcode = zipcode;
         this.addressName = addressName;
         this.addressDetails = addressDetails;

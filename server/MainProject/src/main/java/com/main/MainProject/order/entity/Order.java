@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = "ORDERS")
+@Entity(name = "orders")
 public class Order extends Auditable {
 
     @Id
@@ -26,8 +26,7 @@ public class Order extends Auditable {
     private OrderStatus orderStatus= OrderStatus.BEFORE_PAYMENT;
 
 
-    @ManyToOne
-    @JoinColumn(name = "address_id")
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Address address;
 
     @ManyToOne

@@ -70,8 +70,8 @@ public class OrderService {
 
         Address findAddress = order.getAddress();
 
-        Optional.ofNullable(address.getReciverName())
-                .ifPresent(reciverName->findAddress.setReciverName(reciverName));
+        Optional.ofNullable(address.getReceiverName())
+                .ifPresent(reciverName->findAddress.setReceiverName(reciverName));
         Optional.ofNullable(address.getZipcode())
                 .ifPresent(zipCode->findAddress.setZipcode(zipCode));
         Optional.ofNullable(address.getAddressDetails())

@@ -1,6 +1,7 @@
 package com.main.MainProject.member.controller;
 
 
+import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.member.dto.MemberPatchDto;
 import com.main.MainProject.member.dto.MemberSignUpDto;
 import com.main.MainProject.member.entity.Member;

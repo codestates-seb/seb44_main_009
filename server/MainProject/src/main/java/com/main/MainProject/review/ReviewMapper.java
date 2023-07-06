@@ -5,6 +5,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ReviewMapper {
@@ -12,5 +13,5 @@ public interface ReviewMapper {
     @Mapping(source = "member.nickName", target = "memberName")
     ReviewDto.Response reviewToResponse(Review review);
 
-    List<ReviewDto> reviewListToResponses(List<Review> reviewList);
+    List<ReviewDto.Response> reviewListToResponses(List<Review> reviewList);
 }
