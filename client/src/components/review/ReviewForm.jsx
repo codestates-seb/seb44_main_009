@@ -1,70 +1,12 @@
 import { useState, useRef } from "react";
-import { styled } from "styled-components";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const ReviewInputContainer = styled.div`
-  margin: 100px 0 24px 0;
-  position: relative;
-`;
-
-const ReviewInput = styled.textarea`
-  width: 100%;
-  height: 15%;
-  padding: 12px;
-  margin-top: 24px;
-  border: 1px solid #383838;
-  border-radius: 4px;
-  font-size: 18px;
-  resize: vertical;
-`;
-
-const HiddenFileInput = styled.input`
-  display: none;
-`;
-
-const SelectedImage = styled.img`
-  max-width: 100%;
-  height: 150px;
-  margin-top: 12px;
-`;
-
-const ImageButton = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
-  background-color: #383838;
-  color: #fff;
-  border-radius: 20px;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-size: 18px;
-
-  svg {
-    margin-right: 8px;
-  }
-`;
-
-const RemoveImageButton = styled.div`
-  position: absolute;
-  top: 30px;
-  left: 0;
-  color: #fff;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 600;
-  z-index: 1;
-  padding: 5px;
-  background-color: rgba(79, 79, 79, 0.8);
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-`;
+import { ReviewInputContainer } from "./styles/ReviewInputContainer.styled";
+import { ReviewInput } from "./styles/ReviewInput.styled";
+import { HiddenFileInput } from "./styles/HiddenFileInput.styled";
+import { SelectedImage } from "./styles/SelectedImage.styled";
+import { ImageButton } from "./styles/ImageButton.styled";
+import { RemoveImageButton } from "./styles/RemoveImageButton.styled";
 
 function ReviewForm() {
   const [reviewText, setReviewText] = useState("");

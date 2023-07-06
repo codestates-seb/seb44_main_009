@@ -2,34 +2,10 @@ import ReviewForm from "../../../components/review/ReviewForm";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
 import ReviewSection from "../../../components/review/ReviewSection";
-import { styled } from "styled-components";
-
-const ReviewContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 1000px;
-`;
-
-const ReviewWrapper = styled.div`
-  width: 834px;
-  height: 100%;
-  padding: 0 12px 0 12px;
-  border: 1px solid #383838;
-  flex: 1;
-  overflow-y: auto;
-`;
-const Title = styled.div`
-  padding: 24px 0 24px 0;
-  display: flex;
-  font-size: 18px;
-  font-weight: 600;
-`;
-
-const FooterContainer = styled.footer`
-  position: absolute;
-  bottom: 0;
-  background-color: #fff;
-`;
+import { ReviewContainer } from "./styles/ReviewContainer.styled";
+import { ReviewWrapper } from "./styles/ReviewWrapper.styled";
+import { Title } from "./styles/Title.styled";
+import { FooterContainer } from "./styles/FooterContainer.styled";
 
 function ReviewUpdatePage() {
   return (
