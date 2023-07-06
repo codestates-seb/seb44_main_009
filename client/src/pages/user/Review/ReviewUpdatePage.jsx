@@ -22,6 +22,10 @@ function ReviewUpdatePage() {
           title="사이즈는 어떤가요?"
           options={["작아요", "잘 맞아요", "커요"]}
         />
+        <ReviewSection
+          title="상품 색상은 어떤가요?"
+          options={["밝아요", "화면과 같아요", "어두워요"]}
+        />
         <ReviewForm />
       </ReviewWrapper>
       <FooterContainer>
