@@ -4,6 +4,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Accessary } from "../../image/index";
 import CartOptionModal from "./CartOptionModal";
+import CartQuantityDropdown from "./CartQuantityDropdown";
 
 const ProductWrapper = styled.div`
   margin-top: 30px;
@@ -101,11 +102,6 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const QuantityDropdown = styled.select`
-  border: 1px solid #ccc;
-  border-radius: 10px;
-`;
-
 function CartProductItem({ isChecked, handleCheckboxChange }) {
   const [quantity, setQuantity] = useState(1);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -149,19 +145,10 @@ function CartProductItem({ isChecked, handleCheckboxChange }) {
         </ProductInfo>
         <OptionContainer>
           <Button onClick={handleCartToggle}>옵션변경</Button>
-          <QuantityDropdown value={quantity} onChange={handleQuantityChange}>
-            {Array.from({ length: 100 }, (_, index) => {
-              const value = index + 1;
-              if (value < 100) {
-                return (
-                  <option key={value} value={value}>
-                    {value}
-                  </option>
-                );
-              }
-              return null;
-            })}
-          </QuantityDropdown>
+          <CartQuantityDropdown
+            value={quantity}
+            onChange={handleQuantityChange}
+          />
         </OptionContainer>
       </ColumnStyle>
       {isCartOpen && (

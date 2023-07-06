@@ -4,61 +4,15 @@ import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
 import CartSelector from "../../../components/attribute/CartSelector";
 import CartProductItem from "../../../components/attribute/CartProductItem";
 import CartPaymentSection from "../../../components/attribute/CartPaymentSection";
-import { styled } from "styled-components";
-
-const BackContainer = styled.div`
-  height: 1000px;
-`;
-
-const StickyStyle = styled.div`
-  top: 0;
-  position: sticky;
-  background-color: #fff;
-  border-bottom: 1px solid #ccc;
-  max-width: 834px;
-  z-index: 1;
-`;
-
-const Title = styled.div`
-  padding: 24px 0 24px 0;
-  display: flex;
-  font-size: 18px;
-  font-weight: 600;
-`;
-
-const SideTitle = styled.div`
-  text-align: left;
-`;
-
-const ProductContainer = styled.div`
-  padding: 16px;
-  border: 1px solid #ccc;
-`;
-
-const CartWrapper = styled.div`
-  width: 834px;
-  justify-content: flex-start;
-`;
-
-const PaymentContainer = styled.div`
-  margin-top: 24px;
-  padding: 16px;
-  border: 1px solid #ccc;
-  width: 834px;
-`;
-
-const FooterContainer = styled.footer`
-  position: fixed;
-  bottom: 0;
-  background-color: #fff;
-  transition: transform 0.3s ease-in-out;
-  transform: ${props =>
-    props.isModalOpen ? "translateY(100%)" : "translateY(0)"};
-`;
-
-const CartBackContainer = styled.div`
-  overflow: auto;
-`;
+import { BackContainer } from "./styles/BackContainer.styled";
+import { StickyStyle } from "./styles/StickyStyle.styled";
+import { Title } from "./styles/Title.styled";
+import { SideTitle } from "./styles/SideTitle.styled";
+import { ProductContainer } from "./styles/ProductContainer.styled";
+import { CartWrapper } from "./styles/CartWrapper.styled";
+import { PaymentContainer } from "./styles/PaymentContainer.styled";
+import { FooterContainer } from "./styles/FooterContainer.styled";
+import { CartBackContainer } from "./styles/CartBackContainer.styled";
 
 function CartPage() {
   const [isChecked, setIsChecked] = useState(false);
