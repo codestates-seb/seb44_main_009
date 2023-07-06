@@ -10,7 +10,7 @@ const ReviewInputContainer = styled.div`
 
 const ReviewInput = styled.textarea`
   width: 100%;
-  height: 100%;
+  height: 15%;
   padding: 12px;
   margin-top: 24px;
   border: 1px solid #383838;
@@ -29,7 +29,7 @@ const SelectedImage = styled.img`
   margin-top: 12px;
 `;
 
-const PhotoButton = styled.div`
+const ImageButton = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
@@ -47,6 +47,25 @@ const PhotoButton = styled.div`
   }
 `;
 
+const RemoveImageButton = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  z-index: 1;
+  padding: 5px;
+  background-color: rgba(79, 79, 79, 0.8);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+`;
+
 function ReviewForm() {
   const [reviewText, setReviewText] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -60,6 +79,10 @@ function ReviewForm() {
     fileInputRef.current.click();
   };
 
+  const handleRemoveImage = () => {
+    setSelectedImage(null);
+  };
+
   const handleFileChange = e => {
     const file = e.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
@@ -70,14 +93,17 @@ function ReviewForm() {
       <ReviewInputContainer>
         <div>리뷰를 작성해주세요.</div>
         {selectedImage && (
-          <SelectedImage src={selectedImage} alt="Selected Image" />
+          <>
+            <SelectedImage src={selectedImage} alt="Selected Image" />
+            <RemoveImageButton onClick={handleRemoveImage}>X</RemoveImageButton>
+          </>
         )}
-        <ReviewInput value={reviewText} onChange={handleReviewChange} />
       </ReviewInputContainer>
-      <PhotoButton onClick={handleImageUpload}>
+      <ReviewInput value={reviewText} onChange={handleReviewChange} />
+      <ImageButton onClick={handleImageUpload}>
         <FontAwesomeIcon icon={faImage} />
         <div>사진 첨부하기</div>
-      </PhotoButton>
+      </ImageButton>
       <HiddenFileInput
         type="file"
         accept="image/*"
