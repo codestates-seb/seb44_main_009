@@ -1,12 +1,11 @@
 
-
 #기본 설정
 spring:
   profiles:
-    active: mysql #실행 profile 설정
+    active: h2 #실행 profile 설정
   jpa:
     hibernate:
-      ddl-auto: create-drop  # (1) 스키마 자동 생성 자동 업데이트
+      ddl-auto: update  # (1) 스키마 자동 생성 자동 업데이트
     show-sql: true      # (2) SQL 쿼리 출력
     properties:
       hibernate:
@@ -25,3 +24,4 @@ server:
   servlet:
     encoding:
       force-response: true
+

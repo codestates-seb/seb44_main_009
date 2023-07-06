@@ -10,6 +10,7 @@ public enum ExceptionCode {
     MEMBER_NOT_FOUND(404, "Member not found"),
 
     //회원이 이미 존재함
+    MEMBER_EXISTS(409, "Member already exists"),
 
     //상품이 존재하지 않음
 

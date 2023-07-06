@@ -1,7 +1,7 @@
-package com.main.MainProject.temporary;
+package com.main.MainProject.product.cartProduct;
 
 import com.main.MainProject.cart.entity.Cart;
-import com.main.MainProject.order.entity.Order;
+
 import com.main.MainProject.product.entity.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,8 +27,4 @@ public class CartProduct {
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
-
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
 }
