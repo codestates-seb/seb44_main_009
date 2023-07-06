@@ -1,6 +1,8 @@
 package com.main.MainProject.order.dto;
 
 import com.main.MainProject.order.entity.Order;
+import com.main.MainProject.order.entity.OrderProduct;
+import com.main.MainProject.product.cartProduct.CartProduct;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -30,7 +32,6 @@ public class OrderDto {
     public static class OrderResponse{
         private Long orderId;
         private Order.OrderStatus shippingStatus;
-        private Order.Reviewstatus reviewStatus;
     }
 
     @AllArgsConstructor
@@ -45,16 +46,16 @@ public class OrderDto {
         Address address;
 
         private Order.OrderStatus shippingStatus;
-
-        private Order.Reviewstatus reviewStatus;
-
     }
 
     @AllArgsConstructor
     @Getter
     public static class orderProductResponse{
+        long productId;
         private String productName;
         private int quentity;
+        private OrderProduct.Reviewstatus reviewStatus;
         private int totalProductPrice;
+
     }
 }

@@ -18,10 +18,6 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long addressId;
 
-//    @OneToOne
-//    @JoinColumn(name = "member_id")
-//    private Member member;
-
     @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orderList = new ArrayList<>();
 

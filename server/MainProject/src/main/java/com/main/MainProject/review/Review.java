@@ -1,7 +1,10 @@
 package com.main.MainProject.review;
 
 import com.main.MainProject.audit.Auditable;
+import com.main.MainProject.member.entity.Member;
+import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.order.entity.OrderProduct;
+import com.main.MainProject.product.entity.Product;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,8 +30,7 @@ public class Review extends Auditable {
 
 //    @ManyToOne
 //    @JoinColumn(name = "member_id")
-//    private Member member;
-
-    private OrderProduct orderProduct;
+    private Member member;
+    private Product product;
 
 }

@@ -32,9 +32,27 @@ public class OrderProduct {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @ManyToOne
-    @JoinColumn(name = "review_id")
-    private Review review;
+    @Enumerated(value = EnumType.STRING)
+    @Column(length = 20, nullable = false)
+    private Reviewstatus reviewstatus = Reviewstatus.IMPOSSIBLE_REVIEW;
 
+    public enum Reviewstatus{
+        IMPOSSIBLE_REVIEW("리뷰 작성 불가"),
+        POSSIBLE_REVIEW("리뷰 작성 가능"),
+        REVIEW_WIITE("리뷰 작성 완료");
+
+        @Getter
+        private String status;
+
+        Reviewstatus(String status) {
+            this.status = status;
+        }
+    }
+
+    public OrderProduct(int quantity, Product product, Order order) {
+        this.quantity = quantity;
+        this.product = product;
+        this.order = order;
+    }
 }
 

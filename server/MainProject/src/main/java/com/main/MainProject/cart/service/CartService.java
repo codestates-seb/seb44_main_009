@@ -37,6 +37,12 @@ public class CartService {
         return findCart;
     }
 
+    //카트 비우기
+    public void cartClear(Cart cart){
+        cart.getCartProductList().clear();
+        cartRepository.save(cart);
+    }
+
     public Cart findVerifiedCart(long cartId){
         Optional<Cart> optionalCart =
                 cartRepository.findById(cartId);

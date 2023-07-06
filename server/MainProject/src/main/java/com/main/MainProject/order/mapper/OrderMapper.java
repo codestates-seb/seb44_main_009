@@ -4,6 +4,7 @@ import com.main.MainProject.order.dto.OrderDto;
 import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.address.Address;
 import com.main.MainProject.order.entity.OrderProduct;
+import com.main.MainProject.product.cartProduct.CartProduct;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -38,10 +39,9 @@ public interface OrderMapper {
                 .sum();
 
         Order.OrderStatus shippingStatus = order.getOrderStatus();
-        Order.Reviewstatus reviewStatus = order.getReviewstatus();
 
         OrderDto.ResponseDetail responseDetail =
-                new OrderDto.ResponseDetail(order.getOrderId(), cartProductList, totalPrice, addressToAddressDto(address), shippingStatus, reviewStatus );
+                new OrderDto.ResponseDetail(order.getOrderId(), cartProductList, totalPrice, addressToAddressDto(address), shippingStatus );
 
         return responseDetail;
     }
@@ -54,11 +54,13 @@ public interface OrderMapper {
 
         quentity = orderProduct.getQuantity();
 
+        long productId = orderProduct.getProduct().getProductId();
         String productName =  orderProduct.getProduct().getName();
         int totalProductPrice = orderProduct.getProduct().getPrice() * quentity;
+        OrderProduct.Reviewstatus reviewStatus = orderProduct.getReviewstatus();
 
         OrderDto.orderProductResponse orderProductResponse =
-                new OrderDto.orderProductResponse( productName, quentity, totalProductPrice );
+                new OrderDto.orderProductResponse( productId, productName, quentity, reviewStatus, totalProductPrice);
 
         return orderProductResponse;
     }

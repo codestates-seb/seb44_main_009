@@ -1,5 +1,6 @@
 package com.main.MainProject.order.controller;
 
+import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.order.dto.OrderDto;
 import com.main.MainProject.order.entity.Order;
@@ -58,8 +59,7 @@ public class OrderController {
     public ResponseEntity getorders(){
         List<Order> orderList = orderService.getOrderList();
 
-        return new ResponseEntity<>(
-                mapper.orderToOderResponse(orderList), HttpStatus.OK);
+        return new ResponseEntity<>(new ListResponseDto<>(mapper.orderToOderResponse(orderList)), HttpStatus.OK);
     }
 
     //주문상세 불러오기
