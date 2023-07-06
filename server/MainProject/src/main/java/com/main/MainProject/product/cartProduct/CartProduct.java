@@ -1,10 +1,10 @@
-package com.main.MainProject.temporary;
+package com.main.MainProject.product.cartProduct;
 
 import com.main.MainProject.cart.entity.Cart;
-import com.main.MainProject.order.entity.Order;
+
 import com.main.MainProject.product.entity.Product;
-import com.main.MainProject.review.Review;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,12 +12,13 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class CartProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartProductId;
     @Column(nullable = false)
-    private int quentity;
+    private int quantity;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -26,12 +27,4 @@ public class CartProduct {
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
-
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
-
-    @ManyToOne
-    @JoinColumn(name = "review_id")
-    private Review review;
-}
+}//^
