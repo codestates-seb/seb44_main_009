@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-function App() {
-  return <div className="App"></div>;
-=======
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/main/HomePage";
 import ProductsPage from "./pages/main/ProductsPage";
@@ -27,7 +23,6 @@ function App() {
       </BrowserRouter>
     </div>
   );
->>>>>>> Stashed changes
 }
 
 export default App;
