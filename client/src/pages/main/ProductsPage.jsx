@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import ProductList from "../../components/mainProduct/ProductList";
-import { dummyproducts } from "../../dummy";
+import { dummyproducts } from "../../dummyDate/dummyProducts";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 

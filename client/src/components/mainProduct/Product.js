@@ -15,12 +15,12 @@ const ProductColorContainer = styled.div`
   max-height: 100%;
   justify-content: flex-end;
 `;
-const Product = ({ imageSrc, name, price, color }) => {
+const Product = ({ url, name, price, color }) => {
   return (
     <span>
       <ProductContainer>
         {/* a속성으로 감싸 링크 전달하기  */}
-        <ProductImage src={imageSrc} alt="Product Image" />
+        <ProductImage src={url} alt="Product Image" />
         <ProductNameInfo>
           <ProductName>{name}</ProductName>
         </ProductNameInfo>
@@ -30,7 +30,7 @@ const Product = ({ imageSrc, name, price, color }) => {
           ))}
         </ProductColorContainer>
         <ProductPriceInfo>
-          <ProductPrice>{price}</ProductPrice>
+          <ProductPrice>{price}원</ProductPrice>
         </ProductPriceInfo>
       </ProductContainer>
     </span>
