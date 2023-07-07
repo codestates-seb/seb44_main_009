@@ -8,6 +8,7 @@ import GlobalStyle from "./GlobalStyle";
 import MyPage from "./pages/user/myPage/myPage/MyPage";
 import ReviewUpdatePage from "./pages/user/Review/ReviewUpdatePage";
 import ReviewEditPage from "./pages/user/Review/ReviewEditPage";
+import MyReviewPage from "./pages/user/Review/MyReview";
 import ProfilePage from "./pages/user/profile/ProfilePage";
 import ProfileEditPage from "./pages/user/myPage/profileEdit/ProfileEditPage";
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/review" element={<ReviewUpdatePage />} />
         <Route path="/review/edit" element={<ReviewEditPage />} />
+        <Route path="/review/management" element={<MyReviewPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/profile/edit" element={<ProfileEditPage />} />
       </Routes>
