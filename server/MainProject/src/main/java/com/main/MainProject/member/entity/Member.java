@@ -44,6 +44,8 @@ public class Member {
     @Column(length = 20, nullable = false)
     private MemberStatus memberStatus = MemberStatus.MEMBER_ACTIVE;
 
+
+
     public Member(String email) {
         this.email = email;
     }

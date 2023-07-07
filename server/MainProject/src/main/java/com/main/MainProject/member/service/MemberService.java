@@ -50,6 +50,27 @@ public class MemberService {
     public Member updateMember(Member member, @Positive long memberId) {
         Member findMember = findVerifiedMember(memberId);
 
-        return memberRepository.save(findMember);
+        Optional.ofNullable(member.getKorName())
+                        .ifPresent(korName -> findMember.setKorName(korName));
+
+        Optional.ofNullable(member.getEmail())
+                .ifPresent(email -> findMember.setEmail(email));
+
+        Optional.ofNullable(member.getPhoneNumber())
+                .ifPresent(phoneNumber -> findMember.setPhoneNumber(phoneNumber));
+
+        Optional.ofNullable(member.getNickName())
+                .ifPresent(nickName -> findMember.setNickName(nickName));
+
+        Optional.ofNullable(member.getAddress())
+                .ifPresent(address -> findMember.setAddress(address));
+
+        Optional.ofNullable(member.getPersonalColor())
+                .ifPresent(personalColor -> findMember.setPersonalColor(personalColor));
+
+        Optional.ofNullable(member.getPassword())
+                .ifPresent(password -> findMember.setPassword(password));
+
+         return memberRepository.save(findMember);
     }
 }

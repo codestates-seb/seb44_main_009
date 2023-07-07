@@ -1,6 +1,7 @@
 package com.main.MainProject.product.entity;
 
 import com.main.MainProject.product.category.entity.Category;
+import com.main.MainProject.qna.entity.Qna;
 import com.main.MainProject.temporary.CartProduct;
 import lombok.*;
 
@@ -46,6 +47,9 @@ public class Product {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
+
+    @OneToMany(mappedBy = "product")
+    private List<Qna> qnaList = new ArrayList<>();
 
     @Column(nullable = false)
 //    @Builder.Default

@@ -7,7 +7,7 @@ import com.main.MainProject.member.dto.MemberSignUpDto;
 import com.main.MainProject.member.entity.Member;
 import com.main.MainProject.member.mapper.MemberMapper;
 import com.main.MainProject.member.service.MemberService;
-import com.main.MainProject.response.ListResponseDto;
+import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.util.UriCreator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -88,7 +88,5 @@ public class MemberController {
         memberService.deleteMember(memberId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-
 
 }
