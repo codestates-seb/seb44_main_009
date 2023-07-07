@@ -1,4 +1,4 @@
-package com.main.MainProject.temporary;
+package com.main.MainProject.address;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

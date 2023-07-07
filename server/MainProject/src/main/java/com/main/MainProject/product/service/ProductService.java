@@ -46,8 +46,6 @@ public class ProductService {
         Optional.ofNullable(product.getPersonalColor()).ifPresent(findProduct::setPersonalColor);
         Optional.ofNullable(product.getProductStatus()).ifPresent(findProduct::setProductStatus);
 
-        findProduct.setModifiedAt(LocalDateTime.now());
-
         return productRepository.save(findProduct);
     }
 

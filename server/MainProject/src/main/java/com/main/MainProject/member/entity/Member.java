@@ -1,17 +1,22 @@
 package com.main.MainProject.member.entity;
 
+import com.main.MainProject.audit.Auditable;
+import com.main.MainProject.cart.entity.Cart;
+import com.main.MainProject.order.entity.Order;
+import com.main.MainProject.review.entity.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity(name = "members")
-public class Member {
+public class Member extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
@@ -36,9 +41,6 @@ public class Member {
 
     @Column(nullable = false)
     private String password;
-
-    @Column(nullable = false, name = "CREATED_AT")
-    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Enumerated(value = EnumType.STRING)
     @Column(length = 20, nullable = false)
@@ -73,4 +75,12 @@ public class Member {
         }
     }
 
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Cart cart;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Order> orderList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
 }
