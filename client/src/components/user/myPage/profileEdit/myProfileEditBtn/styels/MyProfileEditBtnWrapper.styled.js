@@ -1,10 +1,11 @@
 import { styled } from "styled-components";
 
-export const MyPersonalColorEditContainer = styled.div`
+export const MyProfileEditBtnWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: center;
   gap: 32px;
 
   width: 600px;
+  border-radius: 30px;
 `;
