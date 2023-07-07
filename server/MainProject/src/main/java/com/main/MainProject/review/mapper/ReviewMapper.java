@@ -12,7 +12,11 @@ import java.util.List;
 public interface ReviewMapper {
     Review reviewDtoToReview(ReviewDto.RequestDTO reviewDto);
     @Mapping(source = "member.nickName", target = "memberName")
+    @Mapping(source = "product.personalColor", target = "productPersonalColor")
+    @Mapping(source = "product.color", target = "productColor")
+    @Mapping(source = "product.name", target = "productName")
     ReviewDto.Response reviewToResponse(Review review);
+
 
     List<ReviewDto.Response> reviewListToResponses(List<Review> reviewList);
 }
