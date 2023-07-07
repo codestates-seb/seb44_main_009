@@ -1,13 +1,18 @@
 package com.main.MainProject.product.entity;
 
+import com.main.MainProject.audit.Auditable;
+import com.main.MainProject.order.entity.OrderProduct;
+import com.main.MainProject.product.cartProduct.CartProduct;
 import com.main.MainProject.product.category.entity.Category;
-import com.main.MainProject.temporary.CartProduct;
+
+import com.main.MainProject.review.entity.Review;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Getter
@@ -15,7 +20,7 @@ import java.util.List;
 //@Builder
 //@AllArgsConstructor
 @NoArgsConstructor
-public class Product {
+public class Product extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
@@ -47,14 +52,6 @@ public class Product {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-    @Column(nullable = false)
-//    @Builder.Default
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @Column(nullable = false, name = "LAST_MODIFIED_AT")
-//    @Builder.Default
-    private LocalDateTime modifiedAt = LocalDateTime.now();
-
     public enum ProductStatus {
         PRODUCT_ON_SALE(1, "상품 판매중"),
         PRODUCT_SOLD_OUT(2, "상품 품절");
@@ -73,4 +70,10 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartProduct> cartProductList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviewList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<OrderProduct> orderProductList = new ArrayList<>();
 }

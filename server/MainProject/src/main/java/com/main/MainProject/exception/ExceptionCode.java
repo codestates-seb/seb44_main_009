@@ -22,11 +22,23 @@ public enum ExceptionCode {
 
     //로그인 되지 않은 회원입니다
 
-    //카트가 존재하지 않습니다.
+    //상품이 주문에 포함되어있지 않습니다
+    PRODUCT_IS_NOT_MATCH_ORDER(404, "product is not match order"),
+    //상품의 주문자가 아닙니다
+    MEMBER_IS_NOT_MATCH_ORDER(404, "member is not match"),
+    //카트가 존재하지 않습니다
     CART_NOT_FOUND(404, "Cart not found"),
 
     //주문을 찾을 수 없습니다
     ORDER_NOT_FOUND(404, "order not found"),
+
+    CAN_NOT_WRITE_REVIEW(404, "sorry can not write review"),
+
+    //리뷰를 찾을 수 없습니다
+    REVIEW_NOT_FOUND(404, "review not found"),
+
+    //리뷰를 작성한 회원이 아닙니다
+    YOU_ARE_NOT_WRITER(404, "you are not writer"),
 
     //카트가 비어있습니다
     CART_IS_EMPTY(500, "cart is empty"),
