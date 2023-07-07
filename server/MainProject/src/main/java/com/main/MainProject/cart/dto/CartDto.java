@@ -22,8 +22,15 @@ public class CartDto {
 
     @Getter
     @AllArgsConstructor
+    public static class cartProductDto{
+        private long productId;
+        private int quantity;
+    }
+
+    @Getter
+    @AllArgsConstructor
     public static class Patch{
-        private List<CartProduct> cartProductList;
+        private List<cartProductDto> cartProductDtoList;
     }
 
 

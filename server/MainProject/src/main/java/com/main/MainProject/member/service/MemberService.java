@@ -1,5 +1,6 @@
 package com.main.MainProject.member.service;
 
+import com.main.MainProject.cart.service.CartService;
 import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.exception.LogicalException;
 import com.main.MainProject.member.entity.Member;
@@ -13,11 +14,12 @@ import java.util.Optional;
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final CartService cartService;
 
-    public MemberService(MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository, CartService cartService) {
         this.memberRepository = memberRepository;
+        this.cartService = cartService;
     }
-
 
     public Member findVerifiedMember (Long memberId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
@@ -27,7 +29,9 @@ public class MemberService {
 
     public Member createMember(Member member) {
         verifyEmailExists(member.getEmail());
-        return memberRepository.save(member);
+        Member findMember = memberRepository.save(member);
+        cartService.createCart(findMember);
+        return findMember;
     }
 
     private void verifyEmailExists(String email) {
