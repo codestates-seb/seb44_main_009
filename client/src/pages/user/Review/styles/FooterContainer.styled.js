@@ -1,0 +1,6 @@
+import { styled } from "styled-components";
+
+export const FooterContainer = styled.footer`
+  bottom: 0;
+  background-color: #fff;
+`;
