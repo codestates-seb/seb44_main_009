@@ -74,6 +74,12 @@ public class ReviewService {
         return reviewRepository.save(findReview);
     }
 
+    public Review voteReview(long reviewId){
+        Review review = findVerifiedReview(reviewId);
+        review.setVote(review.getVote() + 1);
+        return reviewRepository.save(review);
+    }
+
     //개별 리뷰 조회
     public Review getReview(long reviewId){
         return findVerifiedReview(reviewId);

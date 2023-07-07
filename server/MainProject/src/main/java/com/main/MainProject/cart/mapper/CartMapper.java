@@ -30,7 +30,10 @@ public interface CartMapper {
                 .mapToInt(cartProduct -> cartProduct.getProduct().getPrice() * cartProduct.getQuantity())
                 .sum();
 
-        CartDto.Response response = new CartDto.Response( cartProductList, totalPrice );
+        int shippingCost = 3000;
+        int estimatedTotalPrice = totalPrice + shippingCost;
+
+        CartDto.Response response = new CartDto.Response( cartProductList, shippingCost, totalPrice, estimatedTotalPrice );
 
         return response;
     }
@@ -44,10 +47,13 @@ public interface CartMapper {
         quentity = cartProduct.getQuantity();
 
         String productName =  cartProduct.getProduct().getName();
+
+        int productPrice = cartProduct.getProduct().getPrice();
+
         int totalProductPrice = cartProduct.getProduct().getPrice() * quentity;
 
         CartDto.cartProductResponse cartProductResponse =
-                new CartDto.cartProductResponse( productName, quentity, totalProductPrice );
+                new CartDto.cartProductResponse( productName, quentity, productPrice, totalProductPrice );
 
         return cartProductResponse;
     }

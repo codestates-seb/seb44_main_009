@@ -1,12 +1,12 @@
 package com.main.MainProject.qna.controller;
 
+import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.qna.dto.QnaPatchDto;
 import com.main.MainProject.qna.dto.QnaPostDto;
 import com.main.MainProject.qna.entity.Qna;
 import com.main.MainProject.qna.mapper.QnaMapper;
 import com.main.MainProject.qna.service.QnaService;
-import com.main.MainProject.response.ListResponseDto;
 import com.main.MainProject.util.UriCreator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

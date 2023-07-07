@@ -42,4 +42,6 @@ public class Review extends Auditable {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    private int vote;
+
 }
