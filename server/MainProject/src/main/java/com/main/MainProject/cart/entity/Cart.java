@@ -22,11 +22,25 @@ public class Cart {
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartProduct> cartProductList = new ArrayList<>();
 
-    @OneToOne
-    @JoinColumn(name = "member_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    public Cart(Member member) {
-        this.member = member;
+    public void addToCart(CartProduct cartProduct, int quantity) {
+        CartProduct existProduct = findCartProduct(cartProduct);
+        if (existProduct != null) {
+            existProduct.setQuantity(existProduct.getQuantity() + quantity);
+        } else {
+            cartProduct.setQuantity(quantity);
+            cartProductList.add(cartProduct);
+        }
+    }
+
+    public CartProduct findCartProduct(CartProduct cartProduct) {
+        return cartProductList.stream()
+                .filter(cartItem -> cartItem.getProduct().equals(cartProduct))
+                .findFirst()
+                .orElse(null);
     }
 }
+
