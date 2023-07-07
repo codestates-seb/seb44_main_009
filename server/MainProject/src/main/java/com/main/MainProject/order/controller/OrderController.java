@@ -1,12 +1,12 @@
 package com.main.MainProject.order.controller;
 
-import com.main.MainProject.dto.MultiResponseDto;
+import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.order.dto.OrderDto;
 import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.order.mapper.OrderMapper;
 import com.main.MainProject.order.service.OrderService;
-import com.main.MainProject.temporary.Address;
+import com.main.MainProject.address.Address;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,8 +37,9 @@ public class OrderController {
     //주문하기
     @PostMapping("/buy/{cart-id}/{member-id}")
     public ResponseEntity createOrder(@PathVariable("cart-id")long cartId,
+                                      @PathVariable("member-id")long memberId,
                                       @Valid @RequestBody OrderDto.Address requestBody){
-        Order order =  orderService.createOrder(cartId, mapper.addressDtoToAddress(requestBody));
+        Order order =  orderService.createOrder(cartId, mapper.addressDtoToAddress(requestBody), memberId);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.CREATED);
     }
@@ -54,13 +55,21 @@ public class OrderController {
                 new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.OK);
     }
 
+    //배송완료
+    @PatchMapping("update/{order-id}")
+    public ResponseEntity updateShippingStatus(@PathVariable("order-id")long orderId){
+        Order order = orderService.shippingCompleted(orderId);
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.OK);
+    }
+
     //회원의 모든 정보 불러오기
     @GetMapping("/buylist/{member-id}")
     public ResponseEntity getorders(){
         List<Order> orderList = orderService.getOrderList();
 
-        return new ResponseEntity<>(
-                mapper.orderToOderResponse(orderList), HttpStatus.OK);
+        return new ResponseEntity<>(new ListResponseDto<>(mapper.orderListToOrderResponseList(orderList)), HttpStatus.OK);
     }
 
     //주문상세 불러오기

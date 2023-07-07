@@ -1,4 +1,4 @@
-package com.main.MainProject.temporary;
+package com.main.MainProject.address;
 
 import com.main.MainProject.order.entity.Order;
 import lombok.Getter;
@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -18,14 +16,11 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long addressId;
 
-//    @OneToOne
-//    @JoinColumn(name = "member_id")
-//    private Member member;
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    Order order;
 
-    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orderList = new ArrayList<>();
-
-    private String reciverName;
+    private String receiverName;
 
     private int zipcode;
 
@@ -37,9 +32,8 @@ public class Address {
 
     private String request;
 
-    public Address(String reciverName, int zipcode, String addressName,
-                   String addressDetails, String telNum, String request) {
-        this.reciverName = reciverName;
+    public Address(String receiverName, int zipcode, String addressName, String addressDetails, String telNum, String request) {
+        this.receiverName = receiverName;
         this.zipcode = zipcode;
         this.addressName = addressName;
         this.addressDetails = addressDetails;

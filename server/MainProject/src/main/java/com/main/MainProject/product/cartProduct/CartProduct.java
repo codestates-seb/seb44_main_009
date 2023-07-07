@@ -1,18 +1,21 @@
 package com.main.MainProject.product.cartProduct;
 
+
 import com.main.MainProject.cart.entity.Cart;
 
+import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.product.entity.Product;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
 @Getter
-@Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class CartProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +30,10 @@ public class CartProduct {
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
-}//^
+
+    public CartProduct(int quantity, Product product, Cart cart) {
+        this.quantity = quantity;
+        this.product = product;
+        this.cart = cart;
+    }
+}
