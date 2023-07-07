@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Getter
@@ -17,6 +18,13 @@ public class CartProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartProductId;
+
+    @Transient
+    private Long productId;
+
+    @Transient
+    private Long cartId;
+
     @Column(nullable = false)
     private int quantity;
 
