@@ -1,118 +1,45 @@
 import React from "react";
 import { styled } from "styled-components";
 import { animateScroll as scroll } from "react-scroll";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+// ----  퍼블릭 스타일
+import {
+  ProductDetailContainer,
+  ProductDetailContent,
+} from "./publicstyle/ProductDetailContainer";
 
-// 제품 이미지 스타일링
-const ProductDetailContainer = styled.div`
-  width: 834px;
-  height: 100%;
-  border: 2px solid black;
-  display: flex;
-  justify-content: center;
-`;
-const ProductDetailContent = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 2px solid red;
-  margin: 50px;
-`;
+import { ProductPublicImage } from "./publicstyle/ProductPublicImage";
 
-//------------------ 이미지
-const ProductImageContainer = styled.div`
-  width: 100%;
-  height: 600px;
-  border: 2px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 24px;
-`;
-const ProductImage = styled.img`
-  width: 95%;
-  height: 95%;
-  border: 2px solid red;
-`;
+import { ProductPublicInfo } from "./publicstyle/ProductPublicInfo";
 
-// ----------------상품 명, 가격 Container
-const ProductNameContainer = styled.div`
-  width: 100%;
-  height: 200px;
-  border: 2px solid black;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: left;
-  padding: 24px;
+//   ---- 탭 스타일
+import { TabCotainer, TabButton, TabContent } from "./tabstyle/TabStyle";
+
+// ---- 상품 정보 스타일
+import { ProductContent } from "./productinfostyle/ProductContent";
+import { ProductInfoButton } from "./productinfostyle/ProductInfoButton";
+
+// ---- 문의사항 스타일
+import { Inquiryguide } from "./inquirystyle/Inquiryguide";
+import { InquiryguideBox } from "./inquirystyle/InquiryguideBox";
+import { TextDivStyle, LeftMargin } from "./inquirystyle/InquiryText";
+
+const fontSize18 = "18px";
+
+const InfoIcon = styled(FontAwesomeIcon)`
+  /* Styles for the icon */
+  width: 24px;
+  height: 24px;
 `;
 
-const ProductName = styled.div`
-  font-size: 24px;
-  font-weight: 400;
-  margin-bottom: 24px;
-`;
-
-const ProductPrice = styled.div`
-  font-size: 32px;
-  font-weight: 600;
-`;
-
-// ----------------- 탭
-const TabCotainer = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 2px solid black;
-`;
-const TabButton = styled.button`
-  width: 33%;
-  height: 100px;
-  background-color: white;
-  font-size: 18px;
-  font-weight: 600;
-  border: none;
-`;
-
-// 탭 내용 스타일링
-const TabContent = styled.div`
-  width: 100%;
-  max-height: ${props => (props.isExpanded ? "none" : "1200px")};
-  height: ${props => (props.isExpanded ? "auto" : "710px")};
-  overflow: hidden;
-  border: 5px solid green;
-  transition: max-height 0.3s ease;
-`;
-
-// ---- Tab 1  상품정보
-const ProductInfoButton = styled.button`
-  width: 100%;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: #c4c4c2;
-
-  font-size: 18px;
-  font-weight: 600;
-
-  border: 2px solid black;
-  border-radius: 5px;
-  margin-bottom: ${props => (props.isExpanded ? "0" : "20px")};
-`;
-
-const ProductTest = styled.div`
-  width: 100%;
-  height: 1000px;
-  background-color: yellow;
-
-  transition: margin-top 2s ease;
-  // margin-top: ${props => (props.isExpanded ? "20px" : "0px")};
-`;
+//배송/결제/교환/반품
 
 class ProductDetailStyles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: "product-info",
+      activeTab: "product-info", // product-info
       isExpanded: false,
     };
   }
@@ -138,16 +65,10 @@ class ProductDetailStyles extends React.Component {
       <ProductDetailContainer>
         <ProductDetailContent>
           {/* 제품 이미지 */}
-
-          <ProductImageContainer>
-            <ProductImage src="product_image.jpg" alt="Product.url" />
-          </ProductImageContainer>
+          <ProductPublicImage />
 
           {/* 제품 명 , 제품 가격*/}
-          <ProductNameContainer>
-            <ProductName>상품명 : Product.name </ProductName>
-            <ProductPrice>가격: product.price 원</ProductPrice>
-          </ProductNameContainer>
+          <ProductPublicInfo />
 
           {/* 탭 */}
           <TabCotainer>
@@ -165,10 +86,8 @@ class ProductDetailStyles extends React.Component {
             isExpanded={this.state.isExpanded ? "expanded" : ""}
             style={{ display: activeTab === "product-info" ? "block" : "none" }}
           >
-            {/* 상품 정보 탭 내용 작성 */}
-            <ProductImageContainer>
-              <ProductImage src="product_image.jpg" alt="Product.url" />
-            </ProductImageContainer>
+            {/* 상품 정보 */}
+            <ProductPublicImage />
             <ProductInfoButton
               onClick={() => {
                 this.toggleExpanded();
@@ -177,7 +96,7 @@ class ProductDetailStyles extends React.Component {
             >
               {this.state.isExpanded ? "접기" : "상품 정보 펼쳐보기"}
             </ProductInfoButton>
-            <ProductTest>Product.content</ProductTest>
+            <ProductContent>Product.content</ProductContent>
           </TabContent>
 
           <TabContent
@@ -190,11 +109,39 @@ class ProductDetailStyles extends React.Component {
           <TabContent
             style={{ display: activeTab === "contact" ? "block" : "none" }}
           >
-            {/* 문의하기 탭 내용 작성 */}
-            <p>
-              문의 안내 사항 + 배송/결제/교환/반품 안내 + 문의사항 예시 + 상품
-              문의하기 버튼 .
-            </p>
+            {/* 문의하기 */}
+            <InquiryguideBox justifyContent="center" alignItems="center">
+              <Inquiryguide>
+                <TextDivStyle>문의 안내사항</TextDivStyle>
+              </Inquiryguide>
+            </InquiryguideBox>
+
+            <InquiryguideBox height="100px" justifyContent="center">
+              <TextDivStyle>
+                배송 / 결제 / 교환 / 반품 안내 <LeftMargin />
+                <InfoIcon icon={faEye} />
+              </TextDivStyle>
+            </InquiryguideBox>
+
+            <InquiryguideBox height="250px">
+              <TextDivStyle TopMargin="20px" BottomMargin="20px">
+                문의사항 예시
+              </TextDivStyle>
+              <TextDivStyle FontSize={fontSize18} BottomMargin="30px">
+                Q. 배송은 언제 되나요? - 영업일 기준 13시 이전 결제 주문건 :
+                당일 출고됩니다.
+              </TextDivStyle>
+
+              <TextDivStyle FontSize={fontSize18} BottomMargin="30px">
+                Q. 배송 전 취소 하고 싶어요! - 사이트에서 취소 문의 후
+                고객센터로 연락 바랍니다.
+              </TextDivStyle>
+              <TextDivStyle FontSize={fontSize18} BottomMargin="30px">
+                Q. 사이즈가 안맞아요. 교환가능한가요? - 교환요청 후 고객센터로
+                연락 바랍니다.
+              </TextDivStyle>
+            </InquiryguideBox>
+            <ProductInfoButton>문의하러 가기</ProductInfoButton>
           </TabContent>
         </ProductDetailContent>
       </ProductDetailContainer>
