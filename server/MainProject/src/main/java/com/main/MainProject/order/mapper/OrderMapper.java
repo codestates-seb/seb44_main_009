@@ -18,8 +18,10 @@ public interface OrderMapper {
 
     OrderDto.Address addressToAddressDto(Address address);
 
-    @Mapping(source = "order.OrderStatus", target = "shippingStatus")
-    List<OrderDto.OrderResponse> orderToOderResponse(List<Order> orderList);
+    List<OrderDto.OrderResponse> orderListToOrderResponseList(List<Order> orderList);
+
+    @Mapping(source = "order.orderStatus", target = "shippingStatus")
+    OrderDto.OrderResponse orderToOrderResponse(Order order);
 
     default OrderDto.ResponseDetail orderToResponse(Order order){
         if ( order == null ) {
@@ -66,6 +68,4 @@ public interface OrderMapper {
 
         return orderProductResponse;
     }
-
-    List<OrderDto.ResponseDetail> ordersToResponses(List<Order> orders);
 }

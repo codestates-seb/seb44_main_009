@@ -1,4 +1,4 @@
-package com.main.MainProject.review;
+package com.main.MainProject.review.service;
 
 import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
@@ -9,6 +9,8 @@ import com.main.MainProject.order.entity.OrderProduct;
 import com.main.MainProject.order.service.OrderService;
 import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.product.service.ProductService;
+import com.main.MainProject.review.entity.Review;
+import com.main.MainProject.review.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

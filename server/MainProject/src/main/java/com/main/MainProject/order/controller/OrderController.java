@@ -69,7 +69,7 @@ public class OrderController {
     public ResponseEntity getorders(){
         List<Order> orderList = orderService.getOrderList();
 
-        return new ResponseEntity<>(new ListResponseDto<>(mapper.orderToOderResponse(orderList)), HttpStatus.OK);
+        return new ResponseEntity<>(new ListResponseDto<>(mapper.orderListToOrderResponseList(orderList)), HttpStatus.OK);
     }
 
     //주문상세 불러오기

@@ -3,13 +3,12 @@ package com.main.MainProject.member.entity;
 import com.main.MainProject.audit.Auditable;
 import com.main.MainProject.cart.entity.Cart;
 import com.main.MainProject.order.entity.Order;
-import com.main.MainProject.review.Review;
+import com.main.MainProject.review.entity.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

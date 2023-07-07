@@ -1,4 +1,4 @@
-package com.main.MainProject.review;
+package com.main.MainProject.review.entity;
 
 import com.main.MainProject.audit.Auditable;
 import com.main.MainProject.member.entity.Member;

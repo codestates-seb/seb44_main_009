@@ -47,7 +47,7 @@ public class OrderService {
 //        //TODO: 상품 수량 확인
 //        //TODO: 상품 수량 반영
         Member findMember = memberService.findVerifiedMember(memberId);
-        addressRepository.save(address);
+
         Order order = new Order();
         order.setMember(findMember);
         order.setAddress(address);
@@ -57,8 +57,10 @@ public class OrderService {
                         .collect(Collectors.toList());
 
         order.setOrderProductList(orderProductList);
+
         cartService.cartClear(findCart);
 
+        address.setOrder(order);
         return orderRepository.saveAndFlush(order);
     }
 

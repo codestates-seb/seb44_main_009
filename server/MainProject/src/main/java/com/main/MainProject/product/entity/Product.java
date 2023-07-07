@@ -5,12 +5,10 @@ import com.main.MainProject.order.entity.OrderProduct;
 import com.main.MainProject.product.cartProduct.CartProduct;
 import com.main.MainProject.product.category.entity.Category;
 
-import com.main.MainProject.review.Review;
-import com.main.MainProject.review.ReviewDto;
+import com.main.MainProject.review.entity.Review;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;

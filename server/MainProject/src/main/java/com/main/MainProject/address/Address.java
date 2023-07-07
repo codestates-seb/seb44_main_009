@@ -32,8 +32,7 @@ public class Address {
 
     private String request;
 
-    public Address(String receiverName, int zipcode, String addressName,
-                   String addressDetails, String telNum, String request) {
+    public Address(String receiverName, int zipcode, String addressName, String addressDetails, String telNum, String request) {
         this.receiverName = receiverName;
         this.zipcode = zipcode;
         this.addressName = addressName;

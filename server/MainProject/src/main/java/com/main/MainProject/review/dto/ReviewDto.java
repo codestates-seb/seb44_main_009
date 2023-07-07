@@ -1,4 +1,4 @@
-package com.main.MainProject.review;
+package com.main.MainProject.review.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

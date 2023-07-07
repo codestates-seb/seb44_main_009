@@ -1,9 +1,11 @@
-package com.main.MainProject.review;
+package com.main.MainProject.review.controller;
 
 import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.dto.SingleResponseDto;
-import com.main.MainProject.member.entity.Member;
-import com.main.MainProject.order.dto.OrderDto;
+import com.main.MainProject.review.entity.Review;
+import com.main.MainProject.review.dto.ReviewDto;
+import com.main.MainProject.review.mapper.ReviewMapper;
+import com.main.MainProject.review.service.ReviewService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -72,7 +74,7 @@ public class ReviewController {
     }
 
     //리뷰 삭제
-    @GetMapping("/delete/{review-id}/{member-id}")
+    @DeleteMapping("/delete/{review-id}/{member-id}")
     public ResponseEntity deleteReview(@PathVariable("review-id")long reviewId,
                                        @PathVariable("member-id")long memberId){
         reviewService.deleteReview(reviewId, memberId);
