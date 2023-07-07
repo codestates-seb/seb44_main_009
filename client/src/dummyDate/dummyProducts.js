@@ -1,7 +1,7 @@
-[
+export const dummyproducts = [
   {
     productId: 1,
-    name: "상품명",
+    name: "쿨 상품",
     price: 15000,
     color: ["blue"],
     content: "의류 상세 설명",
@@ -13,7 +13,7 @@
   },
   {
     productId: 2,
-    name: "상품명",
+    name: "쿨 상품",
     price: 48000,
     color: ["pink", "purple"],
     content: "의류 상세 설명",
@@ -25,7 +25,7 @@
   },
   {
     productId: 3,
-    name: "상품명",
+    name: "쿨 상품",
     price: 32000,
     color: ["pink"],
     content: "의류 상세 설명",
@@ -37,7 +37,7 @@
   },
   {
     productId: 4,
-    name: "상품명",
+    name: "쿨 상품",
     price: 48000,
     color: ["blue", "pink", "navy"],
     content: "의류 상세 설명",
@@ -49,7 +49,7 @@
   },
   {
     productId: 5,
-    name: "상품명",
+    name: "쿨 상품",
     price: 32000,
     color: ["red", "navy"],
     content: "의류 상세 설명",
@@ -61,7 +61,7 @@
   },
   {
     productId: 6,
-    name: "상품명",
+    name: "쿨 상품",
     price: 15000,
     color: ["red"],
     content: "의류 상세 설명",
@@ -73,7 +73,7 @@
   },
   {
     productId: 7,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["purple"],
     content: "의류 상세 설명",
@@ -85,7 +85,7 @@
   },
   {
     productId: 8,
-    name: "상품명",
+    name: "쿨 상품",
     price: 42000,
     color: ["navy"],
     content: "의류 상세 설명",
@@ -97,7 +97,7 @@
   },
   {
     productId: 9,
-    name: "상품명",
+    name: "쿨 상품",
     price: 28000,
     color: ["blue", "navy"],
     content: "의류 상세 설명",
@@ -109,7 +109,7 @@
   },
   {
     productId: 10,
-    name: "상품명",
+    name: "쿨 상품",
     price: 27000,
     color: ["blue", "green", "skyblue"],
     content: "의류 상세 설명",
@@ -122,7 +122,7 @@
 
   {
     productId: 11,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["red"],
     content: "의류 상세 설명",
@@ -134,7 +134,7 @@
   },
   {
     productId: 12,
-    name: "상품명",
+    name: "쿨 상품",
     price: 45000,
     color: ["red", "skyblue", "purple"],
     content: "의류 상세 설명",
@@ -146,7 +146,7 @@
   },
   {
     productId: 13,
-    name: "상품명",
+    name: "쿨 상품",
     price: 42000,
     color: ["skyblue"],
     content: "의류 상세 설명",
@@ -158,7 +158,7 @@
   },
   {
     productId: 14,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["red", "purple"],
     content: "의류 상세 설명",
@@ -170,7 +170,7 @@
   },
   {
     productId: 15,
-    name: "상품명",
+    name: "쿨 상품",
     price: 15000,
     color: ["red", "blue"],
     content: "의류 상세 설명",
@@ -182,7 +182,7 @@
   },
   {
     productId: 16,
-    name: "상품명",
+    name: "쿨 상품",
     price: 32000,
     color: ["red"],
     content: "의류 상세 설명",
@@ -194,7 +194,7 @@
   },
   {
     productId: 17,
-    name: "상품명",
+    name: "쿨 상품",
     price: 35000,
     color: ["purple"],
     content: "의류 상세 설명",
@@ -206,7 +206,7 @@
   },
   {
     productId: 18,
-    name: "상품명",
+    name: "쿨 상품",
     price: 18000,
     color: ["red", "navy"],
     content: "의류 상세 설명",
@@ -218,7 +218,7 @@
   },
   {
     productId: 19,
-    name: "상품명",
+    name: "쿨 상품",
     price: 45000,
     color: ["pink"],
     content: "의류 상세 설명",
@@ -230,55 +230,55 @@
   },
   {
     productId: 20,
-    name: "상품명",
+    name: "웜 상품",
     price: 15000,
     color: ["green", "purple"],
     content: "의류 상세 설명",
     count: 70,
-    personalColor: "Cool",
+    personalColor: "Warm",
     categoryName: "하의",
     size: ["S", "M", "L"],
     url: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
   },
   {
     productId: 21,
-    name: "상품명",
+    name: "웜 상품",
     price: 27000,
     color: ["purple", "pink", "blue"],
     content: "의류 상세 설명",
     count: 72,
-    personalColor: "Cool",
+    personalColor: "Warm",
     categoryName: "스커트",
     size: ["S", "M", "L"],
     url: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
   },
   {
     productId: 22,
-    name: "상품명",
+    name: "웜 상품",
     price: 35000,
     color: ["green"],
     content: "의류 상세 설명",
     count: 57,
-    personalColor: "Cool",
+    personalColor: "Warm",
     categoryName: "스커트",
     size: ["S", "M", "L"],
     url: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
   },
   {
     productId: 23,
-    name: "상품명",
+    name: "웜 상품",
     price: 42000,
     color: ["navy", "purple"],
     content: "의류 상세 설명",
     count: 47,
-    personalColor: "Cool",
+    personalColor: "Warm",
     categoryName: "스커트",
     size: ["S", "M", "L"],
     url: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
   },
   {
     productId: 24,
-    name: "상품명",
+    name: "쿨 상품",
     price: 25000,
     color: ["green", "navy", "skyblue"],
     content: "의류 상세 설명",
@@ -290,7 +290,7 @@
   },
   {
     productId: 25,
-    name: "상품명",
+    name: "쿨 상품",
     price: 15000,
     color: ["navy", "blue"],
     content: "의류 상세 설명",
@@ -302,7 +302,7 @@
   },
   {
     productId: 26,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["skyblue", "blue"],
     content: "의류 상세 설명",
@@ -314,7 +314,7 @@
   },
   {
     productId: 27,
-    name: "상품명",
+    name: "쿨 상품",
     price: 28000,
     color: ["red", "blue"],
     content: "의류 상세 설명",
@@ -326,7 +326,7 @@
   },
   {
     productId: 28,
-    name: "상품명",
+    name: "쿨 상품",
     price: 18000,
     color: ["red"],
     content: "의류 상세 설명",
@@ -338,7 +338,7 @@
   },
   {
     productId: 29,
-    name: "상품명",
+    name: "쿨 상품",
     price: 28000,
     color: ["blue", "red"],
     content: "의류 상세 설명",
@@ -350,7 +350,7 @@
   },
   {
     productId: 30,
-    name: "상품명",
+    name: "쿨 상품",
     price: 45000,
     color: ["purple", "green"],
     content: "의류 상세 설명",
@@ -362,7 +362,7 @@
   },
   {
     productId: 31,
-    name: "상품명",
+    name: "쿨 상품",
     price: 28000,
     color: ["purple", "green"],
     content: "의류 상세 설명",
@@ -374,7 +374,7 @@
   },
   {
     productId: 32,
-    name: "상품명",
+    name: "쿨 상품",
     price: 27000,
     color: ["green"],
     content: "의류 상세 설명",
@@ -386,7 +386,7 @@
   },
   {
     productId: 33,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["pink", "red"],
     content: "의류 상세 설명",
@@ -398,7 +398,7 @@
   },
   {
     productId: 34,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["red", "green"],
     content: "의류 상세 설명",
@@ -410,7 +410,7 @@
   },
   {
     productId: 35,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["navy", "pink"],
     content: "의류 상세 설명",
@@ -422,7 +422,7 @@
   },
   {
     productId: 36,
-    name: "상품명",
+    name: "쿨 상품",
     price: 45000,
     color: ["red"],
     content: "의류 상세 설명",
@@ -434,7 +434,7 @@
   },
   {
     productId: 37,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["red", "purple", "navy"],
     content: "의류 상세 설명",
@@ -446,7 +446,7 @@
   },
   {
     productId: 38,
-    name: "상품명",
+    name: "쿨 상품",
     price: 48000,
     color: ["red", "navy", "purple"],
     content: "의류 상세 설명",
@@ -458,7 +458,7 @@
   },
   {
     productId: 39,
-    name: "상품명",
+    name: "쿨 상품",
     price: 48000,
     color: ["blue"],
     content: "의류 상세 설명",
@@ -470,7 +470,7 @@
   },
   {
     productId: 40,
-    name: "상품명",
+    name: "쿨 상품",
     price: 45000,
     color: ["red", "pink", "skyblue"],
     content: "의류 상세 설명",
@@ -482,7 +482,7 @@
   },
   {
     productId: 41,
-    name: "상품명",
+    name: "쿨 상품",
     price: 25000,
     color: ["pink"],
     content: "의류 상세 설명",
@@ -494,7 +494,7 @@
   },
   {
     productId: 42,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["purple"],
     content: "의류 상세 설명",
@@ -506,7 +506,7 @@
   },
   {
     productId: 43,
-    name: "상품명",
+    name: "쿨 상품",
     price: 35000,
     color: ["pink"],
     content: "의류 상세 설명",
@@ -518,7 +518,7 @@
   },
   {
     productId: 44,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["blue"],
     content: "의류 상세 설명",
@@ -530,7 +530,7 @@
   },
   {
     productId: 45,
-    name: "상품명",
+    name: "쿨 상품",
     price: 35000,
     color: ["blue", "purple"],
     content: "의류 상세 설명",
@@ -542,7 +542,7 @@
   },
   {
     productId: 46,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["green", "navy", "pink"],
     content: "의류 상세 설명",
@@ -554,7 +554,7 @@
   },
   {
     productId: 47,
-    name: "상품명",
+    name: "쿨 상품",
     price: 22000,
     color: ["red", "pink"],
     content: "의류 상세 설명",
@@ -566,7 +566,7 @@
   },
   {
     productId: 48,
-    name: "상품명",
+    name: "쿨 상품",
     price: 42000,
     color: ["green"],
     content: "의류 상세 설명",
@@ -578,7 +578,7 @@
   },
   {
     productId: 49,
-    name: "상품명",
+    name: "쿨 상품",
     price: 42000,
     color: ["red", "pink", "blue"],
     content: "의류 상세 설명",
@@ -590,7 +590,7 @@
   },
   {
     productId: 50,
-    name: "상품명",
+    name: "쿨 상품",
     price: 45000,
     color: ["pink", "green"],
     content: "의류 상세 설명",
@@ -602,7 +602,7 @@
   },
   {
     productId: 51,
-    name: "상품명",
+    name: "쿨 상품",
     price: 48000,
     color: ["blue", "green"],
     content: "의류 상세 설명",
@@ -614,7 +614,7 @@
   },
   {
     productId: 52,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["purple", "pink"],
     content: "의류 상세 설명",
@@ -626,7 +626,7 @@
   },
   {
     productId: 53,
-    name: "상품명",
+    name: "쿨 상품",
     price: 25000,
     color: ["skyblue", "navy"],
     content: "의류 상세 설명",
@@ -638,7 +638,7 @@
   },
   {
     productId: 54,
-    name: "상품명",
+    name: "쿨 상품",
     price: 25000,
     color: ["pink", "skyblue"],
     content: "의류 상세 설명",
@@ -650,7 +650,7 @@
   },
   {
     productId: 55,
-    name: "상품명",
+    name: "쿨 상품",
     price: 38000,
     color: ["skyblue", "red"],
     content: "의류 상세 설명",
@@ -662,7 +662,7 @@
   },
   {
     productId: 56,
-    name: "상품명",
+    name: "쿨 상품",
     price: 35000,
     color: ["pink", "red"],
     content: "의류 상세 설명",
@@ -674,7 +674,7 @@
   },
   {
     productId: 57,
-    name: "상품명",
+    name: "쿨 상품",
     price: 42000,
     color: ["skyblue", "navy", "green"],
     content: "의류 상세 설명",
@@ -686,7 +686,7 @@
   },
   {
     productId: 58,
-    name: "상품명",
+    name: "쿨 상품",
     price: 18000,
     color: ["navy", "red"],
     content: "의류 상세 설명",
@@ -698,7 +698,7 @@
   },
   {
     productId: 59,
-    name: "상품명",
+    name: "쿨 상품",
     price: 18000,
     color: ["green"],
     content: "의류 상세 설명",
@@ -710,7 +710,7 @@
   },
   {
     productId: 60,
-    name: "상품명",
+    name: "쿨 상품",
     price: 32000,
     color: ["green", "purple"],
     content: "의류 상세 설명",
@@ -722,7 +722,7 @@
   },
   {
     productId: 61,
-    name: "상품명",
+    name: "웜 상품",
     price: 38000,
     color: ["orange", "brown"],
     content: "의류 상세 설명",
@@ -734,7 +734,7 @@
   },
   {
     productId: 62,
-    name: "상품명",
+    name: "웜 상품",
     price: 38000,
     color: ["pink", "brown"],
     content: "의류 상세 설명",
@@ -746,7 +746,7 @@
   },
   {
     productId: 63,
-    name: "상품명",
+    name: "웜 상품",
     price: 28000,
     color: ["blue"],
     content: "의류 상세 설명",
@@ -758,7 +758,7 @@
   },
   {
     productId: 64,
-    name: "상품명",
+    name: "웜 상품",
     price: 32000,
     color: ["brown", "red"],
     content: "의류 상세 설명",
@@ -770,7 +770,7 @@
   },
   {
     productId: 65,
-    name: "상품명",
+    name: "웜 상품",
     price: 25000,
     color: ["blue"],
     content: "의류 상세 설명",
@@ -782,7 +782,7 @@
   },
   {
     productId: 66,
-    name: "상품명",
+    name: "웜 상품",
     price: 45000,
     color: ["skyblue", "pink"],
     content: "의류 상세 설명",
@@ -794,7 +794,7 @@
   },
   {
     productId: 67,
-    name: "상품명",
+    name: "웜 상품",
     price: 45000,
     color: ["green", "red"],
     content: "의류 상세 설명",
@@ -806,7 +806,7 @@
   },
   {
     productId: 68,
-    name: "상품명",
+    name: "웜 상품",
     price: 15000,
     color: ["green", "brown"],
     content: "의류 상세 설명",
@@ -818,7 +818,7 @@
   },
   {
     productId: 69,
-    name: "상품명",
+    name: "웜 상품",
     price: 48000,
     color: ["blue", "ivory", "yellow"],
     content: "의류 상세 설명",
@@ -830,7 +830,7 @@
   },
   {
     productId: 70,
-    name: "상품명",
+    name: "웜 상품",
     price: 45000,
     color: ["green"],
     content: "의류 상세 설명",
@@ -842,7 +842,7 @@
   },
   {
     productId: 71,
-    name: "상품명",
+    name: "웜 상품",
     price: 35000,
     color: ["yellow"],
     content: "의류 상세 설명",
@@ -854,7 +854,7 @@
   },
   {
     productId: 72,
-    name: "상품명",
+    name: "웜 상품",
     price: 48000,
     color: ["orange", "ivory", "brown"],
     content: "의류 상세 설명",
@@ -866,7 +866,7 @@
   },
   {
     productId: 73,
-    name: "상품명",
+    name: "웜 상품",
     price: 22000,
     color: ["blue"],
     content: "의류 상세 설명",
@@ -878,7 +878,7 @@
   },
   {
     productId: 74,
-    name: "상품명",
+    name: "웜 상품",
     price: 18000,
     color: ["skyblue"],
     content: "의류 상세 설명",
@@ -890,7 +890,7 @@
   },
   {
     productId: 75,
-    name: "상품명",
+    name: "웜 상품",
     price: 45000,
     color: ["pink"],
     content: "의류 상세 설명",
@@ -902,7 +902,7 @@
   },
   {
     productId: 76,
-    name: "상품명",
+    name: "웜 상품",
     price: 38000,
     color: ["ivory"],
     content: "의류 상세 설명",
@@ -914,7 +914,7 @@
   },
   {
     productId: 77,
-    name: "상품명",
+    name: "웜 상품",
     price: 45000,
     color: ["ivory", "blue"],
     content: "의류 상세 설명",
@@ -926,7 +926,7 @@
   },
   {
     productId: 78,
-    name: "상품명",
+    name: "웜 상품",
     price: 38000,
     color: ["red", "skyblue", "pink"],
     content: "의류 상세 설명",
@@ -938,7 +938,7 @@
   },
   {
     productId: 79,
-    name: "상품명",
+    name: "웜 상품",
     price: 15000,
     color: ["blue", "green", "orange"],
     content: "의류 상세 설명",
@@ -950,7 +950,7 @@
   },
   {
     productId: 80,
-    name: "상품명",
+    name: "웜 상품",
     price: 22000,
     color: ["yellow", "red", "ivory"],
     content: "의류 상세 설명",
@@ -962,7 +962,7 @@
   },
   {
     productId: 81,
-    name: "상품명",
+    name: "웜 상품",
     price: 22000,
     color: ["blue", "green"],
     content: "의류 상세 설명",
@@ -974,7 +974,7 @@
   },
   {
     productId: 82,
-    name: "상품명",
+    name: "웜 상품",
     price: 32000,
     color: ["green"],
     content: "의류 상세 설명",
@@ -986,7 +986,7 @@
   },
   {
     productId: 83,
-    name: "상품명",
+    name: "웜 상품",
     price: 28000,
     color: ["skyblue", "green"],
     content: "의류 상세 설명",
@@ -998,7 +998,7 @@
   },
   {
     productId: 84,
-    name: "상품명",
+    name: "웜 상품",
     price: 35000,
     color: ["red", "skyblue"],
     content: "의류 상세 설명",
@@ -1010,7 +1010,7 @@
   },
   {
     productId: 85,
-    name: "상품명",
+    name: "웜 상품",
     price: 48000,
     color: ["skyblue"],
     content: "의류 상세 설명",
@@ -1022,7 +1022,7 @@
   },
   {
     productId: 86,
-    name: "상품명",
+    name: "웜 상품",
     price: 32000,
     color: ["ivory", "blue"],
     content: "의류 상세 설명",
@@ -1034,7 +1034,7 @@
   },
   {
     productId: 87,
-    name: "상품명",
+    name: "웜 상품",
     price: 32000,
     color: ["brown", "orange", "red"],
     content: "의류 상세 설명",
@@ -1046,7 +1046,7 @@
   },
   {
     productId: 88,
-    name: "상품명",
+    name: "웜 상품",
     price: 18000,
     color: ["blue", "green", "yellow"],
     content: "의류 상세 설명",
@@ -1058,7 +1058,7 @@
   },
   {
     productId: 89,
-    name: "상품명",
+    name: "웜 상품",
     price: 22000,
     color: ["pink", "orange", "blue"],
     content: "의류 상세 설명",
@@ -1070,7 +1070,7 @@
   },
   {
     productId: 90,
-    name: "상품명",
+    name: "웜 상품",
     price: 32000,
     color: ["blue", "ivory"],
     content: "의류 상세 설명",
@@ -1082,7 +1082,7 @@
   },
   {
     productId: 91,
-    name: "상품명",
+    name: "웜 상품",
     price: 42000,
     color: ["ivory"],
     content: "의류 상세 설명",
@@ -1094,7 +1094,7 @@
   },
   {
     productId: 92,
-    name: "상품명",
+    name: "웜 상품",
     price: 28000,
     color: ["green", "yellow", "pink"],
     content: "의류 상세 설명",
@@ -1106,7 +1106,7 @@
   },
   {
     productId: 93,
-    name: "상품명",
+    name: "웜 상품",
     price: 28000,
     color: ["red", "brown"],
     content: "의류 상세 설명",
@@ -1118,7 +1118,7 @@
   },
   {
     productId: 94,
-    name: "상품명",
+    name: "웜 상품",
     price: 35000,
     color: ["yellow", "brown", "pink"],
     content: "의류 상세 설명",
@@ -1130,7 +1130,7 @@
   },
   {
     productId: 95,
-    name: "상품명",
+    name: "웜 상품",
     price: 15000,
     color: ["orange", "green", "brown"],
     content: "의류 상세 설명",
@@ -1142,7 +1142,7 @@
   },
   {
     productId: 96,
-    name: "상품명",
+    name: "웜 상품",
     price: 45000,
     color: ["green", "yellow"],
     content: "의류 상세 설명",
@@ -1154,7 +1154,7 @@
   },
   {
     productId: 97,
-    name: "상품명",
+    name: "웜 상품",
     price: 28000,
     color: ["pink", "green"],
     content: "의류 상세 설명",
@@ -1166,7 +1166,7 @@
   },
   {
     productId: 98,
-    name: "상품명",
+    name: "웜 상품",
     price: 35000,
     color: ["pink"],
     content: "의류 상세 설명",
@@ -1178,7 +1178,7 @@
   },
   {
     productId: 99,
-    name: "상품명",
+    name: "웜 상품",
     price: 18000,
     color: ["skyblue", "blue", "green"],
     content: "의류 상세 설명",
@@ -1190,7 +1190,7 @@
   },
   {
     productId: 100,
-    name: "상품명",
+    name: "웜 상품",
     price: 48000,
     color: ["red", "orange"],
     content: "의류 상세 설명",
@@ -1202,7 +1202,7 @@
   },
   {
     productId: 101,
-    name: "상품명",
+    name: "웜 상품",
     price: 45000,
     color: ["yellow", "pink"],
     content: "의류 상세 설명",
@@ -1214,7 +1214,7 @@
   },
   {
     productId: 102,
-    name: "상품명",
+    name: "웜 상품",
     price: 25000,
     color: ["orange", "ivory", "red"],
     content: "의류 상세 설명",
@@ -1226,7 +1226,7 @@
   },
   {
     productId: 103,
-    name: "상품명",
+    name: "웜 상품",
     price: 28000,
     color: ["orange", "brown"],
     content: "의류 상세 설명",
@@ -1238,7 +1238,7 @@
   },
   {
     productId: 104,
-    name: "상품명",
+    name: "웜 상품",
     price: 48000,
     color: ["blue"],
     content: "의류 상세 설명",
@@ -1250,7 +1250,7 @@
   },
   {
     productId: 105,
-    name: "상품명",
+    name: "웜 상품",
     price: 22000,
     color: ["skyblue", "pink", "blue"],
     content: "의류 상세 설명",
@@ -1262,7 +1262,7 @@
   },
   {
     productId: 106,
-    name: "상품명",
+    name: "웜 상품",
     price: 45000,
     color: ["green"],
     content: "의류 상세 설명",
@@ -1274,7 +1274,7 @@
   },
   {
     productId: 107,
-    name: "상품명",
+    name: "웜 상품",
     price: 35000,
     color: ["skyblue", "green"],
     content: "의류 상세 설명",
@@ -1286,7 +1286,7 @@
   },
   {
     productId: 108,
-    name: "상품명",
+    name: "웜 상품",
     price: 28000,
     color: ["brown", "skyblue", "orange"],
     content: "의류 상세 설명",
@@ -1298,7 +1298,7 @@
   },
   {
     productId: 109,
-    name: "상품명",
+    name: "웜 상품",
     price: 32000,
     color: ["ivory", "brown"],
     content: "의류 상세 설명",
@@ -1310,7 +1310,7 @@
   },
   {
     productId: 110,
-    name: "상품명",
+    name: "웜 상품",
     price: 48000,
     color: ["red", "brown"],
     content: "의류 상세 설명",
@@ -1322,7 +1322,7 @@
   },
   {
     productId: 111,
-    name: "상품명",
+    name: "웜 상품",
     price: 38000,
     color: ["yellow"],
     content: "의류 상세 설명",
@@ -1334,7 +1334,7 @@
   },
   {
     productId: 112,
-    name: "상품명",
+    name: "웜 상품",
     price: 35000,
     color: ["pink", "brown"],
     content: "의류 상세 설명",
@@ -1346,7 +1346,7 @@
   },
   {
     productId: 113,
-    name: "상품명",
+    name: "웜 상품",
     price: 32000,
     color: ["skyblue"],
     content: "의류 상세 설명",
@@ -1358,7 +1358,7 @@
   },
   {
     productId: 114,
-    name: "상품명",
+    name: "웜 상품",
     price: 22000,
     color: ["red", "brown", "blue"],
     content: "의류 상세 설명",
@@ -1370,7 +1370,7 @@
   },
   {
     productId: 115,
-    name: "상품명",
+    name: "웜 상품",
     price: 45000,
     color: ["ivory", "pink", "brown"],
     content: "의류 상세 설명",
@@ -1382,7 +1382,7 @@
   },
   {
     productId: 116,
-    name: "상품명",
+    name: "웜 상품",
     price: 15000,
     color: ["skyblue", "orange", "pink"],
     content: "의류 상세 설명",
@@ -1394,7 +1394,7 @@
   },
   {
     productId: 117,
-    name: "상품명",
+    name: "웜 상품",
     price: 15000,
     color: ["brown", "yellow"],
     content: "의류 상세 설명",
@@ -1406,7 +1406,7 @@
   },
   {
     productId: 118,
-    name: "상품명",
+    name: "웜 상품",
     price: 18000,
     color: ["red", "orange"],
     content: "의류 상세 설명",
@@ -1418,7 +1418,7 @@
   },
   {
     productId: 119,
-    name: "상품명",
+    name: "웜 상품",
     price: 18000,
     color: ["pink"],
     content: "의류 상세 설명",
@@ -1430,7 +1430,7 @@
   },
   {
     productId: 120,
-    name: "상품명",
+    name: "웜 상품",
     price: 45000,
     color: ["brown"],
     content: "의류 상세 설명",

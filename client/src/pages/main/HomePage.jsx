@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
-import MainProductList from "../../components/mainProduct/MainProductList";
+import ProductList from "../../components/mainProduct/ProductList";
+
 import MainCategory from "../../components/Category/MainCategory";
 import {
   WarmToneCategory,
@@ -7,7 +8,8 @@ import {
 } from "../../components/Category/Styles/ColorCategoryStyles/ColorCategoryStyles";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import { dummyproducts } from "../../dummy";
+import { dummyproducts } from "../../dummyDate/dummyProducts";
+
 const MarginBottomTom = styled.div`
   margin-bottom: 100px;
 `;
@@ -38,13 +40,14 @@ const MainContainer = styled.div`
 
 const HomePage = () => {
   const WarmfilteredProducts = dummyproducts.filter(
-    product => product.personalcolor === "warm",
+    product => product.personalColor == "Warm",
   );
   const CoolfilteredProducts = dummyproducts.filter(
-    product => product.personalcolor === "cool",
+    product => product.personalColor === "Cool",
   );
   const slicedWarmProducts = WarmfilteredProducts.slice(0, 4);
   const slicedCoolProducts = CoolfilteredProducts.slice(0, 4);
+
   return (
     <MainContainer>
       <Header></Header>
@@ -55,13 +58,13 @@ const HomePage = () => {
 
         <WarmToneCategory />
 
-        <MainProductList products={slicedWarmProducts} />
+        <ProductList products={slicedWarmProducts} />
 
         <MarginBottomTom />
 
         <CoolToneCategory />
 
-        <MainProductList products={slicedCoolProducts} />
+        <ProductList products={slicedCoolProducts} />
 
         <MarginBottomTom />
       </Borderdiv>

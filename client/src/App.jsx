@@ -11,25 +11,29 @@ import ReviewEditPage from "./pages/user/Review/ReviewEditPage";
 import MyReviewPage from "./pages/user/Review/MyReview";
 import ProfilePage from "./pages/user/profile/ProfilePage";
 import ProfileEditPage from "./pages/user/myPage/profileEdit/ProfileEditPage";
+import ProductDetailPage from "./pages/main/ProductDetail";
 
 function App() {
   return (
-    <BrowserRouter>
-      <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/Products" element={<ProductsPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/review" element={<ReviewUpdatePage />} />
-        <Route path="/review/edit" element={<ReviewEditPage />} />
-        <Route path="/review/management" element={<MyReviewPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/profile/edit" element={<ProfileEditPage />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <GlobalStyle />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Products" element={<ProductsPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/ProductDetail" element={<ProductDetailPage />} />
+          <Route path="/review" element={<ReviewUpdatePage />} />
+          <Route path="/review/edit" element={<ReviewEditPage />} />
+          <Route path="/review/management" element={<MyReviewPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/edit" element={<ProfileEditPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
