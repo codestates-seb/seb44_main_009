@@ -1,9 +1,10 @@
 import { styled } from "styled-components";
 
-export const ProfileEditPageWapper = styled.div`
+export const ProfileEditWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 32px;
 
   width: 834px;
   height: 100%;
