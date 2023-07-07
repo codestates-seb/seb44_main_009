@@ -4,14 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 public class ReviewDto {
     @Getter
     @AllArgsConstructor
     public static class RequestDTO{
+        @NotBlank(message = "제품후기 제목은 공백이 아니어야 합니다.")
         private String title;
 
+        @NotBlank(message = "제품후기 내용은 공백이 아니어야 합니다.")
         private String content;
 
+        @NotBlank(message = "제품후기 점수는 공백이 아니어야 합니다.")
         private int score;
     }
 
@@ -20,6 +25,7 @@ public class ReviewDto {
     public static class Response{
 
         private long reviewId;
+
         private String memberName;
 
         private String title;

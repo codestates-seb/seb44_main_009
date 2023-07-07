@@ -47,9 +47,10 @@ public class OrderController {
     //배송지변경(배송출발 이전만 가능)
     @PatchMapping("/request/{order-id}/{member-id}")
     public ResponseEntity updateAddressOrder(@PathVariable("order-id")long orderId,
+                                             @PathVariable("member-id")long memberId,
                                              @Valid @RequestBody OrderDto.Address requestBody){
         Address address = mapper.addressDtoToAddress(requestBody);
-        Order order = orderService.updateOrder(orderId, address);
+        Order order = orderService.updateOrder(orderId, address, memberId);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.OK);
@@ -66,8 +67,8 @@ public class OrderController {
 
     //회원의 모든 정보 불러오기
     @GetMapping("/buylist/{member-id}")
-    public ResponseEntity getorders(){
-        List<Order> orderList = orderService.getOrderList();
+    public ResponseEntity getorders(@PathVariable("member-id")long memberId){
+        List<Order> orderList = orderService.getOrderList(memberId);
 
         return new ResponseEntity<>(new ListResponseDto<>(mapper.orderListToOrderResponseList(orderList)), HttpStatus.OK);
     }
@@ -76,7 +77,7 @@ public class OrderController {
     @GetMapping("/{order-id}/{member-id}")
     public ResponseEntity getOrder(@PathVariable("member-id")long memberId,
                                    @PathVariable("order-id")long orderId){
-        Order order = orderService.getOrder(memberId, orderId);
+        Order order = orderService.findOrder(memberId, orderId);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.OK);
