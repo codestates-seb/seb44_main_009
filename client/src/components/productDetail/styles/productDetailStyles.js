@@ -25,7 +25,9 @@ import { Inquiryguide } from "./inquirystyle/Inquiryguide";
 import { InquiryguideBox } from "./inquirystyle/InquiryguideBox";
 import { TextDivStyle, LeftMargin } from "./inquirystyle/InquiryText";
 
-const fontSize18 = "18px";
+import { ProductPublicInquiryEx } from "./inquirystyle/ProductPublicInquiryEx";
+
+//const fontSize18 = "18px";
 
 const InfoIcon = styled(FontAwesomeIcon)`
   /* Styles for the icon */
@@ -70,23 +72,26 @@ class ProductDetailStyles extends React.Component {
           {/* 제품 명 , 제품 가격*/}
           <ProductPublicInfo />
 
-          {/* 탭 */}
+          {/* 각 탭 이름 */}
           <TabCotainer>
             <TabButton onClick={() => this.openTab("product-info")}>
               상품정보
             </TabButton>
+
             <TabButton onClick={() => this.openTab("reviews")}>리뷰</TabButton>
+
             <TabButton onClick={() => this.openTab("contact")}>
               문의하기
             </TabButton>
           </TabCotainer>
 
-          {/* 탭 내용 */}
+          {/* 상세 탭 내용 */}
+
+          {/* 상품 정보 */}
           <TabContent
             isExpanded={this.state.isExpanded ? "expanded" : ""}
             style={{ display: activeTab === "product-info" ? "block" : "none" }}
           >
-            {/* 상품 정보 */}
             <ProductPublicImage />
             <ProductInfoButton
               onClick={() => {
@@ -99,17 +104,17 @@ class ProductDetailStyles extends React.Component {
             <ProductContent>Product.content</ProductContent>
           </TabContent>
 
+          {/* 리뷰 탭 내용 작성 */}
           <TabContent
             style={{ display: activeTab === "reviews" ? "block" : "none" }}
           >
-            {/* 리뷰 탭 내용 작성 */}
             <p>리뷰 내용을 어떻게 할것인가? .</p>
           </TabContent>
 
+          {/* 문의하기 */}
           <TabContent
             style={{ display: activeTab === "contact" ? "block" : "none" }}
           >
-            {/* 문의하기 */}
             <InquiryguideBox justifyContent="center" alignItems="center">
               <Inquiryguide>
                 <TextDivStyle>문의 안내사항</TextDivStyle>
@@ -123,24 +128,7 @@ class ProductDetailStyles extends React.Component {
               </TextDivStyle>
             </InquiryguideBox>
 
-            <InquiryguideBox height="250px">
-              <TextDivStyle TopMargin="20px" BottomMargin="20px">
-                문의사항 예시
-              </TextDivStyle>
-              <TextDivStyle FontSize={fontSize18} BottomMargin="30px">
-                Q. 배송은 언제 되나요? - 영업일 기준 13시 이전 결제 주문건 :
-                당일 출고됩니다.
-              </TextDivStyle>
-
-              <TextDivStyle FontSize={fontSize18} BottomMargin="30px">
-                Q. 배송 전 취소 하고 싶어요! - 사이트에서 취소 문의 후
-                고객센터로 연락 바랍니다.
-              </TextDivStyle>
-              <TextDivStyle FontSize={fontSize18} BottomMargin="30px">
-                Q. 사이즈가 안맞아요. 교환가능한가요? - 교환요청 후 고객센터로
-                연락 바랍니다.
-              </TextDivStyle>
-            </InquiryguideBox>
+            <ProductPublicInquiryEx />
             <ProductInfoButton>문의하러 가기</ProductInfoButton>
           </TabContent>
         </ProductDetailContent>

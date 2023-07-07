@@ -1,9 +1,11 @@
 import { styled } from "styled-components";
 
-export const ProfileImg = styled.img`
+export const MyProfileEditBtnWrapper = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  width: 185px;
-  height: 185px;
+  gap: 32px;
+
+  width: 600px;
   border-radius: 30px;
 `;
