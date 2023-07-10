@@ -14,10 +14,8 @@ import com.main.MainProject.address.Address;
 import com.main.MainProject.address.AddressRepository;
 import com.main.MainProject.product.cartProduct.CartProduct;
 import com.main.MainProject.product.entity.Product;
-import com.main.MainProject.product.service.ProductService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,8 +42,6 @@ public class OrderService {
 
     public Order createOrder(long cartId, Address address, long memberId){
         Cart findCart = cartService.findVerifiedCart(cartId);
-//        //TODO: 상품 수량 확인
-//        //TODO: 상품 수량 반영
         Member findMember = memberService.findVerifiedMember(memberId);
 
         Order order = new Order();
@@ -66,13 +62,18 @@ public class OrderService {
 
     private OrderProduct cartProductToOrderProduct(Order order, CartProduct cartProduct){
         OrderProduct orderProduct = new OrderProduct(cartProduct.getQuantity(), cartProduct.getProduct());
+        if(orderProduct.getProduct().getCount() < orderProduct.getQuantity()){
+            new BusinessLogicException(ExceptionCode.QUANTITY_IS_MORE_THAN_PRODUCT_COUNT);
+        }else {
+            orderProduct.getProduct().setCount(orderProduct.getProduct().getCount() - orderProduct.getQuantity());
+        }
         orderProduct.setOrder(order);
         return orderProduct;
     }
 
-    public Order updateOrder(long orderId, Address address){
-        //TODO: memebrId 회원인지 확인 추가
+    public Order updateOrder(long orderId, Address address, long memberId){
         Order order = findVerficatedOrder(orderId);
+        isOrderByMember(order, memberService.findVerifiedMember(memberId));
 
         Address findAddress = order.getAddress();
 
@@ -90,24 +91,21 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public List<Order> getOrderList(/*memberId*/){
-        //TODO: 존재하는회원인지 확인
-        //TODO: 회원정보 불러오기
+    public List<Order> getOrderList(long memberId){
+        memberService.findVerifiedMember(memberId);
+
         List<Order> orderList = orderRepository.findAll();
         return orderList;
     }
 
-    public Order getOrder(long memberId, long orderId){
-        //TODO: 존재하는회원인지 확인
-        //TODO: 회원정보 불러오기
-
+    public Order findOrder(long memberId, long orderId){
         Order order = findVerficatedOrder(orderId);
+        isOrderByMember(order, memberService.findVerifiedMember(memberId));
         return order;
     }
 
     public void cancelOrder(long memberId, long orderId){
-        //TODO: 존재하는회원인지 확인
-        //TODO: 회원정보 불러오기
+        memberService.findVerifiedMember(memberId);
         Order findOrder = findVerficatedOrder(orderId);
 
         if(getShippingStatus(orderId) < 4){

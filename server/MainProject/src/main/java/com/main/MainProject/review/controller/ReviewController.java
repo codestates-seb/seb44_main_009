@@ -50,6 +50,13 @@ public class ReviewController {
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewToResponse(review)), HttpStatus.OK);
     }
 
+    @PatchMapping("/vote/{review-id}")
+    public ResponseEntity updateReview(@PathVariable("review-id")long reviewId){
+        Review review = reviewService.voteReview(reviewId);
+
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewToResponse(review)), HttpStatus.OK);
+    }
+
     //개별 리뷰 조회
     @GetMapping("/find/{review-id}")
     public ResponseEntity getReview(@PathVariable("review-id")long reviewId){
