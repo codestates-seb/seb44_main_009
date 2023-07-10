@@ -1,7 +1,13 @@
+import { useContext } from "react";
 import { SignUpBtn } from "./styles/SignUpBtn.styled";
+import { SingUpContext } from "./SignUp";
 
 export default function SignUpButton() {
-  const handleClick = () => {};
+  const { setShowModal } = useContext(SingUpContext);
 
-  return <SignUpBtn onClick={handleClick}>회원가입</SignUpBtn>;
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  return <SignUpBtn onClick={handleOpenModal}>회원가입</SignUpBtn>;
 }
