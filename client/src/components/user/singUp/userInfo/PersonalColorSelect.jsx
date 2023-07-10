@@ -14,7 +14,7 @@ export default function PersonalColorSelect() {
   return (
     <>
       <SignUpInputTitleWrapper>
-        <SignUpInputTitle>주소</SignUpInputTitle>
+        <SignUpInputTitle>퍼스널 컬러</SignUpInputTitle>
         <ValidationMessage>유효성 메세지</ValidationMessage>
       </SignUpInputTitleWrapper>
       <PersonalColorSelectContainer>
