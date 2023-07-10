@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SignUpInput } from "../styles/SignUpInput.styled";
 import { SignUpInputTitle } from "../styles/SignUpInputTitle.styled";
 import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.styled";
@@ -6,13 +6,24 @@ import { ValidationMessage } from "../styles/ValidationMessage.styled";
 import { SingUpContext } from "../SignUp";
 
 export default function NickNameInput() {
-  const { handleChange } = useContext(SingUpContext);
+  const { handleChange, signUpData } = useContext(SingUpContext);
+
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (signUpData.nickName.length === 0) {
+      setMessage("닉네임을 입력해주세요");
+      return;
+    }
+
+    setMessage("");
+  }, [signUpData.nickName]);
 
   return (
     <>
       <SignUpInputTitleWrapper>
         <SignUpInputTitle>닉네임</SignUpInputTitle>
-        <ValidationMessage>유효성 메세지</ValidationMessage>
+        <ValidationMessage>{message}</ValidationMessage>
       </SignUpInputTitleWrapper>
       <SignUpInput
         type="text"
