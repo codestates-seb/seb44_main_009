@@ -1,26 +1,32 @@
 package com.main.MainProject.review.dto;
 
+import com.main.MainProject.review.entity.Review;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ReviewDto {
     @Getter
     @AllArgsConstructor
     public static class RequestDTO{
-        @NotBlank(message = "제품후기 제목은 공백이 아니어야 합니다.")
-        private String title;
 
-        @NotBlank(message = "제품후기 내용은 공백이 아니어야 합니다.")
+        @NotNull(message = "제품후기 내용은 공백이 아니어야 합니다.")
         private String content;
 
-        @NotBlank(message = "제품후기 점수는 공백이 아니어야 합니다.")
-        private int score;
+        private String enjoyStatus;
+
+        private String productPersonalColorStatus;
+
+        private String sizeStatus;
+
+        private String productColorStatus;
     }
 
     @Getter
@@ -35,16 +41,29 @@ public class ReviewDto {
         private String productPersonalColor;
         private String productColor;
 
-        private String title;
-
         private String content;
 
-        private int score;
+        private String enjoyStatus;
+
+        private String productPersonalColorStatus;
+
+        private String sizeStatus;
+
+        private String productColorStatus;
 
         private int vote;
 
         private LocalDateTime createdAt;
 
         private LocalDateTime lastModifiedAt;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class ResponseList{
+        private List<Response> responseList;
+        private int totalCount;
+        private int PersonalColorCoolCount;
+        private int PersonalColorWormCount;
     }
 }

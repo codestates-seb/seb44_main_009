@@ -34,7 +34,11 @@ public interface CartMapper {
                 .mapToInt(cartProduct -> cartProduct.getProduct().getPrice() * cartProduct.getQuantity())
                 .sum();
 
-        int shippingCost = 3000;
+        int shippingCost = 0;
+        if(cartProductList.size() > 0){
+            shippingCost = 3000;
+        }
+
         int totalPrice = totalProductPrice + shippingCost;
 
         CartDto.Response response = new CartDto.Response( cartProductList, shippingCost, totalProductPrice, totalPrice );
