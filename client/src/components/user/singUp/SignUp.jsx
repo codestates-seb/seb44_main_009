@@ -1,10 +1,29 @@
+import { createContext, useState } from "react";
 import LoginInfo from "./LoginInfo";
 import SignUpButton from "./SignUpButton";
 import UserInfo from "./UserInfo";
 import { SingUpContaier } from "./styles/SingUpContaier.styled";
 
+export const SingUpContext = createContext();
+
 export default function SignUp({ children }) {
-  return <SingUpContaier>{children}</SingUpContaier>;
+  const [signUpData, setSignUpData] = useState({
+    korname: "",
+    email: "",
+    phonenumber: "",
+    password: "",
+    nickname: "",
+    personalColor: "",
+    address: "",
+  });
+
+  console.log("----- signUpData", signUpData);
+
+  return (
+    <SingUpContext.Provider value={(signUpData, setSignUpData)}>
+      <SingUpContaier>{children}</SingUpContaier>
+    </SingUpContext.Provider>
+  );
 }
 
 SignUp.LoginInfo = LoginInfo;
