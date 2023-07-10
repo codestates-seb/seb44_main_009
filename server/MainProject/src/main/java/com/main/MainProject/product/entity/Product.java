@@ -4,13 +4,9 @@ import com.main.MainProject.audit.Auditable;
 import com.main.MainProject.order.entity.OrderProduct;
 import com.main.MainProject.product.cartProduct.CartProduct;
 import com.main.MainProject.product.category.entity.Category;
-<<<<<<< HEAD
 import com.main.MainProject.qna.entity.Qna;
-import com.main.MainProject.temporary.CartProduct;
-=======
 
 import com.main.MainProject.review.entity.Review;
->>>>>>> 30bf1a926698d769491ed5174d220c9aa6f34fdb
 import lombok.*;
 
 import javax.persistence.*;
@@ -47,7 +43,6 @@ public class Product extends Auditable {
 
     @Column
     @Enumerated(value = EnumType.STRING)
-//    @Builder.Default
     private ProductStatus productStatus = ProductStatus.PRODUCT_ON_SALE;
 
     @Column(nullable = false, length = 20)
@@ -57,20 +52,10 @@ public class Product extends Auditable {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-<<<<<<< HEAD
+
     @OneToMany(mappedBy = "product")
     private List<Qna> qnaList = new ArrayList<>();
 
-    @Column(nullable = false)
-//    @Builder.Default
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @Column(nullable = false, name = "LAST_MODIFIED_AT")
-//    @Builder.Default
-    private LocalDateTime modifiedAt = LocalDateTime.now();
-
-=======
->>>>>>> 30bf1a926698d769491ed5174d220c9aa6f34fdb
     public enum ProductStatus {
         PRODUCT_ON_SALE(1, "상품 판매중"),
         PRODUCT_SOLD_OUT(2, "상품 품절");
