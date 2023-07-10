@@ -6,8 +6,13 @@ import { SingUpContext } from "./SignUp";
 
 export default function SignUpModal() {
   // Context >> 사용
-  const { setShowModal, signUpData, emailRegEx, passworedRegEx } =
-    useContext(SingUpContext);
+  const {
+    setShowModal,
+    signUpData,
+    emailRegEx,
+    passworedRegEx,
+    phoneNumberRegEx,
+  } = useContext(SingUpContext);
 
   // handleEvent >> showModal(state) 변경
   const handleCloseModal = () => {
@@ -32,6 +37,11 @@ export default function SignUpModal() {
     }
 
     if (signUpData.password.match(passworedRegEx) === null) {
+      setMessage("형식에 맞춰 입력해주세요");
+      return;
+    }
+
+    if (signUpData.phoneNumber.match(phoneNumberRegEx) === null) {
       setMessage("형식에 맞춰 입력해주세요");
       return;
     }

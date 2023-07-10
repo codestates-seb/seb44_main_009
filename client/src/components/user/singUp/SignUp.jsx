@@ -31,6 +31,9 @@ export default function SignUp({ children }) {
   const passworedRegEx =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
+  // 유효성 검사 정규식 >> 전화번호
+  const phoneNumberRegEx = /^(010)-[0-9]{3,4}-[0-9]{4}$/;
+
   // handleEvent >> signUpData(state) 변경
   const handleChange = e =>
     setSignUpData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -46,6 +49,7 @@ export default function SignUp({ children }) {
         setShowModal,
         emailRegEx,
         passworedRegEx,
+        phoneNumberRegEx,
       }}
     >
       <SingUpContaier>{children}</SingUpContaier>
