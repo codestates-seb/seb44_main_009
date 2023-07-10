@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SignUpInput } from "../styles/SignUpInput.styled";
 import { SignUpInputTitle } from "../styles/SignUpInputTitle.styled";
 import { ValidationMessage } from "../styles/ValidationMessage.styled";
@@ -6,12 +6,26 @@ import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.style
 import { SingUpContext } from "../SignUp";
 
 export default function PasswordInput() {
-  const { handleChange } = useContext(SingUpContext);
+  const { handleChange, signUpData } = useContext(SingUpContext);
+
+  const [message, setMessage] = useState("");
+
+  const passworedRegEx =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+  useEffect(() => {
+    if (signUpData.password.match(passworedRegEx) === null) {
+      setMessage("특수문자, 영어, 숫자를 포함하여 8자 이상 입력해주세요");
+      return;
+    }
+
+    setMessage("");
+  }, [signUpData.password]);
   return (
     <>
       <SignUpInputTitleWrapper>
         <SignUpInputTitle>비밀번호</SignUpInputTitle>
-        <ValidationMessage>유효성 메세지</ValidationMessage>
+        <ValidationMessage>{message}</ValidationMessage>
       </SignUpInputTitleWrapper>
       <SignUpInput
         type="password"
