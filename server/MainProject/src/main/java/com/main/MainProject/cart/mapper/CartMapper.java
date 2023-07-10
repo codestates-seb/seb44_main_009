@@ -29,12 +29,15 @@ public interface CartMapper {
                 .map(cartProduct -> cartProductToCartProductResponse(cartProduct))
                 .collect(Collectors.toList());
 
-        int totalPrice = cart.getCartProductList().stream()
+        int totalProductPrice = cart.getCartProductList().stream()
                 .filter(cartProduct -> cartProduct != null && cartProduct.getProduct() != null)
                 .mapToInt(cartProduct -> cartProduct.getProduct().getPrice() * cartProduct.getQuantity())
                 .sum();
 
-        CartDto.Response response = new CartDto.Response( cartProductList, totalPrice );
+        int shippingCost = 3000;
+        int totalPrice = totalProductPrice + shippingCost;
+
+        CartDto.Response response = new CartDto.Response( cartProductList, shippingCost, totalProductPrice, totalPrice );
 
         return response;
     }
@@ -49,10 +52,11 @@ public interface CartMapper {
 
         long cartProductId = cartProduct.getCartProductId();
         String productName =  cartProduct.getProduct().getName();
+        int productPrice = cartProduct.getProduct().getPrice();
         int totalProductPrice = cartProduct.getProduct().getPrice() * quentity;
 
         CartDto.cartProductResponse cartProductResponse =
-                new CartDto.cartProductResponse( cartProductId,productName, quentity, totalProductPrice );
+                new CartDto.cartProductResponse( cartProductId,productName, quentity, productPrice, totalProductPrice );
 
         return cartProductResponse;
     }

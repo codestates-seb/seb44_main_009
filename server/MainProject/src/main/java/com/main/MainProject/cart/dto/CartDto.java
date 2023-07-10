@@ -35,6 +35,8 @@ public class CartDto {
     public static class Response{
         private List<cartProductResponse> cartProductList;
 
+        private int shippingCost;
+        private int totalProductPrice;
         private int totalOrderPrice;
     }
 
@@ -44,6 +46,7 @@ public class CartDto {
         private long cartProductId;
         private String productName;
         private int quantity;
-        private int price;
+        private int productPrice;
+        private int totalProductPrice;
     }
 }
