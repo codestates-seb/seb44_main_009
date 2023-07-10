@@ -1,5 +1,6 @@
 package com.main.MainProject.qna.controller;
 
+import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.qna.dto.QnaPatchDto;
 import com.main.MainProject.qna.dto.QnaPostDto;
