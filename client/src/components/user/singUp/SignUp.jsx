@@ -20,6 +20,9 @@ export default function SignUp({ children }) {
 
   const [showModal, setShowModal] = useState(false);
 
+  const emailRegEx =
+    /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
+
   const handleChange = e =>
     setSignUpData(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
@@ -27,7 +30,13 @@ export default function SignUp({ children }) {
 
   return (
     <SingUpContext.Provider
-      value={{ signUpData, setSignUpData, handleChange, setShowModal }}
+      value={{
+        signUpData,
+        setSignUpData,
+        handleChange,
+        setShowModal,
+        emailRegEx,
+      }}
     >
       <SingUpContaier>{children}</SingUpContaier>
       {showModal && <SignUpModal />}

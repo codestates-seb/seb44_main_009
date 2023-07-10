@@ -6,12 +6,9 @@ import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.style
 import { SingUpContext } from "../SignUp";
 
 export default function EmailInput() {
-  const { handleChange, signUpData } = useContext(SingUpContext);
+  const { handleChange, signUpData, emailRegEx } = useContext(SingUpContext);
 
   const [message, setMessage] = useState("");
-
-  const emailRegEx =
-    /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 
   useEffect(() => {
     if (signUpData.email.match(emailRegEx) === null) {
