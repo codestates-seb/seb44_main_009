@@ -11,6 +11,7 @@ import lombok.*;
 import javax.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -40,13 +41,17 @@ public class Product extends Auditable {
     @Column(nullable = false)
     private int count; // 상품 재고 수량
 
+    @Transient
+    private List<String> size = new ArrayList<>(List.of("XL","L","M","S","FREE"));
+
     @Column
     @Enumerated(value = EnumType.STRING)
 //    @Builder.Default
     private ProductStatus productStatus = ProductStatus.PRODUCT_ON_SALE;
 
-    @Column(nullable = false, length = 20)
-    private String personalColor;
+    @Column
+    @Enumerated(value = EnumType.STRING)
+    private PersonalColor personalColor;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CATEGORY_ID")
@@ -64,6 +69,18 @@ public class Product extends Auditable {
 
         ProductStatus(int statusNumber, String description) {
             this.statusNumber = statusNumber;
+            this.description = description;
+        }
+    }
+
+    public enum PersonalColor {
+        COOL_TONE("쿨톤"),
+        WORM_TONE("웜톤");
+
+        @Getter
+        private String description;
+
+        PersonalColor(String description) {
             this.description = description;
         }
     }

@@ -38,8 +38,8 @@ public class ProductService {
 
         Optional.ofNullable(product.getName()).ifPresent(findProduct::setName);
         Optional.of(product.getCount()).ifPresent(findProduct::setCount);
-        Optional.ofNullable(product.getColor()).ifPresent(findProduct::setColor);
         Optional.of(product.getPrice()).ifPresent(findProduct::setPrice);
+        Optional.ofNullable(product.getColor()).ifPresent(findProduct::setColor);
         Optional.ofNullable(product.getContent()).ifPresent(findProduct::setContent);
         Optional.ofNullable(category.getCategoryId()).ifPresent(categoryId -> findProduct.setCategory(categoryService.findVerifiedCategory(categoryId)));
         Optional.ofNullable(product.getPersonalColor()).ifPresent(findProduct::setPersonalColor);
