@@ -22,6 +22,7 @@ function SignUpPage() {
             <UserInfo.NickNameInput />
             <UserInfo.PhoneNumberInput />
             <UserInfo.AddressInput />
+            <UserInfo.PersonalColorSelect />
           </SignUp.UserInfo>
           <SignUp.SignUpBtn />
         </SignUp>
