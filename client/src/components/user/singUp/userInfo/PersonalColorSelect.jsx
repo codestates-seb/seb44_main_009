@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PersonalColorSelectContainer } from "./styels/PersonalColorSelectContainer.styled";
 import { SignUpInputTitle } from "../styles/SignUpInputTitle.styled";
 import { PersonalColorCoolWrapper } from "./styels/PersonalColorCoolWrapper.styled";
-import { PersonalColorWarmWrapper } from "./styels/PersonalColorWarmWrapper.styled copy";
+import { PersonalColorWarmWrapper } from "./styels/PersonalColorWarmWrapper.styled";
 
 export default function PersonalColorSelect() {
   return (
