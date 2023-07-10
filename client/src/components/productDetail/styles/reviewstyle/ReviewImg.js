@@ -1,0 +1,173 @@
+import { styled } from "styled-components";
+import { useState } from "react";
+
+const PreviewContainer = styled.div`
+  width: 100%; //
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border: solid 2px red;
+  margin-top: 50px;
+  margin-bottom: 50px;
+`;
+
+const PreviewImage = styled.div`
+  width: 154px;
+  height: 154px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  border: solid 2px orange;
+`;
+const PreviewAllImage = styled.div`
+  width: 250px;
+  height: 250px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  border: solid 2px orange;
+`;
+
+const ModalOverlay = styled.div`
+  position: fixed;
+
+  top: 13%;
+  left: 29.5%;
+  right: 0;
+  bottom: 0;
+
+  max-width: 834px;
+  height: 80%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20; // ?
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px yellow;
+`;
+
+const ModalContent = styled.div`
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+
+  max-height: 80%;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 4px;
+  border: solid 5px green;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  overflow: hidden;
+  padding: 24px;
+
+  overflow-y: scroll; /* Enable vertical scrolling */
+
+  /* WebKit용 스크롤바 스타일 */
+  /* &::-webkit-scrollbar {
+    width: 0px; 
+    background: transparent; 
+  } */
+`;
+
+const ModalCloseButton = styled.button`
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: 600;
+`;
+
+const reviewImages = [
+  { src: "", alt: "리뷰 이미지 1" },
+  { src: "", alt: "리뷰 이미지 2" },
+  { src: "", alt: "리뷰 이미지 3" },
+  { src: "", alt: "리뷰 이미지 4" },
+  { src: "", alt: "리뷰 이미지 5" },
+  { src: "", alt: "리뷰 이미지 6" },
+  { src: "", alt: "리뷰 이미지 7" },
+  { src: "", alt: "리뷰 이미지 8" },
+  { src: "", alt: "리뷰 이미지 9" },
+  { src: "", alt: "리뷰 이미지 10" },
+];
+
+export const ReviewImg = () => {
+  const previewCenterImages = reviewImages.slice(0, 3);
+  const [showModal, setShowModal] = useState(false);
+  const [previewImages, setPreviewImages] = useState(previewCenterImages); // 리뷰 전체
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setPreviewImages(previewCenterImages);
+  };
+
+  const renderModalReviewImages = () => {
+    if (showModal) {
+      return (
+        <>
+          {reviewImages.map((image, index) => (
+            <PreviewAllImage key={index}>
+              <img src={image.src} alt={image.alt} />
+            </PreviewAllImage>
+          ))}
+        </>
+      );
+    }
+  }; // 모달에 나오는 이미지 전체
+
+  const renderReviewImages = () => {
+    return (
+      <>
+        {previewImages.map((image, index) => (
+          <PreviewImage key={index}>
+            <img src={image.src} alt={image.alt} />
+          </PreviewImage>
+        ))}
+        {reviewImages.length > 3 ? (
+          <PreviewImage onClick={handleShowModal}>
+            <span>이미지 전체보기 +</span>
+          </PreviewImage>
+        ) : undefined}
+      </>
+    );
+  }; // ReviewPage에 나오는 이미지 4개 자체
+
+  return (
+    <div>
+      <PreviewContainer>{renderReviewImages()}</PreviewContainer>
+
+      {showModal ? (
+        <ModalOverlay>
+          <ModalContent>
+            <ModalCloseButton onClick={handleCloseModal}>X</ModalCloseButton>
+            {renderModalReviewImages()}
+          </ModalContent>
+        </ModalOverlay>
+      ) : undefined}
+    </div>
+  );
+};
