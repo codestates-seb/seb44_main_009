@@ -46,6 +46,8 @@ public class Member extends Auditable {
     @Column(length = 20, nullable = false)
     private MemberStatus memberStatus = MemberStatus.MEMBER_ACTIVE;
 
+
+
     public Member(String email) {
         this.email = email;
     }

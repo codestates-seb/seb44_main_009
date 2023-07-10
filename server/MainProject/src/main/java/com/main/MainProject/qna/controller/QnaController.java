@@ -1,12 +1,12 @@
 package com.main.MainProject.qna.controller;
 
-import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.qna.dto.QnaPatchDto;
 import com.main.MainProject.qna.dto.QnaPostDto;
 import com.main.MainProject.qna.entity.Qna;
 import com.main.MainProject.qna.mapper.QnaMapper;
 import com.main.MainProject.qna.service.QnaService;
+import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.util.UriCreator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -46,20 +46,32 @@ public class QnaController {
                                         @Valid @RequestBody QnaPatchDto qnaPatchDto){
         Qna qna = qnaService
                 .updateQna(mapper.qnaPatchDtoToQna(qnaPatchDto),
-                        qnaId, qnaPatchDto.getTitle());
+                        qnaId);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.qnaToQnaResponseDto(qna)), HttpStatus.OK);
     }
 
-    @GetMapping()
-    public ResponseEntity getQnas() {
-        List<Qna> qnas = qnaService.getAllQnas();
+    @GetMapping("/{qna-id}")
+    public ResponseEntity getQna(@PathVariable("qna-id") @Positive long qnaId) {
+        Qna qna = qnaService.findQna(qnaId);
+        return new ResponseEntity(new SingleResponseDto<>(mapper.qnaToQnaResponseDto(qna)), HttpStatus.OK);
+    }
+
+    @GetMapping("/qnabymember/{member-id}")
+    public ResponseEntity getMemberQna(@PathVariable("member-id") @Positive long memberId) {
+        List<Qna> qnas = qnaService.findMemberQna(memberId);
+        return new ResponseEntity(new ListResponseDto<>(mapper.qnasToQnaResponses(qnas)), HttpStatus.OK);
+    }
+
+    @GetMapping("/qnabyproduct/{product-id}")
+    public ResponseEntity getProductQna(@PathVariable("product-id") @Positive long productId) {
+        List<Qna> qnas = qnaService.findProductQna(productId);
         return new ResponseEntity(new ListResponseDto<>(mapper.qnasToQnaResponses(qnas)), HttpStatus.OK);
     }
 
     @DeleteMapping("/{qna-id}")
-    public ResponseEntity deleteMember(@PathVariable("qna-id") @Positive long qnaId) {
+    public ResponseEntity deleteQna(@PathVariable("qna-id") @Positive long qnaId) {
         qnaService.deleteQna(qnaId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

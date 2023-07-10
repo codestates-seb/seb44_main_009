@@ -14,7 +14,11 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CartMapper {
 
+    @Mapping(target = "quantity", ignore = true)
+    CartProduct cartPostDtoToCartProduct(CartDto.Post cartPost);
+
 //    Cart cartPatchToCart(CartDto.Patch requestBody);
+
 
     default CartDto.Response cartToResponse(Cart cart){
         if ( cart == null ) {
@@ -30,10 +34,7 @@ public interface CartMapper {
                 .mapToInt(cartProduct -> cartProduct.getProduct().getPrice() * cartProduct.getQuantity())
                 .sum();
 
-        int shippingCost = 3000;
-        int estimatedTotalPrice = totalPrice + shippingCost;
-
-        CartDto.Response response = new CartDto.Response( cartProductList, shippingCost, totalPrice, estimatedTotalPrice );
+        CartDto.Response response = new CartDto.Response( cartProductList, totalPrice );
 
         return response;
     }
@@ -46,14 +47,12 @@ public interface CartMapper {
 
         quentity = cartProduct.getQuantity();
 
+        long cartProductId = cartProduct.getCartProductId();
         String productName =  cartProduct.getProduct().getName();
-
-        int productPrice = cartProduct.getProduct().getPrice();
-
         int totalProductPrice = cartProduct.getProduct().getPrice() * quentity;
 
         CartDto.cartProductResponse cartProductResponse =
-                new CartDto.cartProductResponse( productName, quentity, productPrice, totalProductPrice );
+                new CartDto.cartProductResponse( cartProductId,productName, quentity, totalProductPrice );
 
         return cartProductResponse;
     }

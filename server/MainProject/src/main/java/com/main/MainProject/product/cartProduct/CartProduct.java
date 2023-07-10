@@ -11,15 +11,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@Setter
 @Entity
 public class CartProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartProductId;
+
+    @Transient
+    private Long productId;
+
+//    @Transient
+//    private Long cartId;
+
     @Column(nullable = false)
     private int quantity;
 
@@ -31,9 +39,9 @@ public class CartProduct {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    public CartProduct(int quantity, Product product, Cart cart) {
-        this.quantity = quantity;
-        this.product = product;
-        this.cart = cart;
-    }
+//    public CartProduct(int quantity, Product product, Cart cart) {
+//        this.quantity = quantity;
+//        this.product = product;
+//        this.cart = cart;
+//    }
 }
