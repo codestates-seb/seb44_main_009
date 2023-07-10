@@ -6,12 +6,17 @@ import { PersonalColorCoolWrapper } from "./styels/PersonalColorCoolWrapper.styl
 import { PersonalColorWarmWrapper } from "./styels/PersonalColorWarmWrapper.styled";
 import { useContext } from "react";
 import { SingUpContext } from "../SignUp";
+import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.styled";
+import { ValidationMessage } from "../styles/ValidationMessage.styled";
 
 export default function PersonalColorSelect() {
   const setSignUpData = useContext(SingUpContext);
   return (
     <>
-      <SignUpInputTitle>퍼스널 컬러</SignUpInputTitle>
+      <SignUpInputTitleWrapper>
+        <SignUpInputTitle>주소</SignUpInputTitle>
+        <ValidationMessage>유효성 메세지</ValidationMessage>
+      </SignUpInputTitleWrapper>
       <PersonalColorSelectContainer>
         <PersonalColorWarmWrapper
           onClick={() => {
