@@ -4,18 +4,30 @@ import { PersonalColorSelectContainer } from "./styels/PersonalColorSelectContai
 import { SignUpInputTitle } from "../styles/SignUpInputTitle.styled";
 import { PersonalColorCoolWrapper } from "./styels/PersonalColorCoolWrapper.styled";
 import { PersonalColorWarmWrapper } from "./styels/PersonalColorWarmWrapper.styled";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SingUpContext } from "../SignUp";
 import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.styled";
 import { ValidationMessage } from "../styles/ValidationMessage.styled";
 
 export default function PersonalColorSelect() {
-  const { setSignUpData } = useContext(SingUpContext);
+  const { setSignUpData, signUpData } = useContext(SingUpContext);
+
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (signUpData.personalColor.length === 0) {
+      setMessage("퍼스널 컬러를 선택해주세요");
+      return;
+    }
+
+    setMessage("");
+  }, [signUpData.personalColor]);
+
   return (
     <>
       <SignUpInputTitleWrapper>
         <SignUpInputTitle>퍼스널 컬러</SignUpInputTitle>
-        <ValidationMessage>유효성 메세지</ValidationMessage>
+        <ValidationMessage>{message}</ValidationMessage>
       </SignUpInputTitleWrapper>
       <PersonalColorSelectContainer>
         <PersonalColorWarmWrapper
