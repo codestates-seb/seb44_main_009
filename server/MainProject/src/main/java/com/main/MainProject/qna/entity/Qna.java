@@ -1,6 +1,7 @@
 package com.main.MainProject.qna.entity;
 
 import com.main.MainProject.member.entity.Member;
+import com.main.MainProject.product.entity.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,8 +34,12 @@ public class Qna {
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "member_id")
     private Member member;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public Qna(String title, String content) {
         this.title = title;
