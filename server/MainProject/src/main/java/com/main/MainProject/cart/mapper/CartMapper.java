@@ -14,9 +14,10 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CartMapper {
 
+    @Mapping(target = "quantity", ignore = true)
     CartProduct cartPostDtoToCartProduct(CartDto.Post cartPost);
 
-    Cart cartPatchToCart(CartDto.Patch requestBody);
+//    Cart cartPatchToCart(CartDto.Patch requestBody);
 
 
     default CartDto.Response cartToResponse(Cart cart){
@@ -46,11 +47,12 @@ public interface CartMapper {
 
         quentity = cartProduct.getQuantity();
 
+        long cartProductId = cartProduct.getCartProductId();
         String productName =  cartProduct.getProduct().getName();
         int totalProductPrice = cartProduct.getProduct().getPrice() * quentity;
 
         CartDto.cartProductResponse cartProductResponse =
-                new CartDto.cartProductResponse( productName, quentity, totalProductPrice );
+                new CartDto.cartProductResponse( cartProductId,productName, quentity, totalProductPrice );
 
         return cartProductResponse;
     }

@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -26,6 +27,12 @@ public class Cart {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+//    public void addToCart(CartProduct cartProdu1ct, int quantity) {
+//        cartProduct.setQuantity(quantity);
+//        cartProductList.add(cartProduct);
+//        }
+//    }
+
     public void addToCart(CartProduct cartProduct, int quantity) {
         CartProduct existProduct = findCartProduct(cartProduct);
         if (existProduct != null) {
@@ -38,9 +45,15 @@ public class Cart {
 
     public CartProduct findCartProduct(CartProduct cartProduct) {
         return cartProductList.stream()
-                .filter(cartItem -> cartItem.getProduct().equals(cartProduct))
+                .filter(cartItem -> cartItem.getProduct().getProductId().equals(cartProduct.getProductId()))
                 .findFirst()
                 .orElse(null);
     }
-}
 
+    public void updateCartProduct(CartProduct cartProduct) {
+        cartProductList.stream()
+                .filter(cartItem -> cartItem.getCartProductId().equals(cartProduct.getCartProductId()))
+                .map(cartItem -> cartItem.equals(cartProduct) ? cartProduct : cartItem)
+                .collect(Collectors.toList());
+    }
+}
