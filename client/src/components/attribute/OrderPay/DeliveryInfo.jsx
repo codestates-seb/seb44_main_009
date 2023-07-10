@@ -10,10 +10,11 @@ const Label = styled.label`
   margin-bottom: 12px;
 `;
 
-const Input = styled.input`
+const Select = styled.select`
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  width: 100%;
 `;
 
 function DeliveryInfo() {
@@ -38,7 +39,7 @@ function DeliveryInfo() {
       <h3>배송지 정보</h3>
       <Label>
         이름
-        <Input
+        <input
           type="text"
           name="receiverName"
           value={address.receiverName}
@@ -47,7 +48,7 @@ function DeliveryInfo() {
       </Label>
       <Label>
         우편번호
-        <Input
+        <input
           type="text"
           name="zipcode"
           value={address.zipcode}
@@ -56,7 +57,7 @@ function DeliveryInfo() {
       </Label>
       <Label>
         주소
-        <Input
+        <input
           type="text"
           name="addressName"
           value={address.addressName}
@@ -65,7 +66,7 @@ function DeliveryInfo() {
       </Label>
       <Label>
         상세 주소
-        <Input
+        <input
           type="text"
           name="addressDetails"
           value={address.addressDetails}
@@ -74,7 +75,7 @@ function DeliveryInfo() {
       </Label>
       <Label>
         전화번호
-        <Input
+        <input
           type="text"
           name="telNum"
           value={address.telNum}
@@ -82,13 +83,14 @@ function DeliveryInfo() {
         />
       </Label>
       <Label>
-        요청사항
-        <Input
-          type="text"
-          name="request"
-          value={address.request}
-          onChange={handleChange}
-        />
+        <Select name="request" value={address.request} onChange={handleChange}>
+          <option value="">선택하세요</option>
+          <option value="배송 시 요청사항 1">배송 전, 연락주세요.</option>
+          <option value="배송 시 요청사항 2">빠른 배송 부탁드립니다.</option>
+          <option value="배송 시 요청사항 3">
+            부재 시, 경비실에 맡겨주세요.
+          </option>
+        </Select>
       </Label>
     </DeliveryInfoContainer>
   );

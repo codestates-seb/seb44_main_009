@@ -52,7 +52,6 @@ const DeliveryContainerBox = styled.div`
   border: 1px solid #383838;
   border-radius: 12px;
   padding: 24px;
-  margin-top: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -216,7 +215,7 @@ function OrderPage() {
           </PayWrapper>
         </ContainerBox>
         <ContainerBox>
-          <h3>배송 상품</h3>
+          <h3>결제방</h3>
           <ButtonWrapper>
             {paymentMethods.map((method, index) => (
               <Button key={index}>{method}</Button>
