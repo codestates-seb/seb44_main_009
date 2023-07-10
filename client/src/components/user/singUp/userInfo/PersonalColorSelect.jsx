@@ -34,6 +34,7 @@ export default function PersonalColorSelect() {
           onClick={() => {
             setSignUpData(prev => ({ ...prev, personalColor: "웜톤" }));
           }}
+          personalColor={signUpData.personalColor}
         >
           <FontAwesomeIcon icon={faPalette} fontSize={50} />
           <div>Warm</div>
@@ -42,6 +43,7 @@ export default function PersonalColorSelect() {
           onClick={() => {
             setSignUpData(prev => ({ ...prev, personalColor: "쿨톤" }));
           }}
+          personalColor={signUpData.personalColor}
         >
           <FontAwesomeIcon icon={faPalette} fontSize={50} />
           <div>Cool</div>

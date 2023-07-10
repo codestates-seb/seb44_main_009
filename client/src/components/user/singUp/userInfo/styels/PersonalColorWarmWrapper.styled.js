@@ -9,7 +9,8 @@ export const PersonalColorWarmWrapper = styled.div`
   color: white;
   text-align: center;
 
-  background-color: orange;
+  background-color: ${props =>
+    props.personalColor === "웜톤" ? "orange" : "#808080"};
 
   width: 100px;
   height: 100px;
@@ -17,6 +18,6 @@ export const PersonalColorWarmWrapper = styled.div`
   border-radius: 30px;
 
   &:hover {
-    background-color: #808080;
+    background-color: orange;
   }
 `;
