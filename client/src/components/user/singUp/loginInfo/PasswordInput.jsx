@@ -6,12 +6,10 @@ import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.style
 import { SingUpContext } from "../SignUp";
 
 export default function PasswordInput() {
-  const { handleChange, signUpData } = useContext(SingUpContext);
+  const { handleChange, signUpData, passworedRegEx } =
+    useContext(SingUpContext);
 
   const [message, setMessage] = useState("");
-
-  const passworedRegEx =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
   useEffect(() => {
     if (signUpData.password.match(passworedRegEx) === null) {

@@ -23,6 +23,9 @@ export default function SignUp({ children }) {
   const emailRegEx =
     /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 
+  const passworedRegEx =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
   const handleChange = e =>
     setSignUpData(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
@@ -36,6 +39,7 @@ export default function SignUp({ children }) {
         handleChange,
         setShowModal,
         emailRegEx,
+        passworedRegEx,
       }}
     >
       <SingUpContaier>{children}</SingUpContaier>

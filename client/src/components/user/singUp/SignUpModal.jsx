@@ -5,7 +5,8 @@ import { SignUpModalMessage } from "./styles/SignUpModalMessage";
 import { SingUpContext } from "./SignUp";
 
 export default function SignUpModal() {
-  const { setShowModal, signUpData, emailRegEx } = useContext(SingUpContext);
+  const { setShowModal, signUpData, emailRegEx, passworedRegEx } =
+    useContext(SingUpContext);
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -22,7 +23,12 @@ export default function SignUpModal() {
     }
 
     if (signUpData.email.match(emailRegEx) === null) {
-      setMessage("이메일 형식에 맞춰 입력해주세요");
+      setMessage("형식에 맞춰 입력해주세요");
+      return;
+    }
+
+    if (signUpData.password.match(passworedRegEx) === null) {
+      setMessage("형식에 맞춰 입력해주세요");
       return;
     }
 
