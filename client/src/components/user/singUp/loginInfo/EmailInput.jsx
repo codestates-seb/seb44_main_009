@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { SignUpInput } from "../styles/SignUpInput.styled";
 import { SignUpInputTitle } from "../styles/SignUpInputTitle.styled";
 import { ValidationMessage } from "../styles/ValidationMessage.styled";
-import { SingUpContext } from "../SignUp";
+import { LoginInfoContext } from "../LoginInfo";
 
 export default function EmailInput() {
-  const handleChange = useContext(SingUpContext);
+  const handleChange = useContext(LoginInfoContext);
 
   return (
     <>

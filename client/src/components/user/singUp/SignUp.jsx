@@ -17,13 +17,10 @@ export default function SignUp({ children }) {
     password: "",
   });
 
-  const handleChange = e =>
-    setSignUpData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-
-  console.log("----- signUpData", signUpData);
+  // console.log("----- signUpData", signUpData);
 
   return (
-    <SingUpContext.Provider value={(signUpData, setSignUpData, handleChange)}>
+    <SingUpContext.Provider value={(signUpData, setSignUpData)}>
       <SingUpContaier>{children}</SingUpContaier>
     </SingUpContext.Provider>
   );

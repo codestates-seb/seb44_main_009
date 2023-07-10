@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { SingUpContext } from "../SignUp";
 import { SignUpInput } from "../styles/SignUpInput.styled";
 import { SignUpInputTitle } from "../styles/SignUpInputTitle.styled";
+import { UserInfoContext } from "../UserInfo";
 
 export default function AddressInput() {
-  const handleChange = useContext(SingUpContext);
+  const handleChange = useContext(UserInfoContext);
 
   return (
     <>
