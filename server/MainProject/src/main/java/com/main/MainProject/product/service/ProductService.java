@@ -5,6 +5,7 @@ import com.main.MainProject.product.category.repository.CategoryRepository;
 import com.main.MainProject.product.category.service.CategoryService;
 import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.product.repository.ProductRepository;
+import com.main.MainProject.qna.entity.Qna;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -82,4 +83,5 @@ public class ProductService {
     public List<Product> getProductByCategory(Category category) {
         return productRepository.findByCategory(category);
     }
+
 }

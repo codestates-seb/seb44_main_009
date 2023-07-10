@@ -9,6 +9,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,15 +38,22 @@ public interface OrderMapper {
 
         address = order.getAddress();
 
-        int totalPrice = order.getOrderProductList().stream()
+        int productTotalPrice = order.getOrderProductList().stream()
                 .filter(cartProduct -> cartProduct != null && cartProduct.getProduct() != null)
                 .mapToInt(cartProduct -> cartProduct.getProduct().getPrice() * cartProduct.getQuantity())
                 .sum();
+        int shippingCost = 3000;
+        int totalPrice = productTotalPrice + shippingCost;
 
         Order.OrderStatus shippingStatus = order.getOrderStatus();
 
+        LocalDateTime createdAt = order.getCreatedAt();
+
+        LocalDateTime lastModifiedAt = order.getLastModifiedAt();
+
         OrderDto.ResponseDetail responseDetail =
-                new OrderDto.ResponseDetail(order.getOrderId(), cartProductList, totalPrice, addressToAddressDto(address), shippingStatus );
+                new OrderDto.ResponseDetail(order.getOrderId(), cartProductList, shippingCost, productTotalPrice, totalPrice,
+                        addressToAddressDto(address), shippingStatus, createdAt, lastModifiedAt );
 
         return responseDetail;
     }
@@ -54,17 +62,18 @@ public interface OrderMapper {
         if ( orderProduct == null ) {
             return null;
         }
-        int quentity = 0;
+        int quantity = 0;
 
-        quentity = orderProduct.getQuantity();
+        quantity = orderProduct.getQuantity();
 
         long productId = orderProduct.getProduct().getProductId();
         String productName =  orderProduct.getProduct().getName();
-        int totalProductPrice = orderProduct.getProduct().getPrice() * quentity;
+        int productPrice = orderProduct.getProduct().getPrice();
+        int totalProductPrice = orderProduct.getProduct().getPrice() * quantity;
         OrderProduct.Reviewstatus reviewStatus = orderProduct.getReviewstatus();
 
         OrderDto.orderProductResponse orderProductResponse =
-                new OrderDto.orderProductResponse( productId, productName, quentity, reviewStatus, totalProductPrice);
+                new OrderDto.orderProductResponse( productId, productName, productPrice, quantity, totalProductPrice, reviewStatus);
 
         return orderProductResponse;
     }

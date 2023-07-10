@@ -24,13 +24,43 @@ public class Review extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reviewId;
 
-    private String title;
-
+    @Column(length = 200, nullable = false)
     private String content;
 
-    @Min(0)
-    @Max(5)
-    private int score;
+    @Enumerated(value = EnumType.STRING)
+    private EnjoyStatus enjoyStatus;
+
+    @Enumerated(value = EnumType.STRING)
+    private ProductPersonalColorStatus productPersonalColorStatus;
+
+    @Enumerated(value = EnumType.STRING)
+    private SizeStatus sizeStatus;
+    @Enumerated(value = EnumType.STRING)
+    private ProductColorStatus productColorStatus;
+
+    public enum EnjoyStatus{
+
+        NO,
+        YES;
+    }
+
+    public enum ProductPersonalColorStatus{
+        COOL,
+        WORM;
+    }
+
+    public enum SizeStatus{
+        SMALL,
+        FIT,
+        BIG;
+    }
+
+    public enum ProductColorStatus{
+        BRIGHT,
+        DISPLAY,
+        DARK;
+
+    }
 
     @ManyToOne
     @JoinColumn(name = "member_id")
@@ -39,5 +69,7 @@ public class Review extends Auditable {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+    private int vote;
 
 }

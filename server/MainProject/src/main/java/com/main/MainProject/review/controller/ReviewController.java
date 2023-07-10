@@ -50,6 +50,13 @@ public class ReviewController {
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewToResponse(review)), HttpStatus.OK);
     }
 
+    @PatchMapping("/vote/{review-id}")
+    public ResponseEntity updateReview(@PathVariable("review-id")long reviewId){
+        Review review = reviewService.voteReview(reviewId);
+
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewToResponse(review)), HttpStatus.OK);
+    }
+
     //개별 리뷰 조회
     @GetMapping("/find/{review-id}")
     public ResponseEntity getReview(@PathVariable("review-id")long reviewId){
@@ -62,7 +69,7 @@ public class ReviewController {
     public ResponseEntity getAllReviewsByProduct(@PathVariable("product-id")long productId){
         List<Review> reviewList = reviewService.getAllReviewsByProduct(productId);
 
-        return new ResponseEntity<>(new ListResponseDto<>(mapper.reviewListToResponses(reviewList)), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewListToResponses(reviewList)), HttpStatus.OK);
     }
 
     //멤버별 리뷰 조회
@@ -70,7 +77,7 @@ public class ReviewController {
     public ResponseEntity getAllReviewsByMember(@PathVariable("member-id")long memberId){
         List<Review> reviewList = reviewService.getAllReviewsByMember(memberId);
 
-        return new ResponseEntity<>(new ListResponseDto<>(mapper.reviewListToResponses(reviewList)), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewListToResponses(reviewList)), HttpStatus.OK);
     }
 
     //리뷰 삭제

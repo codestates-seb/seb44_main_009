@@ -4,7 +4,8 @@ import lombok.Getter;
 
 //오류를 작성해주세요
 public enum ExceptionCode {
-    //양식 MEMBER_NOT_FOUND(404, "Member not found")
+    //제품 수량이 부족합니다
+    QUANTITY_IS_MORE_THAN_PRODUCT_COUNT(500, "quantity is more than product count"),
 
     //회원이 존재하지 않음
     MEMBER_NOT_FOUND(404, "Member not found"),
