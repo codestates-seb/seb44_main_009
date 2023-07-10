@@ -1,4 +1,20 @@
 import { useState } from "react";
+import { styled } from "styled-components";
+
+const DeliveryInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Label = styled.label`
+  margin-bottom: 12px;
+`;
+
+const Input = styled.input`
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
 
 function DeliveryInfo() {
   const [address, setAddress] = useState({
@@ -17,70 +33,64 @@ function DeliveryInfo() {
     });
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log("Updated address:", address);
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
+    <DeliveryInfoContainer>
       <h3>배송지 정보</h3>
-      <label>
-        수령인:
-        <input
+      <Label>
+        이름
+        <Input
           type="text"
           name="receiverName"
           value={address.receiverName}
           onChange={handleChange}
         />
-      </label>
-      <label>
-        우편번호:
-        <input
+      </Label>
+      <Label>
+        우편번호
+        <Input
           type="text"
           name="zipcode"
           value={address.zipcode}
           onChange={handleChange}
         />
-      </label>
-      <label>
-        주소:
-        <input
+      </Label>
+      <Label>
+        주소
+        <Input
           type="text"
           name="addressName"
           value={address.addressName}
           onChange={handleChange}
         />
-      </label>
-      <label>
-        상세 주소:
-        <input
+      </Label>
+      <Label>
+        상세 주소
+        <Input
           type="text"
           name="addressDetails"
           value={address.addressDetails}
           onChange={handleChange}
         />
-      </label>
-      <label>
-        전화번호:
-        <input
+      </Label>
+      <Label>
+        전화번호
+        <Input
           type="text"
           name="telNum"
           value={address.telNum}
           onChange={handleChange}
         />
-      </label>
-      <label>
-        요청사항:
-        <input
+      </Label>
+      <Label>
+        요청사항
+        <Input
           type="text"
           name="request"
           value={address.request}
           onChange={handleChange}
         />
-      </label>
-      <button type="submit">변경</button>
-    </form>
+      </Label>
+    </DeliveryInfoContainer>
   );
 }
 

@@ -12,6 +12,7 @@ const OrderContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 1000px;
+  align-items: center;
 `;
 
 const OrderWrapper = styled.div`
@@ -47,6 +48,15 @@ const OrderProductContainer = styled.div`
   opacity: ${props => (props.show ? 1 : 0)};
   visibility: ${props => (props.show ? "visible" : "hidden")};
 `;
+const DeliveryContainerBox = styled.div`
+  border: 1px solid #383838;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 const ContainerBox = styled.div`
   border: 1px solid #383838;
@@ -66,6 +76,22 @@ const PayWrapper = styled.div`
 
 const ButtonWrapper = styled.div`
   display: flex;
+`;
+
+const ChangeButton = styled.button`
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: ${({ editAddress }) => (editAddress ? "gray" : "#383838")};
+  color: ${({ editAddress }) => (editAddress ? "#383838" : "#fff")};
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: gray;
+    color: #fff;
+  }
 `;
 
 const Button = styled.div`
@@ -165,7 +191,7 @@ function OrderPage() {
           <h3>배송 상품</h3>
           <OrderProductList products={dummyproducts}></OrderProductList>
         </OrderProductContainer>
-        <ContainerBox>
+        <DeliveryContainerBox>
           {editAddress ? (
             <DeliveryInfo />
           ) : (
@@ -176,13 +202,13 @@ function OrderPage() {
               <p>주소 {address.addressName}</p>
               <p>상세 주소 {address.addressDetails}</p>
               <p>전화번호 {address.telNum}</p>
-              <p>요청사항: {address.request}</p>
+              <p>요청사항 {address.request}</p>
             </div>
           )}
-          <button onClick={toggleEditAddress}>
+          <ChangeButton onClick={toggleEditAddress}>
             {editAddress ? "완료" : "변경"}{" "}
-          </button>
-        </ContainerBox>
+          </ChangeButton>
+        </DeliveryContainerBox>
         <ContainerBox>
           <PayWrapper>
             <div>총 결제 금액</div>
