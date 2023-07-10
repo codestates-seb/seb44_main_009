@@ -18,4 +18,6 @@ export const ProductInfoButton = styled.button`
   border: 2px solid black;
   border-radius: 5px;
   margin-bottom: ${props => (props.isExpanded ? "0" : "20px")};
+  position: absolute;
+  bottom: 0;
 `;

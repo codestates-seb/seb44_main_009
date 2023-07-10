@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import { animateScroll as scroll } from "react-scroll";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+
 // ----  퍼블릭 스타일
 import {
   ProductDetailContainer,
@@ -14,8 +15,8 @@ import { ProductPublicImage } from "./publicstyle/ProductPublicImage";
 import { ProductPublicInfo } from "./publicstyle/ProductPublicInfo";
 
 //   ---- 탭 스타일
-import { TabCotainer, TabButton, TabContent } from "./tabstyle/TabStyle";
-
+import { TabCotainer, TabButton } from "./tabstyle/TabStyle";
+import { TabContent } from "./tabstyle/TabContent";
 // ---- 상품 정보 스타일
 import { ProductContent } from "./productinfostyle/ProductContent";
 import { ProductInfoButton } from "./productinfostyle/ProductInfoButton";
@@ -27,7 +28,12 @@ import { TextDivStyle, LeftMargin } from "./inquirystyle/InquiryText";
 
 import { ProductPublicInquiryEx } from "./inquirystyle/ProductPublicInquiryEx";
 
-//const fontSize18 = "18px";
+// // ----  리뷰 스타일
+
+// import { ReviewImg } from "./reviewstyle/ReviewImg";
+// import { ReviewDrop } from "./reviewstyle/ReviewDrop";
+import { ReviewHeaderForm } from "./reviewstyle/ReviewHeaderForm";
+import { ReviewForm } from "./reviewstyle/ReviewForm";
 
 const InfoIcon = styled(FontAwesomeIcon)`
   /* Styles for the icon */
@@ -41,8 +47,9 @@ class ProductDetailStyles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: "product-info", // product-info
-      isExpanded: false,
+      activeTab: "product-info", // 시작할 탭
+      isexpanded: false,
+      isReviewExpanded: false, // 리뷰 전체 펼쳐보기 상태
     };
   }
 
@@ -52,7 +59,12 @@ class ProductDetailStyles extends React.Component {
 
   toggleExpanded() {
     this.setState(prevState => ({
-      isExpanded: !prevState.isExpanded,
+      isexpanded: !prevState.isexpanded,
+    }));
+  }
+  toggleReviewExpanded() {
+    this.setState(prevState => ({
+      isReviewExpanded: !prevState.isReviewExpanded,
     }));
   }
 
@@ -85,11 +97,11 @@ class ProductDetailStyles extends React.Component {
             </TabButton>
           </TabCotainer>
 
-          {/* 상세 탭 내용 */}
+          {/* -- 이제부터 탭 내용.. 상세 탭 내용 */}
 
-          {/* 상품 정보 */}
+          {/* 탭1. 상품 정보 */}
           <TabContent
-            isExpanded={this.state.isExpanded ? "expanded" : ""}
+            isexpanded={this.state.isexpanded ? "expanded" : undefined}
             style={{ display: activeTab === "product-info" ? "block" : "none" }}
           >
             <ProductPublicImage />
@@ -99,19 +111,29 @@ class ProductDetailStyles extends React.Component {
                 this.scrollToBottom();
               }}
             >
-              {this.state.isExpanded ? "접기" : "상품 정보 펼쳐보기"}
+              {this.state.isexpanded ? "접기" : "상품 정보 펼쳐보기"}
             </ProductInfoButton>
             <ProductContent>Product.content</ProductContent>
           </TabContent>
 
-          {/* 리뷰 탭 내용 작성 */}
+          {/* 탭2. 리뷰 탭  */}
           <TabContent
+            isexpanded={this.state.isReviewExpanded ? "expanded" : ""}
             style={{ display: activeTab === "reviews" ? "block" : "none" }}
           >
-            <p>리뷰 내용을 어떻게 할것인가? .</p>
+            <ReviewHeaderForm></ReviewHeaderForm>
+            <ReviewForm></ReviewForm>
+            <ProductInfoButton
+              onClick={() => {
+                this.toggleReviewExpanded();
+                this.scrollToBottom();
+              }}
+            >
+              {this.state.isReviewExpanded ? "접기" : "리뷰 전체 보기"}
+            </ProductInfoButton>
           </TabContent>
 
-          {/* 문의하기 */}
+          {/* 탭3. 문의하기 */}
           <TabContent
             style={{ display: activeTab === "contact" ? "block" : "none" }}
           >
@@ -138,3 +160,11 @@ class ProductDetailStyles extends React.Component {
 }
 
 export default ProductDetailStyles;
+
+// 1. 리뷰 폼 (완성)
+// 1-1및 이어 붙이기
+// 2. ProductDetailPage 헤더 , 푸터 붙이기.
+
+// 3. 스타일 분리하기
+// 4. border 없애기
+// 5. App 정리 후 push 및 Pr

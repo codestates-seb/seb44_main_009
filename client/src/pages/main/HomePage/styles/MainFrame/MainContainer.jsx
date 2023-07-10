@@ -8,6 +8,8 @@ export const MainContainer = styled.div`
   align-items: center;
   margin: 0 auto;
   justify-content: center;
+
+  border: 4px solid green;
 `;
 
 export const Borderdiv = styled.div`
@@ -15,17 +17,16 @@ export const Borderdiv = styled.div`
   width: 834px;
   height: 100%;
   overflow: hidden;
-  padding: 24px;
 
-  overflow-y: scroll; /* Enable vertical scrolling */
+  overflow-y: scroll;
 
   /* Firefox용 스크롤바 스타일 */
-  scrollbar-width: none; /* Firefox의 기본 스크롤바 제거 */
+  scrollbar-width: none;
 
   /* WebKit용 스크롤바 스타일 */
   &::-webkit-scrollbar {
-    width: 0px; /* WebKit의 기본 스크롤바 제거 */
-    background: transparent; /* 스크롤바 배경색 투명으로 설정 */
+    width: 0px;
+    background: transparent;
   }
 `;
 
