@@ -1,9 +1,9 @@
-import { useState } from "react";
 import { styled } from "styled-components";
 
 const DeliveryInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding-right: 24px;
 `;
 
 const Label = styled.label`
@@ -24,21 +24,10 @@ const Input = styled.input`
   border-radius: 4px;
 `;
 
-function DeliveryInfo() {
-  const [address, setAddress] = useState({
-    receiverName: "",
-    zipcode: "",
-    addressName: "",
-    addressDetails: "",
-    telNum: "",
-    request: "",
-  });
-
+function DeliveryInfo({ address, handleChangeAddress }) {
   const handleChange = e => {
-    setAddress({
-      ...address,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    handleChangeAddress({ [name]: value });
   };
 
   return (
@@ -90,11 +79,14 @@ function DeliveryInfo() {
         />
       </Label>
       <Label>
+        요청사항
         <Select name="request" value={address.request} onChange={handleChange}>
           <option value="">선택하세요</option>
-          <option value="배송 시 요청사항 1">배송 전, 연락주세요.</option>
-          <option value="배송 시 요청사항 2">빠른 배송 부탁드립니다.</option>
-          <option value="배송 시 요청사항 3">
+          <option value="배송 전, 연락주세요.">배송 전, 연락주세요.</option>
+          <option value="빠른 배송 부탁드립니다.">
+            빠른 배송 부탁드립니다.
+          </option>
+          <option value="부재 시, 경비실에 맡겨주세요.">
             부재 시, 경비실에 맡겨주세요.
           </option>
         </Select>
