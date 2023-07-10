@@ -4,10 +4,7 @@ import { SignUpInput } from "../styles/SignUpInput.styled";
 import { SignUpInputTitle } from "../styles/SignUpInputTitle.styled";
 
 export default function AddressInput() {
-  const setSignUpData = useContext(SingUpContext);
-
-  const handleChange = e =>
-    setSignUpData(prev => ({ ...prev, address: e.target.value }));
+  const handleChange = useContext(SingUpContext);
 
   return (
     <>
@@ -16,6 +13,7 @@ export default function AddressInput() {
         type="text"
         placeholder="주소 입력"
         onChange={handleChange}
+        name="address"
       />
     </>
   );

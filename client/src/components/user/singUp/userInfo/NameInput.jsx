@@ -4,10 +4,7 @@ import { SignUpInputTitle } from "../styles/SignUpInputTitle.styled";
 import { SingUpContext } from "../SignUp";
 
 export default function NameInput() {
-  const setSignUpData = useContext(SingUpContext);
-
-  const handleChange = e =>
-    setSignUpData(prev => ({ ...prev, korname: e.target.value }));
+  const handleChange = useContext(SingUpContext);
 
   return (
     <>
@@ -16,6 +13,7 @@ export default function NameInput() {
         type="text"
         placeholder="이름 입력"
         onChange={handleChange}
+        name="korName"
       />
     </>
   );

@@ -5,10 +5,7 @@ import { ValidationMessage } from "../styles/ValidationMessage.styled";
 import { SingUpContext } from "../SignUp";
 
 export default function EmailInput() {
-  const setSignUpData = useContext(SingUpContext);
-
-  const handleChange = e =>
-    setSignUpData(prev => ({ ...prev, email: e.target.value }));
+  const handleChange = useContext(SingUpContext);
 
   return (
     <>
@@ -17,6 +14,7 @@ export default function EmailInput() {
         type="email"
         placeholder="이메일 입력"
         onChange={handleChange}
+        name="email"
       />
       <ValidationMessage>유효성 메세지</ValidationMessage>
     </>

@@ -5,10 +5,7 @@ import { ValidationMessage } from "../styles/ValidationMessage.styled";
 import { SingUpContext } from "../SignUp";
 
 export default function PasswordInput() {
-  const setSignUpData = useContext(SingUpContext);
-
-  const handleChange = e =>
-    setSignUpData(prev => ({ ...prev, password: e.target.value }));
+  const handleChange = useContext(SingUpContext);
 
   return (
     <>
@@ -17,6 +14,7 @@ export default function PasswordInput() {
         type="password"
         placeholder="비밀번호 입력"
         onChange={handleChange}
+        name="password"
       />
       <ValidationMessage>유효성 메세지</ValidationMessage>
     </>
