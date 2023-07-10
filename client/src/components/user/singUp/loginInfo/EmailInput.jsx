@@ -6,10 +6,13 @@ import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.style
 import { SingUpContext } from "../SignUp";
 
 export default function EmailInput() {
+  // Context >> 사용
   const { handleChange, signUpData, emailRegEx } = useContext(SingUpContext);
 
+  // State >> 유효성 검사에 따른 메세지
   const [message, setMessage] = useState("");
 
+  // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
     if (signUpData.email.match(emailRegEx) === null) {
       setMessage("이메일 형식에 맞춰 입력해주세요");

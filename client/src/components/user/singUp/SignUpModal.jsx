@@ -5,15 +5,19 @@ import { SignUpModalMessage } from "./styles/SignUpModalMessage";
 import { SingUpContext } from "./SignUp";
 
 export default function SignUpModal() {
+  // Context >> 사용
   const { setShowModal, signUpData, emailRegEx, passworedRegEx } =
     useContext(SingUpContext);
 
+  // handleEvent >> showModal(state) 변경
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
+  // State >> 유효성 검사에 따른 메세지
   const [message, setMessage] = useState("");
 
+  // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
     for (let i in signUpData) {
       if (signUpData[i].length === 0) {

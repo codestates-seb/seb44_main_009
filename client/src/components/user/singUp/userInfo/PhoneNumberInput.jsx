@@ -6,10 +6,13 @@ import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.style
 import { SingUpContext } from "../SignUp";
 
 export default function PhoneNumberInput() {
+  // Context >> 사용
   const { handleChange, signUpData } = useContext(SingUpContext);
 
+  // State >> 유효성 검사에 따른 메세지
   const [message, setMessage] = useState("");
 
+  // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
     if (signUpData.phoneNumber.length === 0) {
       setMessage("전화번호를 입력해주세요");
