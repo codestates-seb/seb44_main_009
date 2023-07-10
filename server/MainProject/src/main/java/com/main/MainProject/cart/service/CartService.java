@@ -23,7 +23,6 @@ import java.util.Optional;
 public class CartService {
     private final CartRepository cartRepository;
     private final ProductService productService;
-
     private final CartProductRepository cartProductRepository;
 
     public CartService(CartRepository cartRepository, ProductService productService, CartProductRepository cartProductRepository) {
@@ -63,12 +62,12 @@ public class CartService {
         return findVerifiedCart(cartId);
     }
 
-    public void createCart(Member member){
+    public void createCart(Member member) {
         Cart cart = new Cart();
         cart.setMember(member);
         cartRepository.save(cart);
     }
-
+  
     public Cart addProductToCart(CartProduct cartProduct, int quantity) {
 
         Product product = productService.findVerifiedProduct(cartProduct.getProductId());
