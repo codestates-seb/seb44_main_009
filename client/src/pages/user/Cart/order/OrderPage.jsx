@@ -55,6 +55,9 @@ const DeliveryContainerBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  > div {
+    flex: 1;
+  }
 `;
 
 const ContainerBox = styled.div`
@@ -215,7 +218,7 @@ function OrderPage() {
           </PayWrapper>
         </ContainerBox>
         <ContainerBox>
-          <h3>결제방</h3>
+          <h3>결제방법</h3>
           <ButtonWrapper>
             {paymentMethods.map((method, index) => (
               <Button key={index}>{method}</Button>

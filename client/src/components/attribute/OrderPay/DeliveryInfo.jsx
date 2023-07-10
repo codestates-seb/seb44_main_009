@@ -17,6 +17,13 @@ const Select = styled.select`
   width: 100%;
 `;
 
+const Input = styled.input`
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
 function DeliveryInfo() {
   const [address, setAddress] = useState({
     receiverName: "",
@@ -39,7 +46,7 @@ function DeliveryInfo() {
       <h3>배송지 정보</h3>
       <Label>
         이름
-        <input
+        <Input
           type="text"
           name="receiverName"
           value={address.receiverName}
@@ -48,7 +55,7 @@ function DeliveryInfo() {
       </Label>
       <Label>
         우편번호
-        <input
+        <Input
           type="text"
           name="zipcode"
           value={address.zipcode}
@@ -57,7 +64,7 @@ function DeliveryInfo() {
       </Label>
       <Label>
         주소
-        <input
+        <Input
           type="text"
           name="addressName"
           value={address.addressName}
@@ -66,7 +73,7 @@ function DeliveryInfo() {
       </Label>
       <Label>
         상세 주소
-        <input
+        <Input
           type="text"
           name="addressDetails"
           value={address.addressDetails}
@@ -75,7 +82,7 @@ function DeliveryInfo() {
       </Label>
       <Label>
         전화번호
-        <input
+        <Input
           type="text"
           name="telNum"
           value={address.telNum}
