@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { SignUpInput } from "../styles/SignUpInput.styled";
 import { SignUpInputTitle } from "../styles/SignUpInputTitle.styled";
 import { ValidationMessage } from "../styles/ValidationMessage.styled";
-import { LoginInfoContext } from "../LoginInfo";
 import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.styled";
+import { SingUpContext } from "../SignUp";
 
 export default function PasswordInput() {
-  const handleChange = useContext(LoginInfoContext);
+  const { handleChange } = useContext(SingUpContext);
   return (
     <>
       <SignUpInputTitleWrapper>

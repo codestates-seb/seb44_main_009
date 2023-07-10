@@ -10,7 +10,7 @@ import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.style
 import { ValidationMessage } from "../styles/ValidationMessage.styled";
 
 export default function PersonalColorSelect() {
-  const setSignUpData = useContext(SingUpContext);
+  const { setSignUpData } = useContext(SingUpContext);
   return (
     <>
       <SignUpInputTitleWrapper>

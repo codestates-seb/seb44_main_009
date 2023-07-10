@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { SignUpInput } from "../styles/SignUpInput.styled";
 import { SignUpInputTitle } from "../styles/SignUpInputTitle.styled";
 import { ValidationMessage } from "../styles/ValidationMessage.styled";
-import { UserInfoContext } from "../UserInfo";
 import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.styled";
+import { SingUpContext } from "../SignUp";
 
 export default function PhoneNumberInput() {
-  const handleChange = useContext(UserInfoContext);
+  const { handleChange } = useContext(SingUpContext);
 
   return (
     <>
