@@ -26,9 +26,11 @@ function Header() {
         </SearchIconContainer>
       </InputContainer>
       <ButtonContainer>
-        <IconStyle>
-          <FontAwesomeIcon icon={faBasketShopping} />
-        </IconStyle>
+        <Link to="/cart">
+          <IconStyle>
+            <FontAwesomeIcon icon={faBasketShopping} />
+          </IconStyle>
+        </Link>
         <LoginBtn />
       </ButtonContainer>
     </HeaderContainer>
