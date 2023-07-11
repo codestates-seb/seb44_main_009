@@ -9,4 +9,12 @@ export const LoginInput = styled.input`
   border-bottom: 2px solid #383838;
   padding: 12px;
   margin-bottom: 8px;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+  }
 `;
