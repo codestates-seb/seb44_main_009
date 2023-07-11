@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   faBars,
   faHeart,
@@ -11,18 +12,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Footer() {
   return (
     <FooterContainer>
-      <FooterWrapper>
-        <FontAwesomeIcon icon={faHouse} />
-      </FooterWrapper>
-      <FooterWrapper>
-        <FontAwesomeIcon icon={faBars} />
-      </FooterWrapper>
-      <FooterWrapper>
-        <FontAwesomeIcon icon={faHeart} />
-      </FooterWrapper>
-      <FooterWrapper>
-        <FontAwesomeIcon icon={faUser} />
-      </FooterWrapper>
+      <Link to="/">
+        <FooterWrapper>
+          <FontAwesomeIcon icon={faHouse} />
+        </FooterWrapper>
+      </Link>
+      <Link to="category">
+        <FooterWrapper>
+          <FontAwesomeIcon icon={faBars} />
+        </FooterWrapper>
+      </Link>
+      <Link to="picks">
+        <FooterWrapper>
+          <FontAwesomeIcon icon={faHeart} />
+        </FooterWrapper>
+      </Link>
+      <Link to="/mypage">
+        <FooterWrapper>
+          <FontAwesomeIcon icon={faUser} />
+        </FooterWrapper>
+      </Link>
     </FooterContainer>
   );
 }
