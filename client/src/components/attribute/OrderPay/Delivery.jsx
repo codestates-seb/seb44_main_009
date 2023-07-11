@@ -1,34 +1,6 @@
-import { styled } from "styled-components";
 import DeliveryInfo from "./DeliveryInfo";
-
-const DeliveryContainerBox = styled.div`
-  border: 1px solid #383838;
-  border-radius: 12px;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 24px;
-  > div {
-    flex: 1;
-  }
-`;
-
-const ChangeButton = styled.button`
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  background-color: ${({ editAddress }) => (editAddress ? "gray" : "#383838")};
-  color: ${({ editAddress }) => (editAddress ? "#383838" : "#fff")};
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: gray;
-    color: #fff;
-  }
-`;
+import { DeliveryContainerBox } from "./styles/DeliveryContainerBox.styled.js";
+import { ChangeButton } from "./styles/ChangeButton.styled.js";
 
 function Delivery({
   editAddress,

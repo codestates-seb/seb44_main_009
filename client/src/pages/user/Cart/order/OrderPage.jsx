@@ -1,56 +1,17 @@
 import { useState, useEffect } from "react";
 import Header_back from "../../../../components/header/Header_back";
 import Footer_oneBtn from "../../../../components/footer/Footer_oneBtn";
-import { styled } from "styled-components";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import OrderProductList from "../../../../components/attribute/OrderPay/OrderProductList";
 import { dummyproducts } from "../../../../dummyDate/dummyProducts";
 import Delivery from "../../../../components/attribute/OrderPay/Delivery";
 import PaymentMethod from "../../../../components/attribute/OrderPay/PaymentMethod";
 import Payment from "../../../../components/attribute/OrderPay/Payment";
-
-const OrderContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 1000px;
-  align-items: center;
-`;
-
-const OrderWrapper = styled.div`
-  width: 834px;
-  height: 100%;
-  padding: 32px;
-  border: 1px solid #383838;
-  flex: 1;
-  overflow-y: auto;
-`;
-
-const Title = styled.div`
-  padding: 24px 0 24px 0;
-  display: flex;
-  font-size: 24px;
-  font-weight: 600;
-`;
-
-const DropIcon = styled(FontAwesomeIcon)`
-  font-size: 24px;
-  margin-left: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  transform: ${props => (props.show ? "rotate(180deg)" : "rotate(0)")};
-`;
-
-const OrderProductContainer = styled.div`
-  border: 1px solid #383838;
-  border-radius: 12px;
-  padding: 24px;
-  max-height: ${props => (props.show ? "1000px" : "0")};
-  overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  opacity: ${props => (props.show ? 1 : 0)};
-  visibility: ${props => (props.show ? "visible" : "hidden")};
-`;
+import { DropIcon } from "./styles/DropIcon.styled";
+import { OrderContainer } from "./styles/OrderContainer.styled";
+import { OrderProductContainer } from "./styles/OrderProductContainer.styled";
+import { OrderWrapper } from "./styles/OrderWrapper.styled";
+import { Title } from "./styles/Title.styled";
 
 function OrderPage() {
   const [showOrderProduct, setShowOrderProduct] = useState(false);

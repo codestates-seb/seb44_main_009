@@ -1,28 +1,7 @@
-import { styled } from "styled-components";
-
-const DeliveryInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-right: 24px;
-`;
-
-const Label = styled.label`
-  margin-bottom: 12px;
-`;
-
-const Select = styled.select`
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`;
+import { DeliveryInfoContainer } from "./styles/DeliveryInfoContainer.styled.js";
+import { Label } from "./styles/Label.styled.js";
+import { Select } from "./styles/Select.styled.js";
+import { Input } from "./styles/Input.styled.js";
 
 function DeliveryInfo({ address, handleChangeAddress }) {
   const handleChange = e => {
