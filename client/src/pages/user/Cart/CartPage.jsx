@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
 import CartSelector from "../../../components/attribute/CartSelector";
@@ -53,7 +54,9 @@ function CartPage() {
           <CartPaymentSection />
         </PaymentContainer>
       </CartBackContainer>
-      <Footer_oneBtn text="상품 주문하기" />
+      <Link to="/order">
+        <Footer_oneBtn text="상품 주문하기" />
+      </Link>
     </BackContainer>
   );
 }
