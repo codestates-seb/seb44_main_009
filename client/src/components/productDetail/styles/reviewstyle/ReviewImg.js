@@ -7,7 +7,7 @@ const PreviewContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  border: solid 2px red;
+
   margin-top: 50px;
   margin-bottom: 50px;
 `;
@@ -25,7 +25,6 @@ const PreviewImage = styled.div`
     max-width: 100%;
     max-height: 100%;
   }
-  border: solid 2px orange;
 `;
 const PreviewAllImage = styled.div`
   width: 250px;
@@ -40,26 +39,37 @@ const PreviewAllImage = styled.div`
     max-width: 100%;
     max-height: 100%;
   }
-  border: solid 2px orange;
+`;
+
+const ModalContainer = styled.div`
+  width: 100%;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  justify-content: center; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
 `;
 
 const ModalOverlay = styled.div`
-  position: fixed;
-
-  top: 13%;
-  left: 29.5%;
+  position: absolute;
+  top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
 
   max-width: 834px;
-  height: 80%;
+  height: 100%;
 
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 20; // ?
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 2px yellow;
 `;
 
 const ModalContent = styled.div`
@@ -71,7 +81,7 @@ const ModalContent = styled.div`
   background-color: #fff;
   padding: 25px;
   border-radius: 4px;
-  border: solid 5px green;
+  border: solid 2px black;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
@@ -161,12 +171,14 @@ export const ReviewImg = () => {
       <PreviewContainer>{renderReviewImages()}</PreviewContainer>
 
       {showModal ? (
-        <ModalOverlay>
-          <ModalContent>
-            <ModalCloseButton onClick={handleCloseModal}>X</ModalCloseButton>
-            {renderModalReviewImages()}
-          </ModalContent>
-        </ModalOverlay>
+        <ModalContainer>
+          <ModalOverlay>
+            <ModalContent>
+              <ModalCloseButton onClick={handleCloseModal}>X</ModalCloseButton>
+              {renderModalReviewImages()}
+            </ModalContent>
+          </ModalOverlay>
+        </ModalContainer>
       ) : undefined}
     </div>
   );

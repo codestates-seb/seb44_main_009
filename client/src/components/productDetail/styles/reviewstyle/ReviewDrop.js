@@ -38,7 +38,7 @@ const ToggleContainer = styled.div`
 
 const ToggleButton = styled.button`
   padding: 10px 15px;
-  background-color: ${({ active }) => (active ? "green" : "gray")};
+  background-color: ${({ active }) => (active === "true" ? "green" : "gray")};
   color: white;
   border: none;
   border-radius: 50px;
@@ -72,7 +72,7 @@ export const ReviewDrop = () => {
     <FilterContainer>
       <ToggleContainer>
         <ToggleButton
-          active={showPersonalColorReviews}
+          active={showPersonalColorReviews.toString()}
           onClick={handleToggleClick}
         >
           {showPersonalColorReviews ? "ON" : "OFF"}
@@ -92,7 +92,7 @@ export const ReviewDrop = () => {
         </DropdownSelect>
       </DropdownContainer>
 
-      <ReviewList>{/* 리뷰 목록이 여기에 나열됩니다 */}</ReviewList>
+      <ReviewList>{/* 리뷰 목록 */}</ReviewList>
     </FilterContainer>
   );
 };

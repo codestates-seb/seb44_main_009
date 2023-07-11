@@ -11,8 +11,7 @@ import ReviewEditPage from "./pages/user/Review/ReviewEditPage";
 import MyReviewPage from "./pages/user/Review/MyReview";
 import ProfilePage from "./pages/user/profile/ProfilePage";
 import ProfileEditPage from "./pages/user/myPage/profileEdit/ProfileEditPage";
-import ProductDetailPage from "./pages/main/ProductDetail";
-import OrderPage from "./pages/user/Cart/order/OrderPage";
+import ProductDetailPage from "./pages/main/ProductDetailPage/ProductDetail";
 
 function App() {
   return (
@@ -32,7 +31,6 @@ function App() {
           <Route path="/review/management" element={<MyReviewPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/edit" element={<ProfileEditPage />} />
-          <Route path="/order" element={<OrderPage />} />
         </Routes>
       </BrowserRouter>
     </div>
