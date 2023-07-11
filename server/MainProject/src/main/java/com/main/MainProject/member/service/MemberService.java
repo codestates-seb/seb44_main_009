@@ -29,6 +29,7 @@ public class MemberService {
 
     public Member createMember(Member member) {
         verifyEmailExists(member.getEmail());
+        verifyNickNameExists(member.getNickName());
         Member findMember = memberRepository.save(member);
         cartService.createCart(findMember);
         return findMember;
@@ -38,9 +39,15 @@ public class MemberService {
         Optional<Member> user = memberRepository.findByEmail(email);
         if (user.isPresent())
             throw new LogicalException(ExceptionCode.MEMBER_EXISTS);
+
     }
 
-    // update implemented
+    private void verifyNickNameExists(String nickName) {
+        Optional<Member> user = memberRepository.findByNickName(nickName);
+        if (user.isPresent())
+            throw new LogicalException(ExceptionCode.NICKNAME_EXISTS);
+    }
+
 
     public List<Member> findMembers() {
         return memberRepository.findAll();
