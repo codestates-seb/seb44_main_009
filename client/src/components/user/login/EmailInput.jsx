@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { useContext, useEffect, useState } from "react";
 import { LogInContext } from "./Login";
 import { LoginInput } from "./styles/LoginInput.styled";
@@ -7,15 +8,16 @@ import { ValidationMessage } from "./styles/ValidationMessage.styled";
 
 function EmailInput() {
   // Context >> 사용
-  const { handleChange, emailRegEx, logInData } = useContext(LogInContext);
+  const { handleChange, logInData, emailRegEx } = useContext(LogInContext);
 
   // State >> 유효성 검사에 따른 메세지
   const [message, setMessage] = useState("");
 
-  // Effect >> 유효성 검사에 따른 메세지 변경
+  // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
     if (logInData.email.match(emailRegEx) === null) {
-      setMessage("이메일 형식에 맞게 입력해주세요.");
+      setMessage("이메일 형식에 맞춰 입력해주세요");
+      return;
     }
 
     setMessage("");
