@@ -6,10 +6,13 @@ import { ValidationMessage } from "../styles/ValidationMessage.styled";
 import { SingUpContext } from "../SignUp";
 
 export default function AddressInput() {
+  // Context >> 사용
   const { handleChange, signUpData } = useContext(SingUpContext);
 
+  // State >> 유효성 검사에 따른 메세지
   const [message, setMessage] = useState("");
 
+  // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
     if (signUpData.address.length === 0) {
       setMessage("주소를 입력해주세요");
