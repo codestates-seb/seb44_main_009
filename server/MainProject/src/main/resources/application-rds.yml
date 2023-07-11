@@ -1,0 +1,8 @@
+#aws rds 환경설정
+spring:
+  profiles: rds
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
