@@ -1,0 +1,12 @@
+#데이터 소스 mysql
+spring:
+  profiles: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_colorPick?useSSL=false&allowPublicKeyRetrieval=true&useLegacyAuth=false
+    username: user_colorPick
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect

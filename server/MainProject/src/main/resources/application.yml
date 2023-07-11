@@ -1,0 +1,27 @@
+
+#기본 설정
+spring:
+  profiles:
+    active: rds #실행 profile 설정
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  # (1) 스키마 자동 생성 자동 업데이트
+    show-sql: true      # (2) SQL 쿼리 출력
+    properties:
+      hibernate:
+        format_sql: true  # (3) SQL pretty print
+  sql:
+    init:
+      data-locations: classpath*:db/h2/data.sql
+
+logging:
+  level:
+    org:
+      springframework:
+        orm:
+          jpa: DEBUG
+server:
+  servlet:
+    encoding:
+      force-response: true
+
