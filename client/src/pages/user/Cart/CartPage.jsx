@@ -11,7 +11,6 @@ import { SideTitle } from "./styles/SideTitle.styled";
 import { ProductContainer } from "./styles/ProductContainer.styled";
 import { CartWrapper } from "./styles/CartWrapper.styled";
 import { PaymentContainer } from "./styles/PaymentContainer.styled";
-import { FooterContainer } from "./styles/FooterContainer.styled";
 import { CartBackContainer } from "./styles/CartBackContainer.styled";
 
 function CartPage() {
@@ -30,12 +29,13 @@ function CartPage() {
     <BackContainer>
       <StickyStyle>
         <Header_back />
+      </StickyStyle>
+      <CartBackContainer>
         <CartSelector
           isChecked={isChecked}
           handleCheckboxChange={handleCheckboxChange}
         />
-      </StickyStyle>
-      <CartBackContainer>
+
         <CartWrapper>
           <Title>장바구니</Title>
           <ProductContainer>
@@ -54,9 +54,7 @@ function CartPage() {
           <CartPaymentSection />
         </PaymentContainer>
       </CartBackContainer>
-      <FooterContainer>
-        <Footer_oneBtn text="가격 주문하기" />
-      </FooterContainer>
+      <Footer_oneBtn text="가격 주문하기" />
     </BackContainer>
   );
 }

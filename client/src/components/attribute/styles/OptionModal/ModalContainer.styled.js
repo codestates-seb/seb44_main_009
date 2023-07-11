@@ -12,7 +12,7 @@ export const slideUpAnimation = keyframes`
 export const ModalContainer = styled.div`
   position: fixed;
   bottom: 100px;
-  left: 8px;
+  left: 290px;
   width: 834px;
   height: 85%;
   background-color: rgba(0, 0, 0, 0.5);
