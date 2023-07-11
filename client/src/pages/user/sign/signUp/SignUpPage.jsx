@@ -1,6 +1,6 @@
-import LoginInfo from "../../../../components/singUp/LoginInfo";
-import SignUp from "../../../../components/singUp/SignUp";
-import UserInfo from "../../../../components/singUp/UserInfo";
+import LoginInfo from "../../../../components/user/singUp/LoginInfo";
+import SignUp from "../../../../components/user/singUp/SignUp";
+import UserInfo from "../../../../components/user/singUp/UserInfo";
 import { SignUpPageContainer } from "./styles/SignUpPageContainer.styled";
 import { SignUpPageTitle } from "./styles/SignUpPageTitle.styled";
 import { SignUpPageWrapper } from "./styles/SignUpPageWrapper.styled";
@@ -22,6 +22,7 @@ function SignUpPage() {
             <UserInfo.NickNameInput />
             <UserInfo.PhoneNumberInput />
             <UserInfo.AddressInput />
+            <UserInfo.PersonalColorSelect />
           </SignUp.UserInfo>
           <SignUp.SignUpBtn />
         </SignUp>

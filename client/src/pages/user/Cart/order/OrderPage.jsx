@@ -8,6 +8,7 @@ import OrderProductList from "../../../../components/attribute/OrderPay/OrderPro
 import { dummyproducts } from "../../../../dummyDate/dummyProducts";
 import DeliveryInfo from "../../../../components/attribute/OrderPay/DeliveryInfo";
 import PaymentMethod from "../../../../components/attribute/OrderPay/PaymentMethod";
+import Payment from "../../../../components/attribute/OrderPay/Payment";
 
 const OrderContainer = styled.div`
   display: flex;
@@ -60,27 +61,6 @@ const DeliveryContainerBox = styled.div`
   margin-top: 24px;
   > div {
     flex: 1;
-  }
-`;
-
-const ContainerBox = styled.div`
-  border: 1px solid #383838;
-  border-radius: 12px;
-  padding: 24px;
-  margin-top: 24px;
-`;
-
-const PayWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  background-color: #383838;
-  color: #fff;
-  border-radius: 24px;
-  padding: 12px;
-  &:nth-child(n + 2) {
-    background-color: #fff;
-    color: #383838;
-    font-size: 14px;
   }
 `;
 
@@ -185,11 +165,11 @@ function OrderPage() {
           주문/결제
           <DropIcon
             icon={faChevronDown}
-            show={showOrderProduct}
+            show={showOrderProduct ? 1 : 0}
             onClick={toggleOrderProduct}
           />
         </Title>
-        <OrderProductContainer show={showOrderProduct}>
+        <OrderProductContainer show={showOrderProduct ? 1 : 0}>
           <h3>배송 상품</h3>
           <OrderProductList products={dummyproducts}></OrderProductList>
         </OrderProductContainer>
@@ -214,20 +194,11 @@ function OrderPage() {
             {editAddress ? "완료" : "변경"}{" "}
           </ChangeButton>
         </DeliveryContainerBox>
-        <ContainerBox>
-          <PayWrapper>
-            <div>총 결제 금액</div>
-            <div> {totalPrice}</div>
-          </PayWrapper>
-          <PayWrapper>
-            <div>총 상품 금액</div>
-            <div> {productTotalPrice}</div>
-          </PayWrapper>
-          <PayWrapper>
-            <div>배송비</div>
-            <div> {shippingCost}</div>
-          </PayWrapper>
-        </ContainerBox>
+        <Payment
+          totalPrice={totalPrice}
+          productTotalPrice={productTotalPrice}
+          shippingCost={shippingCost}
+        />
         <PaymentMethod paymentMethods={paymentMethods} />
       </OrderWrapper>
       <Footer_oneBtn text="상품 결제하기" />
