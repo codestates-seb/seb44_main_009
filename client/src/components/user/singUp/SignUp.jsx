@@ -23,6 +23,9 @@ export default function SignUp({ children }) {
   // State >> 모달 오픈 여부
   const [showModal, setShowModal] = useState(false);
 
+  // State >> 유효성 검사 메세지
+  const [validation, setValidation] = useState("");
+
   // 유효성 검사 정규식 >> 이메일
   const emailRegEx =
     /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
@@ -50,6 +53,8 @@ export default function SignUp({ children }) {
         emailRegEx,
         passworedRegEx,
         phoneNumberRegEx,
+        setValidation,
+        validation,
       }}
     >
       <SingUpContaier>{children}</SingUpContaier>
