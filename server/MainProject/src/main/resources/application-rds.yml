@@ -1,10 +1,7 @@
 #aws rds 환경설정
 spring:
   profiles: rds
-  datasource:
-    url: jdbc:mysql://database-1.cxpgcfwnzndp.ap-northeast-2.rds.amazonaws.com:3306/mydatabase?useSSL=false&serverTimezone=UTC
-    username: admin
-    password: stark0503
+
   jpa:
     properties:
       hibernate:
