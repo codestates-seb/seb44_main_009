@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Header from "../../../components/header/Header";
+import Header_back from "../../../components/header/Header_back";
 import Footer from "../../../components/footer/Footer";
 import { ReviewContainer } from "./styles/ReviewContainer.styled";
 import { ReviewWrapper } from "./styles/ReviewWrapper.styled";
@@ -24,7 +24,7 @@ function MyReviewPage() {
 
   return (
     <ReviewContainer>
-      <Header />
+      <Header_back />
       <ReviewWrapper>
         <Title>나의 리뷰</Title>
         {reviews.length > 0 ? (

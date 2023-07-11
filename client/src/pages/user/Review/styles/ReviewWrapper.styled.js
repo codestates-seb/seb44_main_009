@@ -7,4 +7,7 @@ export const ReviewWrapper = styled.div`
   border: 1px solid #383838;
   flex: 1;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
