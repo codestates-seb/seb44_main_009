@@ -67,16 +67,19 @@ public class CartService {
         cart.setMember(member);
         cartRepository.save(cart);
     }
+  
+    public Cart addProductToCart(CartProduct cartProduct, int quantity) {
 
+        Product product = productService.findVerifiedProduct(cartProduct.getProductId());
+        cartProduct.setProduct(product);
 
+        Cart cart = findVerifiedCart(cartProduct.getCart().getCartId());
+        cartProduct.setCart(cart);
 
-//    public List<CartProduct> findCartProducts(long cartId) {
-//        findVerifiedCart(cartId);
-//        List<CartProduct> cartProductList = cartRepository.findCartProductListById(cartId);
-//
-//        return cartProductList;
-//    }
+        cart.addToCart(cartProduct, quantity);
 
+        return cartRepository.save(cart);
+    }
 
     public Cart findVerifiedCart(long cartId){
         Optional<Cart> optionalCart =

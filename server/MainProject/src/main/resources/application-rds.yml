@@ -1,10 +1,7 @@
 #aws rds 환경설정
 spring:
   profiles: rds
-  datasource:
-    url: jdbc:mysql://{rds 엔드포인트}:3306/{rds 데이터베이스 이름}?useSSL=false&serverTimezone=UTC
-    username: { rds 사용자 이름 }
-    password: { rds 비밀번호 }
+
   jpa:
     properties:
       hibernate:

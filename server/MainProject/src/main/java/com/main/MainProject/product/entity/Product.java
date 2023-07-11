@@ -4,6 +4,7 @@ import com.main.MainProject.audit.Auditable;
 import com.main.MainProject.order.entity.OrderProduct;
 import com.main.MainProject.product.cartProduct.CartProduct;
 import com.main.MainProject.product.category.entity.Category;
+import com.main.MainProject.qna.entity.Qna;
 
 import com.main.MainProject.product.color.entity.Color;
 import com.main.MainProject.review.entity.Review;
@@ -44,7 +45,6 @@ public class Product extends Auditable {
 
     @Column
     @Enumerated(value = EnumType.STRING)
-//    @Builder.Default
     private ProductStatus productStatus = ProductStatus.PRODUCT_ON_SALE;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
@@ -57,6 +57,10 @@ public class Product extends Auditable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
+
+
+    @OneToMany(mappedBy = "product")
+    private List<Qna> qnaList = new ArrayList<>();
 
     public enum ProductStatus {
         PRODUCT_ON_SALE(1, "상품 판매중"),

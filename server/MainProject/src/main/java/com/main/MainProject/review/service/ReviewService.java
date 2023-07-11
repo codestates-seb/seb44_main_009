@@ -64,14 +64,29 @@ public class ReviewService {
             new BusinessLogicException(ExceptionCode.YOU_ARE_NOT_WRITER);
         }
 
-        Optional.ofNullable(review.getTitle())
-                .ifPresent(title ->findReview.setTitle(title));
+
         Optional.ofNullable(review.getContent())
                 .ifPresent(content ->findReview.setContent(content));
-        Optional.ofNullable(review.getScore())
-                .ifPresent(score ->findReview.setScore(score));
+
+        Optional.ofNullable(review.getEnjoyStatus())
+                .ifPresent(enjoyStatus ->findReview.setEnjoyStatus(enjoyStatus));
+
+        Optional.ofNullable(review.getProductPersonalColorStatus())
+                .ifPresent(productPersonalColorStatus ->findReview.setProductPersonalColorStatus(productPersonalColorStatus));
+
+        Optional.ofNullable(review.getSizeStatus())
+                .ifPresent(sizeStatus ->findReview.setSizeStatus(sizeStatus));
+
+        Optional.ofNullable(review.getProductColorStatus())
+                .ifPresent(productColorStatus ->findReview.setProductColorStatus(productColorStatus));
 
         return reviewRepository.save(findReview);
+    }
+
+    public Review voteReview(long reviewId){
+        Review review = findVerifiedReview(reviewId);
+        review.setVote(review.getVote() + 1);
+        return reviewRepository.save(review);
     }
 
     //개별 리뷰 조회

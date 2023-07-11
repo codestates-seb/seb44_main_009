@@ -1,6 +1,7 @@
 package com.main.MainProject.qna.dto;
 
 import com.main.MainProject.member.entity.Member;
+import com.main.MainProject.product.entity.Product;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,9 @@ public class QnaPostDto {
     @Positive
     private Long memberId;
 
+    @Positive
+    private Long productId;
+
     @NotBlank(message="제목을 입력하세요")
     private String title;
 
@@ -23,5 +27,11 @@ public class QnaPostDto {
         Member member = new Member();
         member.setMemberId(memberId);
         return member;
+    }
+
+    public Product getProduct() {
+        Product product = new Product();
+        product.setProductId(productId);
+        return product;
     }
 }

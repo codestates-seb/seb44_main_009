@@ -6,6 +6,7 @@ import com.main.MainProject.product.category.service.CategoryService;
 import com.main.MainProject.product.color.service.ColorService;
 import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.product.repository.ProductRepository;
+import com.main.MainProject.qna.entity.Qna;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -79,4 +80,5 @@ public class ProductService {
 
         return optionalProduct.orElseThrow(() -> new RuntimeException("존재하지 않는 상품입니다."));
     }
+
 }
