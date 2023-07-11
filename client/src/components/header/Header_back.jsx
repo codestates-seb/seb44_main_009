@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../image/logo.png";
 import LoginBtn from "./HeaderLoginBtn";
 import { HeaderContainer } from "./styles/HeaderContainer.styled";
@@ -14,9 +14,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function Header_back() {
+  const navigate = useNavigate();
+
+  const onClickBtn = () => {
+    navigate(-1);
+  };
+
   return (
     <HeaderContainer>
-      <IconWrapper>
+      <IconWrapper onClick={onClickBtn}>
         <FontAwesomeIcon icon={faAngleLeft} />
       </IconWrapper>
       <HeaderWrapper>
@@ -25,9 +31,11 @@ function Header_back() {
         </Link>
       </HeaderWrapper>
       <ButtonContainer>
-        <IconStyle>
-          <FontAwesomeIcon icon={faBasketShopping} />
-        </IconStyle>
+        <Link to="/cart">
+          <IconStyle>
+            <FontAwesomeIcon icon={faBasketShopping} />
+          </IconStyle>
+        </Link>
         <LoginBtn />
       </ButtonContainer>
     </HeaderContainer>

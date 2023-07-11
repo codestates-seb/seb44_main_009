@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
 export const CartWrapper = styled.div`
-  width: 834px;
+  padding: 0 24px 0 24px;
   justify-content: flex-start;
 `;

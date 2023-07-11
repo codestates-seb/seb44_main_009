@@ -6,13 +6,14 @@ import { SignUpInputTitleWrapper } from "../styles/SignUpInputTitleWrapper.style
 import { SingUpContext } from "../SignUp";
 
 export default function PasswordInput() {
-  const { handleChange, signUpData } = useContext(SingUpContext);
+  // Context >> 사용
+  const { handleChange, signUpData, passworedRegEx } =
+    useContext(SingUpContext);
 
+  // State >> 유효성 검사에 따른 메세지
   const [message, setMessage] = useState("");
 
-  const passworedRegEx =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-
+  // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
     if (signUpData.password.match(passworedRegEx) === null) {
       setMessage("특수문자, 영어, 숫자를 포함하여 8자 이상 입력해주세요");
@@ -21,6 +22,7 @@ export default function PasswordInput() {
 
     setMessage("");
   }, [signUpData.password]);
+
   return (
     <>
       <SignUpInputTitleWrapper>

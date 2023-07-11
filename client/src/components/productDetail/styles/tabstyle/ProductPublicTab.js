@@ -1,5 +1,5 @@
 //   ---- 탭 스타일
-import { TabCotainer, TabButton } from "./tabstyle/TabStyle";
+import { TabCotainer, TabButton } from "./TabStyle";
 /*  탭 */
 
 export const ProductPublicTab = () => {

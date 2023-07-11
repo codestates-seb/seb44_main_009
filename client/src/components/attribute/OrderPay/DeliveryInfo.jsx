@@ -1,44 +1,12 @@
-import { useState } from "react";
-import { styled } from "styled-components";
+import { DeliveryInfoContainer } from "./styles/DeliveryInfoContainer.styled.js";
+import { Label } from "./styles/Label.styled.js";
+import { Select } from "./styles/Select.styled.js";
+import { Input } from "./styles/Input.styled.js";
 
-const DeliveryInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Label = styled.label`
-  margin-bottom: 12px;
-`;
-
-const Select = styled.select`
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`;
-
-function DeliveryInfo() {
-  const [address, setAddress] = useState({
-    receiverName: "",
-    zipcode: "",
-    addressName: "",
-    addressDetails: "",
-    telNum: "",
-    request: "",
-  });
-
+function DeliveryInfo({ address, handleChangeAddress }) {
   const handleChange = e => {
-    setAddress({
-      ...address,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    handleChangeAddress({ [name]: value });
   };
 
   return (
@@ -90,11 +58,14 @@ function DeliveryInfo() {
         />
       </Label>
       <Label>
+        요청사항
         <Select name="request" value={address.request} onChange={handleChange}>
           <option value="">선택하세요</option>
-          <option value="배송 시 요청사항 1">배송 전, 연락주세요.</option>
-          <option value="배송 시 요청사항 2">빠른 배송 부탁드립니다.</option>
-          <option value="배송 시 요청사항 3">
+          <option value="배송 전, 연락주세요.">배송 전, 연락주세요.</option>
+          <option value="빠른 배송 부탁드립니다.">
+            빠른 배송 부탁드립니다.
+          </option>
+          <option value="부재 시, 경비실에 맡겨주세요.">
             부재 시, 경비실에 맡겨주세요.
           </option>
         </Select>

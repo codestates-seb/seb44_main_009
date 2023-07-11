@@ -5,4 +5,5 @@ export const CheckboxContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 834px;
+  padding: 0 24px 0 24px;
 `;

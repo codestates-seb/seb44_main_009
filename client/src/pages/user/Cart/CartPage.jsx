@@ -35,7 +35,6 @@ function CartPage() {
           isChecked={isChecked}
           handleCheckboxChange={handleCheckboxChange}
         />
-
         <CartWrapper>
           <Title>장바구니</Title>
           <ProductContainer>
@@ -54,7 +53,7 @@ function CartPage() {
           <CartPaymentSection />
         </PaymentContainer>
       </CartBackContainer>
-      <Footer_oneBtn text="가격 주문하기" />
+      <Footer_oneBtn text="상품 주문하기" />
     </BackContainer>
   );
 }

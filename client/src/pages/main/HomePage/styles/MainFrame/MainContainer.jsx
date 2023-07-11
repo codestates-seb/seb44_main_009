@@ -8,8 +8,6 @@ export const MainContainer = styled.div`
   align-items: center;
   margin: 0 auto;
   justify-content: center;
-
-  border: 4px solid green;
 `;
 
 export const Borderdiv = styled.div`
