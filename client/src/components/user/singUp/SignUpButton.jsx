@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { SignUpBtn } from "./styles/SignUpBtn.styled";
 import { SingUpContext } from "./SignUp";
-import { useNavigate } from "react-router-dom";
 import { postSignUp } from "../../../api/userAPI";
 
 export default function SignUpButton() {
@@ -13,10 +12,8 @@ export default function SignUpButton() {
     passworedRegEx,
     phoneNumberRegEx,
     setValidation,
+    setSuccessModal,
   } = useContext(SingUpContext);
-
-  // Navigate
-  const nav = useNavigate();
 
   // handleEvent >> 유효성 검사 및 showModal(state) 변경
   const handleOpenModal = () => {
@@ -51,7 +48,7 @@ export default function SignUpButton() {
       try {
         await postSignUp(signUpData);
         setValidation("회원가입에 성공하였습니다");
-        nav("/login");
+        setSuccessModal(true);
       } catch (error) {
         setValidation(error.message);
       }
