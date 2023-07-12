@@ -1,18 +1,7 @@
-import { styled } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-
-const CategoryViewContainer = styled.div`
-  flex: 1;
-  background-color: #fff;
-  padding: 24px;
-`;
-
-const Section = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
+import { CategoryViewContainer } from "./Styles/CategoryView/CategoryViewContainer.styled";
+import { Section } from "./Styles/CategoryView/Section.styled";
 
 function CategoryView({ categories }) {
   return (
