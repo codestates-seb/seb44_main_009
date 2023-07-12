@@ -1,6 +1,7 @@
 import Header_back from "../../../components/header/Header_back";
 import Footer from "../../../components/footer/Footer";
 import { styled } from "styled-components";
+import PicksItemCount from "../../../components/picks/PicksItemCount";
 
 const PicksPageContainer = styled.div`
   display: flex;
@@ -40,14 +41,6 @@ const PicksItemWrapper = styled.div`
   padding: 36px 12px;
 `;
 
-const PicksItemCount = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-  color: #ccc;
-  font-weight: 600;
-`;
-
 const PicksItem = styled.div`
   display: flex;
   align-items: center;
@@ -71,10 +64,7 @@ function PicksPage() {
       <PicksPageWrapper>
         <Button>기본 폴더</Button>
         <PicksItemWrapper>
-          <PicksItemCount>
-            <div>찜한 아이템</div>
-            <div>0</div>
-          </PicksItemCount>
+          <PicksItemCount />
           <PicksItem>
             <div>찜한 상품이 없어요</div>
             <div>하트를 눌러 마음에 드는 상품을 찜해보세요.</div>
