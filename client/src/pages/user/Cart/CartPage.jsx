@@ -14,50 +14,14 @@ import { ProductContainer } from "./styles/ProductContainer.styled";
 import { CartWrapper } from "./styles/CartWrapper.styled";
 import { PaymentContainer } from "./styles/PaymentContainer.styled";
 import { CartBackContainer } from "./styles/CartBackContainer.styled";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
-import { styled } from "styled-components";
-
-const EmptyCartContainer = styled.div`
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  border: 1px solid #383838;
-  height: 100%;
-  width: 834px;
-  overflow-y: auto;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-const Icon = styled(FontAwesomeIcon)`
-  font-size: 72px;
-  color: #ccc;
-`;
-
-const CartTitle = styled.div`
-  padding-top: 24px;
-  font-size: 24px;
-  font-weight: 600;
-`;
-
-const Subtitle = styled.p`
-  margin: 0;
-  color: rgb(105, 113, 117);
-  font-size: 18px;
-`;
-
-const Button = styled.button`
-  font-size: 18px;
-  width: 150px;
-  border-radius: 50px;
-  height: 70px;
-  background: #383838;
-  color: rgb(250, 250, 251);
-  cursor: pointer;
-`;
+import {
+  Button,
+  CartIcon,
+  CartTitle,
+  Subtitle,
+  EmptyCartContainer,
+} from "./styles/EmptyCart/EmptyCartStyles";
 
 function CartPage() {
   const [isChecked, setIsChecked] = useState(false);
@@ -93,7 +57,7 @@ function CartPage() {
       </StickyStyle>
       {cart.cartProductList.length === 0 ? (
         <EmptyCartContainer>
-          <Icon icon={faBasketShopping} />
+          <CartIcon icon={faBasketShopping} />
           <CartTitle>장바구니에 담긴 상품이 없어요</CartTitle>
           <Subtitle>원하는 상품을 담아보세요</Subtitle>
           <Link to="/">
