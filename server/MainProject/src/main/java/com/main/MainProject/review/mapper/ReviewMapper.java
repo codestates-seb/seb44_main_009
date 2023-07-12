@@ -15,7 +15,7 @@ public interface ReviewMapper {
 
     @Mapping(source = "member.nickName", target = "memberName")
     @Mapping(source = "product.personalColor", target = "productPersonalColor")
-    @Mapping(source = "product.color", target = "productColor")
+    @Mapping(source = "product.colors", target = "colors")
     @Mapping(source = "product.name", target = "productName")
     ReviewDto.Response reviewToResponse(Review review);
 

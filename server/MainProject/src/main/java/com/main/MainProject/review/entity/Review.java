@@ -17,7 +17,6 @@ import javax.validation.constraints.Min;
 @Getter
 @Setter
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 public class Review extends Auditable {
     @Id
@@ -28,15 +27,15 @@ public class Review extends Auditable {
     private String content;
 
     @Enumerated(value = EnumType.STRING)
-    private EnjoyStatus enjoyStatus;
+    private EnjoyStatus enjoyStatus = EnjoyStatus.YES;
 
     @Enumerated(value = EnumType.STRING)
-    private ProductPersonalColorStatus productPersonalColorStatus;
+    private ProductPersonalColorStatus productPersonalColorStatus = ProductPersonalColorStatus.COOL;
 
     @Enumerated(value = EnumType.STRING)
-    private SizeStatus sizeStatus;
+    private SizeStatus sizeStatus = SizeStatus.FIT;
     @Enumerated(value = EnumType.STRING)
-    private ProductColorStatus productColorStatus;
+    private ProductColorStatus productColorStatus = ProductColorStatus.DISPLAY;
 
     public enum EnjoyStatus{
 

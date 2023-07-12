@@ -1,11 +1,13 @@
 package com.main.MainProject.member.dto;
 
 import com.main.MainProject.member.entity.Member;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
 @Builder
 @Getter
+@AllArgsConstructor
 public class MemberResponseDto {
     private Long memberId;
     private String korName;

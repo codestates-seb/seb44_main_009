@@ -1,5 +1,6 @@
 package com.main.MainProject.review.dto;
 
+import com.main.MainProject.product.color.entity.Color;
 import com.main.MainProject.review.entity.Review;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,7 +40,7 @@ public class ReviewDto {
 
         private String productName;
         private String productPersonalColor;
-        private String productColor;
+        private List<Color> colors;
 
         private String content;
 
