@@ -1,6 +1,8 @@
 package com.main.MainProject.product.dto;
 
 import com.main.MainProject.product.category.entity.Category;
+import com.main.MainProject.product.color.dto.ColorDto;
+import com.main.MainProject.product.color.entity.Color;
 import com.main.MainProject.product.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +13,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import java.util.List;
+
+import static com.main.MainProject.product.entity.Product.*;
 
 public class ProductDto {
 
@@ -23,17 +27,14 @@ public class ProductDto {
         private int price;
 
         @NotBlank(message = "공백이 아니어야 합니다.")
-        private String color; // 추후에 컬러도 entity로 변경?
-
-        @NotBlank(message = "공백이 아니어야 합니다.")
         private String content;
 
         private int count;
 
-        @NotBlank(message = "공백이 아니어야 합니다.")
-        private String personalColor;
+        private List<Color> colors;
 
-//        private Category category;
+        private PersonalColor personalColor;
+
         @Positive
         private long categoryId;
     }
@@ -52,15 +53,13 @@ public class ProductDto {
         private int price;
 
         @NotBlank(message = "공백이 아니어야 합니다.")
-        private String color; // 추후에 컬러도 entity로 변경?
-
-        @NotBlank(message = "공백이 아니어야 합니다.")
         private String content;
 
         private int count;
 
-        @NotBlank(message = "공백이 아니어야 합니다.")
-        private String personalColor;
+        private List<Color> colors;
+
+        private PersonalColor personalColor;
 
         @Positive
         private long categoryId;
@@ -74,24 +73,25 @@ public class ProductDto {
         private Long productId;
         private String name;
         private int price;
-        private String color;
         private String content;
         private int count;
-        private String personalColor;
+        private List<ColorDto.Response> colors;
+        private PersonalColor personalColor;
         private String categoryName;
+        private List<String> size;
     }
 
-    @Getter
-    @Builder
-    @AllArgsConstructor
-    public static class SearchProductResponse {
-
-        private Long productId;
-        private String name;
-        private int price;
-        private String color;
-        private String content;
-        private String personalColor;
-        private String categoryName;
-    }
+//    @Getter
+//    @Builder
+//    @AllArgsConstructor
+//    public static class SearchProductResponse {
+//
+//        private Long productId;
+//        private String name;
+//        private int price;
+//        private String color;
+//        private String content;
+//        private PersonalColor personalColor;
+//        private String categoryName;
+//    }
 }
