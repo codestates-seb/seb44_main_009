@@ -14,6 +14,7 @@ import ProfileEditPage from "./pages/user/myPage/profileEdit/ProfileEditPage";
 import ProductDetailPage from "./pages/main/ProductDetailPage/ProductDetail";
 import OrderPage from "./pages/user/Cart/order/OrderPage";
 import CategoryPage from "./pages/main/CategoryPage/CategoryPage";
+import PicksPage from "./pages/user/Picks/PicksPage";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/profile/edit" element={<ProfileEditPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/category" element={<CategoryPage />} />
+          <Route path="/picks" element={<PicksPage />} />
         </Routes>
       </BrowserRouter>
     </div>

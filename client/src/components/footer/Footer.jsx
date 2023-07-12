@@ -17,12 +17,12 @@ function Footer() {
           <FontAwesomeIcon icon={faHouse} />
         </FooterWrapper>
       </Link>
-      <Link to="category">
+      <Link to="/category">
         <FooterWrapper>
           <FontAwesomeIcon icon={faBars} />
         </FooterWrapper>
       </Link>
-      <Link to="picks">
+      <Link to="/picks">
         <FooterWrapper>
           <FontAwesomeIcon icon={faHeart} />
         </FooterWrapper>
