@@ -7,7 +7,7 @@ import axios from "axios";
 // axios.defaults.withCredentials = true;
 
 export const postSignUp = async data => {
-  await axios.post("/", data);
+  await axios.post("/members/signup", data);
 };
 
 export const postLogIn = async data => {
