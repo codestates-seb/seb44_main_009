@@ -1,8 +1,7 @@
 import { styled } from "styled-components";
 
-export const ReviewContainer = styled.div`
+export const Section = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  height: 1000px;
+  justify-content: space-between;
 `;

@@ -5,7 +5,6 @@ import { Accessary } from "../../image/index";
 import CartOptionModal from "./CartOptionModal";
 import CartQuantityDropdown from "./CartQuantityDropdown";
 import { ProductWrapper } from "./styles/ProdcutWrapper.styled";
-import { CheckboxContainer } from "./styles/CheckboxContainer.styled";
 import { Checkbox } from "./styles/Checkbox.styled";
 import { ColumnStyle } from "./styles/ColumnStyle.styled";
 import { ProductDetail } from "./styles/ProductDetail.styled";
@@ -15,6 +14,7 @@ import { RemoveButton } from "./styles/RemoveButton.styled";
 import { ProductInfo } from "./styles/ProductInfo.styled";
 import { OptionContainer } from "./styles/OptionContainer.styled";
 import { Button } from "./styles/Button.styled";
+import { CheckboxWrapper } from "./styles/CheckboxWrapper.styled";
 
 function CartProductItem({ isChecked, handleCheckboxChange }) {
   const [quantity, setQuantity] = useState(1);
@@ -34,13 +34,13 @@ function CartProductItem({ isChecked, handleCheckboxChange }) {
 
   return (
     <ProductWrapper>
-      <CheckboxContainer>
+      <CheckboxWrapper>
         <Checkbox
           type="checkbox"
           checked={isChecked}
           onChange={handleCheckboxChange}
         />
-      </CheckboxContainer>
+      </CheckboxWrapper>
       <ColumnStyle>
         <ProductDetail>
           <ProductImage src={Accessary} alt="Product" />

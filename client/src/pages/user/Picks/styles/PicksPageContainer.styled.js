@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const ReviewContainer = styled.div`
+export const PicksPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

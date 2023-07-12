@@ -1,11 +1,12 @@
 import { styled } from "styled-components";
 
-export const CartBackContainer = styled.div`
-  border: 1px solid #383838;
-  height: 100%;
+export const CategoryNavigator = styled.div`
   width: 834px;
+  height: 100%;
+  border: 1px solid #383838;
+  flex: 1;
+  display: flex;
   overflow-y: auto;
-  position: relative;
   &::-webkit-scrollbar {
     display: none;
   }
