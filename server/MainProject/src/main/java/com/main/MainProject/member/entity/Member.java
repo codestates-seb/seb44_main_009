@@ -4,6 +4,7 @@ import com.main.MainProject.audit.Auditable;
 import com.main.MainProject.cart.entity.Cart;
 import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.review.entity.Review;
+import com.main.MainProject.wishlist.entity.WishList;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +22,7 @@ public class Member extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String korName;
 
     @Column(nullable = false, unique = true)
@@ -83,4 +84,7 @@ public class Member extends Auditable {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();
+
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+    private WishList wishList;
 }

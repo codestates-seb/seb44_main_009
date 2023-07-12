@@ -13,6 +13,8 @@ public enum ExceptionCode {
     //회원이 이미 존재함
     MEMBER_EXISTS(409, "Member already exists"),
 
+    NICKNAME_EXISTS(409,"Nickname already exists"),
+
     QNA_NOT_FOUND(404, "Qna not found"),
 
     //상품이 존재하지 않음
@@ -45,7 +47,11 @@ public enum ExceptionCode {
     CART_IS_EMPTY(500, "cart is empty"),
 
     //주문을 취소할 수 없습니다
-    CANNOT_CHANGE_ORDER(403, "Order can not change");
+    CANNOT_CHANGE_ORDER(403, "Order can not change"),
+
+    COLOR_NOT_FOUND(404,"Color Not Found"),
+
+    COLOR_EXIST(409, "Color Is Already Exists");
 
 
 

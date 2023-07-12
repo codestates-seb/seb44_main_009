@@ -6,7 +6,9 @@ import com.main.MainProject.product.cartProduct.CartProduct;
 import com.main.MainProject.product.category.entity.Category;
 import com.main.MainProject.qna.entity.Qna;
 
+import com.main.MainProject.product.color.entity.Color;
 import com.main.MainProject.review.entity.Review;
+import com.main.MainProject.wishlist.entity.WishList;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,9 +35,6 @@ public class Product extends Auditable {
     @Column(nullable = false)
     private int price; // 상품 가격
 
-    @Column(nullable = false, length = 20)
-    private String color; // 상품 색상
-
     @Column(nullable = false, length = 100)
     private String content; // 상품 설명
 
@@ -48,6 +47,9 @@ public class Product extends Auditable {
     @Column
     @Enumerated(value = EnumType.STRING)
     private ProductStatus productStatus = ProductStatus.PRODUCT_ON_SALE;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Color> colors = new ArrayList<>();
 
     @Column
     @Enumerated(value = EnumType.STRING)
@@ -97,4 +99,7 @@ public class Product extends Auditable {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<OrderProduct> orderProductList = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "products")
+    private List<WishList> wishLists;
 }

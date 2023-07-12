@@ -3,6 +3,7 @@ package com.main.MainProject.product.service;
 import com.main.MainProject.product.category.entity.Category;
 import com.main.MainProject.product.category.repository.CategoryRepository;
 import com.main.MainProject.product.category.service.CategoryService;
+import com.main.MainProject.product.color.service.ColorService;
 import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.product.repository.ProductRepository;
 import com.main.MainProject.qna.entity.Qna;
@@ -17,13 +18,13 @@ import java.util.Optional;
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
-    private final CategoryRepository categoryRepository;
     private final CategoryService categoryService;
+    private final ColorService colorService;
 
-    public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository, CategoryService categoryService) {
+    public ProductService(ProductRepository productRepository, CategoryService categoryService, ColorService colorService) {
         this.productRepository = productRepository;
-        this.categoryRepository = categoryRepository;
         this.categoryService = categoryService;
+        this.colorService = colorService;
     }
 
     public Product createProduct(Product product, Category category) {
@@ -40,7 +41,7 @@ public class ProductService {
         Optional.ofNullable(product.getName()).ifPresent(findProduct::setName);
         Optional.of(product.getCount()).ifPresent(findProduct::setCount);
         Optional.of(product.getPrice()).ifPresent(findProduct::setPrice);
-        Optional.ofNullable(product.getColor()).ifPresent(findProduct::setColor);
+        Optional.ofNullable(product.getColors()).ifPresent(findProduct::setColors);
         Optional.ofNullable(product.getContent()).ifPresent(findProduct::setContent);
         Optional.ofNullable(category.getCategoryId()).ifPresent(categoryId -> findProduct.setCategory(categoryService.findVerifiedCategory(categoryId)));
         Optional.ofNullable(product.getPersonalColor()).ifPresent(findProduct::setPersonalColor);
@@ -78,10 +79,6 @@ public class ProductService {
         Optional<Product> optionalProduct = productRepository.findById(productId);
 
         return optionalProduct.orElseThrow(() -> new RuntimeException("존재하지 않는 상품입니다."));
-    }
-
-    public List<Product> getProductByCategory(Category category) {
-        return productRepository.findByCategory(category);
     }
 
 }
