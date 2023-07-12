@@ -8,7 +8,7 @@ import { createContext, useEffect, useState } from "react";
 // Context >> 생성
 export const MyInfoContext = createContext();
 
-export default function MyInfo({ children }) {
+export default function MyInfoProvider({ children }) {
   // State >> API로 불러온 유저 정보
   const [userInfo, setUserInfo] = useState();
 
@@ -30,6 +30,9 @@ export default function MyInfo({ children }) {
   );
 }
 
-MyInfo.Img = MyInfoImg;
-MyInfo.Info = MyInformation;
-MyInfo.EditBtn = MyInfoEditBtn;
+// !!:
+export const MyInfo = Object.assign(MyInfoProvider, {
+  Img: MyInfoImg,
+  Info: MyInformation,
+  EditBtn: MyInfoEditBtn,
+});
