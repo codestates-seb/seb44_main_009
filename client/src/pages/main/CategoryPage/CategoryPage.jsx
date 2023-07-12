@@ -3,9 +3,9 @@ import Footer from "../../../components/footer/Footer";
 import { OrderContainer } from "../../user/Cart/order/styles/OrderContainer.styled";
 import { useState } from "react";
 import { styled } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import CategoryView from "../../../components/Category/CategoryView";
 import CategoryList from "../../../components/Category/CategoryList";
+
 const CategoryNavigator = styled.div`
   width: 834px;
   height: 100%;
@@ -18,17 +18,6 @@ const CategoryNavigator = styled.div`
   }
 `;
 
-const CategoryView = styled.div`
-  flex: 1;
-  background-color: #fff;
-  padding: 24px;
-`;
-
-const Section = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
 function CategoryPage() {
   const categories = ["상의", "원피스", "팬츠", "스커트", "아우터", "잡화"];
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -46,14 +35,7 @@ function CategoryPage() {
           selectedCategory={selectedCategory}
           handleCategoryClick={handleCategoryClick}
         />
-        <CategoryView>
-          {categories.map(category => (
-            <Section key={category}>
-              <h2>{category}</h2>
-              <FontAwesomeIcon icon={faChevronRight} />
-            </Section>
-          ))}
-        </CategoryView>
+        <CategoryView categories={categories} />
       </CategoryNavigator>
       <Footer />
     </OrderContainer>
