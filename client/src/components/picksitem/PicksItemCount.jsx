@@ -1,12 +1,4 @@
-import { styled } from "styled-components";
-
-const PicksItemCountWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-  color: #ccc;
-  font-weight: 600;
-`;
+import { PicksItemCountWrapper } from "./styles/PicksItemCountWrapper.styled";
 
 function PicksItemCount() {
   return (
