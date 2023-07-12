@@ -28,19 +28,19 @@ export const getUser = async () => {
 // 유저 주문 내역 불러오기
 export const getUserBuyList = async () => {
   const response = await axios.get(`/order/buylist/${memberId}`);
-  return response;
+  return response.data;
 };
 
 // 유저 리뷰 내역 불러오기
 export const getUserReviewList = async () => {
   const response = await axios.get(`/review/findByMember/${memberId}`);
-  return response;
+  return response.data.data;
 };
 
 // 유저 질문 내역 불러오기
 export const getUserQuestionList = async () => {
   const response = await axios.get(`/qnas/qnabymember/${memberId}`);
-  return response;
+  return response.data;
 };
 
 // 유저 주문 상세 내역 불러오기
