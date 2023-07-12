@@ -11,8 +11,6 @@ export default function MyInfo({ children }) {
   // State >> API로 불러온 유저 정보
   const [userInfo, setUserInfo] = useState();
 
-  console.log(userInfo);
-
   // Effet >> API 요청으로 유저 정보 불러오기
   useEffect(() => {
     (async () => {
