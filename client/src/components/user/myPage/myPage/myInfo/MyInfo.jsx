@@ -5,6 +5,7 @@ import MyInformation from "./myInformation/MyInformation";
 import { MyInfoContainer } from "./styles/MyInfoContainer.styles";
 import { createContext, useEffect, useState } from "react";
 
+// Context >> 생성
 export const MyInfoContext = createContext();
 
 export default function MyInfo({ children }) {
