@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
-export const EditBtnWrapper = styled.div`
+export const EditBtnWrapper = styled(Link)`
   font-size: 24px;
   line-height: 45px;
   color: white;
