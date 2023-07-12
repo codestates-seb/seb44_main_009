@@ -19,9 +19,13 @@ export default function MyInfo({ children }) {
   }, []);
 
   return (
-    <MyInfoContext.Provider value={{ userInfo }}>
-      <MyInfoContainer>{children}</MyInfoContainer>
-    </MyInfoContext.Provider>
+    <>
+      {userInfo ? (
+        <MyInfoContext.Provider value={{ userInfo }}>
+          <MyInfoContainer>{children}</MyInfoContainer>
+        </MyInfoContext.Provider>
+      ) : null}
+    </>
   );
 }
 
