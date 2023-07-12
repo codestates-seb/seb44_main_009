@@ -16,7 +16,7 @@ import { OptionContainer } from "./styles/OptionContainer.styled";
 import { Button } from "./styles/Button.styled";
 import { CheckboxWrapper } from "./styles/CheckboxWrapper.styled";
 
-function CartProductItem({ isChecked, handleCheckboxChange }) {
+function CartProductItem({ isChecked, handleCheckboxChange, product }) {
   const [quantity, setQuantity] = useState(1);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -45,9 +45,9 @@ function CartProductItem({ isChecked, handleCheckboxChange }) {
         <ProductDetail>
           <ProductImage src={Accessary} alt="Product" />
           <ProductView>
-            <div>상품이름</div>
+            <div>{product?.name}</div>
             <div>
-              <p>가격</p>
+              <p>{product?.price}</p>
             </div>
           </ProductView>
           <RemoveButton>

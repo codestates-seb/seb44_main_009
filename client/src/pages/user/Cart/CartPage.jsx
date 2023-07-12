@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
@@ -17,6 +17,21 @@ import { CartBackContainer } from "./styles/CartBackContainer.styled";
 function CartPage() {
   const [isChecked, setIsChecked] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [cart, setCart] = useState([]);
+  // 장바구니 전체 조회
+  const fetchCart = async () => {
+    try {
+      const response = await fetch("/carts/1");
+      const data = await response.json();
+      setCart(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
 
   const handleCheckboxChange = e => {
     setIsChecked(e.target.checked);
@@ -46,12 +61,17 @@ function CartPage() {
               isModalOpen={isModalOpen}
               setIsModalOpen={setIsModalOpen}
               handleCartToggle={handleCartToggle}
+              cart={cart}
             />
           </ProductContainer>
         </CartWrapper>
         <PaymentContainer>
           <SideTitle>예상결제금액</SideTitle>
-          <CartPaymentSection />
+          <CartPaymentSection
+            shippingCost={cart.shippingCost}
+            totalProductPrice={cart.totalProductPrice}
+            totalOrderPrice={cart.totalOrderPrice}
+          />
         </PaymentContainer>
       </CartBackContainer>
       <Link to="/order">
