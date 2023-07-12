@@ -1,5 +1,6 @@
 package com.main.MainProject.product.color.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,8 @@ public class ColorDto {
     }
     @Getter
     @Builder
+    @AllArgsConstructor
     public static class Response {
-        private String name;
+        public String name;
     }
 }
