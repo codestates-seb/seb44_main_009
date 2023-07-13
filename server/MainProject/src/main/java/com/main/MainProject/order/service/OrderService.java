@@ -42,6 +42,9 @@ public class OrderService {
 
     public Order createOrder(long cartId, Address address, long memberId){
         Cart findCart = cartService.findVerifiedCart(cartId);
+        if(findCart.getCartProductList().size() < 1){
+            new BusinessLogicException(ExceptionCode.CART_IS_EMPTY);
+        }
         Member findMember = memberService.findVerifiedMember(memberId);
 
         Order order = new Order();
@@ -78,7 +81,7 @@ public class OrderService {
         Address findAddress = order.getAddress();
 
         Optional.ofNullable(address.getReceiverName())
-                .ifPresent(reciverName->findAddress.setReceiverName(reciverName));
+                .ifPresent(receiverName->findAddress.setReceiverName(receiverName));
         Optional.ofNullable(address.getZipcode())
                 .ifPresent(zipCode->findAddress.setZipcode(zipCode));
         Optional.ofNullable(address.getAddressDetails())
@@ -111,7 +114,7 @@ public class OrderService {
         if(getShippingStatus(orderId) < 4){
             findOrder.setOrderStatus(Order.OrderStatus.ORDER_CANCEL);
         }else {
-            throw new BusinessLogicException(ExceptionCode.ORDER_NOT_FOUND);
+            throw new BusinessLogicException(ExceptionCode.CANNOT_CHANGE_ORDER);
         }
 
         orderRepository.save(findOrder);

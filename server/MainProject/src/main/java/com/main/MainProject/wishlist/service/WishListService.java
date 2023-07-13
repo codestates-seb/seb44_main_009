@@ -43,9 +43,10 @@ public class WishListService {
         Member member = memberService.findVerifiedMember(memberId);
         WishList wishList = member.getWishList();
         List<Product> products = wishList.getProducts();
-        if (products.isEmpty()) {
-            throw new RuntimeException("찜목록이 비어있습니다.");
-        }
+//        if (products.isEmpty()) {
+//            throw new RuntimeException("찜목록이 비어있습니다.");
+//        }
+//        TODO: 찜목록이 비어 있으면 []로 빈배열로 생성되어 예외처리를 하지 않아도될것같습니다 - 확인해주세요
         return products;
     }
 

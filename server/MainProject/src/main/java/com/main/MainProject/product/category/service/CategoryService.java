@@ -1,5 +1,7 @@
 package com.main.MainProject.product.category.service;
 
+import com.main.MainProject.exception.BusinessLogicException;
+import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.product.category.entity.Category;
 import com.main.MainProject.product.category.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -46,12 +48,12 @@ public class CategoryService {
         Optional<Category> optionalCategory = categoryRepository.findByName(name);
 
         if (optionalCategory.isPresent())
-            throw new RuntimeException("이미 존재하는 카테고리 입니다.");
+            new BusinessLogicException(ExceptionCode.CATEGORY_EXISTS);
     }
 
     public Category findVerifiedCategory(long categoryId) {
         Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
 
-        return optionalCategory.orElseThrow(() -> new RuntimeException("존재하지 않는 카테고리 입니다."));
+        return optionalCategory.orElseThrow(() -> new BusinessLogicException(ExceptionCode.CATEGORY_NOT_FOUND));
     }
 }
