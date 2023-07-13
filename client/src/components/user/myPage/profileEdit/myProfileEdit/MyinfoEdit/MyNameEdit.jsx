@@ -14,7 +14,7 @@ export default function MyNameEdit() {
 
   // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
-    if (userInfo.korName.length === 0) {
+    if (Object.keys(userInfo).length !== 0 && userInfo.korName.length === 0) {
       setMessage("이름을 입력해주세요");
       return;
     }

@@ -23,8 +23,6 @@ export default function MyProfileEdits({ children }) {
   const handleChange = e =>
     setUserInfo(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
-  console.log(userInfo);
-
   // Effect >> API로 회원 정보 불러오기
   useEffect(() => {
     (async () => {

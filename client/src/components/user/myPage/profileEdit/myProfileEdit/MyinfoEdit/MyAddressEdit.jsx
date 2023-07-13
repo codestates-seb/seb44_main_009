@@ -14,7 +14,7 @@ export default function MyAddressEdit() {
 
   // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
-    if (userInfo.address.length === 0) {
+    if (Object.keys(userInfo).length !== 0 && userInfo.address.length === 0) {
       setMessage("주소를 입력해주세요");
       return;
     }

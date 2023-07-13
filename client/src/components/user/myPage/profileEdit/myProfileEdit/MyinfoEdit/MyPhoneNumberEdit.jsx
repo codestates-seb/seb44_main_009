@@ -16,7 +16,10 @@ export default function MyPhoneNumberEdit() {
 
   // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
-    if (userInfo.phoneNumber.match(phoneNumberRegEx) === null) {
+    if (
+      Object.keys(userInfo).length !== 0 &&
+      userInfo.phoneNumber.match(phoneNumberRegEx) === null
+    ) {
       setMessage("010-XXX(X)-XXXX 형식에 맞춰 입력해주세요");
       return;
     }

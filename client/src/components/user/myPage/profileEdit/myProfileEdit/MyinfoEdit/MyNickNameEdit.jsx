@@ -14,7 +14,7 @@ export default function MyNickNameEdit() {
 
   // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
-    if (userInfo.nickName.length === 0) {
+    if (Object.keys(userInfo).length !== 0 && userInfo.nickName.length === 0) {
       setMessage("닉네임을 입력해주세요");
       return;
     }

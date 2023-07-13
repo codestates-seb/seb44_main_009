@@ -16,7 +16,10 @@ export default function MyEmailEdit() {
 
   // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
-    if (userInfo.email.match(emailRegEx) === null) {
+    if (
+      Object.keys(userInfo).length !== 0 &&
+      userInfo.email.match(emailRegEx) === null
+    ) {
       setMessage("이메일 형식에 맞춰 입력해주세요");
       return;
     }
