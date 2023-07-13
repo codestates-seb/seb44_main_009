@@ -1,14 +1,14 @@
 import CartProductItem from "./CartProductItem";
 
-function CartProductList({ cartProductList, isChecked, handleCheckboxChange }) {
+function CartProductList({ cart, isChecked, handleCheckboxChange }) {
   return (
     <div>
-      {cartProductList.map(product => (
+      {cart.cartProductList.map(product => (
         <CartProductItem
-          key={product.id}
+          key={product.productId}
+          product={product}
           isChecked={isChecked}
           handleCheckboxChange={handleCheckboxChange}
-          product={product}
         />
       ))}
     </div>
