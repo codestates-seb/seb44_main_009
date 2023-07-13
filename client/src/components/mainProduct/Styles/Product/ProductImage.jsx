@@ -1,10 +1,8 @@
 import { styled } from "styled-components";
 
 export const ProductImage = styled.img`
-  /* width: 150px;
-  height: 200px; */ // 이미지가 튀어나옴
-  max-width: 100%;
-  max-height: 100%;
+  width: 130px;
+  height: 130px;
   object-fit: cover;
 
   margin-bottom: 20px;

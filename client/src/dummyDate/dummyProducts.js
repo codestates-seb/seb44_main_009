@@ -1,3 +1,4 @@
+import { Coat, Jean } from "../image/index";
 export const dummyproducts = [
   {
     productId: 1,
@@ -9,7 +10,8 @@ export const dummyproducts = [
     personalColor: "Cool",
     categoryName: "tops",
     size: ["S", "M", "L"],
-    url: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    // url: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    url: { Coat },
   },
   {
     productId: 2,
@@ -130,7 +132,8 @@ export const dummyproducts = [
     personalColor: "Cool",
     categoryName: "pants",
     size: ["S", "M", "L"],
-    url: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    // url: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    url: { Jean },
   },
   {
     productId: 12,

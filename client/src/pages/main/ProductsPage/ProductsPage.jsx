@@ -8,26 +8,42 @@ import Footer from "../../../components/footer/Footer";
 
 import { MainContainer, Borderdiv } from "./styles/ProductPageStyle";
 
-import { categories } from "../../../components/Category/MainCategory";
+// import { categories } from "../../../components/Category/MainCategory";
 
 function ProductsPage() {
   const [products] = useState(dummyproducts);
   const { category } = useParams();
-  console.log("category", category);
-  const filteredProducts = category
+  // const { PersonalCategory } = useParams();
+
+  const filteredCategoryProducts = category
     ? products.filter(product => product.categoryName === category)
     : products;
-  console.log("filter", filteredProducts);
+
+  const filteredPersonalProducts = category
+    ? products.filter(product => product.personalColor === category)
+    : products;
+  // console.log("cate", category);
+
+  let filteredProducts;
+  if (category === "Warm") {
+    filteredProducts = filteredPersonalProducts.filter(
+      product => product.personalColor === "Warm",
+    );
+  } else if (category === "Cool") {
+    filteredProducts = filteredPersonalProducts.filter(
+      product => product.personalColor === "Cool",
+    );
+  } else {
+    filteredProducts = filteredCategoryProducts;
+  }
+
   return (
     <div>
       <MainContainer>
         <Header></Header>
 
         <Borderdiv>
-          <ProductList
-            products={filteredProducts}
-            categories={categories}
-          ></ProductList>
+          <ProductList products={filteredProducts}></ProductList>
         </Borderdiv>
 
         <Footer></Footer>

@@ -15,6 +15,7 @@ export const categories = [
   { name: "아우터", image: Coat, slug: "outerwear" },
   { name: "잡화", image: Accessary, slug: "accessories" },
 ];
+
 const CategoryList = () => {
   return (
     <div>

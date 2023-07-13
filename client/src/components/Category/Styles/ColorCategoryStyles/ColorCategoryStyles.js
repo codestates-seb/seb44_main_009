@@ -10,40 +10,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
 
-// export const ColorCategory = ({ labelText, iconColor }) => {
-//   const navigate = useNavigate();
-
-//   const handleClick = () => {    Filter
-//     if (labelText === "웜톤") {
-//       const WarmToneProducts = dummyproducts.filter(
-//         product => product.personalColor === "Warm",
-//       );
-//       navigate("/Products", { state: WarmToneProducts });
-//     } else if (labelText === "쿨톤") {
-//       const CoolToneProducts = dummyproducts.filter(
-//         product => product.personalColor === "Cool",
-//       );
-//       navigate("/Products", { state: CoolToneProducts });
-//     }
-//   };
-
-//   return (
-//     <Container>
-//       <FontAwesomeIcon
-//         icon={faPalette}
-//         style={{ color: iconColor, fontSize: "24px" }}
-//       />
-//       <Text>{labelText}</Text>
-//       <Margin />
-
-//       <Text> 전체보기 </Text>
-//       <Image src={RightArrow} alt="전체보기" onClick={handleClick} />
-//     </Container>
-//   );
-// };
-
-//1차 Link 사용  --> Filter기능을 구현하기 어려움
-export const ColorCategory = ({ labelText, iconColor }) => {
+export const ColorCategory = ({ labelText, iconColor, ToneSlug }) => {
   return (
     <Container>
       <FontAwesomeIcon
@@ -54,7 +21,7 @@ export const ColorCategory = ({ labelText, iconColor }) => {
       <Margin />
 
       <Text> 전체보기 </Text>
-      <Link to="/products">
+      <Link to={`/products/${ToneSlug}`}>
         <Image src={RightArrow} alt="전체보기" />
       </Link>
     </Container>
@@ -64,11 +31,11 @@ export const ColorCategory = ({ labelText, iconColor }) => {
 export const WarmToneCategory = () => {
   return (
     <>
-      <ColorCategory labelText="웜톤" iconColor="orange" />
+      <ColorCategory labelText="웜톤" iconColor="orange" ToneSlug="Warm" />
     </>
   );
 };
 
 export const CoolToneCategory = () => {
-  return <ColorCategory labelText="쿨톤" iconColor="pink" />;
+  return <ColorCategory labelText="쿨톤" iconColor="pink" ToneSlug="Cool" />;
 };
