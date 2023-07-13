@@ -5,12 +5,12 @@ import { MyInfoWrapper } from "./styles/MyInfoWrapper";
 import { MyProfileContext } from "../MyProfile";
 
 export default function MyNickName() {
-  const { userInfo } = useContext(MyProfileContext);
+  const { userData } = useContext(MyProfileContext);
 
   return (
     <MyInfoWrapper>
       <MyInfoTitle>닉네임: </MyInfoTitle>
-      <MyInfo>{userInfo.nickName}</MyInfo>
+      <MyInfo>{userData.nickName}</MyInfo>
     </MyInfoWrapper>
   );
 }

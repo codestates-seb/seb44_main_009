@@ -10,7 +10,7 @@ export const MyProfileEditsContext = createContext();
 
 export default function MyProfileEdits({ children }) {
   // State >> API로 불러온 회원 정보
-  const [userInfo, setUserInfo] = useState({});
+  const [userData, setUserData] = useState({});
 
   // 유효성 검사 정규식 >> 이메일
   const emailRegEx =
@@ -21,22 +21,22 @@ export default function MyProfileEdits({ children }) {
 
   // handleEvent >> 회원 정보 변경
   const handleChange = e =>
-    setUserInfo(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setUserData(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
   // Effect >> API로 회원 정보 불러오기
   useEffect(() => {
     (async () => {
-      setUserInfo(await getUser());
+      setUserData(await getUser());
     })();
   }, []);
 
   return (
     <>
-      {userInfo ? (
+      {userData ? (
         <MyProfileEditsContext.Provider
           value={{
-            userInfo,
-            setUserInfo,
+            userData,
+            setUserData,
             handleChange,
             emailRegEx,
             phoneNumberRegEx,

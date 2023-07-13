@@ -6,12 +6,12 @@ import { MyPersonalColorContext } from "../MyPersonalColor";
 
 export default function MyToneType() {
   // Context >> 사용
-  const { userInfo } = useContext(MyPersonalColorContext);
+  const { userData } = useContext(MyPersonalColorContext);
 
   return (
-    <MyToneTypeWrapper personalColor={userInfo.personalColor}>
+    <MyToneTypeWrapper personalColor={userData.personalColor}>
       <FontAwesomeIcon icon={faPalette} fontSize={50} />
-      <div>{userInfo.personalColor}</div>
+      <div>{userData.personalColor}</div>
     </MyToneTypeWrapper>
   );
 }

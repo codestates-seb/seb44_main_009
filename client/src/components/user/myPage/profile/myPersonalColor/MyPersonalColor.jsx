@@ -9,19 +9,19 @@ export const MyPersonalColorContext = createContext();
 
 export default function MyPersonalColor({ children }) {
   // State >> API로 불러온 회원 정보
-  const [userInfo, setUserInfo] = useState();
+  const [userData, setUserData] = useState();
 
   // Effect >> API로 회원 정보 불러오기
   useEffect(() => {
     (async () => {
-      setUserInfo(await getUser());
+      setUserData(await getUser());
     })();
   }, []);
 
   return (
     <>
-      {userInfo ? (
-        <MyPersonalColorContext.Provider value={{ userInfo }}>
+      {userData ? (
+        <MyPersonalColorContext.Provider value={{ userData }}>
           <MyPersonalColorContainer>{children}</MyPersonalColorContainer>
         </MyPersonalColorContext.Provider>
       ) : null}{" "}

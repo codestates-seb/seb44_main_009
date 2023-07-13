@@ -12,19 +12,19 @@ export const MyProfileContext = createContext();
 
 export default function MyProfile({ children }) {
   // State >> API로 불러온 회원 정보
-  const [userInfo, setUserInfo] = useState();
+  const [userData, setUserData] = useState();
 
   // Effect >> API로 회원 정보 불러오기
   useEffect(() => {
     (async () => {
-      setUserInfo(await getUser());
+      setUserData(await getUser());
     })();
   }, []);
 
   return (
     <>
-      {userInfo ? (
-        <MyProfileContext.Provider value={{ userInfo }}>
+      {userData ? (
+        <MyProfileContext.Provider value={{ userData }}>
           <MyProfileWrapper>{children}</MyProfileWrapper>
         </MyProfileContext.Provider>
       ) : null}
