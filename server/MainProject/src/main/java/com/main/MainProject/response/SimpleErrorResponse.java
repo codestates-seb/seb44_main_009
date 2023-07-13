@@ -8,6 +8,12 @@ import org.springframework.http.HttpStatus;
 public class SimpleErrorResponse {
     private Integer status;
     private String message;
+
+    public SimpleErrorResponse(Integer status, String message) {
+        this.status = status;
+        this.message = message;
+    }
+
     public static SimpleErrorResponse of(ExceptionCode exceptionCode) {
         return new SimpleErrorResponse(exceptionCode.getStatus(), exceptionCode.getMessage());
     }

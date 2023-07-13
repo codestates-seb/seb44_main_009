@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Getter
-public class ConstraintViolationError implements Error{
+public class ConstraintViolationError implements Error {
     private String field;
     private String rejectedValue;
     private String reason;
