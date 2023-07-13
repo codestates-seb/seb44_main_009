@@ -15,25 +15,23 @@ const ProductList = ({ products }) => {
   );
   return (
     <ContainerBox>
-      <ProductListContainer>
-        {productGroups.map((group, groupIndex) => (
-          <div key={groupIndex}>
-            <ProductListContainer>
-              {group.map(product => (
-                <Product
-                  key={product.productId}
-                  url={product.url}
-                  name={product.name}
-                  price={product.price}
-                  color={product.color}
-                  isWarmTone={isWarmTone(product)}
-                />
-              ))}
-            </ProductListContainer>
-            <Margin />
-          </div>
-        ))}
-      </ProductListContainer>
+      {productGroups.map((group, groupIndex) => (
+        <div key={groupIndex}>
+          <ProductListContainer>
+            {group.map(product => (
+              <Product
+                key={product.productId}
+                url={product.url}
+                name={product.name}
+                price={product.price}
+                color={product.color}
+                isWarmTone={isWarmTone(product)}
+              />
+            ))}
+          </ProductListContainer>
+          <Margin />
+        </div>
+      ))}
     </ContainerBox>
   );
 };

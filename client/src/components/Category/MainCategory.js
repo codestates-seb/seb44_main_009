@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   CategoryWrapper,
   CategoryItem,
@@ -6,24 +7,26 @@ import {
 } from "./Styles/CategoryStyles/CategoryStyles";
 import { Coat, Jean, Shirt, Skirt, Dress, Accessary } from "../../image/index";
 
-//const categories = ["상의", "원피스", "팬츠", "스커트", "아우터", "잡화"];
-const categories = [
-  { name: "상의", image: Skirt },
-  { name: "원피스", image: Dress },
-  { name: "팬츠", image: Jean },
-  { name: "스커트", image: Shirt },
-  { name: "아우터", image: Coat },
-  { name: "잡화", image: Accessary },
+export const categories = [
+  { name: "상의", image: Shirt, slug: "tops" },
+  { name: "원피스", image: Dress, slug: "dress" },
+  { name: "팬츠", image: Jean, slug: "pants" },
+  { name: "스커트", image: Skirt, slug: "skirts" },
+  { name: "아우터", image: Coat, slug: "outerwear" },
+  { name: "잡화", image: Accessary, slug: "accessories" },
 ];
+
 const CategoryList = () => {
   return (
     <div>
       <CategoryWrapper>
         {categories.map((category, index) => (
           <CategoryItem key={index}>
-            <div>
-              <CategoryImage src={category.image} alt={category.name} />
-            </div>
+            <Link to={`/products/${category.slug}`}>
+              <div>
+                <CategoryImage src={category.image} alt={category.name} />
+              </div>
+            </Link>
             <CategoryName>{category.name}</CategoryName>
           </CategoryItem>
         ))}

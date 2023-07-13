@@ -1,31 +1,41 @@
 //import React from "react";
-import { Warm, Cool, RightArrow } from "../../../../image/index"; // 예시로 넣은 이미지
+import { RightArrow } from "../../../../image/index"; // 예시로 넣은 이미지
 import { Container } from "./Container";
 import { Image } from "./Image";
 import { Margin } from "./Margin";
 import { Text } from "./Text";
+import { Link } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
+//import { dummyproducts } from "../../../../dummyDate/dummyProducts";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPalette } from "@fortawesome/free-solid-svg-icons";
 
-export const ColorCategory = ({ imageSrc, altText, labelText }) => {
+export const ColorCategory = ({ labelText, iconColor, ToneSlug }) => {
   return (
     <Container>
-      <Image src={imageSrc} alt={altText} />
+      <FontAwesomeIcon
+        icon={faPalette}
+        style={{ color: iconColor, fontSize: "24px" }}
+      />
       <Text>{labelText}</Text>
       <Margin />
 
       <Text> 전체보기 </Text>
-      <Image src={RightArrow} alt="전체보기" />
+      <Link to={`/products/${ToneSlug}`}>
+        <Image src={RightArrow} alt="전체보기" />
+      </Link>
     </Container>
   );
 };
 
 export const WarmToneCategory = () => {
   return (
-    <ColorCategory imageSrc={Warm} altText="웜톤 이미지" labelText="웜톤" />
+    <>
+      <ColorCategory labelText="웜톤" iconColor="orange" ToneSlug="Warm" />
+    </>
   );
 };
 
 export const CoolToneCategory = () => {
-  return (
-    <ColorCategory imageSrc={Cool} altText="쿨톤 이미지" labelText="쿨톤" />
-  );
+  return <ColorCategory labelText="쿨톤" iconColor="pink" ToneSlug="Cool" />;
 };

@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+
 import ProductList from "../../../components/mainProduct/ProductList";
 import { dummyproducts } from "../../../dummyDate/dummyProducts";
 import Header from "../../../components/header/Header";
@@ -5,18 +8,39 @@ import Footer from "../../../components/footer/Footer";
 
 import { MainContainer, Borderdiv } from "./styles/ProductPageStyle";
 
-/* Filter 기능 추가 해야 함 ! */
-// 1. 각 카테고리와 ColorCategory 클릭 시, ProductsPage로 넘어가야하는 기능.
-// 2. 어떤 걸 눌렀느냐에 따라 Filter 되어 넘어가야 하는 기능.
-
 function ProductsPage() {
+  const [products] = useState(dummyproducts);
+  const { category } = useParams();
+
+  const filteredCategoryProducts = category
+    ? products.filter(product => product.categoryName === category)
+    : products;
+
+  const filteredPersonalProducts = category
+    ? products.filter(product => product.personalColor === category)
+    : products;
+  // console.log("cate", category);
+
+  let filteredProducts;
+  if (category === "Warm") {
+    filteredProducts = filteredPersonalProducts.filter(
+      product => product.personalColor === "Warm",
+    );
+  } else if (category === "Cool") {
+    filteredProducts = filteredPersonalProducts.filter(
+      product => product.personalColor === "Cool",
+    );
+  } else {
+    filteredProducts = filteredCategoryProducts;
+  }
+
   return (
     <div>
       <MainContainer>
         <Header></Header>
 
         <Borderdiv>
-          <ProductList products={dummyproducts}></ProductList>
+          <ProductList products={filteredProducts}></ProductList>
         </Borderdiv>
 
         <Footer></Footer>
