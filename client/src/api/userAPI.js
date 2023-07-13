@@ -47,5 +47,5 @@ export const getUserQuestionList = async () => {
 // 유저 주문 상세 내역 불러오기
 export const getUserBuyProdutList = async () => {
   const response = await axios.get(`order/${orderId}/${memberId}`);
-  return response;
+  return response.data;
 };
