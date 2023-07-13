@@ -29,7 +29,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/ProductDetail" element={<ProductDetailPage />} />
+          <Route path="/product-detail" element={<ProductDetailPage />} />
           <Route path="/review" element={<ReviewUpdatePage />} />
           <Route path="/review/edit" element={<ReviewEditPage />} />
           <Route path="/review/management" element={<MyReviewPage />} />

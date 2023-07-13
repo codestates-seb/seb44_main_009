@@ -8,12 +8,9 @@ import Footer from "../../../components/footer/Footer";
 
 import { MainContainer, Borderdiv } from "./styles/ProductPageStyle";
 
-// import { categories } from "../../../components/Category/MainCategory";
-
 function ProductsPage() {
   const [products] = useState(dummyproducts);
   const { category } = useParams();
-  // const { PersonalCategory } = useParams();
 
   const filteredCategoryProducts = category
     ? products.filter(product => product.categoryName === category)
