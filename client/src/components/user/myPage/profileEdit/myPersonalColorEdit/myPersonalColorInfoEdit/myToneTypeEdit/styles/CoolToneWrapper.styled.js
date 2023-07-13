@@ -9,7 +9,8 @@ export const CoolToneWrapper = styled.div`
   color: white;
   text-align: center;
 
-  background-color: pink;
+  background-color: ${props =>
+    props.personalColor === "쿨톤" ? "skyblue" : "#808080"};
 
   width: 100px;
   height: 100px;
@@ -17,6 +18,6 @@ export const CoolToneWrapper = styled.div`
   border-radius: 30px;
 
   &:hover {
-    background-color: #808080;
+    background-color: skyblue;
   }
 `;
