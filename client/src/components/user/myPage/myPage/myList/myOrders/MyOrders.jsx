@@ -9,7 +9,7 @@ export default function MyOrders() {
 
   return (
     <MyListWrapper>
-      <ListTitle>주문 내역</ListTitle>
+      <ListTitle to="/preparing">주문 내역</ListTitle>
       <ListAmount>{userBuyList.length}</ListAmount>
     </MyListWrapper>
   );

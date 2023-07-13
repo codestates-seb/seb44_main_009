@@ -9,7 +9,7 @@ export default function MyReviews() {
 
   return (
     <MyListWrapper>
-      <ListTitle>나의 리뷰</ListTitle>
+      <ListTitle to="/review/management">나의 리뷰</ListTitle>
       <ListAmount>{userReviewList.totalCount}</ListAmount>
     </MyListWrapper>
   );

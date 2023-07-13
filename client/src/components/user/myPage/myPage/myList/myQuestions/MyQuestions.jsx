@@ -9,7 +9,7 @@ export default function MyQuestions() {
 
   return (
     <MyListWrapper>
-      <ListTitle>나의 질문</ListTitle>
+      <ListTitle to="/preparing">나의 질문</ListTitle>
       <ListAmount>{userQuestionList.length}</ListAmount>
     </MyListWrapper>
   );
