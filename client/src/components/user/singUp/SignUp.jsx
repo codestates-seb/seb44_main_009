@@ -4,6 +4,7 @@ import SignUpButton from "./SignUpButton";
 import UserInfo from "./UserInfo";
 import { SingUpContaier } from "./styles/SingUpContaier.styled";
 import SignUpModal from "./SignUpModal";
+import SignUpSuccessModal from "./SignUpSuccessModal";
 
 // Context >> 생성
 export const SingUpContext = createContext();
@@ -20,8 +21,11 @@ export default function SignUp({ children }) {
     password: "",
   });
 
-  // State >> 모달 오픈 여부
+  // State >> 유효성 검사 불통과 시, 모달 오픈
   const [showModal, setShowModal] = useState(false);
+
+  // State >> 회원가입 성공 시, 모달 오픈
+  const [successModal, setSuccessModal] = useState(false);
 
   // State >> 유효성 검사 메세지
   const [validation, setValidation] = useState("");
@@ -55,10 +59,12 @@ export default function SignUp({ children }) {
         phoneNumberRegEx,
         setValidation,
         validation,
+        setSuccessModal,
       }}
     >
       <SingUpContaier>{children}</SingUpContaier>
       {showModal && <SignUpModal />}
+      {successModal && <SignUpSuccessModal />}
     </SingUpContext.Provider>
   );
 }
