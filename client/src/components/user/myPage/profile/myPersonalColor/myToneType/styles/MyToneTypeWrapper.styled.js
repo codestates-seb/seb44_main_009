@@ -9,7 +9,8 @@ export const MyToneTypeWrapper = styled.div`
   color: white;
   text-align: center;
 
-  background-color: skyblue;
+  background-color: ${props =>
+    props.personalColor === "웜톤" ? "orange" : "skyblue"};
 
   width: 100px;
   height: 100px;
