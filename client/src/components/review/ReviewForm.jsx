@@ -7,6 +7,7 @@ import { HiddenFileInput } from "./styles/HiddenFileInput.styled";
 import { SelectedImage } from "./styles/SelectedImage.styled";
 import { ImageButton } from "./styles/ImageButton.styled";
 import { RemoveImageButton } from "./styles/RemoveImageButton.styled";
+import { InputErrorMessage } from "./styles/InputErrorMessage.styled";
 
 function ReviewForm() {
   const [reviewText, setReviewText] = useState("");
@@ -42,6 +43,9 @@ function ReviewForm() {
         )}
       </ReviewInputContainer>
       <ReviewInput value={reviewText} onChange={handleReviewChange} />
+      {reviewText.length === 0 && (
+        <InputErrorMessage>내용을 입력하세요.</InputErrorMessage>
+      )}
       <ImageButton onClick={handleImageUpload}>
         <FontAwesomeIcon icon={faImage} />
         <div>사진 첨부하기</div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+// import axios from "axios";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Accessary } from "../../image/index";
@@ -16,9 +17,23 @@ import { OptionContainer } from "./styles/OptionContainer.styled";
 import { Button } from "./styles/Button.styled";
 import { CheckboxWrapper } from "./styles/CheckboxWrapper.styled";
 
-function CartProductItem({ isChecked, handleCheckboxChange }) {
+function CartProductItem({ isChecked, handleCheckboxChange, product }) {
   const [quantity, setQuantity] = useState(1);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  // const [products, setProducts] = useState(cart.cartProductList);
+
+  // const handleRemove = productId => {
+  //   axios
+  //     .delete(`/carts/1/items/1`)
+  //     .then(res => {
+  //       setProducts(prevProducts =>
+  //         prevProducts.filter(item => item.productId !== productId),
+  //       );
+  //     })
+  //     .catch(error => {
+  //       console.error("error");
+  //     });
+  // };
 
   const handleQuantityChange = e => {
     setQuantity(e.target.value);
@@ -45,9 +60,9 @@ function CartProductItem({ isChecked, handleCheckboxChange }) {
         <ProductDetail>
           <ProductImage src={Accessary} alt="Product" />
           <ProductView>
-            <div>상품이름</div>
+            <div>{product?.name}</div>
             <div>
-              <p>가격</p>
+              <p>{product?.price}</p>
             </div>
           </ProductView>
           <RemoveButton>
