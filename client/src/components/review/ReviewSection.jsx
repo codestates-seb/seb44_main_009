@@ -16,8 +16,8 @@ function ReviewSection({ title, options }) {
         {options.map((option, index) => (
           <DoubleButton
             key={option}
-            isFirst={index === 0}
-            isLast={index === options.length - 1}
+            isfirst={index === 0 ? "true" : undefined}
+            islast={index === options.length - 1 ? "true" : undefined}
             selected={selectedOption === option}
             onClick={() => handleButtonClick(option)}
           >

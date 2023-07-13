@@ -8,8 +8,8 @@ export const DoubleButton = styled.div`
   padding: 8px 16px;
   margin-right: 8px;
   border: 1px solid #383838;
-  border-radius: ${({ isFirst, isLast }) =>
-    isFirst ? "20px 0 0 20px" : isLast ? "0 20px 20px 0" : "0"};
+  border-radius: ${({ isfirst, ...props }) =>
+    isfirst ? "20px 0 0 20px" : props.islast ? "0 20px 20px 0" : "0"};
   background-color: ${({ selected }) => (selected ? "#383838" : "#fff")};
   color: ${({ selected }) => (selected ? "#fff" : "#383838")};
   font-size: 18px;
