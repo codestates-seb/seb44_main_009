@@ -1,40 +1,33 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+
 import ProductList from "../../../components/mainProduct/ProductList";
 import { dummyproducts } from "../../../dummyDate/dummyProducts";
 import Header from "../../../components/header/Header";
 import Footer from "../../../components/footer/Footer";
-//import { useState } from "react";
 
 import { MainContainer, Borderdiv } from "./styles/ProductPageStyle";
 
-/* Filter 기능 추가 해야 함 ! */
-// 2. 어떤 걸 눌렀느냐에 따라 Filter 되어 넘어가야 하는 기능.
+import { categories } from "../../../components/Category/MainCategory";
 
 function ProductsPage() {
-  // const [products] = useState(dummyproducts);
-  // const [filteredProducts, setFilteredProducts] = useState(products);
-
-  // const handleFilterProducts = filter => {
-  //   if (filter === "Warm") {
-  //     const warmToneProducts = products.filter(
-  //       product => product.personalColor === "Warm",
-  //     );
-  //     setFilteredProducts(warmToneProducts);
-  //   } else if (filter === "Cool") {
-  //     const coolToneProducts = products.filter(
-  //       product => product.personalColor === "Cool",
-  //     );
-  //     setFilteredProducts(coolToneProducts);
-  //   } else {
-  //     setFilteredProducts(products);
-  //   }
-  // };
+  const [products] = useState(dummyproducts);
+  const { category } = useParams();
+  console.log("category", category);
+  const filteredProducts = category
+    ? products.filter(product => product.categoryName === category)
+    : products;
+  console.log("filter", filteredProducts);
   return (
     <div>
       <MainContainer>
         <Header></Header>
 
         <Borderdiv>
-          <ProductList products={dummyproducts}></ProductList>
+          <ProductList
+            products={filteredProducts}
+            categories={categories}
+          ></ProductList>
         </Borderdiv>
 
         <Footer></Footer>

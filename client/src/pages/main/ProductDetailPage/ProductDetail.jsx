@@ -1,6 +1,6 @@
 import ProductDetailStyles from "../../../components/productDetail/styles/productDetailStyles";
 
-import Footer from "../../../components/footer/Footer";
+import Footer from "../../../components/footer/Footer_doubleBtn";
 import Header from "../../../components/header/Header";
 
 import { MainContainer, Borderdiv } from "../HomePage/styles/HomePageStyles";

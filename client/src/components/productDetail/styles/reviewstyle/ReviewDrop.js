@@ -38,7 +38,7 @@ const ToggleContainer = styled.div`
 
 const ToggleButton = styled.button`
   padding: 10px 15px;
-  background-color: ${({ active }) => (active === "true" ? "green" : "gray")};
+  background-color: ${({ active }) => (active ? "green" : "gray")};
   color: white;
   border: none;
   border-radius: 50px;
@@ -72,7 +72,7 @@ export const ReviewDrop = () => {
     <FilterContainer>
       <ToggleContainer>
         <ToggleButton
-          active={showPersonalColorReviews.toString()}
+          active={showPersonalColorReviews}
           onClick={handleToggleClick}
         >
           {showPersonalColorReviews ? "ON" : "OFF"}
