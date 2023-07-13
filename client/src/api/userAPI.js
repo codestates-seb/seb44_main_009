@@ -7,19 +7,20 @@ import axios from "axios";
 // axios.defaults.withCredentials = true;
 
 // :: 로그인 기능 구현 시, 수정
-const memberId = 1;
+const memberId = 3;
 const orderId = 1;
 
+// 회원가입 요청
 export const postSignUp = async data => {
   await axios.post("/members/signup", data);
 };
 
+// 로그인 요청
 export const postLogIn = async data => {
   await axios.post("/", data);
 };
 
 // 유저 정보 불러오기
-
 export const getUser = async () => {
   const response = await axios.get(`/members/${memberId}`);
   return response.data.data;
