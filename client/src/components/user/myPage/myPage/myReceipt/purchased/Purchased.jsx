@@ -9,7 +9,7 @@ import { PurchasedContainer } from "./styles/PurchasedContainer";
 import { getUserBuyProdutList } from "../../../../../../api/userAPI";
 
 // Context >> 생성
-const PurchasedContext = createContext();
+export const PurchasedContext = createContext();
 
 export default function Purchased({ children }) {
   // eslint-disable-next-line no-unused-vars
