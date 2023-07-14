@@ -22,13 +22,14 @@ function CartProductItem({ isChecked, handleCheckboxChange, product }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   // const [products, setProducts] = useState(cart.cartProductList);
 
-  // const handleRemove = productId => {
+  // const handleRemove = () => {
   //   axios
-  //     .delete(`/carts/1/items/1`)
+  //     .delete(`/carts/${cart.id}/items/${product.productId}`)
   //     .then(res => {
-  //       setProducts(prevProducts =>
-  //         prevProducts.filter(item => item.productId !== productId),
+  //       const updatedProducts = products.filter(
+  //         item => item.productId !== product.productId,
   //       );
+  //       setProducts(updatedProducts);
   //     })
   //     .catch(error => {
   //       console.error("error");

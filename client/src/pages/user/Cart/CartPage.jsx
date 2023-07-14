@@ -30,7 +30,7 @@ function CartPage() {
   // 장바구니 전체 조회
   const fetchCart = async () => {
     try {
-      const response = await axios.get("/carts/3");
+      const response = await axios.get("/carts/1");
       const data = response.data;
       console.log(data);
       setCart(data);
@@ -46,7 +46,7 @@ function CartPage() {
   // 장바구니 추가
   // const addToCart = async (cartId, productId, quantity) => {
   //   try {
-  //     const response = await axios.post(`/carts/3/items`, {
+  //     const response = await axios.post(`/carts/${cartId}/items`, {
   //       cartId: cartId,
   //       productId: productId,
   //       quantity: quantity,

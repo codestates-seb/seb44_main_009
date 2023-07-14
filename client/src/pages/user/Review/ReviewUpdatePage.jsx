@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import ReviewForm from "../../../components/review/ReviewForm";
 import Header_back from "../../../components/header/Header_back";
@@ -18,7 +18,9 @@ function ReviewUpdatePage() {
   const [reviewText, setReviewText] = useState("");
 
   const handleReviewTextChange = e => {
-    setReviewText(e.target.value);
+    const value = e.target.value;
+    setReviewText(value);
+    console.log(value);
   };
 
   const submitReview = () => {
@@ -27,20 +29,44 @@ function ReviewUpdatePage() {
       productPersonalColorStatus,
       sizeStatus,
       productColorStatus,
-      reviewText,
+      content: reviewText,
     };
-
+    console.log("Review Data:", reviewData);
     axios
-      .post(`/review/create/1/2/3`, reviewData)
+      .post(`/review/create/1/2/1`, reviewData)
       .then(res => {
-        console.log("리뷰가 성공적으로 업데이트되었습니다.", res.data);
+        console.log("성공", res.data);
       })
       .catch(error => {
-        console.error("리뷰 업데이트 중 오류가 발생했습니다.", error);
+        console.error("에러", error);
       });
   };
 
   const isSubmitDisabled = reviewText.trim().length === 0;
+
+  useEffect(() => {
+    if (enjoyStatus !== "") {
+      console.log("enjoyStatus:", enjoyStatus);
+    }
+  }, [enjoyStatus]);
+
+  useEffect(() => {
+    if (productPersonalColorStatus !== "") {
+      console.log("productPersonalColorStatus:", productPersonalColorStatus);
+    }
+  }, [productPersonalColorStatus]);
+
+  useEffect(() => {
+    if (sizeStatus !== "") {
+      console.log("sizeStatus:", sizeStatus);
+    }
+  }, [sizeStatus]);
+
+  useEffect(() => {
+    if (productColorStatus !== "") {
+      console.log("productColorStatus:", productColorStatus);
+    }
+  }, [productColorStatus]);
 
   return (
     <ReviewContainer>
@@ -50,17 +76,17 @@ function ReviewUpdatePage() {
         <ReviewSection
           title="구매하신 상품은 만족하시나요?"
           options={["별로예요", "만족해요"]}
-          onSelect={option =>
-            setEnjoyStatus(option === "만족해요" ? "YES" : "NO")
-          }
+          onSelect={option => {
+            setEnjoyStatus(option === "만족해요" ? "YES" : "NO");
+          }}
         />
 
         <ReviewSection
           title="색상은 어떤가요?"
           options={["쿨톤", "웜톤"]}
-          onSelect={option =>
-            setProductPersonalColorStatus(option === "쿨톤" ? "COOL" : "WORM")
-          }
+          onSelect={option => {
+            setProductPersonalColorStatus(option === "쿨톤" ? "COOL" : "WORM");
+          }}
         />
 
         <ReviewSection

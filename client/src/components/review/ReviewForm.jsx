@@ -9,13 +9,15 @@ import { ImageButton } from "./styles/ImageButton.styled";
 import { RemoveImageButton } from "./styles/RemoveImageButton.styled";
 import { InputErrorMessage } from "./styles/InputErrorMessage.styled";
 
-function ReviewForm() {
-  const [reviewText, setReviewText] = useState("");
+function ReviewForm({ value, onChange }) {
+  const [reviewText, setReviewText] = useState(value);
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
 
   const handleReviewChange = e => {
-    setReviewText(e.target.value);
+    const value = e.target.value;
+    setReviewText(value);
+    onChange(e);
   };
 
   const handleImageUpload = () => {
