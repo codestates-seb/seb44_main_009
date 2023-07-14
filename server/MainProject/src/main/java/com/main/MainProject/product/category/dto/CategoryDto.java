@@ -15,6 +15,9 @@ public class CategoryDto {
     public static class CategoryPostDto {
         @NotBlank
         private String name;
+
+        @NotBlank
+        private String slug;
     }
 
     @Getter
@@ -23,18 +26,23 @@ public class CategoryDto {
         private Long categoryId;
         @NotBlank
         private String name;
+
+        @NotBlank
+        private String slug;
     }
 
     @Getter
     @Setter
     public static class CategoryResponseDto {
         private String name;
+        private String slug;
     }
 
     @Getter
     @Setter
     public static class CategoryListResponseDto {
         private String name;
+        private String slug;
         private List<ProductResponseDto> products;
     }
 }
