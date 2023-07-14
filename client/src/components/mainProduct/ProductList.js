@@ -24,7 +24,7 @@ const ProductList = ({ products }) => {
                 url={product.url}
                 name={product.name}
                 price={product.price}
-                color={product.color}
+                color={product.colors}
                 isWarmTone={isWarmTone(product)}
               />
             ))}

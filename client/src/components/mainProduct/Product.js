@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 
 import {
   ProductContainer,
@@ -8,25 +9,32 @@ import {
   ProductPriceInfo,
   ProductNameInfo,
   ProductColor,
+  ProductImageContainer,
 } from "./Styles/Product/ProductStyles";
+
 const ProductColorContainer = styled.div`
   display: flex; // 가로 정렬을 위한 flex 설정
   max-width: 100%;
   max-height: 100%;
   justify-content: flex-end;
 `;
+
 const Product = ({ url, name, price, color }) => {
   return (
     <span>
       <ProductContainer>
         {/* a속성으로 감싸 링크 전달하기  */}
-        <ProductImage src={url} alt="Product Image" />
+        <Link to="/product-detail">
+          <ProductImageContainer>
+            <ProductImage src={url} alt="Product Image" />
+          </ProductImageContainer>
+        </Link>
         <ProductNameInfo>
           <ProductName>{name}</ProductName>
         </ProductNameInfo>
         <ProductColorContainer>
           {color.map((c, index) => (
-            <ProductColor key={index} color={c} />
+            <ProductColor key={index} color={c.name} />
           ))}
         </ProductColorContainer>
         <ProductPriceInfo>

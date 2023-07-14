@@ -43,11 +43,6 @@ const PreviewAllImage = styled.div`
 
 const ModalContainer = styled.div`
   width: 100%;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  justify-content: center; */
 
   display: flex;
   justify-content: center;
