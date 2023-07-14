@@ -4,7 +4,7 @@ import { faUserPen } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProfileEditBtn() {
   return (
-    <ProfileEditBtnWrapper>
+    <ProfileEditBtnWrapper to="/profile/edit">
       <FontAwesomeIcon icon={faUserPen} />
     </ProfileEditBtnWrapper>
   );

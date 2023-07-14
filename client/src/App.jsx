@@ -15,6 +15,7 @@ import ProductDetailPage from "./pages/main/ProductDetailPage/ProductDetail";
 import OrderPage from "./pages/user/Cart/order/OrderPage";
 import CategoryPage from "./pages/main/CategoryPage/CategoryPage";
 import PicksPage from "./pages/user/Picks/PicksPage";
+import Preparing from "./pages/preparing/Preparing";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/order" element={<OrderPage />} />
           <Route path="/category" element={<CategoryPage />} />
           <Route path="/picks" element={<PicksPage />} />
+          <Route path="/preparing" element={<Preparing />} />
         </Routes>
       </BrowserRouter>
     </div>

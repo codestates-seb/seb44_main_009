@@ -4,7 +4,7 @@ import { EditBtnWrapper } from "./styles/EditBtnWrapper.styled";
 
 export default function MyInfoEditBtn() {
   return (
-    <EditBtnWrapper>
+    <EditBtnWrapper to="/profile">
       <FontAwesomeIcon icon={faUserPen} />
     </EditBtnWrapper>
   );
