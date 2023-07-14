@@ -1,5 +1,7 @@
 package com.main.MainProject.product.service;
 
+import com.main.MainProject.exception.BusinessLogicException;
+import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.product.category.entity.Category;
 import com.main.MainProject.product.category.repository.CategoryRepository;
 import com.main.MainProject.product.category.service.CategoryService;
@@ -71,14 +73,14 @@ public class ProductService {
         Optional<Product> optionalProduct = productRepository.findByName(name);
 
         if (optionalProduct.isPresent()) {
-            throw new RuntimeException("이미 존재하는 상품입니다.");
+            new BusinessLogicException(ExceptionCode.PRODUCT_EXISTS);
         }
     }
 
     public Product findVerifiedProduct(long productId) {
         Optional<Product> optionalProduct = productRepository.findById(productId);
 
-        return optionalProduct.orElseThrow(() -> new RuntimeException("존재하지 않는 상품입니다."));
+        return optionalProduct.orElseThrow(() -> new BusinessLogicException(ExceptionCode.PRODUCT_NOT_FOUND));
     }
 
 }
