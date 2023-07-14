@@ -87,4 +87,7 @@ public class Member extends Auditable {
 
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
     private WishList wishList;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 }
