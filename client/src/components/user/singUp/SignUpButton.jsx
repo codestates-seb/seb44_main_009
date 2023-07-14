@@ -49,11 +49,11 @@ export default function SignUpButton() {
         await postSignUp(signUpData);
         setValidation("회원가입에 성공하였습니다");
         setSuccessModal(true);
+        setShowModal(true);
       } catch (error) {
         setValidation(error.message);
       }
     })();
-    setShowModal(true);
   };
 
   return <SignUpBtn onClick={handleOpenModal}>회원가입</SignUpBtn>;
