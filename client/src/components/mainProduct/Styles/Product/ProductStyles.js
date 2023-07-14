@@ -1,7 +1,7 @@
 import { ProductContainer } from "./ProductContainer";
 import { ProductColor } from "./ProductColor";
 import { ProductName } from "./ProductName";
-import { ProductImage } from "./ProductImage";
+import { ProductImage, ProductImageContainer } from "./ProductImage";
 import { ProductNameInfo } from "./ProductNameInfo";
 import { ProductPrice } from "./ProductPrice";
 import { ProductPriceInfo } from "./ProductPriceInfo";
@@ -14,4 +14,5 @@ export {
   ProductNameInfo,
   ProductPrice,
   ProductPriceInfo,
+  ProductImageContainer,
 };

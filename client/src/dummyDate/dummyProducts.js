@@ -4,7 +4,15 @@ export const dummyproducts = [
     productId: 1,
     name: "쿨 상품",
     price: 15000,
-    color: ["blue"],
+    // color: ["blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 20,
     personalColor: "Cool",
@@ -17,7 +25,15 @@ export const dummyproducts = [
     productId: 2,
     name: "쿨 상품",
     price: 48000,
-    color: ["pink", "purple"],
+    // color: ["pink", "purple"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 81,
     personalColor: "Cool",
@@ -29,7 +45,15 @@ export const dummyproducts = [
     productId: 3,
     name: "쿨 상품",
     price: 32000,
-    color: ["pink"],
+    // color: ["pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 90,
     personalColor: "Cool",
@@ -41,7 +65,15 @@ export const dummyproducts = [
     productId: 4,
     name: "쿨 상품",
     price: 48000,
-    color: ["blue", "pink", "navy"],
+    // color: ["blue", "pink", "navy"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 99,
     personalColor: "Cool",
@@ -53,7 +85,15 @@ export const dummyproducts = [
     productId: 5,
     name: "쿨 상품",
     price: 32000,
-    color: ["red", "navy"],
+    // color: ["red", "navy"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 24,
     personalColor: "Cool",
@@ -65,7 +105,15 @@ export const dummyproducts = [
     productId: 6,
     name: "쿨 상품",
     price: 15000,
-    color: ["red"],
+    // color: ["red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 71,
     personalColor: "Cool",
@@ -77,7 +125,15 @@ export const dummyproducts = [
     productId: 7,
     name: "쿨 상품",
     price: 38000,
-    color: ["purple"],
+    // color: ["purple"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 75,
     personalColor: "Cool",
@@ -89,7 +145,15 @@ export const dummyproducts = [
     productId: 8,
     name: "쿨 상품",
     price: 42000,
-    color: ["navy"],
+    // color: ["navy"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 69,
     personalColor: "Cool",
@@ -101,7 +165,15 @@ export const dummyproducts = [
     productId: 9,
     name: "쿨 상품",
     price: 28000,
-    color: ["blue", "navy"],
+    // color: ["blue", "navy"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 14,
     personalColor: "Cool",
@@ -113,7 +185,15 @@ export const dummyproducts = [
     productId: 10,
     name: "쿨 상품",
     price: 27000,
-    color: ["blue", "green", "skyblue"],
+    // color: ["blue", "green", "skyblue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 87,
     personalColor: "Cool",
@@ -126,7 +206,15 @@ export const dummyproducts = [
     productId: 11,
     name: "쿨 상품",
     price: 38000,
-    color: ["red"],
+    // color: ["red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 51,
     personalColor: "Cool",
@@ -139,7 +227,15 @@ export const dummyproducts = [
     productId: 12,
     name: "쿨 상품",
     price: 45000,
-    color: ["red", "skyblue", "purple"],
+    // color: ["red", "skyblue", "purple"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 81,
     personalColor: "Cool",
@@ -151,7 +247,15 @@ export const dummyproducts = [
     productId: 13,
     name: "쿨 상품",
     price: 42000,
-    color: ["skyblue"],
+    // color: ["skyblue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 32,
     personalColor: "Cool",
@@ -163,7 +267,15 @@ export const dummyproducts = [
     productId: 14,
     name: "쿨 상품",
     price: 38000,
-    color: ["red", "purple"],
+    // color: ["red", "purple"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 12,
     personalColor: "Cool",
@@ -175,7 +287,15 @@ export const dummyproducts = [
     productId: 15,
     name: "쿨 상품",
     price: 15000,
-    color: ["red", "blue"],
+    // color: ["red", "blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 38,
     personalColor: "Cool",
@@ -187,7 +307,15 @@ export const dummyproducts = [
     productId: 16,
     name: "쿨 상품",
     price: 32000,
-    color: ["red"],
+    // color: ["red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 31,
     personalColor: "Cool",
@@ -199,7 +327,15 @@ export const dummyproducts = [
     productId: 17,
     name: "쿨 상품",
     price: 35000,
-    color: ["purple"],
+    // color: ["purple"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 65,
     personalColor: "Cool",
@@ -211,7 +347,15 @@ export const dummyproducts = [
     productId: 18,
     name: "쿨 상품",
     price: 18000,
-    color: ["red", "navy"],
+    // color: ["red", "navy"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 16,
     personalColor: "Cool",
@@ -223,7 +367,15 @@ export const dummyproducts = [
     productId: 19,
     name: "쿨 상품",
     price: 45000,
-    color: ["pink"],
+    // color: ["pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 34,
     personalColor: "Cool",
@@ -235,7 +387,15 @@ export const dummyproducts = [
     productId: 20,
     name: "웜 상품",
     price: 15000,
-    color: ["green", "purple"],
+    // color: ["green", "purple"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 70,
     personalColor: "Warm",
@@ -247,7 +407,15 @@ export const dummyproducts = [
     productId: 21,
     name: "웜 상품",
     price: 27000,
-    color: ["purple", "pink", "blue"],
+    // color: ["purple", "pink", "blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 72,
     personalColor: "Warm",
@@ -259,7 +427,15 @@ export const dummyproducts = [
     productId: 22,
     name: "웜 상품",
     price: 35000,
-    color: ["green"],
+    // color: ["green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 57,
     personalColor: "Warm",
@@ -271,7 +447,15 @@ export const dummyproducts = [
     productId: 23,
     name: "웜 상품",
     price: 42000,
-    color: ["navy", "purple"],
+    // color: ["navy", "purple"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 47,
     personalColor: "Warm",
@@ -283,7 +467,15 @@ export const dummyproducts = [
     productId: 24,
     name: "쿨 상품",
     price: 25000,
-    color: ["green", "navy", "skyblue"],
+    // color: ["green", "navy", "skyblue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 8,
     personalColor: "Cool",
@@ -295,7 +487,15 @@ export const dummyproducts = [
     productId: 25,
     name: "쿨 상품",
     price: 15000,
-    color: ["navy", "blue"],
+    // color: ["navy", "blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 19,
     personalColor: "Cool",
@@ -307,7 +507,15 @@ export const dummyproducts = [
     productId: 26,
     name: "쿨 상품",
     price: 38000,
-    color: ["skyblue", "blue"],
+    // color: ["skyblue", "blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 57,
     personalColor: "Cool",
@@ -319,7 +527,15 @@ export const dummyproducts = [
     productId: 27,
     name: "쿨 상품",
     price: 28000,
-    color: ["red", "blue"],
+    // color: ["red", "blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 10,
     personalColor: "Cool",
@@ -331,7 +547,15 @@ export const dummyproducts = [
     productId: 28,
     name: "쿨 상품",
     price: 18000,
-    color: ["red"],
+    // color: ["red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 32,
     personalColor: "Cool",
@@ -343,7 +567,15 @@ export const dummyproducts = [
     productId: 29,
     name: "쿨 상품",
     price: 28000,
-    color: ["blue", "red"],
+    // color: ["blue", "red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 27,
     personalColor: "Cool",
@@ -355,7 +587,15 @@ export const dummyproducts = [
     productId: 30,
     name: "쿨 상품",
     price: 45000,
-    color: ["purple", "green"],
+    // color: ["purple", "green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 14,
     personalColor: "Cool",
@@ -367,7 +607,15 @@ export const dummyproducts = [
     productId: 31,
     name: "쿨 상품",
     price: 28000,
-    color: ["purple", "green"],
+    // color: ["purple", "green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 81,
     personalColor: "Cool",
@@ -379,7 +627,15 @@ export const dummyproducts = [
     productId: 32,
     name: "쿨 상품",
     price: 27000,
-    color: ["green"],
+    // color: ["green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 98,
     personalColor: "Cool",
@@ -391,7 +647,15 @@ export const dummyproducts = [
     productId: 33,
     name: "쿨 상품",
     price: 38000,
-    color: ["pink", "red"],
+    // color: ["pink", "red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 76,
     personalColor: "Cool",
@@ -403,7 +667,15 @@ export const dummyproducts = [
     productId: 34,
     name: "쿨 상품",
     price: 38000,
-    color: ["red", "green"],
+    // color: ["red", "green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 97,
     personalColor: "Cool",
@@ -415,7 +687,15 @@ export const dummyproducts = [
     productId: 35,
     name: "쿨 상품",
     price: 38000,
-    color: ["navy", "pink"],
+    // color: ["navy", "pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 71,
     personalColor: "Cool",
@@ -427,7 +707,15 @@ export const dummyproducts = [
     productId: 36,
     name: "쿨 상품",
     price: 45000,
-    color: ["red"],
+    // color: ["red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 35,
     personalColor: "Cool",
@@ -439,7 +727,15 @@ export const dummyproducts = [
     productId: 37,
     name: "쿨 상품",
     price: 38000,
-    color: ["red", "purple", "navy"],
+    // color: ["red", "purple", "navy"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 45,
     personalColor: "Cool",
@@ -451,7 +747,15 @@ export const dummyproducts = [
     productId: 38,
     name: "쿨 상품",
     price: 48000,
-    color: ["red", "navy", "purple"],
+    // color: ["red", "navy", "purple"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: "0",
     personalColor: "Cool",
@@ -463,7 +767,15 @@ export const dummyproducts = [
     productId: 39,
     name: "쿨 상품",
     price: 48000,
-    color: ["blue"],
+    // color: ["blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 59,
     personalColor: "Cool",
@@ -475,7 +787,15 @@ export const dummyproducts = [
     productId: 40,
     name: "쿨 상품",
     price: 45000,
-    color: ["red", "pink", "skyblue"],
+    // color: ["red", "pink", "skyblue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 42,
     personalColor: "Cool",
@@ -487,7 +807,15 @@ export const dummyproducts = [
     productId: 41,
     name: "쿨 상품",
     price: 25000,
-    color: ["pink"],
+    // color: ["pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 37,
     personalColor: "Cool",
@@ -499,7 +827,15 @@ export const dummyproducts = [
     productId: 42,
     name: "쿨 상품",
     price: 38000,
-    color: ["purple"],
+    // color: ["purple"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 94,
     personalColor: "Cool",
@@ -511,7 +847,15 @@ export const dummyproducts = [
     productId: 43,
     name: "쿨 상품",
     price: 35000,
-    color: ["pink"],
+    // color: ["pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 72,
     personalColor: "Cool",
@@ -523,7 +867,15 @@ export const dummyproducts = [
     productId: 44,
     name: "쿨 상품",
     price: 38000,
-    color: ["blue"],
+    // color: ["blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 48,
     personalColor: "Cool",
@@ -535,7 +887,15 @@ export const dummyproducts = [
     productId: 45,
     name: "쿨 상품",
     price: 35000,
-    color: ["blue", "purple"],
+    // color: ["blue", "purple"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 48,
     personalColor: "Cool",
@@ -547,7 +907,15 @@ export const dummyproducts = [
     productId: 46,
     name: "쿨 상품",
     price: 38000,
-    color: ["green", "navy", "pink"],
+    // color: ["green", "navy", "pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 15,
     personalColor: "Cool",
@@ -559,7 +927,15 @@ export const dummyproducts = [
     productId: 47,
     name: "쿨 상품",
     price: 22000,
-    color: ["red", "pink"],
+    // color: ["red", "pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 62,
     personalColor: "Cool",
@@ -571,7 +947,15 @@ export const dummyproducts = [
     productId: 48,
     name: "쿨 상품",
     price: 42000,
-    color: ["green"],
+    // color: ["green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 54,
     personalColor: "Cool",
@@ -583,7 +967,15 @@ export const dummyproducts = [
     productId: 49,
     name: "쿨 상품",
     price: 42000,
-    color: ["red", "pink", "blue"],
+    // color: ["red", "pink", "blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 29,
     personalColor: "Cool",
@@ -595,7 +987,15 @@ export const dummyproducts = [
     productId: 50,
     name: "쿨 상품",
     price: 45000,
-    color: ["pink", "green"],
+    // color: ["pink", "green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 2,
     personalColor: "Cool",
@@ -607,7 +1007,15 @@ export const dummyproducts = [
     productId: 51,
     name: "쿨 상품",
     price: 48000,
-    color: ["blue", "green"],
+    // color: ["blue", "green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 76,
     personalColor: "Cool",
@@ -619,7 +1027,15 @@ export const dummyproducts = [
     productId: 52,
     name: "쿨 상품",
     price: 38000,
-    color: ["purple", "pink"],
+    // color: ["purple", "pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 6,
     personalColor: "Cool",
@@ -631,7 +1047,15 @@ export const dummyproducts = [
     productId: 53,
     name: "쿨 상품",
     price: 25000,
-    color: ["skyblue", "navy"],
+    // color: ["skyblue", "navy"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 25,
     personalColor: "Cool",
@@ -643,7 +1067,15 @@ export const dummyproducts = [
     productId: 54,
     name: "쿨 상품",
     price: 25000,
-    color: ["pink", "skyblue"],
+    // color: ["pink", "skyblue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 5,
     personalColor: "Cool",
@@ -655,7 +1087,15 @@ export const dummyproducts = [
     productId: 55,
     name: "쿨 상품",
     price: 38000,
-    color: ["skyblue", "red"],
+    // color: ["skyblue", "red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 66,
     personalColor: "Cool",
@@ -667,7 +1107,15 @@ export const dummyproducts = [
     productId: 56,
     name: "쿨 상품",
     price: 35000,
-    color: ["pink", "red"],
+    // color: ["pink", "red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 74,
     personalColor: "Cool",
@@ -679,7 +1127,15 @@ export const dummyproducts = [
     productId: 57,
     name: "쿨 상품",
     price: 42000,
-    color: ["skyblue", "navy", "green"],
+    // color: ["skyblue", "navy", "green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 56,
     personalColor: "Cool",
@@ -691,7 +1147,15 @@ export const dummyproducts = [
     productId: 58,
     name: "쿨 상품",
     price: 18000,
-    color: ["navy", "red"],
+    // color: ["navy", "red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 58,
     personalColor: "Cool",
@@ -703,7 +1167,15 @@ export const dummyproducts = [
     productId: 59,
     name: "쿨 상품",
     price: 18000,
-    color: ["green"],
+    // color: ["green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 73,
     personalColor: "Cool",
@@ -715,7 +1187,15 @@ export const dummyproducts = [
     productId: 60,
     name: "쿨 상품",
     price: 32000,
-    color: ["green", "purple"],
+    // color: ["green", "purple"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 44,
     personalColor: "Cool",
@@ -727,7 +1207,15 @@ export const dummyproducts = [
     productId: 61,
     name: "웜 상품",
     price: 38000,
-    color: ["orange", "brown"],
+    // color: ["orange", "brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 56,
     personalColor: "Warm",
@@ -739,7 +1227,15 @@ export const dummyproducts = [
     productId: 62,
     name: "웜 상품",
     price: 38000,
-    color: ["pink", "brown"],
+    // color: ["pink", "brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 36,
     personalColor: "Warm",
@@ -751,7 +1247,15 @@ export const dummyproducts = [
     productId: 63,
     name: "웜 상품",
     price: 28000,
-    color: ["blue"],
+    // color: ["blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 17,
     personalColor: "Warm",
@@ -763,7 +1267,15 @@ export const dummyproducts = [
     productId: 64,
     name: "웜 상품",
     price: 32000,
-    color: ["brown", "red"],
+    // color: ["brown", "red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 16,
     personalColor: "Warm",
@@ -775,7 +1287,15 @@ export const dummyproducts = [
     productId: 65,
     name: "웜 상품",
     price: 25000,
-    color: ["blue"],
+    // color: ["blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 57,
     personalColor: "Warm",
@@ -787,7 +1307,15 @@ export const dummyproducts = [
     productId: 66,
     name: "웜 상품",
     price: 45000,
-    color: ["skyblue", "pink"],
+    // color: ["skyblue", "pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 95,
     personalColor: "Warm",
@@ -799,7 +1327,15 @@ export const dummyproducts = [
     productId: 67,
     name: "웜 상품",
     price: 45000,
-    color: ["green", "red"],
+    // color: ["green", "red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 44,
     personalColor: "Warm",
@@ -811,7 +1347,15 @@ export const dummyproducts = [
     productId: 68,
     name: "웜 상품",
     price: 15000,
-    color: ["green", "brown"],
+    // color: ["green", "brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 69,
     personalColor: "Warm",
@@ -823,7 +1367,15 @@ export const dummyproducts = [
     productId: 69,
     name: "웜 상품",
     price: 48000,
-    color: ["blue", "ivory", "yellow"],
+    // color: ["blue", "ivory", "yellow"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 42,
     personalColor: "Warm",
@@ -835,7 +1387,15 @@ export const dummyproducts = [
     productId: 70,
     name: "웜 상품",
     price: 45000,
-    color: ["green"],
+    // color: ["green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 48,
     personalColor: "Warm",
@@ -847,7 +1407,15 @@ export const dummyproducts = [
     productId: 71,
     name: "웜 상품",
     price: 35000,
-    color: ["yellow"],
+    // color: ["yellow"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 26,
     personalColor: "Warm",
@@ -859,7 +1427,15 @@ export const dummyproducts = [
     productId: 72,
     name: "웜 상품",
     price: 48000,
-    color: ["orange", "ivory", "brown"],
+    // color: ["orange", "ivory", "brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 66,
     personalColor: "Warm",
@@ -871,7 +1447,15 @@ export const dummyproducts = [
     productId: 73,
     name: "웜 상품",
     price: 22000,
-    color: ["blue"],
+    // color: ["blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 16,
     personalColor: "Warm",
@@ -883,7 +1467,15 @@ export const dummyproducts = [
     productId: 74,
     name: "웜 상품",
     price: 18000,
-    color: ["skyblue"],
+    // color: ["skyblue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 97,
     personalColor: "Warm",
@@ -895,7 +1487,15 @@ export const dummyproducts = [
     productId: 75,
     name: "웜 상품",
     price: 45000,
-    color: ["pink"],
+    // color: ["pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 45,
     personalColor: "Warm",
@@ -907,7 +1507,15 @@ export const dummyproducts = [
     productId: 76,
     name: "웜 상품",
     price: 38000,
-    color: ["ivory"],
+    // color: ["ivory"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 18,
     personalColor: "Warm",
@@ -919,7 +1527,15 @@ export const dummyproducts = [
     productId: 77,
     name: "웜 상품",
     price: 45000,
-    color: ["ivory", "blue"],
+    // color: ["ivory", "blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 43,
     personalColor: "Warm",
@@ -931,7 +1547,15 @@ export const dummyproducts = [
     productId: 78,
     name: "웜 상품",
     price: 38000,
-    color: ["red", "skyblue", "pink"],
+    // color: ["red", "skyblue", "pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 51,
     personalColor: "Warm",
@@ -943,7 +1567,15 @@ export const dummyproducts = [
     productId: 79,
     name: "웜 상품",
     price: 15000,
-    color: ["blue", "green", "orange"],
+    // color: ["blue", "green", "orange"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 75,
     personalColor: "Warm",
@@ -955,7 +1587,15 @@ export const dummyproducts = [
     productId: 80,
     name: "웜 상품",
     price: 22000,
-    color: ["yellow", "red", "ivory"],
+    // color: ["yellow", "red", "ivory"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 11,
     personalColor: "Warm",
@@ -967,7 +1607,15 @@ export const dummyproducts = [
     productId: 81,
     name: "웜 상품",
     price: 22000,
-    color: ["blue", "green"],
+    // color: ["blue", "green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 7,
     personalColor: "Warm",
@@ -979,7 +1627,15 @@ export const dummyproducts = [
     productId: 82,
     name: "웜 상품",
     price: 32000,
-    color: ["green"],
+    // color: ["green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 18,
     personalColor: "Warm",
@@ -991,7 +1647,15 @@ export const dummyproducts = [
     productId: 83,
     name: "웜 상품",
     price: 28000,
-    color: ["skyblue", "green"],
+    // color: ["skyblue", "green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 12,
     personalColor: "Warm",
@@ -1003,7 +1667,15 @@ export const dummyproducts = [
     productId: 84,
     name: "웜 상품",
     price: 35000,
-    color: ["red", "skyblue"],
+    // color: ["red", "skyblue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 15,
     personalColor: "Warm",
@@ -1015,7 +1687,15 @@ export const dummyproducts = [
     productId: 85,
     name: "웜 상품",
     price: 48000,
-    color: ["skyblue"],
+    // color: ["skyblue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 72,
     personalColor: "Warm",
@@ -1027,7 +1707,15 @@ export const dummyproducts = [
     productId: 86,
     name: "웜 상품",
     price: 32000,
-    color: ["ivory", "blue"],
+    // color: ["ivory", "blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 96,
     personalColor: "Warm",
@@ -1039,7 +1727,15 @@ export const dummyproducts = [
     productId: 87,
     name: "웜 상품",
     price: 32000,
-    color: ["brown", "orange", "red"],
+    // color: ["brown", "orange", "red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 78,
     personalColor: "Warm",
@@ -1051,7 +1747,15 @@ export const dummyproducts = [
     productId: 88,
     name: "웜 상품",
     price: 18000,
-    color: ["blue", "green", "yellow"],
+    // color: ["blue", "green", "yellow"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 71,
     personalColor: "Warm",
@@ -1063,7 +1767,15 @@ export const dummyproducts = [
     productId: 89,
     name: "웜 상품",
     price: 22000,
-    color: ["pink", "orange", "blue"],
+    // color: ["pink", "orange", "blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 44,
     personalColor: "Warm",
@@ -1075,7 +1787,15 @@ export const dummyproducts = [
     productId: 90,
     name: "웜 상품",
     price: 32000,
-    color: ["blue", "ivory"],
+    // color: ["blue", "ivory"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 15,
     personalColor: "Warm",
@@ -1087,7 +1807,15 @@ export const dummyproducts = [
     productId: 91,
     name: "웜 상품",
     price: 42000,
-    color: ["ivory"],
+    // color: ["ivory"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 69,
     personalColor: "Warm",
@@ -1099,7 +1827,15 @@ export const dummyproducts = [
     productId: 92,
     name: "웜 상품",
     price: 28000,
-    color: ["green", "yellow", "pink"],
+    // color: ["green", "yellow", "pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 21,
     personalColor: "Warm",
@@ -1111,7 +1847,15 @@ export const dummyproducts = [
     productId: 93,
     name: "웜 상품",
     price: 28000,
-    color: ["red", "brown"],
+    // color: ["red", "brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 68,
     personalColor: "Warm",
@@ -1123,7 +1867,15 @@ export const dummyproducts = [
     productId: 94,
     name: "웜 상품",
     price: 35000,
-    color: ["yellow", "brown", "pink"],
+    // color: ["yellow", "brown", "pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 58,
     personalColor: "Warm",
@@ -1135,7 +1887,15 @@ export const dummyproducts = [
     productId: 95,
     name: "웜 상품",
     price: 15000,
-    color: ["orange", "green", "brown"],
+    // color: ["orange", "green", "brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 33,
     personalColor: "Warm",
@@ -1147,7 +1907,15 @@ export const dummyproducts = [
     productId: 96,
     name: "웜 상품",
     price: 45000,
-    color: ["green", "yellow"],
+    // color: ["green", "yellow"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 87,
     personalColor: "Warm",
@@ -1159,7 +1927,15 @@ export const dummyproducts = [
     productId: 97,
     name: "웜 상품",
     price: 28000,
-    color: ["pink", "green"],
+    // color: ["pink", "green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 13,
     personalColor: "Warm",
@@ -1171,7 +1947,15 @@ export const dummyproducts = [
     productId: 98,
     name: "웜 상품",
     price: 35000,
-    color: ["pink"],
+    // color: ["pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 51,
     personalColor: "Warm",
@@ -1183,7 +1967,15 @@ export const dummyproducts = [
     productId: 99,
     name: "웜 상품",
     price: 18000,
-    color: ["skyblue", "blue", "green"],
+    // color: ["skyblue", "blue", "green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 18,
     personalColor: "Warm",
@@ -1195,7 +1987,15 @@ export const dummyproducts = [
     productId: 100,
     name: "웜 상품",
     price: 48000,
-    color: ["red", "orange"],
+    // color: ["red", "orange"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 50,
     personalColor: "Warm",
@@ -1207,7 +2007,15 @@ export const dummyproducts = [
     productId: 101,
     name: "웜 상품",
     price: 45000,
-    color: ["yellow", "pink"],
+    // color: ["yellow", "pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 56,
     personalColor: "Warm",
@@ -1219,7 +2027,15 @@ export const dummyproducts = [
     productId: 102,
     name: "웜 상품",
     price: 25000,
-    color: ["orange", "ivory", "red"],
+    // color: ["orange", "ivory", "red"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 1,
     personalColor: "Warm",
@@ -1231,7 +2047,15 @@ export const dummyproducts = [
     productId: 103,
     name: "웜 상품",
     price: 28000,
-    color: ["orange", "brown"],
+    // color: ["orange", "brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 5,
     personalColor: "Warm",
@@ -1243,7 +2067,15 @@ export const dummyproducts = [
     productId: 104,
     name: "웜 상품",
     price: 48000,
-    color: ["blue"],
+    // color: ["blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 72,
     personalColor: "Warm",
@@ -1255,7 +2087,15 @@ export const dummyproducts = [
     productId: 105,
     name: "웜 상품",
     price: 22000,
-    color: ["skyblue", "pink", "blue"],
+    // color: ["skyblue", "pink", "blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 32,
     personalColor: "Warm",
@@ -1267,7 +2107,15 @@ export const dummyproducts = [
     productId: 106,
     name: "웜 상품",
     price: 45000,
-    color: ["green"],
+    // color: ["green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 33,
     personalColor: "Warm",
@@ -1279,7 +2127,15 @@ export const dummyproducts = [
     productId: 107,
     name: "웜 상품",
     price: 35000,
-    color: ["skyblue", "green"],
+    // color: ["skyblue", "green"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 54,
     personalColor: "Warm",
@@ -1291,7 +2147,15 @@ export const dummyproducts = [
     productId: 108,
     name: "웜 상품",
     price: 28000,
-    color: ["brown", "skyblue", "orange"],
+    // color: ["brown", "skyblue", "orange"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 96,
     personalColor: "Warm",
@@ -1303,7 +2167,15 @@ export const dummyproducts = [
     productId: 109,
     name: "웜 상품",
     price: 32000,
-    color: ["ivory", "brown"],
+    // color: ["ivory", "brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 94,
     personalColor: "Warm",
@@ -1315,7 +2187,15 @@ export const dummyproducts = [
     productId: 110,
     name: "웜 상품",
     price: 48000,
-    color: ["red", "brown"],
+    // color: ["red", "brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 54,
     personalColor: "Warm",
@@ -1327,7 +2207,15 @@ export const dummyproducts = [
     productId: 111,
     name: "웜 상품",
     price: 38000,
-    color: ["yellow"],
+    // color: ["yellow"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 12,
     personalColor: "Warm",
@@ -1339,7 +2227,15 @@ export const dummyproducts = [
     productId: 112,
     name: "웜 상품",
     price: 35000,
-    color: ["pink", "brown"],
+    // color: ["pink", "brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: "0",
     personalColor: "Warm",
@@ -1351,7 +2247,15 @@ export const dummyproducts = [
     productId: 113,
     name: "웜 상품",
     price: 32000,
-    color: ["skyblue"],
+    // color: ["skyblue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 3,
     personalColor: "Warm",
@@ -1363,7 +2267,15 @@ export const dummyproducts = [
     productId: 114,
     name: "웜 상품",
     price: 22000,
-    color: ["red", "brown", "blue"],
+    // color: ["red", "brown", "blue"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 79,
     personalColor: "Warm",
@@ -1375,7 +2287,15 @@ export const dummyproducts = [
     productId: 115,
     name: "웜 상품",
     price: 45000,
-    color: ["ivory", "pink", "brown"],
+    // color: ["ivory", "pink", "brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 51,
     personalColor: "Warm",
@@ -1387,7 +2307,15 @@ export const dummyproducts = [
     productId: 116,
     name: "웜 상품",
     price: 15000,
-    color: ["skyblue", "orange", "pink"],
+    // color: ["skyblue", "orange", "pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 34,
     personalColor: "Warm",
@@ -1399,7 +2327,15 @@ export const dummyproducts = [
     productId: 117,
     name: "웜 상품",
     price: 15000,
-    color: ["brown", "yellow"],
+    // color: ["brown", "yellow"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 17,
     personalColor: "Warm",
@@ -1411,7 +2347,15 @@ export const dummyproducts = [
     productId: 118,
     name: "웜 상품",
     price: 18000,
-    color: ["red", "orange"],
+    // color: ["red", "orange"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 60,
     personalColor: "Warm",
@@ -1423,7 +2367,15 @@ export const dummyproducts = [
     productId: 119,
     name: "웜 상품",
     price: 18000,
-    color: ["pink"],
+    // color: ["pink"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 20,
     personalColor: "Warm",
@@ -1435,7 +2387,15 @@ export const dummyproducts = [
     productId: 120,
     name: "웜 상품",
     price: 45000,
-    color: ["brown"],
+    // color: ["brown"],
+    colors: [
+      {
+        name: "Red",
+      },
+      {
+        name: "Blue",
+      },
+    ],
     content: "의류 상세 설명",
     count: 10,
     personalColor: "Warm",
