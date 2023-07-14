@@ -2,10 +2,15 @@ import { ButtonContainer } from "./styles/ButtonContainer.styled";
 import { Button } from "./styles/Button.styled";
 
 // 각 페이지마다 텍스트 달라질 경우, <Footer_oneBtn text="주문하기" />; 텍스트 넣기
-function Footer_oneBtn({ text }) {
+function Footer_oneBtn({ text, onClick }) {
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
   return (
     <ButtonContainer>
-      <Button>{text}</Button>
+      <Button onClick={handleClick}>{text}</Button>
     </ButtonContainer>
   );
 }
