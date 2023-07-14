@@ -81,7 +81,7 @@ public class Product extends Auditable {
 
     public enum PersonalColor {
         COOL_TONE("쿨톤"),
-        WORM_TONE("웜톤");
+        WARM_TONE("웜톤");
 
         @Getter
         private String description;
