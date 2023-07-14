@@ -46,7 +46,7 @@ public class Review extends Auditable {
 
     public enum ProductPersonalColorStatus{
         COOL,
-        WORM;
+        WARM;
     }
 
     public enum SizeStatus{
