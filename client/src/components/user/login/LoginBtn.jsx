@@ -17,21 +17,18 @@ export default function LoginBtn() {
     for (let i in logInData) {
       if (logInData[i].length === 0) {
         setValidation("미입력한 부분이 없는지 확인해주세요.");
-        setShowModal(true);
-        return;
+        return setShowModal(true);
       }
     }
 
     if (logInData.email.match(emailRegEx) === null) {
       setValidation("형식에 맞춰 입력해주세요");
-      setShowModal(true);
-      return;
+      return setShowModal(true);
     }
 
     if (logInData.password.match(passworedRegEx) === null) {
       setValidation("형식에 맞춰 입력해주세요");
-      setShowModal(true);
-      return;
+      return setShowModal(true);
     }
 
     // 유효성 검사 통과 시, api 요청
