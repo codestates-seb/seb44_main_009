@@ -33,7 +33,7 @@ function ReviewUpdatePage() {
     };
     console.log("Review Data:", reviewData);
     axios
-      .post(`/review/create/1/1/1`, reviewData)
+      .post(`/review/create/1/2/1`, reviewData)
       .then(res => {
         console.log("성공", res.data);
       })

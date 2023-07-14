@@ -9,6 +9,7 @@ function CartProductList({ cart, isChecked, handleCheckboxChange }) {
           product={product}
           isChecked={isChecked}
           handleCheckboxChange={handleCheckboxChange}
+          cart={cart}
         />
       ))}
     </div>
