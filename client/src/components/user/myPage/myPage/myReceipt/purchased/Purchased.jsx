@@ -1,36 +1,53 @@
-// eslint-disable-next-line no-unused-vars
 import { createContext, useEffect, useState } from "react";
 import PurchasedImg from "./purchasedImg/PurchasedImg";
 import PurchasedName from "./purchasedName/PurchasedName";
 import PurchasedPrice from "./purchasedPrice/PurchasedPrice";
 import PurchasedReviewBtn from "./purchasedReviewBtn/PurchasedReviewBtn";
 import { PurchasedContainer } from "./styles/PurchasedContainer";
-// eslint-disable-next-line no-unused-vars
-import { getUserBuyProdutList } from "../../../../../../api/userAPI";
+import {
+  getUserBuyList,
+  getUserBuyProdutList,
+} from "../../../../../../api/userAPI";
+import { PurchasedWraaper } from "./styles/PurchasedWraaper";
 
 // Context >> 생성
 export const PurchasedContext = createContext();
 
-export default function Purchased({ children }) {
-  // eslint-disable-next-line no-unused-vars
-  const [purchasedProducts, setPurchasedProducts] = useState();
+export default function Purchased() {
+  const [purchasedProductList, setPurchasedProductList] = useState(null);
+  const [purchasedProduct, setPurchasedProduct] = useState(null);
 
-  // :: useEffect(() => {
-  //   (async () => setPurchasedProducts(await getUserBuyProdutList()))();
-  // }, []);
+  console.log("purchasedProductList", purchasedProductList);
+  console.log("purchasedProduct", purchasedProduct);
+
+  useEffect(() => {
+    (async () => setPurchasedProductList(await getUserBuyList()))();
+  }, []);
+
+  useEffect(() => {
+    if (purchasedProductList !== null) {
+      const orderId =
+        purchasedProductList[purchasedProductList.length - 1].orderId;
+      (async () => setPurchasedProduct(await getUserBuyProdutList(orderId)))();
+    }
+  }, [purchasedProductList]);
 
   return (
     <>
-      {/* {purchasedProducts ? ( */}
-      <PurchasedContext.Provider value={{ purchasedProducts }}>
-        <PurchasedContainer>{children}</PurchasedContainer>
-      </PurchasedContext.Provider>
-      {/* ) : null} */}
+      {purchasedProduct ? (
+        <PurchasedContext.Provider value={{ purchasedProduct }}>
+          {purchasedProduct.cartProductList.map((product, index) => (
+            <PurchasedContainer key={index}>
+              <PurchasedImg />
+              <PurchasedWraaper>
+                <PurchasedName name={product.productName} />
+                <PurchasedPrice price={product.productPrice} />
+              </PurchasedWraaper>
+              <PurchasedReviewBtn />
+            </PurchasedContainer>
+          ))}
+        </PurchasedContext.Provider>
+      ) : null}
     </>
   );
 }
-
-Purchased.Img = PurchasedImg;
-Purchased.Name = PurchasedName;
-Purchased.Price = PurchasedPrice;
-Purchased.ReviewBtn = PurchasedReviewBtn;
