@@ -7,8 +7,7 @@ import axios from "axios";
 // axios.defaults.withCredentials = true;
 
 // :: 로그인 기능 구현 시, 수정
-const memberId = 3;
-const orderId = 1;
+const memberId = 1;
 
 // 회원가입 요청
 export const postSignUp = async data => {
@@ -45,7 +44,7 @@ export const getUserQuestionList = async () => {
 };
 
 // 유저 주문 상세 내역 불러오기
-export const getUserBuyProdutList = async () => {
+export const getUserBuyProdutList = async orderId => {
   const response = await axios.get(`order/${orderId}/${memberId}`);
-  return response.data;
+  return response.data.data;
 };
