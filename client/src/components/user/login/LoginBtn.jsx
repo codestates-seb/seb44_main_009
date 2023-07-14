@@ -12,6 +12,11 @@ export default function LoginBtn() {
   // Navigate
   const nav = useNavigate();
 
+  const checkedForm = () => {
+    setValidation("형식에 맞춰 입력해주세요");
+    setShowModal(true);
+  };
+
   // handleEvent >> 유효성 검사 및 showModal(state) 변경
   const handleOpenModal = () => {
     for (let i in logInData) {
@@ -22,13 +27,11 @@ export default function LoginBtn() {
     }
 
     if (logInData.email.match(emailRegEx) === null) {
-      setValidation("형식에 맞춰 입력해주세요");
-      return setShowModal(true);
+      return checkedForm();
     }
 
     if (logInData.password.match(passworedRegEx) === null) {
-      setValidation("형식에 맞춰 입력해주세요");
-      return setShowModal(true);
+      return checkedForm();
     }
 
     // 유효성 검사 통과 시, api 요청
