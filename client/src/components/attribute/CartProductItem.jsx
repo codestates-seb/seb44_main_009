@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Accessary } from "../../image/index";
@@ -17,24 +17,24 @@ import { OptionContainer } from "./styles/OptionContainer.styled";
 import { Button } from "./styles/Button.styled";
 import { CheckboxWrapper } from "./styles/CheckboxWrapper.styled";
 
-function CartProductItem({ cart, isChecked, handleCheckboxChange, product }) {
+function CartProductItem({ isChecked, handleCheckboxChange, product }) {
   const [quantity, setQuantity] = useState(1);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [products, setProducts] = useState(cart.cartProductList);
+  // const [products, setProducts] = useState(cart.cartProductList);
 
-  const handleRemove = () => {
-    axios
-      .delete(`/carts/${cart.id}/items/${product.productId}`)
-      .then(res => {
-        const updatedProducts = products.filter(
-          item => item.productId !== product.productId,
-        );
-        setProducts(updatedProducts);
-      })
-      .catch(error => {
-        console.error("error");
-      });
-  };
+  // const handleRemove = () => {
+  //   axios
+  //     .delete(`/carts/${cart.id}/items/${product.productId}`)
+  //     .then(res => {
+  //       const updatedProducts = products.filter(
+  //         item => item.productId !== product.productId,
+  //       );
+  //       setProducts(updatedProducts);
+  //     })
+  //     .catch(error => {
+  //       console.error("error");
+  //     });
+  // };
 
   const handleQuantityChange = e => {
     setQuantity(e.target.value);
@@ -66,7 +66,7 @@ function CartProductItem({ cart, isChecked, handleCheckboxChange, product }) {
               <p>{product?.price}</p>
             </div>
           </ProductView>
-          <RemoveButton onClick={handleRemove}>
+          <RemoveButton>
             <FontAwesomeIcon icon={faXmark} />
           </RemoveButton>
         </ProductDetail>
