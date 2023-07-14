@@ -34,6 +34,8 @@ public class CategoryService {
 
         Optional.of(category.getName())
                 .ifPresent(findCategory::setName);
+        Optional.of(category.getSlug())
+                .ifPresent(findCategory::setSlug);
 
         return categoryRepository.save(findCategory);
     }
