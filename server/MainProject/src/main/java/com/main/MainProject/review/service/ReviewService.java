@@ -43,16 +43,17 @@ public class ReviewService {
         orderService.isOrderByMember(findOrder, findMember);
         OrderProduct findOrderProduct = orderService.findOrderProduct(findOrder, findProduct);
 
-        //현재 리뷰 작성 가능인지 확인
-        if(findOrderProduct.getReviewstatus() != OrderProduct.Reviewstatus.POSSIBLE_REVIEW){
-            new BusinessLogicException(ExceptionCode.CAN_NOT_WRITE_REVIEW);
+
+        if (findOrderProduct.getReviewstatus() == OrderProduct.Reviewstatus.POSSIBLE_REVIEW) {
+            review.setMember(findMember);
+            review.setProduct(findProduct);
+            findOrderProduct.setReviewstatus(OrderProduct.Reviewstatus.REVIEW_WIITE);
+            reviewRepository.save(review);
+        }else {
+            throw new BusinessLogicException(ExceptionCode.CAN_NOT_WRITE_REVIEW);
         }
 
-        review.setMember(findMember);
-        review.setProduct(findProduct);
-        findOrderProduct.setReviewstatus(OrderProduct.Reviewstatus.REVIEW_WIITE);
-
-        return reviewRepository.save(review);
+        return review;
     }
 
     //리뷰 수정

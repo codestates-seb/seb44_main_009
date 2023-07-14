@@ -73,7 +73,7 @@ public class ProductService {
         Optional<Product> optionalProduct = productRepository.findByName(name);
 
         if (optionalProduct.isPresent()) {
-            new BusinessLogicException(ExceptionCode.PRODUCT_EXISTS);
+            throw new BusinessLogicException(ExceptionCode.PRODUCT_EXISTS);
         }
     }
 
