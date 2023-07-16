@@ -1,6 +1,6 @@
 package com.main.MainProject.auth.userdetails;
 
-import com.codestates.auth.utils.CustomAuthorityUtils;
+import com.main.MainProject.auth.utils.CustomAuthorityUtils;
 import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.member.entity.Member;

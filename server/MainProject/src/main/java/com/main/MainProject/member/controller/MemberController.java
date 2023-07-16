@@ -1,6 +1,7 @@
 package com.main.MainProject.member.controller;
 
 
+import com.main.MainProject.auth.dto.LoginDto;
 import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.member.dto.MemberPatchDto;
 import com.main.MainProject.member.dto.MemberSignUpDto;
@@ -12,6 +13,8 @@ import com.main.MainProject.util.UriCreator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,28 +29,30 @@ import java.util.List;
 @Slf4j
 public class MemberController {
     private final static String MEMBER_DEFAULT_URL = "/members";
+    private final MemberService memberService;
+    private final MemberMapper mapper;
 
     public MemberController(MemberService memberService, MemberMapper mapper) {
         this.memberService = memberService;
         this.mapper = mapper;
     }
 
-    private MemberService memberService;
-    private MemberMapper mapper;
 
     @PostMapping("/signup")
     public ResponseEntity signupMember(@Valid @RequestBody MemberSignUpDto memberSignUpDto){
-        Member member = memberService
-                .createMember(mapper.memberSignUpToMember(memberSignUpDto));
+        Member member = memberService.createMember(mapper.memberSignUpToMember(memberSignUpDto));
 
-        URI location = UriCreator.createUri(MEMBER_DEFAULT_URL, member.getMemberId());
-
-        return ResponseEntity.created(location).build();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/login")
-    public String loginForm(){
-        return "Login";
+    @PostMapping() //securityConfiguration 통해 경로 변경 >  /auth/login
+    public ResponseEntity loginForm(@Valid @RequestBody LoginDto loginDto)
+    {
+        Member member = mapper.loginDtoToMember(loginDto);
+
+        Member createMember = memberService.createMember(member);
+        URI location = UriCreator.createUri(MEMBER_DEFAULT_URL, createMember.getMemberId());
+        return ResponseEntity.created(location).build();
     }
 
     @PostMapping("/logout")
@@ -56,11 +61,14 @@ public class MemberController {
     }
 
     @PatchMapping("/{member-id}")
-    public ResponseEntity patchMember(@PathVariable("member-id") @Positive long memberId,
+    public ResponseEntity patchMember(@RequestHeader(value = "Authorization") String token,
                                     @Valid @RequestBody MemberPatchDto memberPatchDto){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         Member member = memberService.updateMember(
                 mapper.memberPatchDtoToMember(memberPatchDto),
-                memberId);
+                auth.getPrincipal().toString());
+
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.memberToMemberResponseDto(member)), HttpStatus.ACCEPTED);
     }

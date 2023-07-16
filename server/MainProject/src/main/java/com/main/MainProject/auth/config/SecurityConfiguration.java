@@ -1,13 +1,14 @@
-package com.main.MainProject.config;
+package com.main.MainProject.auth.config;
 
-import com.codestates.auth.jwt.JwtTokenizer;
-import com.codestates.auth.utils.CustomAuthorityUtils;
 import com.main.MainProject.auth.filter.JwtAuthenticationFilter;
 import com.main.MainProject.auth.filter.JwtVerificationFilter;
 import com.main.MainProject.auth.handler.MemberAccessDeniedHandler;
 import com.main.MainProject.auth.handler.MemberAuthenticationEntryPoint;
 import com.main.MainProject.auth.handler.MemberAuthenticationFailureHandler;
 import com.main.MainProject.auth.handler.MemberAuthenticationSuccessHandler;
+import com.main.MainProject.auth.jwt.JwtTokenizer;
+import com.main.MainProject.auth.utils.CustomAuthorityUtils;
+import com.main.MainProject.member.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,6 +17,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,9 +29,6 @@ import java.util.Arrays;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-/**
- * authenticationEntryPoint와 accessDeniedHandler 추가
- */
 @Configuration
 @EnableWebSecurity(debug = true)
 public class SecurityConfiguration {
@@ -43,41 +42,39 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .headers().frameOptions().sameOrigin()
-            .and()
-            .csrf().disable()
-            .cors(withDefaults())
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .formLogin().disable()
-            .httpBasic().disable()
-            .exceptionHandling()
-            .authenticationEntryPoint(new MemberAuthenticationEntryPoint())  // 추가
-            .accessDeniedHandler(new MemberAccessDeniedHandler())            // 추가
-            .and()
-            .apply(new CustomFilterConfigurer())
-            .and()
-            .authorizeHttpRequests(authorize -> authorize
-                    .antMatchers(HttpMethod.POST, "/*/members").permitAll()
-                    .antMatchers(HttpMethod.PATCH, "/*/members/**").hasRole("USER")
-                    .antMatchers(HttpMethod.GET, "/*/members").hasRole("ADMIN")
-//                    .mvcMatchers(HttpMethod.GET, "/*/members").hasRole("ADMIN")
-                    .antMatchers(HttpMethod.GET, "/*/members/**").hasAnyRole("USER", "ADMIN")
-                    .antMatchers(HttpMethod.DELETE, "/*/members/**").hasRole("USER")
-                    .antMatchers(HttpMethod.POST, "/*/coffees").hasRole("ADMIN")
-                    .antMatchers(HttpMethod.PATCH, "/*/coffees/**").hasRole("ADMIN")
-                    .antMatchers(HttpMethod.GET, "/*/coffees/**").hasAnyRole("USER", "ADMIN")
-                    .antMatchers(HttpMethod.GET, "/*/coffees").permitAll()
-                    .antMatchers(HttpMethod.DELETE, "/*/coffees").hasRole("ADMIN")
-                    .antMatchers(HttpMethod.POST, "/*/orders").hasRole("USER")
-                    .antMatchers(HttpMethod.PATCH, "/*/orders").hasAnyRole("USER", "ADMIN")
-                    .antMatchers(HttpMethod.GET, "/*/orders/**").hasAnyRole("USER", "ADMIN")
-                    .antMatchers(HttpMethod.DELETE, "/*/orders").hasRole("USER")
-                    .anyRequest().permitAll()
-            );
-        return http.build();
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity, MemberService memberService) throws Exception {
+        httpSecurity
+                .headers().frameOptions().sameOrigin()
+                .and()
+                .csrf().disable()
+                .cors(withDefaults())
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .formLogin().disable()
+                .httpBasic().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new MemberAuthenticationEntryPoint())
+                .accessDeniedHandler(new MemberAccessDeniedHandler())
+                .and()
+                .apply(new CustomFilterConfigurer())
+                .and()
+                .authorizeHttpRequests(authorize -> authorize
+                        .antMatchers(HttpMethod.POST, "/member/signup").permitAll()
+                        .antMatchers(HttpMethod.PATCH, "/member/update").hasRole("USER")
+//                        .antMatchers(HttpMethod.GET, "/member").hasRole("ADMIN")
+//                        .antMatchers(HttpMethod.GET, "/member/getmember").hasAnyRole("USER", "ADMIN")
+//                        .antMatchers(HttpMethod.DELETE, "/member/delete").hasAnyRole("USER", "ADMIN")
+//                        .antMatchers(HttpMethod.POST, "/question/create").hasRole("USER")
+//                        .antMatchers(HttpMethod.POST, "/question/**").hasRole("USER")
+//                        .antMatchers(HttpMethod.PATCH, "/question/update/**").hasRole("USER")
+//                        .antMatchers(HttpMethod.DELETE, "/question/delete/**").hasRole("USER")
+//                        .antMatchers(HttpMethod.POST, "/comment/create").hasAnyRole("USER","ADMIN")
+//                        .antMatchers(HttpMethod.PATCH,"/comment/update/**").hasRole("USER")
+//                        .antMatchers(HttpMethod.DELETE,"/comment/delete/**").hasRole("USER")
+//                        .antMatchers(HttpMethod.PATCH,"/comment/choose/**").hasRole("USER")
+                        .anyRequest().permitAll()
+                );
+        return httpSecurity.build();
     }
 
     @Bean
@@ -102,7 +99,7 @@ public class SecurityConfiguration {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
-            jwtAuthenticationFilter.setFilterProcessesUrl("/v11/auth/login");
+            jwtAuthenticationFilter.setFilterProcessesUrl("/auth/login");
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new MemberAuthenticationSuccessHandler());
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new MemberAuthenticationFailureHandler());
 
@@ -110,8 +107,8 @@ public class SecurityConfiguration {
 
 
             builder
-                .addFilter(jwtAuthenticationFilter)
-                .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);
+                    .addFilter(jwtAuthenticationFilter)
+                    .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);
         }
     }
 }
