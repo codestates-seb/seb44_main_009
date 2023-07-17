@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useRecoilValue } from "recoil";
+import { productsState } from "../../atoms/product";
 import logo from "../../image/logo.png";
 import LoginBtn from "./HeaderLoginBtn";
 import { HeaderContainer } from "./styles/HeaderContainer.styled";
@@ -12,8 +15,36 @@ import {
   faMagnifyingGlass,
   faBasketShopping,
 } from "@fortawesome/free-solid-svg-icons";
+import { styled } from "styled-components";
+
+const CartBadge = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 90px;
+  background-color: #ff5160;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 function Header() {
+  const products = useRecoilValue(productsState);
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+
+  useEffect(() => {
+    const count = products.reduce(
+      (total, product) => total + product.quantity,
+      0,
+    );
+    setCartItemsCount(count);
+  }, [products]);
+
   return (
     <HeaderContainer>
       <Link to="/">
@@ -30,6 +61,7 @@ function Header() {
           <IconStyle>
             <FontAwesomeIcon icon={faBasketShopping} />
           </IconStyle>
+          {cartItemsCount > 0 && <CartBadge>{cartItemsCount}</CartBadge>}
         </Link>
         <LoginBtn />
       </ButtonContainer>
