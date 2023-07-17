@@ -22,8 +22,6 @@ export default function MyList({ children }) {
   // State >> API로 불러온 회원 질문 내역
   const [userQuestionList, setUserQuestionList] = useState({});
 
-  // console.log("userBuyList", userBuyList);
-
   // Effet >> API 요청으로 회원 내역 불러오기
   useEffect(() => {
     (async () => {

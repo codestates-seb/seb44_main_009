@@ -17,9 +17,6 @@ export default function Purchased() {
   const [purchasedProductList, setPurchasedProductList] = useState(null);
   const [purchasedProduct, setPurchasedProduct] = useState(null);
 
-  console.log("purchasedProductList", purchasedProductList);
-  console.log("purchasedProduct", purchasedProduct);
-
   useEffect(() => {
     (async () => setPurchasedProductList(await getUserBuyList()))();
   }, []);
