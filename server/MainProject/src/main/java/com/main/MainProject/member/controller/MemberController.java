@@ -1,6 +1,7 @@
 package com.main.MainProject.member.controller;
 
 
+import com.main.MainProject.auth.JwtInterceptor;
 import com.main.MainProject.auth.dto.LoginDto;
 import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.member.dto.MemberPatchDto;
@@ -60,14 +61,13 @@ public class MemberController {
         return null;
     }
 
-    @PatchMapping("/{member-id}")
-    public ResponseEntity patchMember(@RequestHeader(value = "Authorization") String token,
-                                    @Valid @RequestBody MemberPatchDto memberPatchDto){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    @PatchMapping()
+    public ResponseEntity patchMember(@Valid @RequestBody MemberPatchDto memberPatchDto){
+        long memberId = JwtInterceptor.getAuthenicatedMemberId();
 
+//        long memberId = 1;
         Member member = memberService.updateMember(
-                mapper.memberPatchDtoToMember(memberPatchDto),
-                auth.getPrincipal().toString());
+                mapper.memberPatchDtoToMember(memberPatchDto),memberId);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.memberToMemberResponseDto(member)), HttpStatus.ACCEPTED);

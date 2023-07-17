@@ -85,8 +85,8 @@ public class MemberService {
                 .orElseThrow(() -> new LogicalException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 
-    public Member updateMember(Member member, String userName) {
-        Member findMember = findVerifiedByEmail(userName);
+    public Member updateMember(Member member, long memberId) {
+        Member findMember = findVerifiedMember(memberId);
 
         Optional.ofNullable(member.getKorName())
                         .ifPresent(korName -> findMember.setKorName(korName));

@@ -18,8 +18,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -42,8 +46,8 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity, MemberService memberService) throws Exception {
-        httpSecurity
+    public SecurityFilterChain filterChain(HttpSecurity http, MemberService memberService) throws Exception {
+        http
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .csrf().disable()
@@ -59,22 +63,13 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers(HttpMethod.POST, "/member/signup").permitAll()
-                        .antMatchers(HttpMethod.PATCH, "/member/update").hasRole("USER")
-//                        .antMatchers(HttpMethod.GET, "/member").hasRole("ADMIN")
-//                        .antMatchers(HttpMethod.GET, "/member/getmember").hasAnyRole("USER", "ADMIN")
-//                        .antMatchers(HttpMethod.DELETE, "/member/delete").hasAnyRole("USER", "ADMIN")
-//                        .antMatchers(HttpMethod.POST, "/question/create").hasRole("USER")
-//                        .antMatchers(HttpMethod.POST, "/question/**").hasRole("USER")
-//                        .antMatchers(HttpMethod.PATCH, "/question/update/**").hasRole("USER")
-//                        .antMatchers(HttpMethod.DELETE, "/question/delete/**").hasRole("USER")
-//                        .antMatchers(HttpMethod.POST, "/comment/create").hasAnyRole("USER","ADMIN")
-//                        .antMatchers(HttpMethod.PATCH,"/comment/update/**").hasRole("USER")
-//                        .antMatchers(HttpMethod.DELETE,"/comment/delete/**").hasRole("USER")
-//                        .antMatchers(HttpMethod.PATCH,"/comment/choose/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/members/signup").permitAll()
+                        .antMatchers(HttpMethod.PATCH, "/members").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/members/**").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/members/**").hasRole("USER")
                         .anyRequest().permitAll()
                 );
-        return httpSecurity.build();
+        return http.build();
     }
 
     @Bean
