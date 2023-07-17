@@ -1,7 +1,6 @@
-package com.main.MainProject.auth;
+package com.main.MainProject.auth.interceptor;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -17,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor)
-                .addPathPatterns("/members");// 경로에 대해 인터셉터 적용
+                .addPathPatterns("/**");// 경로에 대해 인터셉터 적용
 //                .excludePathPatterns("/public/**"); // 인터셉터 제외할 경로 지정 (예: public 리소스)
     }
 

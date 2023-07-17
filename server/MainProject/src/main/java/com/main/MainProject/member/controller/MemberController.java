@@ -1,7 +1,7 @@
 package com.main.MainProject.member.controller;
 
 
-import com.main.MainProject.auth.JwtInterceptor;
+import com.main.MainProject.auth.interceptor.JwtInterceptor;
 import com.main.MainProject.auth.dto.LoginDto;
 import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.member.dto.MemberPatchDto;
@@ -14,8 +14,6 @@ import com.main.MainProject.util.UriCreator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,9 +61,8 @@ public class MemberController {
 
     @PatchMapping()
     public ResponseEntity patchMember(@Valid @RequestBody MemberPatchDto memberPatchDto){
-        long memberId = JwtInterceptor.getAuthenicatedMemberId();
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
 
-//        long memberId = 1;
         Member member = memberService.updateMember(
                 mapper.memberPatchDtoToMember(memberPatchDto),memberId);
 
@@ -73,15 +70,17 @@ public class MemberController {
                 new SingleResponseDto<>(mapper.memberToMemberResponseDto(member)), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/{member-id}")
-    public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId){
+    @GetMapping()
+    public ResponseEntity getMember(){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         Member member = memberService.findVerifiedMember(memberId);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.memberToMemberResponseDto(member))
                 , HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/memberList")
     public ResponseEntity getMembers(){
         List<Member> members = memberService.findMembers();
         return new ResponseEntity<>(
