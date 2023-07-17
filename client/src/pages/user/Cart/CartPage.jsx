@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { fetchCart } from "../../../api/orderAPIs";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
-import CartSelector from "../../../components/attribute/CartSelector";
-import CartProductItem from "../../../components/attribute/CartProductItem";
+import CartProductList from "../../../components/attribute/CartProductList";
 import CartPaymentSection from "../../../components/attribute/CartPaymentSection";
 import { BackContainer } from "./styles/BackContainer.styled";
 import { StickyStyle } from "./styles/StickyStyle.styled";
@@ -25,22 +24,21 @@ import {
 
 function CartPage() {
   const [isChecked, setIsChecked] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   const [cart, setCart] = useState({ cartProductList: [] });
-  // 장바구니 전체 조회
-  const fetchCart = async () => {
-    try {
-      const response = await axios.get("/carts/1");
-      const data = response.data;
-      console.log(data);
-      setCart(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
+  // 장바구니 전체 조회
   useEffect(() => {
-    fetchCart();
+    const fetchData = async () => {
+      try {
+        const data = await fetchCart();
+        setCart(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   // 장바구니 추가
@@ -62,9 +60,9 @@ function CartPage() {
     setIsChecked(e.target.checked);
   };
 
-  const handleCartToggle = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+  // const handleCartToggle = () => {
+  //   setIsModalOpen(!isModalOpen);
+  // };
 
   return (
     <BackContainer>
@@ -82,21 +80,14 @@ function CartPage() {
         </EmptyCartContainer>
       ) : (
         <CartBackContainer>
-          <CartSelector
-            isChecked={isChecked}
-            handleCheckboxChange={handleCheckboxChange}
-          />
           <CartWrapper>
             <Title>장바구니</Title>
             <ProductContainer>
               <SideTitle>배송상품</SideTitle>
-              <CartProductItem
+              <CartProductList
+                cart={cart}
                 isChecked={isChecked}
                 handleCheckboxChange={handleCheckboxChange}
-                isModalOpen={isModalOpen}
-                setIsModalOpen={setIsModalOpen}
-                handleCartToggle={handleCartToggle}
-                cart={cart}
               />
             </ProductContainer>
           </CartWrapper>

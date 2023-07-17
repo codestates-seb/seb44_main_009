@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import CartItemsAdd from "../attribute/CartItemsAdd";
 import logo from "../../image/logo.png";
 import LoginBtn from "./HeaderLoginBtn";
 import { HeaderContainer } from "./styles/HeaderContainer.styled";
@@ -12,8 +13,11 @@ import {
   faMagnifyingGlass,
   faBasketShopping,
 } from "@fortawesome/free-solid-svg-icons";
+import { CartBadge } from "./styles/CartBadge.styled";
 
 function Header() {
+  const cartItemsCount = CartItemsAdd();
+
   return (
     <HeaderContainer>
       <Link to="/">
@@ -30,6 +34,7 @@ function Header() {
           <IconStyle>
             <FontAwesomeIcon icon={faBasketShopping} />
           </IconStyle>
+          {cartItemsCount > 0 && <CartBadge>{cartItemsCount}</CartBadge>}
         </Link>
         <LoginBtn />
       </ButtonContainer>
