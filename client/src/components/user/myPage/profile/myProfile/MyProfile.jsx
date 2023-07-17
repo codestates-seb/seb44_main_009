@@ -10,7 +10,7 @@ import { getUser } from "../../../../../api/userAPI";
 // Context >> 생성
 export const MyProfileContext = createContext();
 
-export default function MyProfile({ children }) {
+export default function MyProfileProvider({ children }) {
   // State >> API로 불러온 회원 정보
   const [userData, setUserData] = useState();
 
@@ -32,8 +32,10 @@ export default function MyProfile({ children }) {
   );
 }
 
-MyProfile.MyName = MyName;
-MyProfile.MyNickName = MyNickName;
-MyProfile.MyEmail = MyEmail;
-MyProfile.MyPhoneNumber = MyPhoneNumber;
-MyProfile.MyAddress = MyAddress;
+export const MyProfile = Object.assign(MyProfileProvider, {
+  MyName: MyName,
+  MyNickName: MyNickName,
+  MyEmail: MyEmail,
+  MyPhoneNumber: MyPhoneNumber,
+  MyAddress: MyAddress,
+});
