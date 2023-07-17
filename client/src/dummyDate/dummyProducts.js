@@ -796,7 +796,7 @@ export const dummyproducts = [
         name: "Blue",
       },
     ],
-    content: "의류 상세 설명",
+    content: "의류 상세 설명입니다. ",
     count: 42,
     personalColor: "Cool",
     categoryName: "dress",

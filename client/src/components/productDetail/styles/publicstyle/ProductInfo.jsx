@@ -16,10 +16,17 @@ export const ProductNameContainer = styled.div`
   padding: 24px;
 `;
 
+export const ProductDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 export const ProductName = styled.div`
   font-size: ${fontSize24};
   font-weight: 400;
   margin-bottom: 24px;
+`;
+export const ProductCount = styled.div`
+  font-size: 18px;
 `;
 
 export const ProductPrice = styled.div`
