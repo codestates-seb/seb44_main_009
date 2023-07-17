@@ -9,7 +9,7 @@ import SignUpSuccessModal from "./SignUpSuccessModal";
 // Context >> 생성
 export const SingUpContext = createContext();
 
-export default function SignUp({ children }) {
+export default function SignUpProvider({ children }) {
   // http >>  body 부분
   const [signUpData, setSignUpData] = useState({
     korName: "",
@@ -67,6 +67,8 @@ export default function SignUp({ children }) {
   );
 }
 
-SignUp.LoginInfo = LoginInfo;
-SignUp.UserInfo = UserInfo;
-SignUp.SignUpBtn = SignUpButton;
+export const SignUp = Object.assign(SignUpProvider, {
+  LoginInfo: LoginInfo,
+  UserInfo: UserInfo,
+  SignUpBtn: SignUpButton,
+});

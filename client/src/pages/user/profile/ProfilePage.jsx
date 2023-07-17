@@ -1,7 +1,7 @@
 import Header from "../../../components/header/Header";
 import Footer from "../../../components/footer/Footer";
 import { ProfilePageContainer } from "./styles/ProfilePageContainer.styled";
-import { ProfilePageWapper } from "./styles/ProfilePageWapper.styled copy";
+import { ProfilePageWapper } from "./styles/ProfilePageWapper.styled";
 import { ProfilePageTitle } from "./styles/ProfilePageTitle.styled";
 import MyPersonalColor from "../../../components/user/myPage/profile/myPersonalColor/MyPersonalColor";
 import MyPersonalColorInfo from "../../../components/user/myPage/profile/myPersonalColor/myPersonalColorInfo/MyPersonalColorInfo";
