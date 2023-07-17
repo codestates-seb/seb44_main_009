@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// 추후 useParams로 파라미터 설정
 const cartId = 1;
 
 // 장바구니 전체 조회

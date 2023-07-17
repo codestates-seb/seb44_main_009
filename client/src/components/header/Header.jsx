@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useRecoilValue } from "recoil";
-import { productsState } from "../../atoms/product";
+import CartItemsAdd from "../attribute/CartItemsAdd";
 import logo from "../../image/logo.png";
 import LoginBtn from "./HeaderLoginBtn";
 import { HeaderContainer } from "./styles/HeaderContainer.styled";
@@ -18,16 +16,7 @@ import {
 import { CartBadge } from "./styles/CartBadge.styled";
 
 function Header() {
-  const products = useRecoilValue(productsState);
-  const [cartItemsCount, setCartItemsCount] = useState(0);
-
-  useEffect(() => {
-    const count = products.reduce(
-      (total, product) => total + product.quantity,
-      0,
-    );
-    setCartItemsCount(count);
-  }, [products]);
+  const cartItemsCount = CartItemsAdd();
 
   return (
     <HeaderContainer>

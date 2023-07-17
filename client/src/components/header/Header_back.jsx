@@ -12,9 +12,13 @@ import {
   faAngleLeft,
   faBasketShopping,
 } from "@fortawesome/free-solid-svg-icons";
+import { CartBadge } from "./styles/CartBadge.styled";
+import CartItemsAdd from "../attribute/CartItemsAdd";
 
 function Header_back() {
   const navigate = useNavigate();
+
+  const cartItemsCount = CartItemsAdd();
 
   const onClickBtn = () => {
     navigate(-1);
@@ -35,6 +39,7 @@ function Header_back() {
           <IconStyle>
             <FontAwesomeIcon icon={faBasketShopping} />
           </IconStyle>
+          {cartItemsCount > 0 && <CartBadge>{cartItemsCount}</CartBadge>}
         </Link>
         <LoginBtn />
       </ButtonContainer>
