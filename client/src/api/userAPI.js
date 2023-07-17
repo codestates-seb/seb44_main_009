@@ -48,3 +48,9 @@ export const getUserBuyProdutList = async orderId => {
   const response = await axios.get(`order/${orderId}/${memberId}`);
   return response.data.data;
 };
+
+// 유저 정보 수정하기
+export const patchUser = async data => {
+  const response = await axios.patch(`/members/${memberId}`, data);
+  return response;
+};
