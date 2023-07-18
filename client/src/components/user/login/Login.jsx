@@ -12,7 +12,7 @@ export default function Login({ children }) {
   // State >> HTTP body 부분
   const [logInData, setLogInData] = useState({ email: "", password: "" });
 
-  console.log("logInData", logInData);
+  "logInData", logInData;
 
   // State >> 모달 오픈 여부
   const [showModal, setShowModal] = useState(false);

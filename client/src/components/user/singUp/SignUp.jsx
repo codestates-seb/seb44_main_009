@@ -45,8 +45,6 @@ export default function SignUp({ children }) {
   const handleChange = e =>
     setSignUpData(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
-  // console.log("----- signUpData", signUpData);
-
   return (
     <SingUpContext.Provider
       value={{
