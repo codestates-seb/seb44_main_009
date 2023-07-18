@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import CartItemsAdd from "../attribute/CartItemsAdd";
 import logo from "../../image/logo.png";
 import LoginBtn from "./HeaderLoginBtn";
 import { HeaderContainer } from "./styles/HeaderContainer.styled";
@@ -15,9 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { CartBadge } from "./styles/CartBadge.styled";
 
-function Header() {
-  const cartItemsCount = CartItemsAdd();
-
+function Header({ cartItemsCount }) {
   return (
     <HeaderContainer>
       <Link to="/">

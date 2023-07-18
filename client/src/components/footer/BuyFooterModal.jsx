@@ -7,6 +7,10 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import { dummyproducts } from "../../dummyDate/dummyProducts";
 
+import axios from "axios";
+import { useRecoilState } from "recoil";
+import { productsState } from "../../atoms/product";
+
 import {
   DropText,
   DropOptionText,
@@ -33,6 +37,8 @@ export const BuyFooterModal = ({ closeModal }) => {
   const [dropColorOpen, setDropColorOpen] = useState(false);
   const [dropSizeOpen, setDropSizeOpen] = useState(false);
 
+  const [cartItems, setCartItems] = useRecoilState(productsState);
+
   const handleDropPersonalToggle = () => {
     setDropPersonalOpen(prevState => !prevState);
   };
@@ -42,6 +48,23 @@ export const BuyFooterModal = ({ closeModal }) => {
   const handleDropSizeToggle = () => {
     setDropSizeOpen(prevState => !prevState);
   };
+
+  const handleAddToCart = async () => {
+    const newCartItem = {
+      cartId: "1",
+      productId: "123",
+      quantity: "5",
+    };
+
+    try {
+      const response = await axios.post("cart/", newCartItem);
+      const updatedCartItems = [...cartItems, response.data];
+      setCartItems(updatedCartItems);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <ModalContainer>
       <ModalContent>
@@ -116,7 +139,7 @@ export const BuyFooterModal = ({ closeModal }) => {
 
         {/* 장바구니, 구매하기 버튼 */}
         <BuyContainer>
-          <CartButton>장바구니</CartButton>
+          <CartButton onClick={handleAddToCart}>장바구니</CartButton>
           <BuyButton>구매하기</BuyButton>
         </BuyContainer>
         <BottomMargin />
