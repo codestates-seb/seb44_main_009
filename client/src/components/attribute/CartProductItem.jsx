@@ -2,7 +2,6 @@ import { useState } from "react";
 // import axios from "axios";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Accessary } from "../../image/index";
 import CartOptionModal from "./CartOptionModal";
 import CartQuantityDropdown from "./CartQuantityDropdown";
 import { ProductWrapper } from "./styles/ProdcutWrapper.styled";
@@ -16,6 +15,7 @@ import { ProductInfo } from "./styles/ProductInfo.styled";
 import { OptionContainer } from "./styles/OptionContainer.styled";
 import { Button } from "./styles/Button.styled";
 import { CheckboxWrapper } from "./styles/CheckboxWrapper.styled";
+import { Prepare } from "../../image/index";
 
 function CartProductItem({
   isChecked,
@@ -64,7 +64,7 @@ function CartProductItem({
       </CheckboxWrapper>
       <ColumnStyle>
         <ProductDetail>
-          <ProductImage src={Accessary} alt="Product" />
+          <ProductImage src={Prepare} alt="Product" />
           <ProductView>
             <div>{product.productName}</div>
             <div>

@@ -8,6 +8,7 @@ import Logo from "./logo.png";
 import Warm from "./WarmTone.png";
 import Cool from "./CoolTone.png";
 import RightArrow from "./angle-right-solid 1.png";
+import Prepare from "./prepare.jpg";
 
 export {
   Coat,
@@ -20,4 +21,5 @@ export {
   Cool,
   Warm,
   RightArrow,
+  Prepare,
 };
