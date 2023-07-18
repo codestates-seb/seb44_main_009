@@ -20,7 +20,11 @@ function CartProductList({
             checked={isChecked}
             onChange={handleCheckboxChange}
           />
-          <p>{isChecked ? "전체선택(1/1)" : "전체선택(0/1)"}</p>
+          <p>
+            {isChecked
+              ? `전체선택 (${cart.cartProductList.length}/${cart.cartProductList.length})`
+              : `전체선택 (0/${cart.cartProductList.length})`}
+          </p>
         </CheckboxWrapper>
         <DeleteSection>선택삭제</DeleteSection>
       </CheckboxContainer>

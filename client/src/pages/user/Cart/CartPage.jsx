@@ -49,7 +49,7 @@ function CartPage() {
       const response = await axios.patch(
         `carts/1/items/${cartItemId}?quantity=${newQuantity}`,
       );
-      console.log("Item quantity updated:", response.data);
+      console.log(response.data);
 
       const updatedCartData = await fetchCart();
       setCart(updatedCartData);
@@ -81,10 +81,15 @@ function CartPage() {
   //   setIsModalOpen(!isModalOpen);
   // };
 
+  //장바구니 아이템 갯수
+  const cartItemsCount = cart.cartProductList.reduce(
+    (total, item) => total + item.quantity,
+    0,
+  );
   return (
     <BackContainer>
       <StickyStyle>
-        <Header_back />
+        <Header_back cartItemsCount={cartItemsCount} />
       </StickyStyle>
       {cart.cartProductList.length === 0 ? (
         <EmptyCartContainer>

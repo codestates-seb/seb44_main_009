@@ -7,6 +7,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import { dummyproducts } from "../../dummyDate/dummyProducts";
 
+import axios from "axios";
 import { useRecoilState } from "recoil";
 import { productsState } from "../../atoms/product";
 
@@ -48,30 +49,19 @@ export const BuyFooterModal = ({ closeModal, quantity }) => {
     setDropSizeOpen(prevState => !prevState);
   };
 
-  const handleAddToCart = () => {
-    const existingCartItem = cartItems.find(
-      item => item.productId === productId,
-    );
+  const handleAddToCart = async () => {
+    const newCartItem = {
+      productId,
+      quantity,
+    };
 
-    if (existingCartItem) {
-      const updatedCartItem = {
-        ...existingCartItem,
-        quantity: existingCartItem.quantity + quantity,
-      };
-      setCartItems(prevCartItems =>
-        prevCartItems.map(item =>
-          item.productId === productId ? updatedCartItem : item,
-        ),
-      );
-    } else {
-      const newCartItem = {
-        productId,
-        quantity,
-      };
-      setCartItems(prevCartItems => [...prevCartItems, newCartItem]);
+    try {
+      const response = await axios.post("/carts/1/items", newCartItem);
+      const updatedCartItems = [...cartItems, response.data];
+      setCartItems(updatedCartItems);
+    } catch (error) {
+      console.error(error);
     }
-
-    closeModal();
   };
 
   return (
