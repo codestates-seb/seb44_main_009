@@ -14,29 +14,38 @@ export const MyListContext = createContext();
 
 export default function MyList({ children }) {
   // State >> API로 불러온 회원 주문 내역
-  const [userBuyList, setUserBuyList] = useState({});
+  const [userBuyList, setUserBuyList] = useState();
 
   // State >> API로 불러온 회원 리뷰 내역
-  const [userReviewList, setUserReviewList] = useState({});
+  const [userReviewList, setUserReviewList] = useState();
 
   // State >> API로 불러온 회원 질문 내역
-  const [userQuestionList, setUserQuestionList] = useState({});
-
-  // console.log("userBuyList", userBuyList);
+  const [userQuestionList, setUserQuestionList] = useState();
 
   // Effet >> API 요청으로 회원 내역 불러오기
   useEffect(() => {
-    (async () => {
-      setUserBuyList(await getUserBuyList());
-    })();
+    // (async () => {
+    //   setUserBuyList(await getUserBuyList());
+    // })();
+    // (async () => {
+    //   setUserReviewList(await getUserReviewList());
+    // })();
+    // (async () => {
+    //   setUserQuestionList(await getUserQuestionList());
+    // })();
 
-    (async () => {
-      setUserReviewList(await getUserReviewList());
-    })();
+    const listData = async () => {
+      const [buyList, reviewList, questionList] = await Promise.all([
+        getUserBuyList(),
+        getUserReviewList(),
+        getUserQuestionList(),
+      ]);
+      setUserBuyList(buyList);
+      setUserReviewList(reviewList);
+      setUserQuestionList(questionList);
+    };
 
-    (async () => {
-      setUserQuestionList(await getUserQuestionList());
-    })();
+    listData();
   }, []);
 
   return (
@@ -52,6 +61,7 @@ export default function MyList({ children }) {
   );
 }
 
+// TODO:
 MyList.Orders = MyOrders;
 MyList.Reviews = MyReviews;
 MyList.Questions = MyQuestions;
