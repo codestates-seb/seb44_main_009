@@ -21,6 +21,7 @@ import {
   Subtitle,
   EmptyCartContainer,
 } from "./styles/EmptyCart/EmptyCartStyles";
+import axios from "axios";
 
 function CartPage() {
   const [isChecked, setIsChecked] = useState(false);
@@ -33,6 +34,7 @@ function CartPage() {
       try {
         const data = await fetchCart();
         setCart(data);
+        console.log(data);
       } catch (error) {
         console.error(error);
       }
@@ -40,6 +42,21 @@ function CartPage() {
 
     fetchData();
   }, []);
+
+  // 장바구니 수량 변경
+  const updateCartItemQuantity = async (cartItemId, newQuantity) => {
+    try {
+      const response = await axios.patch(
+        `carts/1/items/${cartItemId}?quantity=${newQuantity}`,
+      );
+      console.log("Item quantity updated:", response.data);
+
+      const updatedCartData = await fetchCart();
+      setCart(updatedCartData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // 장바구니 추가
   // const addToCart = async (cartId, productId, quantity) => {
@@ -88,6 +105,7 @@ function CartPage() {
                 cart={cart}
                 isChecked={isChecked}
                 handleCheckboxChange={handleCheckboxChange}
+                updateCartItemQuantity={updateCartItemQuantity}
               />
             </ProductContainer>
           </CartWrapper>

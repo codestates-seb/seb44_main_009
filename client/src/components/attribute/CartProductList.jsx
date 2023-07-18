@@ -5,7 +5,12 @@ import { CheckboxWrapper } from "./styles/CheckboxWrapper.styled";
 import { Checkbox } from "./styles/Checkbox.styled";
 import { DeleteSection } from "./styles/DeleteSection.styled";
 
-function CartProductList({ cart, isChecked, handleCheckboxChange }) {
+function CartProductList({
+  cart,
+  isChecked,
+  handleCheckboxChange,
+  updateCartItemQuantity,
+}) {
   return (
     <>
       <CheckboxContainer>
@@ -25,6 +30,7 @@ function CartProductList({ cart, isChecked, handleCheckboxChange }) {
           product={product}
           isChecked={isChecked}
           handleCheckboxChange={handleCheckboxChange}
+          updateCartItemQuantity={updateCartItemQuantity}
           cart={cart}
         />
       ))}

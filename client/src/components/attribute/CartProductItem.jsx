@@ -17,8 +17,12 @@ import { OptionContainer } from "./styles/OptionContainer.styled";
 import { Button } from "./styles/Button.styled";
 import { CheckboxWrapper } from "./styles/CheckboxWrapper.styled";
 
-function CartProductItem({ isChecked, handleCheckboxChange, product }) {
-  const [quantity, setQuantity] = useState(1);
+function CartProductItem({
+  isChecked,
+  handleCheckboxChange,
+  product,
+  updateCartItemQuantity,
+}) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   // const [products, setProducts] = useState(cart.cartProductList);
 
@@ -37,7 +41,8 @@ function CartProductItem({ isChecked, handleCheckboxChange, product }) {
   // };
 
   const handleQuantityChange = e => {
-    setQuantity(e.target.value);
+    const newQuantity = e.target.value;
+    updateCartItemQuantity(product.cartProductId, newQuantity);
   };
 
   const handleCartToggle = () => {
@@ -61,9 +66,9 @@ function CartProductItem({ isChecked, handleCheckboxChange, product }) {
         <ProductDetail>
           <ProductImage src={Accessary} alt="Product" />
           <ProductView>
-            <div>{product?.name}</div>
+            <div>{product.productName}</div>
             <div>
-              <p>{product?.price}</p>
+              <p>{product.productPrice}</p>
             </div>
           </ProductView>
           <RemoveButton>
@@ -76,7 +81,7 @@ function CartProductItem({ isChecked, handleCheckboxChange, product }) {
         <OptionContainer>
           <Button onClick={handleCartToggle}>옵션변경</Button>
           <CartQuantityDropdown
-            value={quantity}
+            value={product.quantity}
             onChange={handleQuantityChange}
           />
         </OptionContainer>

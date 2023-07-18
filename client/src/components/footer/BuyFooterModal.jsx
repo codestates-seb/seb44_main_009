@@ -7,6 +7,9 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import { dummyproducts } from "../../dummyDate/dummyProducts";
 
+import { useRecoilState } from "recoil";
+import { productsState } from "../../atoms/product";
+
 import {
   DropText,
   DropOptionText,
@@ -25,13 +28,15 @@ import {
 
 const ModalContent = styled.div``;
 
-export const BuyFooterModal = ({ closeModal }) => {
+export const BuyFooterModal = ({ closeModal, quantity }) => {
   const { productId } = useParams();
   const product = dummyproducts.find(p => p.productId === parseInt(productId));
 
   const [dropPersonalOpen, setDropPersonalOpen] = useState(false);
   const [dropColorOpen, setDropColorOpen] = useState(false);
   const [dropSizeOpen, setDropSizeOpen] = useState(false);
+
+  const [cartItems, setCartItems] = useRecoilState(productsState);
 
   const handleDropPersonalToggle = () => {
     setDropPersonalOpen(prevState => !prevState);
@@ -42,6 +47,33 @@ export const BuyFooterModal = ({ closeModal }) => {
   const handleDropSizeToggle = () => {
     setDropSizeOpen(prevState => !prevState);
   };
+
+  const handleAddToCart = () => {
+    const existingCartItem = cartItems.find(
+      item => item.productId === productId,
+    );
+
+    if (existingCartItem) {
+      const updatedCartItem = {
+        ...existingCartItem,
+        quantity: existingCartItem.quantity + quantity,
+      };
+      setCartItems(prevCartItems =>
+        prevCartItems.map(item =>
+          item.productId === productId ? updatedCartItem : item,
+        ),
+      );
+    } else {
+      const newCartItem = {
+        productId,
+        quantity,
+      };
+      setCartItems(prevCartItems => [...prevCartItems, newCartItem]);
+    }
+
+    closeModal();
+  };
+
   return (
     <ModalContainer>
       <ModalContent>
@@ -116,7 +148,7 @@ export const BuyFooterModal = ({ closeModal }) => {
 
         {/* 장바구니, 구매하기 버튼 */}
         <BuyContainer>
-          <CartButton>장바구니</CartButton>
+          <CartButton onClick={handleAddToCart}>장바구니</CartButton>
           <BuyButton>구매하기</BuyButton>
         </BuyContainer>
         <BottomMargin />
