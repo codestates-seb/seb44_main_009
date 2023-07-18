@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { styled } from "styled-components";
+//import { ReviewContent } from "./ReviewContent";
 
 const FilterContainer = styled.div`
   display: flex;
@@ -27,6 +28,7 @@ const DropdownSelect = styled.select`
   width: 120px;
   height: 40px;
   font-size: 18px;
+  margin-right: 25px;
 `;
 
 const ToggleContainer = styled.div`
@@ -47,10 +49,6 @@ const ToggleButton = styled.button`
 
 const PersonalColorReviews = styled.span`
   font-size: 24px;
-`;
-
-const ReviewList = styled.div`
-  /* 리뷰 목록 스타일*/
 `;
 
 export const ReviewDrop = () => {
@@ -91,8 +89,6 @@ export const ReviewDrop = () => {
           <option value="recommend">추천순</option>
         </DropdownSelect>
       </DropdownContainer>
-
-      <ReviewList>{/* 리뷰 목록 */}</ReviewList>
     </FilterContainer>
   );
 };

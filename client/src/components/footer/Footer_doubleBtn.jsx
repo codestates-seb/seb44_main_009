@@ -29,7 +29,7 @@ function Footer_doubleBtn() {
   };
 
   const handlePurchaseClick = () => {
-    setIsModalOpen(true); // PurchaseButton을 클릭하면 모달을 열도록 상태를 변경합니다.
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {

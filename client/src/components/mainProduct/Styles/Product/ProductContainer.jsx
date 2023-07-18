@@ -4,6 +4,7 @@ export const ProductContainer = styled.div`
   display: flex;
   //width: 300px; // 2개씩 렌더링
   max-width: 150px; //4개씩 렌더링
+  max-height: 240px;
   flex-direction: column;
 
   padding: 8px;

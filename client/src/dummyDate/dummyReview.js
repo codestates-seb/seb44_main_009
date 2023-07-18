@@ -1,0 +1,41 @@
+export const dummyReview = [
+  {
+    data: {
+      responseList: [
+        {
+          reviewId: 15,
+          memberName: "abc11",
+          productName: "Product22",
+          productPersonalColor: "COOL_TONE",
+          productColor: "Red",
+          content: "all product is bad",
+          enjoyStatus: "NO",
+          productPersonalColorStatus: "WARM",
+          sizeStatus: "BIG",
+          productColorStatus: "DISPLAY",
+          vote: 1,
+          createdAt: null,
+          lastModifiedAt: null,
+        },
+        {
+          reviewId: 2,
+          memberName: "a12",
+          productName: "Product22",
+          productPersonalColor: "WARM_TONE",
+          productColor: "Orange",
+          content: "all product is bad",
+          enjoyStatus: "NO",
+          productPersonalColorStatus: "WARM",
+          sizeStatus: "BIG",
+          productColorStatus: "DISPLAY",
+          vote: 12,
+          createdAt: null,
+          lastModifiedAt: null,
+        },
+      ],
+      totalCount: 1,
+      personalColorWormCount: 1,
+      personalColorCoolCount: 0,
+    },
+  },
+];
