@@ -29,7 +29,7 @@ import {
 
 const ModalContent = styled.div``;
 
-export const BuyFooterModal = ({ closeModal, quantity }) => {
+export const BuyFooterModal = ({ closeModal }) => {
   const { productId } = useParams();
   const product = dummyproducts.find(p => p.productId === parseInt(productId));
 
@@ -51,12 +51,13 @@ export const BuyFooterModal = ({ closeModal, quantity }) => {
 
   const handleAddToCart = async () => {
     const newCartItem = {
-      productId,
-      quantity,
+      cartId: "1",
+      productId: "123",
+      quantity: "5",
     };
 
     try {
-      const response = await axios.post("/carts/1/items", newCartItem);
+      const response = await axios.post("cart/", newCartItem);
       const updatedCartItems = [...cartItems, response.data];
       setCartItems(updatedCartItems);
     } catch (error) {

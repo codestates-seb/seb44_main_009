@@ -58,21 +58,6 @@ function CartPage() {
     }
   };
 
-  // 장바구니 추가
-  // const addToCart = async (cartId, productId, quantity) => {
-  //   try {
-  //     const response = await axios.post(`/carts/${cartId}/items`, {
-  //       cartId: cartId,
-  //       productId: productId,
-  //       quantity: quantity,
-  //     });
-  //     console.log(response.data);
-  //     fetchCart();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   const handleCheckboxChange = e => {
     setIsChecked(e.target.checked);
   };
