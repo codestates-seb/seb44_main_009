@@ -1,5 +1,6 @@
 package com.main.MainProject.auth.config;
 
+import com.main.MainProject.auth.CustomLogoutSuccessHandler;
 import com.main.MainProject.auth.filter.JwtAuthenticationFilter;
 import com.main.MainProject.auth.filter.JwtVerificationFilter;
 import com.main.MainProject.auth.handler.MemberAccessDeniedHandler;
@@ -17,14 +18,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -62,12 +59,34 @@ public class SecurityConfiguration {
                 .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
-                .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers(HttpMethod.POST, "/members/signup").permitAll()
-                        .antMatchers(HttpMethod.PATCH, "/members").hasRole("USER")
-                        .antMatchers(HttpMethod.GET, "/members").hasRole("USER")
-//                        .antMatchers(HttpMethod.GET, "/members/memberList").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.DELETE, "/members").hasRole("USER")
+//                .logout() // 로그아웃 설정 추가
+//                .logoutUrl("/logout")
+//                .logoutSuccessHandler(customLogoutSuccessHandler())
+//                .invalidateHttpSession(true)
+//                .deleteCookies("JSESSIONID", "refreshToken")
+//                .and()
+                .authorizeRequests(authorize -> authorize
+                        .antMatchers(HttpMethod.POST,"/members/signup").permitAll()
+                        .antMatchers(HttpMethod.PATCH,"/members/").hasRole("USER")
+                        .antMatchers(HttpMethod.GET,"/members").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET,"/members/").hasAnyRole("USER","ADMIN")
+                        .antMatchers(HttpMethod.DELETE,"/members/").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.PATCH, "/products/").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "/products/").hasAnyRole("ADMIN", "USER")
+                        .antMatchers(HttpMethod.GET, "/products").hasAnyRole("ADMIN", "USER")
+                        .antMatchers(HttpMethod.DELETE, "/products/").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.POST, "/category").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.PATCH, "/category/").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "/category/").hasAnyRole("ADMIN", "USER")
+                        .antMatchers(HttpMethod.DELETE, "/category/").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.POST, "order/").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "order/request/").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "order/update/").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "order/buylist/").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "order/").hasAnyRole("USER", "ADMIN")
+                        .antMatchers(HttpMethod.DELETE, "order/**").hasRole("USER")
+
                         .anyRequest().permitAll()
                 );
         return http.build();
@@ -86,6 +105,11 @@ public class SecurityConfiguration {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+    // 커스텀 LogoutSuccessHandler 구현 및 반환
+    public LogoutSuccessHandler customLogoutSuccessHandler() {
+        return new CustomLogoutSuccessHandler();
     }
 
 

@@ -54,11 +54,6 @@ public class MemberController {
         return ResponseEntity.created(location).build();
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity logoutMember(){
-        return null;
-    }
-
     @PatchMapping()
     public ResponseEntity patchMember(@Valid @RequestBody MemberPatchDto memberPatchDto){
         long memberId = JwtInterceptor.getAuthenticatedMemberId();
@@ -80,7 +75,7 @@ public class MemberController {
                 , HttpStatus.OK);
     }
 
-    @GetMapping("/memberList")
+    @GetMapping("/list")
     public ResponseEntity getMembers(){
         List<Member> members = memberService.findMembers();
         return new ResponseEntity<>(
