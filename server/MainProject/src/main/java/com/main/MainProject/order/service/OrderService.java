@@ -66,7 +66,7 @@ public class OrderService {
     private OrderProduct cartProductToOrderProduct(Order order, CartProduct cartProduct){
         OrderProduct orderProduct = new OrderProduct(cartProduct.getQuantity(), cartProduct.getProduct());
         if(orderProduct.getProduct().getCount() < orderProduct.getQuantity()){
-            new BusinessLogicException(ExceptionCode.QUANTITY_IS_MORE_THAN_PRODUCT_COUNT);
+            throw new BusinessLogicException(ExceptionCode.QUANTITY_IS_MORE_THAN_PRODUCT_COUNT);
         }else {
             orderProduct.getProduct().setCount(orderProduct.getProduct().getCount() - orderProduct.getQuantity());
         }
@@ -149,7 +149,7 @@ public class OrderService {
     //해당 회원이 주문한 회원인지 확인
     public void isOrderByMember(Order order, Member member){
         if(!order.getMember().equals(member)){
-            new BusinessLogicException(ExceptionCode.MEMBER_IS_NOT_MATCH_ORDER);
+            throw new BusinessLogicException(ExceptionCode.MEMBER_IS_NOT_MATCH_ORDER);
         }
     }
 

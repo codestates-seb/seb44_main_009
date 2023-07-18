@@ -50,7 +50,7 @@ public class CategoryService {
         Optional<Category> optionalCategory = categoryRepository.findByName(name);
 
         if (optionalCategory.isPresent())
-            new BusinessLogicException(ExceptionCode.CATEGORY_EXISTS);
+            throw new BusinessLogicException(ExceptionCode.CATEGORY_EXISTS);
     }
 
     public Category findVerifiedCategory(long categoryId) {

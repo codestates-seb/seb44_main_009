@@ -35,6 +35,7 @@ public class Review extends Auditable {
 
     @Enumerated(value = EnumType.STRING)
     private SizeStatus sizeStatus = SizeStatus.FIT;
+
     @Enumerated(value = EnumType.STRING)
     private ProductColorStatus productColorStatus = ProductColorStatus.DISPLAY;
 
