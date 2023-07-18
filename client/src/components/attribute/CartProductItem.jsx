@@ -2,7 +2,6 @@ import { useState } from "react";
 // import axios from "axios";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Accessary } from "../../image/index";
 import CartOptionModal from "./CartOptionModal";
 import CartQuantityDropdown from "./CartQuantityDropdown";
 import { ProductWrapper } from "./styles/ProdcutWrapper.styled";
@@ -16,9 +15,14 @@ import { ProductInfo } from "./styles/ProductInfo.styled";
 import { OptionContainer } from "./styles/OptionContainer.styled";
 import { Button } from "./styles/Button.styled";
 import { CheckboxWrapper } from "./styles/CheckboxWrapper.styled";
+import { Prepare } from "../../image/index";
 
-function CartProductItem({ isChecked, handleCheckboxChange, product }) {
-  const [quantity, setQuantity] = useState(1);
+function CartProductItem({
+  isChecked,
+  handleCheckboxChange,
+  product,
+  updateCartItemQuantity,
+}) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   // const [products, setProducts] = useState(cart.cartProductList);
 
@@ -37,7 +41,8 @@ function CartProductItem({ isChecked, handleCheckboxChange, product }) {
   // };
 
   const handleQuantityChange = e => {
-    setQuantity(e.target.value);
+    const newQuantity = e.target.value;
+    updateCartItemQuantity(product.cartProductId, newQuantity);
   };
 
   const handleCartToggle = () => {
@@ -59,11 +64,11 @@ function CartProductItem({ isChecked, handleCheckboxChange, product }) {
       </CheckboxWrapper>
       <ColumnStyle>
         <ProductDetail>
-          <ProductImage src={Accessary} alt="Product" />
+          <ProductImage src={Prepare} alt="Product" />
           <ProductView>
-            <div>{product?.name}</div>
+            <div>{product.productName}</div>
             <div>
-              <p>{product?.price}</p>
+              <p>{product.productPrice}</p>
             </div>
           </ProductView>
           <RemoveButton>
@@ -76,7 +81,7 @@ function CartProductItem({ isChecked, handleCheckboxChange, product }) {
         <OptionContainer>
           <Button onClick={handleCartToggle}>옵션변경</Button>
           <CartQuantityDropdown
-            value={quantity}
+            value={product.quantity}
             onChange={handleQuantityChange}
           />
         </OptionContainer>

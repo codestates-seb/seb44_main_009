@@ -21,6 +21,7 @@ import {
   Subtitle,
   EmptyCartContainer,
 } from "./styles/EmptyCart/EmptyCartStyles";
+import axios from "axios";
 
 function CartPage() {
   const [isChecked, setIsChecked] = useState(false);
@@ -33,6 +34,7 @@ function CartPage() {
       try {
         const data = await fetchCart();
         setCart(data);
+        console.log(data);
       } catch (error) {
         console.error(error);
       }
@@ -41,20 +43,20 @@ function CartPage() {
     fetchData();
   }, []);
 
-  // 장바구니 추가
-  // const addToCart = async (cartId, productId, quantity) => {
-  //   try {
-  //     const response = await axios.post(`/carts/${cartId}/items`, {
-  //       cartId: cartId,
-  //       productId: productId,
-  //       quantity: quantity,
-  //     });
-  //     console.log(response.data);
-  //     fetchCart();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  // 장바구니 수량 변경
+  const updateCartItemQuantity = async (cartItemId, newQuantity) => {
+    try {
+      const response = await axios.patch(
+        `carts/1/items/${cartItemId}?quantity=${newQuantity}`,
+      );
+      console.log(response.data);
+
+      const updatedCartData = await fetchCart();
+      setCart(updatedCartData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleCheckboxChange = e => {
     setIsChecked(e.target.checked);
@@ -64,10 +66,15 @@ function CartPage() {
   //   setIsModalOpen(!isModalOpen);
   // };
 
+  //장바구니 아이템 갯수
+  const cartItemsCount = cart.cartProductList.reduce(
+    (total, item) => total + item.quantity,
+    0,
+  );
   return (
     <BackContainer>
       <StickyStyle>
-        <Header_back />
+        <Header_back cartItemsCount={cartItemsCount} />
       </StickyStyle>
       {cart.cartProductList.length === 0 ? (
         <EmptyCartContainer>
@@ -88,6 +95,7 @@ function CartPage() {
                 cart={cart}
                 isChecked={isChecked}
                 handleCheckboxChange={handleCheckboxChange}
+                updateCartItemQuantity={updateCartItemQuantity}
               />
             </ProductContainer>
           </CartWrapper>

@@ -7,6 +7,10 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import { dummyproducts } from "../../dummyDate/dummyProducts";
 
+import axios from "axios";
+import { useRecoilState } from "recoil";
+import { productsState } from "../../atoms/product";
+
 import {
   DropText,
   DropOptionText,
@@ -136,7 +140,7 @@ export const BuyFooterModal = ({ closeModal }) => {
 
         {/* 장바구니, 구매하기 버튼 */}
         <BuyContainer>
-          <CartButton>장바구니</CartButton>
+          <CartButton onClick={handleAddToCart}>장바구니</CartButton>
           <BuyButton>구매하기</BuyButton>
         </BuyContainer>
         <BottomMargin />
