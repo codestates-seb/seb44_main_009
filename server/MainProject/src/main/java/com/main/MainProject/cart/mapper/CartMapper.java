@@ -4,6 +4,7 @@ package com.main.MainProject.cart.mapper;
 import com.main.MainProject.cart.dto.CartDto;
 import com.main.MainProject.cart.entity.Cart;
 import com.main.MainProject.product.cartProduct.CartProduct;
+import com.main.MainProject.product.entity.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -53,14 +54,17 @@ public interface CartMapper {
         int quentity = 0;
 
         quentity = cartProduct.getQuantity();
+        Product.PersonalColor personalColor = cartProduct.getProduct().getPersonalColor();
 
+        String color = cartProduct.getColor();
+        String size = cartProduct.getSize();
         long cartProductId = cartProduct.getCartProductId();
         String productName =  cartProduct.getProduct().getName();
         int productPrice = cartProduct.getProduct().getPrice();
         int totalProductPrice = cartProduct.getProduct().getPrice() * quentity;
 
         CartDto.cartProductResponse cartProductResponse =
-                new CartDto.cartProductResponse( cartProductId,productName, quentity, productPrice, totalProductPrice );
+                new CartDto.cartProductResponse( cartProductId,productName, quentity, size, color,personalColor, productPrice, totalProductPrice );
 
         return cartProductResponse;
     }
