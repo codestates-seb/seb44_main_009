@@ -1,6 +1,5 @@
 package com.main.MainProject.auth.config;
 
-import com.main.MainProject.auth.CustomLogoutSuccessHandler;
 import com.main.MainProject.auth.filter.JwtAuthenticationFilter;
 import com.main.MainProject.auth.filter.JwtVerificationFilter;
 import com.main.MainProject.auth.handler.MemberAccessDeniedHandler;
@@ -109,7 +108,7 @@ public class SecurityConfiguration {
 
     // 커스텀 LogoutSuccessHandler 구현 및 반환
     public LogoutSuccessHandler customLogoutSuccessHandler() {
-        return new CustomLogoutSuccessHandler();
+        return  null;//new CustomLogoutSuccessHandler();
     }
 
 

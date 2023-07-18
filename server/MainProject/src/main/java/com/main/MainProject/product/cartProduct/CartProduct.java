@@ -31,6 +31,12 @@ public class CartProduct {
     @Column(nullable = false)
     private int quantity;
 
+    @Column(nullable = false)
+    private String size;
+
+    @Transient
+    private String color;
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
