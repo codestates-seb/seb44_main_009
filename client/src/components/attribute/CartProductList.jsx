@@ -30,7 +30,7 @@ function CartProductList({
       </CheckboxContainer>
       {cart.cartProductList.map(product => (
         <CartProductItem
-          key={product.productId}
+          key={product.cartProductId}
           product={product}
           isChecked={isChecked}
           handleCheckboxChange={handleCheckboxChange}
