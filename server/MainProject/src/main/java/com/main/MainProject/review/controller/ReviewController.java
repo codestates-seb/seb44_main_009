@@ -1,5 +1,6 @@
 package com.main.MainProject.review.controller;
 
+import com.main.MainProject.auth.interceptor.JwtInterceptor;
 import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.review.entity.Review;
@@ -15,11 +16,11 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/review")
+@RequestMapping("/reviews")
 @Slf4j
 public class ReviewController {
 
-    private final static String REVIEW_DEFAULT_URL = "/review";
+    private final static String REVIEW_DEFAULT_URL = "/reviews";
 
     private final ReviewService reviewService;
     private final ReviewMapper mapper;
@@ -30,21 +31,23 @@ public class ReviewController {
     }
 
     //리뷰 생성
-    @PostMapping("/create/{order-id}/{product-id}/{member-id}")
+    @PostMapping("/create/{order-id}/{product-id}")
     public ResponseEntity createReview(@PathVariable("order-id")long orderId,
                                        @PathVariable("product-id")long productId,
-                                       @PathVariable("member-id")long memberId,
                                        @Valid @RequestBody ReviewDto.RequestDTO requestBody){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         Review review = reviewService.createReview(mapper.reviewDtoToReview(requestBody), orderId, productId, memberId);
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewToResponse(review)), HttpStatus.CREATED);
     }
 
     //리뷰 수정
-    @PatchMapping("/update/{review-id}/{member-id}")
+    @PatchMapping("/update/{review-id}")
     public ResponseEntity updateReview(@PathVariable("review-id")long reviewId,
-                                       @PathVariable("member-id")long memberId,
                                        @Valid @RequestBody ReviewDto.RequestDTO requestBody){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         Review review = reviewService.updateReview(reviewId, memberId, mapper.reviewDtoToReview(requestBody));
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewToResponse(review)), HttpStatus.OK);
@@ -73,17 +76,20 @@ public class ReviewController {
     }
 
     //멤버별 리뷰 조회
-    @GetMapping("/findByMember/{member-id}")
-    public ResponseEntity getAllReviewsByMember(@PathVariable("member-id")long memberId){
+    @GetMapping("/findByMember")
+    public ResponseEntity getAllReviewsByMember(){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         List<Review> reviewList = reviewService.getAllReviewsByMember(memberId);
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewListToResponses(reviewList)), HttpStatus.OK);
     }
 
     //리뷰 삭제
-    @DeleteMapping("/delete/{review-id}/{member-id}")
-    public ResponseEntity deleteReview(@PathVariable("review-id")long reviewId,
-                                       @PathVariable("member-id")long memberId){
+    @DeleteMapping("/delete/{review-id}")
+    public ResponseEntity deleteReview(@PathVariable("review-id")long reviewId){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         reviewService.deleteReview(reviewId, memberId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

@@ -29,7 +29,7 @@ public class Product extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
-    @Column(nullable = false, length = 20, unique = true)
+    @Column(nullable = false, length = 100, unique = true)
     private String name; // 상품 이름
 
     @Column(nullable = false)

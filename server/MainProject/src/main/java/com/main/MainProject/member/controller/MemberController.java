@@ -85,8 +85,10 @@ public class MemberController {
         );
     }
 
-    @DeleteMapping("/{member-id}")
-    public ResponseEntity deleteMember(@PathVariable("member-id") @Positive long memberId){
+    @DeleteMapping()
+    public ResponseEntity deleteMember(){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         memberService.deleteMember(memberId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

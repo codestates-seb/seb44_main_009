@@ -1,5 +1,6 @@
 package com.main.MainProject.order.controller;
 
+import com.main.MainProject.auth.interceptor.JwtInterceptor;
 import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.order.dto.OrderDto;
@@ -17,11 +18,11 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 @Slf4j
 @Validated
 public class OrderController {
-    private final static String ORDER_DEFAULT_URL = "/order";
+    private final static String ORDER_DEFAULT_URL = "/orders";
     private final OrderMapper mapper;
 
     private final OrderService orderService;
@@ -35,20 +36,22 @@ public class OrderController {
     //TODO: {member-id}부분은 모두 로그인 확인용으로 jwt적용시 수정필요
     
     //주문하기
-    @PostMapping("/buy/{cart-id}/{member-id}")
-    public ResponseEntity createOrder(@PathVariable("cart-id")long cartId,
-                                      @PathVariable("member-id")long memberId,
-                                      @Valid @RequestBody OrderDto.Address requestBody){
+    @PostMapping("/buy")
+    public ResponseEntity createOrder(@Valid @RequestBody OrderDto.Address requestBody){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+        long cartId = memberId;
+
         Order order =  orderService.createOrder(cartId, mapper.addressDtoToAddress(requestBody), memberId);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.CREATED);
     }
 
     //배송지변경(배송출발 이전만 가능)
-    @PatchMapping("/request/{order-id}/{member-id}")
+    @PatchMapping("/request/{order-id}")
     public ResponseEntity updateAddressOrder(@PathVariable("order-id")long orderId,
-                                             @PathVariable("member-id")long memberId,
                                              @Valid @RequestBody OrderDto.Address requestBody){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         Address address = mapper.addressDtoToAddress(requestBody);
         Order order = orderService.updateOrder(orderId, address, memberId);
 
@@ -66,17 +69,20 @@ public class OrderController {
     }
 
     //회원의 모든 정보 불러오기
-    @GetMapping("/buylist/{member-id}")
-    public ResponseEntity getorders(@PathVariable("member-id")long memberId){
+    @GetMapping("/list")
+    public ResponseEntity getOrderList(){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         List<Order> orderList = orderService.getOrderList(memberId);
 
         return new ResponseEntity<>(new ListResponseDto<>(mapper.orderListToOrderResponseList(orderList)), HttpStatus.OK);
     }
 
     //주문상세 불러오기
-    @GetMapping("/{order-id}/{member-id}")
-    public ResponseEntity getOrder(@PathVariable("member-id")long memberId,
-                                   @PathVariable("order-id")long orderId){
+    @GetMapping("/{order-id}")
+    public ResponseEntity getOrder(@PathVariable("order-id")long orderId){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         Order order = orderService.findOrder(memberId, orderId);
 
         return new ResponseEntity<>(
@@ -84,9 +90,10 @@ public class OrderController {
     }
 
     //주문취소
-    @DeleteMapping("/delete/{order-id}/{member-id}")
-    public ResponseEntity cancleOrder(@PathVariable("member-id")long memberId,
-                                      @PathVariable("order-id")long orderId){
+    @DeleteMapping("/delete/{order-id}")
+    public ResponseEntity cancleOrder(@PathVariable("order-id")long orderId){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         orderService.cancelOrder(memberId, orderId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

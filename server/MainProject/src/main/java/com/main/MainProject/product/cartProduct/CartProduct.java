@@ -34,7 +34,6 @@ public class CartProduct {
     @Column(nullable = false)
     private String size;
 
-    @Transient
     private String color;
 
     @ManyToOne
