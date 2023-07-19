@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { LoginButton } from "./styles/LoginButton.styled";
 import { LogInContext } from "./Login";
-import { postLogIn } from "../../../api/userAPI";
+import { getUser, postLogIn } from "../../../api/userAPI";
 import { auth } from "../../../atoms/auth";
-import { useSetRecoilState } from "recoil";
-// import { useNavigate } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { user } from "../../../atoms/user";
 
 export default function LoginBtn() {
   // Context >> 사용
@@ -12,10 +12,8 @@ export default function LoginBtn() {
     useContext(LogInContext);
 
   // recoil
-  const setAuthState = useSetRecoilState(auth);
-
-  // Navigate
-  // const nav = useNavigate();
+  const [authState, setAuthState] = useRecoilState(auth);
+  const setUserState = useSetRecoilState(user);
 
   const formCheck = () => {
     setValidation("형식에 맞춰 입력해주세요");
@@ -52,6 +50,14 @@ export default function LoginBtn() {
     })();
     setShowModal(true);
   };
+
+  useEffect(() => {
+    if (authState.token) {
+      (async () => {
+        setUserState(await getUser(authState.token));
+      })();
+    }
+  }, [authState]);
 
   return <LoginButton onClick={handleOpenModal}>로그인</LoginButton>;
 }
