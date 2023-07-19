@@ -1,4 +1,4 @@
-import { Accessary } from "../../image/index";
+import { Prepare } from "../../image";
 import { ProductImage } from "../attribute/styles/ProdcutImage.styled";
 import { ProductDetail } from "../attribute/styles/ProductDetail.styled";
 import { ProductView } from "../attribute/styles/ProductView.styled";
@@ -13,7 +13,7 @@ function MyReviewItem({ review }) {
   return (
     <ReviewItemContainer>
       <ProductDetail>
-        <ProductImage src={Accessary} alt="Product" />
+        <ProductImage src={Prepare} alt="Product" />
         <ProductView>
           <h2>{review.productName}</h2>
           <p>{review.content}</p>
