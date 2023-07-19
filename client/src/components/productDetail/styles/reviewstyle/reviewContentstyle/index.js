@@ -19,6 +19,11 @@ import { Liking } from "./starstyles/Liking";
 import { Star } from "./starstyles/Star";
 import { StarRatingContainer } from "./starstyles/StarRatingContainer";
 
+import { Margin } from "./reviewPersonalBarstyles/Margin";
+import { PersonalBarContainer } from "./reviewPersonalBarstyles/PersonalBarContainer";
+import { PersonalPercentBar } from "./reviewPersonalBarstyles/PersonalPercentBar";
+import { PersonalBar } from "./reviewPersonalBarstyles/PersonalBar";
+
 export {
   RecommendationButton,
   RecommendationCount,
@@ -38,4 +43,8 @@ export {
   Liking,
   Star,
   StarRatingContainer,
+  Margin,
+  PersonalBar,
+  PersonalBarContainer,
+  PersonalPercentBar,
 };

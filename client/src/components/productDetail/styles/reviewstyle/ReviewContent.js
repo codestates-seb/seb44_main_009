@@ -22,7 +22,7 @@ import {
   ReiviewText,
   RecommendationForm,
   RecommendationButton,
-} from "./reviewContentstyle/index";
+} from "./reviewContentstyle";
 
 const RecommendationCount = styled.span`
   margin-left: 16px;

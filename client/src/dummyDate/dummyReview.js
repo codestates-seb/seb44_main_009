@@ -35,7 +35,7 @@ export const dummyReview = [
       ],
       totalCount: 1,
       personalColorWormCount: 1,
-      personalColorCoolCount: 0,
+      personalColorCoolCount: 2,
     },
   },
 ];

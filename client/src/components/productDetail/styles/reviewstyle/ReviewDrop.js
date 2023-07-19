@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-//import { ReviewContent } from "./ReviewContent";
 
 const FilterContainer = styled.div`
   display: flex;

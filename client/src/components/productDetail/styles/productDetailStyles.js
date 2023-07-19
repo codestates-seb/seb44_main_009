@@ -35,12 +35,14 @@ import { ProductPublicInquiryEx } from "./inquirystyle/ProductPublicInquiryEx";
 
 import { ReviewHeaderForm } from "./reviewstyle/ReviewHeaderForm";
 import { ReviewContent } from "./reviewstyle/ReviewContent";
+import { ReviewPersonalBar } from "./reviewstyle/ReviewPersonalBar";
 
 const ProductDetailStyles = () => {
   const { productId } = useParams();
   const product = dummyproducts.find(p => p.productId === parseInt(productId));
 
   //리뷰 받아오는 곳
+
   // const [reviews, setReviews] = useState([""]);
 
   // useEffect(() => {
@@ -61,11 +63,6 @@ const ProductDetailStyles = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isReviewExpanded, setIsReviewExpanded] = useState(false);
 
-  //Props
-  // const [url, setUrl] = useState("");
-  // const [name, setName] = useState("");
-  // const [price, setPrice] = useState("");
-
   const openTab = tabName => {
     setActiveTab(tabName);
   };
@@ -81,16 +78,6 @@ const ProductDetailStyles = () => {
   const scrollToBottom = () => {
     scroll.scrollToBottom();
   };
-
-  //console.log("dummyReview", dummyReview[0].data.responseList);
-  // const location = useLocation();
-  // const { url, name, price, color } = location.state || {};  --> 데이터가 undefined로 받아와짐
-
-  // console.log("url", product.url);
-  // console.log("name", product.name);
-  // console.log("price", product.price);
-  // console.log("productId", productId);
-  // console.log("color", product.colors);
 
   return (
     <ProductDetailContainer>
@@ -139,7 +126,11 @@ const ProductDetailStyles = () => {
           isexpanded={isReviewExpanded ? "expanded" : ""}
           style={{ display: activeTab === "reviews" ? "block" : "none" }}
         >
-          <ReviewHeaderForm></ReviewHeaderForm>
+          <ReviewHeaderForm />
+          <ReviewPersonalBar
+            coolToneCount={dummyReview[0].data.personalColorCoolCount}
+            warmToneCount={dummyReview[0].data.personalColorWormCount} // 오타
+          />
           {dummyReview[0].data.responseList.map(review => (
             <ReviewContent key={review.id} review={review} />
           ))}
