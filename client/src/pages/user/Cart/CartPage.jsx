@@ -44,10 +44,10 @@ function CartPage() {
   }, []);
 
   // 장바구니 수량 변경
-  const updateCartItemQuantity = async (cartItemId, newQuantity) => {
+  const updateCartItemQuantity = async (cartProductId, newQuantity) => {
     try {
       const response = await axios.patch(
-        `carts/1/items/${cartItemId}?quantity=${newQuantity}`,
+        `carts/items/${cartProductId}?quantity=${newQuantity}`,
       );
       console.log(response.data);
 

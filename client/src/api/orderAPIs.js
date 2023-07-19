@@ -9,8 +9,16 @@ export const fetchCart = async token => {
 };
 
 // 장바구니 추가 요청
-export const addToCart = async productId => {
-  const response = await axios.post(`carts/${productId}/items`);
+export const addToCart = async (token, data) => {
+  const response = await axios.post(
+    `carts/items`,
+    {
+      data,
+    },
+    {
+      headers: { Authorization: `${token}` },
+    },
+  );
   return response.data;
 };
 
