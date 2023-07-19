@@ -2,7 +2,7 @@
 #기본 설정
 spring:
   profiles:
-    active: mysql #실행 profile 설정
+    active: h2 #실행 profile 설정
   jpa:
     hibernate:
       ddl-auto: create-drop  # (1) 스키마 자동 생성 자동 업데이트
@@ -13,6 +13,15 @@ spring:
   sql:
     init:
       data-locations: classpath*:db/h2/data.sql
+  cloud:
+    aws:
+      credentials:
+        accessKey: ${AWS_ACCESS_KEY}
+        secretKey: ${AWS_SECRET_ACCESS_KEY}
+    s3:
+      bucket: jeonhyebeenbucket
+    region:
+      static: ap-northeast-2
 
 logging:
   level:
