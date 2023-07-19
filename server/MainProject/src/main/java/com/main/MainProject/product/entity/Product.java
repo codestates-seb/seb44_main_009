@@ -4,6 +4,7 @@ import com.main.MainProject.audit.Auditable;
 import com.main.MainProject.order.entity.OrderProduct;
 import com.main.MainProject.product.cartProduct.CartProduct;
 import com.main.MainProject.product.category.entity.Category;
+import com.main.MainProject.product.size.Size;
 import com.main.MainProject.qna.entity.Qna;
 
 import com.main.MainProject.product.color.entity.Color;
@@ -39,10 +40,12 @@ public class Product extends Auditable {
     private String content; // 상품 설명
 
     @Column(nullable = false)
-    private int count; // 상품 재고 수량
+    private int count;
 
-    @Transient
-    private List<String> size = new ArrayList<>(List.of("XL","L","M","S","FREE"));
+    @ElementCollection
+    @CollectionTable(name = "product_size", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "size")
+    private List<Size> size = new ArrayList<>();
 
     @Column
     @Enumerated(value = EnumType.STRING)
