@@ -385,16 +385,14 @@ export const dummyproducts = [
   },
   {
     productId: 20,
-    name: "웜 상품",
+    name: "슬림 하이웨스트 반바지 [쿨톤] ",
     price: 15000,
     // color: ["green", "purple"],
     colors: [
-      {
-        name: "Red",
-      },
-      {
-        name: "Blue",
-      },
+      { name: "blue" },
+      { name: "purple" },
+      { name: "red" },
+      { name: "skyblue" },
     ],
     content: "의류 상세 설명",
     count: 70,

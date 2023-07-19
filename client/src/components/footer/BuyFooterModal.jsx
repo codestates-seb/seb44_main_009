@@ -7,9 +7,9 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import { dummyproducts } from "../../dummyDate/dummyProducts";
 
-import axios from "axios";
-import { useRecoilState } from "recoil";
-import { productsState } from "../../atoms/product";
+// import axios from "axios";
+// import { useRecoilState } from "recoil";
+// import { productsState } from "../../atoms/product";
 
 import {
   DropText,
@@ -37,7 +37,9 @@ export const BuyFooterModal = ({ closeModal }) => {
   const [dropColorOpen, setDropColorOpen] = useState(false);
   const [dropSizeOpen, setDropSizeOpen] = useState(false);
 
-  const [cartItems, setCartItems] = useRecoilState(productsState);
+  const [selectedPersonalColor, setSelectedPersonalColor] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
 
   const handleDropPersonalToggle = () => {
     setDropPersonalOpen(prevState => !prevState);
@@ -49,20 +51,19 @@ export const BuyFooterModal = ({ closeModal }) => {
     setDropSizeOpen(prevState => !prevState);
   };
 
-  const handleAddToCart = async () => {
-    const newCartItem = {
-      cartId: "1",
-      productId: "123",
-      quantity: "5",
-    };
+  const handleSelectedPersonalColor = personalColor => {
+    setSelectedPersonalColor(personalColor);
+    setDropPersonalOpen(false);
+  };
 
-    try {
-      const response = await axios.post("cart/", newCartItem);
-      const updatedCartItems = [...cartItems, response.data];
-      setCartItems(updatedCartItems);
-    } catch (error) {
-      console.error(error);
-    }
+  const handleSelectedColorClick = color => {
+    setSelectedColor(color);
+    setDropColorOpen(false);
+  };
+
+  const handleSelectedSizeClick = size => {
+    setSelectedSize(size);
+    setDropSizeOpen(false);
   };
 
   return (
@@ -74,72 +75,73 @@ export const BuyFooterModal = ({ closeModal }) => {
         {/* 퍼스널컬러 선택하기 드롭 */}
         <DropAllContainer>
           <DropContainer>
-            <DropText>퍼스널 컬러 선택하기</DropText>
+            <DropText>
+              {selectedPersonalColor
+                ? selectedPersonalColor + " 톤"
+                : "퍼스널 컬러 선택하기"}
+            </DropText>
             <DropdownButton onClick={handleDropPersonalToggle}>
               <FontAwesomeIcon icon={faAngleDown} />
             </DropdownButton>
           </DropContainer>
 
           <DropdownOptions open={dropPersonalOpen}>
-            <DropContainer>
-              <DropOptionText>{product.name}</DropOptionText>
-            </DropContainer>
-            <DropContainer>
-              <DropOptionText>Cool</DropOptionText>
+            <DropContainer
+              onClick={() => handleSelectedPersonalColor(product.personalColor)}
+            >
+              <DropOptionText>{product.personalColor}</DropOptionText>
             </DropContainer>
           </DropdownOptions>
+
           <BottomMargin />
 
           {/* 색상 선택하기 드롭 */}
           <DropContainer>
-            <DropText>색상 선택하기</DropText>
+            <DropText>
+              {selectedColor ? selectedColor + " 색" : "색상 선택하기"}
+            </DropText>
             <DropdownButton onClick={handleDropColorToggle}>
               <FontAwesomeIcon icon={faAngleDown} />
             </DropdownButton>
           </DropContainer>
           <DropdownOptions open={dropColorOpen}>
-            <DropContainer>
-              <DropOptionText>dummy.colors[0].name</DropOptionText>
-            </DropContainer>
-            <DropContainer>
-              <DropOptionText>dummy.colors[1].name</DropOptionText>
-            </DropContainer>
-            {/* {dummy.colors.map((color, index) => (
-            <DropContainer key={index}>{color.name}</DropContainer>
-          ))} */}
+            {product.colors.map((color, index) => (
+              <DropContainer
+                key={index}
+                onClick={() => handleSelectedColorClick(color.name)}
+              >
+                <DropOptionText>{color.name}</DropOptionText>
+              </DropContainer>
+            ))}
           </DropdownOptions>
           <BottomMargin />
 
           {/* 사이즈 선택하기 드롭 */}
           <DropContainer>
-            <DropText>사이즈 선택하기</DropText>
+            <DropText>
+              {selectedSize ? selectedSize + " 사이즈" : "사이즈 선택하기"}
+            </DropText>
             <DropdownButton onClick={handleDropSizeToggle}>
               <FontAwesomeIcon icon={faAngleDown} />
             </DropdownButton>
           </DropContainer>
           <DropdownOptions open={dropSizeOpen}>
-            <DropContainer>
-              <DropOptionText>Free</DropOptionText>
-            </DropContainer>
-            <DropContainer>
-              <DropOptionText>S</DropOptionText>
-            </DropContainer>
-            <DropContainer>
-              <DropOptionText>M</DropOptionText>
-            </DropContainer>
-            <DropContainer>
-              <DropOptionText>L</DropOptionText>
-            </DropContainer>
-            <DropContainer>
-              <DropOptionText>XL</DropOptionText>
-            </DropContainer>
+            {product.size.map((size, index) => (
+              <DropContainer
+                key={index}
+                onClick={() => handleSelectedSizeClick(size)}
+              >
+                <DropOptionText>{size} </DropOptionText>
+              </DropContainer>
+            ))}
           </DropdownOptions>
           <BottomMargin />
         </DropAllContainer>
 
         {/* 장바구니, 구매하기 버튼 */}
         <BuyContainer>
-          <CartButton onClick={handleAddToCart}>장바구니</CartButton>
+          {/* <CartButton onClick={handleAddToCart}>장바구니</CartButton> */}
+          <CartButton>장바구니</CartButton>
           <BuyButton>구매하기</BuyButton>
         </BuyContainer>
         <BottomMargin />
