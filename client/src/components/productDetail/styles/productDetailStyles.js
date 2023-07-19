@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
 import { dummyproducts } from "../../../dummyDate/dummyProducts";
+import { dummyReview } from "../../../dummyDate/dummyReview";
+//import { fetchReviews } from "../../../api/product";
 
 // ----  퍼블릭 스타일
 import {
@@ -32,21 +34,34 @@ import { ProductPublicInquiryEx } from "./inquirystyle/ProductPublicInquiryEx";
 // // ----  리뷰 스타일
 
 import { ReviewHeaderForm } from "./reviewstyle/ReviewHeaderForm";
-import { ReviewForm } from "./reviewstyle/ReviewForm";
+import { ReviewContent } from "./reviewstyle/ReviewContent";
+import { ReviewPersonalBar } from "./reviewstyle/ReviewPersonalBar";
 
 const ProductDetailStyles = () => {
   const { productId } = useParams();
   const product = dummyproducts.find(p => p.productId === parseInt(productId));
 
+  //리뷰 받아오는 곳
+
+  // const [reviews, setReviews] = useState([""]);
+
+  // useEffect(() => {
+  //   const getReviews = async () => {
+  //     try {
+  //       const reviews = await fetchReviews(productId);
+  //       setReviews(reviews);
+  //     } catch (error) {
+  //       console.error("Error getting reviews:", error);
+  //     }
+  //   };
+
+  //   getReviews();
+  // }, [productId]); // productId가 변경될 때마다 리뷰 바뀜.
+
   // Tab 기능
   const [activeTab, setActiveTab] = useState("product-info");
   const [isExpanded, setIsExpanded] = useState(false);
   const [isReviewExpanded, setIsReviewExpanded] = useState(false);
-
-  //Props
-  // const [url, setUrl] = useState("");
-  // const [name, setName] = useState("");
-  // const [price, setPrice] = useState("");
 
   const openTab = tabName => {
     setActiveTab(tabName);
@@ -63,15 +78,6 @@ const ProductDetailStyles = () => {
   const scrollToBottom = () => {
     scroll.scrollToBottom();
   };
-
-  // const location = useLocation();
-  // const { url, name, price, color } = location.state || {};  --> 데이터가 undefined로 받아와짐
-
-  // console.log("url", product.url);
-  // console.log("name", product.name);
-  // console.log("price", product.price);
-  // console.log("productId", productId);
-  // console.log("color", product.colors);
 
   return (
     <ProductDetailContainer>
@@ -120,8 +126,15 @@ const ProductDetailStyles = () => {
           isexpanded={isReviewExpanded ? "expanded" : ""}
           style={{ display: activeTab === "reviews" ? "block" : "none" }}
         >
-          <ReviewHeaderForm></ReviewHeaderForm>
-          <ReviewForm></ReviewForm>
+          <ReviewHeaderForm />
+          <ReviewPersonalBar
+            coolToneCount={dummyReview[0].data.personalColorCoolCount}
+            warmToneCount={dummyReview[0].data.personalColorWormCount} // 오타
+          />
+          {dummyReview[0].data.responseList.map(review => (
+            <ReviewContent key={review.id} review={review} />
+          ))}
+
           <ProductInfoButton
             onClick={() => {
               toggleReviewExpanded();
