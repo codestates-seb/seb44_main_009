@@ -4,11 +4,13 @@ export const FooterWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #383838;
-  color: #fff;
+  flex-direction: column;
+  background-color: #fff;
+  color: #383838;
   border-radius: 30px;
   cursor: pointer;
-  font-size: 18px;
-  width: 45px;
-  height: 45px;
+  font-size: 24px;
+  width: 70px;
+  height: 70px;
+  gap: 8px;
 `;
