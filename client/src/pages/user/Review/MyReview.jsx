@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import Header_back from "../../../components/header/Header_back";
 import Footer from "../../../components/footer/Footer";
 import { ReviewContainer } from "./styles/ReviewContainer.styled";
@@ -9,17 +10,12 @@ import MyReviewList from "../../../components/review/MyReviewList";
 function MyReviewPage() {
   const [reviews, setReviews] = useState([]);
 
+  // 해당 유저 리뷰 목록 데이터 조회 + {member-id}로 변경하기
   useEffect(() => {
-    const ReviewData = [
-      {
-        reviewId: 1,
-        memberName: "jsy",
-        title: "title11-1",
-        content: "content11-11",
-        score: 3,
-      },
-    ];
-    setReviews(ReviewData);
+    axios
+      .get("/review/findByMember/1")
+      .then(response => setReviews(response.data.data.responseList))
+      .catch(error => console.error("Error fetching data:", error));
   }, []);
 
   return (

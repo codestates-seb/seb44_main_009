@@ -17,7 +17,6 @@ function Footer_doubleBtn() {
 
   const cartItems = useRecoilValue(productsState);
   const initialProductId = "1";
-  const initialQuantity = 1;
 
   const handleClick = () => {
     if (!isLiked) {
@@ -50,7 +49,7 @@ function Footer_doubleBtn() {
         <BuyFooterModal
           closeModal={closeModal}
           productId={initialProductId}
-          quantity={initialQuantity}
+          quantity={iscount}
         />
       )}
 

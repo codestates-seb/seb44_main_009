@@ -5,7 +5,12 @@ import { CheckboxWrapper } from "./styles/CheckboxWrapper.styled";
 import { Checkbox } from "./styles/Checkbox.styled";
 import { DeleteSection } from "./styles/DeleteSection.styled";
 
-function CartProductList({ cart, isChecked, handleCheckboxChange }) {
+function CartProductList({
+  cart,
+  isChecked,
+  handleCheckboxChange,
+  updateCartItemQuantity,
+}) {
   return (
     <>
       <CheckboxContainer>
@@ -15,16 +20,21 @@ function CartProductList({ cart, isChecked, handleCheckboxChange }) {
             checked={isChecked}
             onChange={handleCheckboxChange}
           />
-          <p>{isChecked ? "전체선택(1/1)" : "전체선택(0/1)"}</p>
+          <p>
+            {isChecked
+              ? `전체선택 (${cart.cartProductList.length}/${cart.cartProductList.length})`
+              : `전체선택 (0/${cart.cartProductList.length})`}
+          </p>
         </CheckboxWrapper>
         <DeleteSection>선택삭제</DeleteSection>
       </CheckboxContainer>
       {cart.cartProductList.map(product => (
         <CartProductItem
-          key={product.productId}
+          key={product.cartProductId}
           product={product}
           isChecked={isChecked}
           handleCheckboxChange={handleCheckboxChange}
+          updateCartItemQuantity={updateCartItemQuantity}
           cart={cart}
         />
       ))}
