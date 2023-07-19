@@ -8,11 +8,9 @@ import LoginModal from "./LoginModal";
 // Context >> 생성
 export const LogInContext = createContext();
 
-export default function Login({ children }) {
+export default function LoginProvider({ children }) {
   // State >> HTTP body 부분
   const [logInData, setLogInData] = useState({ username: "", password: "" });
-
-  "logInData", logInData;
 
   // State >> 모달 오픈 여부
   const [showModal, setShowModal] = useState(false);
@@ -50,6 +48,8 @@ export default function Login({ children }) {
   );
 }
 
-Login.Inputs = Inputs;
-Login.LoginBtn = LoginBtn;
-Login.LinkBtn = LinkBtn;
+export const Login = Object.assign(LoginProvider, {
+  Inputs: Inputs,
+  LoginBtn: LoginBtn,
+  LinkBtn: LinkBtn,
+});

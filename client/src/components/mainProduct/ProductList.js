@@ -21,6 +21,7 @@ const ProductList = ({ products }) => {
             {group.map(product => (
               <Product
                 key={product.productId}
+                productId={product.productId}
                 url={product.url}
                 name={product.name}
                 price={product.price}

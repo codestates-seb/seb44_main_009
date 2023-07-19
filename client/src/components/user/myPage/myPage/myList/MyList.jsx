@@ -27,6 +27,7 @@ export default function MyList({ children }) {
   console.log("userReviewList", userReviewList);
 
   // State >> API로 불러온 회원 질문 내역
+
   const [userQuestionList, setUserQuestionList] = useState();
   console.log("userQuestionList", userQuestionList);
 

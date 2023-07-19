@@ -13,7 +13,7 @@ export const ProductImageContainer = styled.div`
 `;
 
 export const ProductImage = styled.img`
-  width: 95%;
-  height: 95%;
-  border: 2px solid red;
+  width: 100%;
+  height: 100%;
+  // border: 2px solid red;
 `;

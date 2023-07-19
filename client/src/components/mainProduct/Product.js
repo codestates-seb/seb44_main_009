@@ -19,12 +19,22 @@ const ProductColorContainer = styled.div`
   justify-content: flex-end;
 `;
 
-const Product = ({ url, name, price, color }) => {
+const Product = ({ productId, url, name, price, color }) => {
   return (
     <span>
       <ProductContainer>
-        {/* a속성으로 감싸 링크 전달하기  */}
-        <Link to="/product-detail">
+        <Link
+          to={{
+            pathname: `/product-detail/${productId}`,
+            // state: {
+            //   productId,
+            //   url,
+            //   name,
+            //   price,
+            //   color,
+            // },
+          }}
+        >
           <ProductImageContainer>
             <ProductImage src={url} alt="Product Image" />
           </ProductImageContainer>

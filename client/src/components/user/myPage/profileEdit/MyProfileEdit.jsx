@@ -8,7 +8,7 @@ import { getUser } from "../../../../api/userAPI";
 // Context >> 생성
 export const MyProfileEditsContext = createContext();
 
-export default function MyProfileEdits({ children }) {
+export default function MyProfileEditsProvider({ children }) {
   // State >> API로 불러온 회원 정보
   const [userData, setUserData] = useState({});
 
@@ -49,6 +49,8 @@ export default function MyProfileEdits({ children }) {
   );
 }
 
-MyProfileEdits.MyPersonalColorEdit = MyPersonalColorEdit;
-MyProfileEdits.MyProfileEdit = MyProfileEdit;
-MyProfileEdits.MyProfileEditBtn = MyProfileEditBtn;
+export const MyProfileEdits = Object.assign(MyProfileEditsProvider, {
+  MyPersonalColorEdit: MyPersonalColorEdit,
+  MyProfileEdit: MyProfileEdit,
+  MyProfileEditBtn: MyProfileEditBtn,
+});

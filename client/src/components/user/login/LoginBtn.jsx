@@ -17,18 +17,16 @@ export default function LoginBtn() {
   // Navigate
   // const nav = useNavigate();
 
-  const checkedForm = () => {
+  const formCheck = () => {
     setValidation("형식에 맞춰 입력해주세요");
     setShowModal(true);
   };
 
   // handleEvent >> 유효성 검사 및 showModal(state) 변경
   const handleOpenModal = () => {
-    for (let i in logInData) {
-      if (logInData[i].length === 0) {
-        setValidation("미입력한 부분이 없는지 확인해주세요.");
-        return setShowModal(true);
-      }
+    if (Object.values(logInData).some(data => data.length === 0)) {
+      setValidation("미입력한 부분이 없는지 확인해주세요.");
+      return setShowModal(true);
     }
 
     if (logInData.username.match(emailRegEx) === null) {
@@ -36,7 +34,7 @@ export default function LoginBtn() {
     }
 
     if (logInData.password.match(passworedRegEx) === null) {
-      return checkedForm();
+      return formCheck();
     }
 
     // 유효성 검사 통과 시, api 요청

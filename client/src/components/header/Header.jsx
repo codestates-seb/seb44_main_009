@@ -12,8 +12,9 @@ import {
   faMagnifyingGlass,
   faBasketShopping,
 } from "@fortawesome/free-solid-svg-icons";
+import { CartBadge } from "./styles/CartBadge.styled";
 
-function Header() {
+function Header({ cartItemsCount }) {
   return (
     <HeaderContainer>
       <Link to="/">
@@ -30,6 +31,7 @@ function Header() {
           <IconStyle>
             <FontAwesomeIcon icon={faBasketShopping} />
           </IconStyle>
+          {cartItemsCount > 0 && <CartBadge>{cartItemsCount}</CartBadge>}
         </Link>
         <LoginBtn />
       </ButtonContainer>
