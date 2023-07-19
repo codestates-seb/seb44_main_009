@@ -80,10 +80,12 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.PATCH, "/category/*").hasRole("ADMIN")
                         .antMatchers(HttpMethod.DELETE, "/category/*").hasRole("ADMIN")
                         //orders
-                        .antMatchers(HttpMethod.POST, "/orders/buy").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/orders/buy/cart").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/orders/buy/**").hasRole("USER")
                         .antMatchers(HttpMethod.PATCH, "/orders/request/*").hasRole("USER")
                         .antMatchers(HttpMethod.PATCH, "/orders/update/*").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "/orders/list/").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/orders/list").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "/orders/find").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/orders/*").hasRole("USER")
                         .antMatchers(HttpMethod.DELETE, "/orders/delete/*").hasRole("USER")
                         //cart

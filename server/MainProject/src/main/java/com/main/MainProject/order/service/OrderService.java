@@ -14,8 +14,10 @@ import com.main.MainProject.address.Address;
 import com.main.MainProject.address.AddressRepository;
 import com.main.MainProject.product.cartProduct.CartProduct;
 import com.main.MainProject.product.entity.Product;
+import com.main.MainProject.product.service.ProductService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,16 +33,40 @@ public class OrderService {
 
     private final OrderProductRepository orderProductRepository;
 
+    private final ProductService productService;
+
     public OrderService(OrderRepository orderRepository, CartService cartService, AddressRepository addressRepository,
-                        MemberService memberService, OrderProductRepository orderProductRepository) {
+                        MemberService memberService, OrderProductRepository orderProductRepository, ProductService productService) {
         this.orderRepository = orderRepository;
         this.cartService = cartService;
         this.addressRepository = addressRepository;
         this.memberService = memberService;
         this.orderProductRepository = orderProductRepository;
+        this.productService = productService;
     }
 
-    public Order createOrder(long cartId, Address address, long memberId){
+    public Order createOrder(long productId, int quantity, Address address, long memberId){
+        Member findMember = memberService.findVerifiedMember(memberId);
+        Order order = new Order();
+        order.setMember(findMember);
+        order.setAddress(address);
+
+        OrderProduct orderProduct = new OrderProduct();
+        Product product = productService.findProduct(productId);
+        orderProduct.setProduct(product);
+        orderProduct.setQuantity(quantity);
+        orderProduct.setOrder(order);
+        List<OrderProduct> orderProductList = new ArrayList<>();
+        orderProductList.add(orderProduct);
+
+        order.setOrderProductList(orderProductList);
+
+        address.setOrder(order);
+
+        return orderRepository.saveAndFlush(order);
+    }
+
+    public Order buyCart(long cartId, Address address, long memberId){
         Cart findCart = cartService.findVerifiedCart(cartId);
         if(findCart.getCartProductList().size() < 1){
             new BusinessLogicException(ExceptionCode.CART_IS_EMPTY);
@@ -98,6 +124,13 @@ public class OrderService {
         memberService.findVerifiedMember(memberId);
 
         List<Order> orderList = orderRepository.findAll();
+        return orderList;
+    }
+
+    public List<Order> getOrderListByMember(long memberId){
+        Member findMember = memberService.findVerifiedMember(memberId);
+
+        List<Order> orderList = orderRepository.findAllByMember(findMember);
         return orderList;
     }
 

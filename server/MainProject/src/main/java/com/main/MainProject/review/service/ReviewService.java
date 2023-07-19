@@ -47,7 +47,7 @@ public class ReviewService {
         if (findOrderProduct.getReviewstatus() == OrderProduct.Reviewstatus.POSSIBLE_REVIEW) {
             review.setMember(findMember);
             review.setProduct(findProduct);
-            findOrderProduct.setReviewstatus(OrderProduct.Reviewstatus.REVIEW_WIITE);
+            findOrderProduct.setReviewstatus(OrderProduct.Reviewstatus.REVIEW_WRITE);
             reviewRepository.save(review);
         }else {
             throw new BusinessLogicException(ExceptionCode.CAN_NOT_WRITE_REVIEW);
