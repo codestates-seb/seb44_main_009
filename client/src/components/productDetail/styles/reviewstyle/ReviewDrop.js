@@ -1,54 +1,14 @@
 import { useState } from "react";
-import { styled } from "styled-components";
 
-const FilterContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100px;
-`;
-const DropdownContainer = styled.div`
-  display: flex;
-  margin-bottom: 10px;
-  justify-content: center;
-  align-items: center;
-  margin-left: 50px;
-`;
-
-const DropdownLabel = styled.label`
-  margin-right: 5px;
-  font-size: 24px;
-  padding: 5px;
-`;
-
-const DropdownSelect = styled.select`
-  padding: 5px;
-  width: 120px;
-  height: 40px;
-  font-size: 18px;
-  margin-right: 25px;
-`;
-
-const ToggleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  margin-left: 30px;
-`;
-
-const ToggleButton = styled.button`
-  padding: 10px 15px;
-  background-color: ${({ active }) => (active ? "green" : "gray")};
-  color: white;
-  border: none;
-  border-radius: 50px;
-  margin-right: 5px;
-`;
-
-const PersonalColorReviews = styled.span`
-  font-size: 24px;
-`;
+import {
+  DropdownContainer,
+  DropdownLabel,
+  DropdownSelect,
+  FilterContainer,
+  PersonalColorReviews,
+  ToggleButton,
+  ToggleContainer,
+} from "./reviewContentstyle";
 
 export const ReviewDrop = () => {
   const [selectedFilter, setSelectedFilter] = useState("latest"); // 선택한 필터 값 상태 관리
