@@ -6,18 +6,23 @@ import MyNickName from "./MyInfo/MyNickName";
 import MyPhoneNumber from "./MyInfo/MyPhoneNumber";
 import { MyProfileWrapper } from "./styles/MyProfileWrapper.styled";
 import { getUser } from "../../../../../api/userAPI";
+import { auth } from "../../../../../atoms/auth";
+import { useRecoilValue } from "recoil";
 
 // Context >> 생성
 export const MyProfileContext = createContext();
 
 export default function MyProfileProvider({ children }) {
+  //recoil
+  const { token } = useRecoilValue(auth);
+
   // State >> API로 불러온 회원 정보
   const [userData, setUserData] = useState();
 
   // Effect >> API로 회원 정보 불러오기
   useEffect(() => {
     (async () => {
-      setUserData(await getUser());
+      setUserData(await getUser(token));
     })();
   }, []);
 
