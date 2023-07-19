@@ -13,4 +13,7 @@ export const FooterContainer = styled.footer`
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
   align-items: center;
+  a {
+    text-decoration: none;
+  }
 `;

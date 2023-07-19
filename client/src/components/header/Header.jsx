@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../image/logo.png";
 import LoginBtn from "./HeaderLoginBtn";
 import { HeaderContainer } from "./styles/HeaderContainer.styled";
@@ -15,6 +15,18 @@ import {
 import { CartBadge } from "./styles/CartBadge.styled";
 
 function Header({ cartItemsCount }) {
+  const navigate = useNavigate();
+
+  const handleBasketClick = () => {
+    const isLoggedIn = false;
+    if (isLoggedIn) {
+      navigate("/cart");
+    } else {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+    }
+  };
+
   return (
     <HeaderContainer>
       <Link to="/">
@@ -27,12 +39,10 @@ function Header({ cartItemsCount }) {
         </SearchIconContainer>
       </InputContainer>
       <ButtonContainer>
-        <Link to="/cart">
-          <IconStyle>
-            <FontAwesomeIcon icon={faBasketShopping} />
-          </IconStyle>
-          {cartItemsCount > 0 && <CartBadge>{cartItemsCount}</CartBadge>}
-        </Link>
+        <IconStyle onClick={handleBasketClick}>
+          <FontAwesomeIcon icon={faBasketShopping} />
+        </IconStyle>
+        {cartItemsCount > 0 && <CartBadge>{cartItemsCount}</CartBadge>}
         <LoginBtn />
       </ButtonContainer>
     </HeaderContainer>

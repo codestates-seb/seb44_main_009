@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import { dummyproducts } from "../../dummyDate/dummyProducts";
+
+import { useRecoilValue } from "recoil";
+import { auth } from "../../atoms/auth";
 
 // import axios from "axios";
 // import { useRecoilState } from "recoil";
@@ -30,6 +33,9 @@ import {
 const ModalContent = styled.div``;
 
 export const BuyFooterModal = ({ closeModal }) => {
+  const { isLogin } = useRecoilValue(auth);
+  const navigate = useNavigate();
+
   const { productId } = useParams();
   const product = dummyproducts.find(p => p.productId === parseInt(productId));
 
@@ -64,6 +70,15 @@ export const BuyFooterModal = ({ closeModal }) => {
   const handleSelectedSizeClick = size => {
     setSelectedSize(size);
     setDropSizeOpen(false);
+  };
+
+  const handleCartButtonClick = () => {
+    if (isLogin) {
+      navigate("/cart");
+    } else {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+    }
   };
 
   return (
@@ -140,8 +155,7 @@ export const BuyFooterModal = ({ closeModal }) => {
 
         {/* 장바구니, 구매하기 버튼 */}
         <BuyContainer>
-          {/* <CartButton onClick={handleAddToCart}>장바구니</CartButton> */}
-          <CartButton>장바구니</CartButton>
+          <CartButton onClick={handleCartButtonClick}>장바구니</CartButton>
           <BuyButton>구매하기</BuyButton>
         </BuyContainer>
         <BottomMargin />
