@@ -10,7 +10,7 @@ export const LogInContext = createContext();
 
 export default function Login({ children }) {
   // State >> HTTP body 부분
-  const [logInData, setLogInData] = useState({ email: "", password: "" });
+  const [logInData, setLogInData] = useState({ username: "", password: "" });
 
   "logInData", logInData;
 

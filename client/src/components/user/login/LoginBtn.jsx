@@ -2,15 +2,19 @@ import { useContext } from "react";
 import { LoginButton } from "./styles/LoginButton.styled";
 import { LogInContext } from "./Login";
 import { postLogIn } from "../../../api/userAPI";
-import { useNavigate } from "react-router-dom";
+import { auth } from "../../../atoms/auth";
+import { useSetRecoilState } from "recoil";
+// import { useNavigate } from "react-router-dom";
 
 export default function LoginBtn() {
   // Context >> 사용
   const { setShowModal, setValidation, emailRegEx, passworedRegEx, logInData } =
     useContext(LogInContext);
 
+  const [setAuthState] = useSetRecoilState(auth);
+
   // Navigate
-  const nav = useNavigate();
+  // const nav = useNavigate();
 
   const checkedForm = () => {
     setValidation("형식에 맞춰 입력해주세요");
@@ -26,7 +30,7 @@ export default function LoginBtn() {
       }
     }
 
-    if (logInData.email.match(emailRegEx) === null) {
+    if (logInData.username.match(emailRegEx) === null) {
       return checkedForm();
     }
 
@@ -37,9 +41,9 @@ export default function LoginBtn() {
     // 유효성 검사 통과 시, api 요청
     (async () => {
       try {
-        await postLogIn(logInData);
+        const accessToken = await postLogIn(logInData);
+        setAuthState({ isLogin: true, token: accessToken });
         setValidation("로그인에 성공하였습니다");
-        nav("/");
       } catch (error) {
         setValidation(error.message);
       }

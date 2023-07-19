@@ -15,7 +15,7 @@ function EmailInput() {
 
   // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
-    if (logInData.email.match(emailRegEx) === null) {
+    if (logInData.username.match(emailRegEx) === null) {
       setMessage("이메일 형식에 맞춰 입력해주세요");
       return;
     }
@@ -32,7 +32,7 @@ function EmailInput() {
       <LoginInput
         type="email"
         placeholder="이메일 입력"
-        name="email"
+        name="username"
         onChange={handleChange}
       />
     </>
