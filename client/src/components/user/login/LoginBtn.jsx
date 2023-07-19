@@ -11,6 +11,7 @@ export default function LoginBtn() {
   const { setShowModal, setValidation, emailRegEx, passworedRegEx, logInData } =
     useContext(LogInContext);
 
+  // recoil
   const setAuthState = useSetRecoilState(auth);
 
   // Navigate
@@ -42,7 +43,10 @@ export default function LoginBtn() {
     (async () => {
       try {
         const accessToken = await postLogIn(logInData);
-        setAuthState({ isLogin: true, token: accessToken });
+
+        setAuthState(prev => ({ ...prev, isLogin: true }));
+        setAuthState(prev => ({ ...prev, token: accessToken }));
+
         setValidation("로그인에 성공하였습니다");
       } catch (error) {
         setValidation(error.message);
