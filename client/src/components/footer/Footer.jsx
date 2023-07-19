@@ -8,8 +8,12 @@ import {
 import { FooterContainer } from "./styles/FooterContainer.styled";
 import { FooterWrapper } from "./styles/FooterWrapper.styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRecoilValue } from "recoil";
+import { auth } from "../../atoms/auth";
 
 function Footer() {
+  const { isLogin } = useRecoilValue(auth);
+
   return (
     <FooterContainer>
       <Link to="/">
@@ -27,11 +31,19 @@ function Footer() {
           <FontAwesomeIcon icon={faHeart} />
         </FooterWrapper>
       </Link>
-      <Link to="/mypage">
-        <FooterWrapper>
-          <FontAwesomeIcon icon={faUser} />
-        </FooterWrapper>
-      </Link>
+      {isLogin ? (
+        <Link to="/mypage">
+          <FooterWrapper>
+            <FontAwesomeIcon icon={faUser} />
+          </FooterWrapper>
+        </Link>
+      ) : (
+        <Link to="/login">
+          <FooterWrapper>
+            <FontAwesomeIcon icon={faUser} />
+          </FooterWrapper>
+        </Link>
+      )}
     </FooterContainer>
   );
 }

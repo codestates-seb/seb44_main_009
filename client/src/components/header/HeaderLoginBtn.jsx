@@ -11,6 +11,10 @@ function HeaderLoginBtn() {
       ...prevAuthState,
       isLogin: false,
     }));
+    setAuthState(prevAuthState => ({
+      ...prevAuthState,
+      token: null,
+    }));
   };
 
   return (
