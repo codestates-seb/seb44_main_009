@@ -30,7 +30,7 @@ export default function LoginBtn() {
     }
 
     if (logInData.username.match(emailRegEx) === null) {
-      return checkedForm();
+      return formCheck();
     }
 
     if (logInData.password.match(passworedRegEx) === null) {
