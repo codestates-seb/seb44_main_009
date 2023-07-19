@@ -1,10 +1,12 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { auth } from "../../atoms/auth";
 import { Link } from "react-router-dom";
 import { HeaderWriteStyle } from "./styles/HeaderWriteStyle.styled";
+import { user } from "../../atoms/user";
 
 function HeaderLoginBtn() {
   const [authState, setAuthState] = useRecoilState(auth);
+  const setUserData = useSetRecoilState(user);
 
   const handleLogout = () => {
     setAuthState(prevAuthState => ({
@@ -15,6 +17,7 @@ function HeaderLoginBtn() {
       ...prevAuthState,
       token: null,
     }));
+    setUserData(null);
   };
 
   return (
