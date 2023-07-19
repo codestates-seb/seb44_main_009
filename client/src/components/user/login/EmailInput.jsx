@@ -21,7 +21,7 @@ function EmailInput() {
     }
 
     setMessage("");
-  }, [logInData.email]);
+  }, [logInData.username]);
 
   return (
     <>
