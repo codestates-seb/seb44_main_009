@@ -8,36 +8,34 @@ import {
   getUserQuestionList,
   getUserReviewList,
 } from "../../../../../api/userAPI";
+import { auth } from "../../../../../atoms/auth";
+import { useRecoilValue } from "recoil";
 
 // Context >> 생성
 export const MyListContext = createContext();
 
 export default function MyList({ children }) {
+  // recoil >> auth.token
+  const { token } = useRecoilValue(auth);
+
   // State >> API로 불러온 회원 주문 내역
   const [userBuyList, setUserBuyList] = useState();
+  console.log("userBuyList", userBuyList);
 
   // State >> API로 불러온 회원 리뷰 내역
   const [userReviewList, setUserReviewList] = useState();
+  console.log("userReviewList", userReviewList);
 
   // State >> API로 불러온 회원 질문 내역
   const [userQuestionList, setUserQuestionList] = useState();
+  console.log("userQuestionList", userQuestionList);
 
   // Effet >> API 요청으로 회원 내역 불러오기
   useEffect(() => {
-    // (async () => {
-    //   setUserBuyList(await getUserBuyList());
-    // })();
-    // (async () => {
-    //   setUserReviewList(await getUserReviewList());
-    // })();
-    // (async () => {
-    //   setUserQuestionList(await getUserQuestionList());
-    // })();
-
     const listData = async () => {
       const [buyList, reviewList, questionList] = await Promise.all([
-        getUserBuyList(),
-        getUserReviewList(),
+        getUserBuyList(token),
+        getUserReviewList(token),
         getUserQuestionList(),
       ]);
       setUserBuyList(buyList);

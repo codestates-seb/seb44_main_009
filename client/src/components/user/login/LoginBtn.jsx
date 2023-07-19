@@ -11,7 +11,7 @@ export default function LoginBtn() {
   const { setShowModal, setValidation, emailRegEx, passworedRegEx, logInData } =
     useContext(LogInContext);
 
-  const [setAuthState] = useSetRecoilState(auth);
+  const setAuthState = useSetRecoilState(auth);
 
   // Navigate
   // const nav = useNavigate();

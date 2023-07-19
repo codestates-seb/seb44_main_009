@@ -6,10 +6,6 @@ import axios from "axios";
 // :: 로그인 기능 구현 시, 주석 해제
 axios.defaults.withCredentials = true;
 
-// const headersAuth = {
-//   headers: { Authorization: `Bearer ${accessToken}` },
-// };
-
 // 회원가입 요청
 export const postSignUp = async data => {
   await axios.post("/members/signup", data);
@@ -21,32 +17,44 @@ export const postLogIn = async data => {
   return response.headers.authorization;
 };
 
+//
 // 유저 정보 불러오기
-export const getUser = async () => {
-  const response = await axios.get("/members");
+export const getUser = async token => {
+  const response = await axios.get("/members", {
+    headers: { Authorization: `${token}` },
+  });
   return response.data.data;
 };
 
+//
 // 유저 주문 내역 불러오기
-export const getUserBuyList = async () => {
-  const response = await axios.get("/orders/list");
+export const getUserBuyList = async token => {
+  const response = await axios.get("/orders/list", {
+    headers: { Authorization: `${token}` },
+  });
   return response.data;
 };
 
+//
 // 유저 리뷰 내역 불러오기
-export const getUserReviewList = async () => {
-  const response = await axios.get(`/reviews/findByMember`);
+export const getUserReviewList = async token => {
+  const response = await axios.get("/reviews/findByMember", {
+    headers: { Authorization: `${token}` },
+  });
   return response.data.data;
 };
 
 // 유저 질문 내역 불러오기
-export const getUserQuestionList = async memberId => {
+export const getUserQuestionList = async (memberId = 3) => {
   const response = await axios.get(`/qnas/qnabymember/${memberId}`);
   return response.data;
 };
 
+// FIXME 지속적인 404 error
 // 유저 주문 상세 내역 불러오기
-export const getUserBuyProdutList = async orderId => {
-  const response = await axios.get(`/orders/${orderId}`);
+export const getUserBuyProdutList = async (orderId, token) => {
+  const response = await axios.get(`/orders/${orderId}`, {
+    headers: { Authorization: `${token}` },
+  });
   return response.data.data;
 };

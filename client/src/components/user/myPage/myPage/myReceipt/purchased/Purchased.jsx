@@ -9,23 +9,29 @@ import {
   getUserBuyProdutList,
 } from "../../../../../../api/userAPI";
 import { PurchasedWraaper } from "./styles/PurchasedWraaper";
+import { useRecoilValue } from "recoil";
+import { auth } from "../../../../../../atoms/auth";
 
 // Context >> 생성
 export const PurchasedContext = createContext();
 
 export default function Purchased() {
+  // recoil >> auth.token
+  const { token } = useRecoilValue(auth);
+
   const [purchasedProductList, setPurchasedProductList] = useState(null);
   const [purchasedProduct, setPurchasedProduct] = useState(null);
 
   useEffect(() => {
-    (async () => setPurchasedProductList(await getUserBuyList()))();
+    (async () => setPurchasedProductList(await getUserBuyList(token)))();
   }, []);
 
   useEffect(() => {
-    if (purchasedProductList !== null) {
+    if (purchasedProductList !== null && purchasedProductList.length > 0) {
       const orderId =
         purchasedProductList[purchasedProductList.length - 1].orderId;
-      (async () => setPurchasedProduct(await getUserBuyProdutList(orderId)))();
+      (async () =>
+        setPurchasedProduct(await getUserBuyProdutList(orderId, token)))();
     }
   }, [purchasedProductList]);
 
