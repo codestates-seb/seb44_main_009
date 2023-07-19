@@ -3,6 +3,7 @@ package com.main.MainProject.order.dto;
 import com.main.MainProject.order.entity.Order;
 import com.main.MainProject.order.entity.OrderProduct;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.lang.Nullable;
 
@@ -14,6 +15,14 @@ import java.util.List;
 
 public class OrderDto {
 
+//    @AllArgsConstructor
+//    @Getter
+//    public  static class Post{
+//        private long productId;
+//        private int quantity;
+////        private String size;
+////        private String color;
+//    }
 
     @AllArgsConstructor
     @Getter
@@ -42,11 +51,13 @@ public class OrderDto {
     @Getter
     public static class OrderResponse{
         private Long orderId;
+        private Long memberId;
         private Order.OrderStatus shippingStatus;
     }
 
     @AllArgsConstructor
     @Getter
+    @Builder
     public static class ResponseDetail {
         private Long orderId;
 
@@ -66,6 +77,7 @@ public class OrderDto {
 
     @AllArgsConstructor
     @Getter
+    @Builder
     public static class orderProductResponse{
         long productId;
         private String productName;

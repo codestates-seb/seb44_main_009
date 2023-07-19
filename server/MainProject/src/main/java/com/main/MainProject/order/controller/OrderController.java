@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
@@ -37,11 +38,23 @@ public class OrderController {
     
     //주문하기
     @PostMapping("/buy")
-    public ResponseEntity createOrder(@Valid @RequestBody OrderDto.Address requestBody){
+    public ResponseEntity createOrder(@RequestParam("productId") @Positive long productId,
+                                      @RequestParam("quantity") @Positive int quantity,
+                                      @Valid @RequestBody OrderDto.Address requestBody){
         long memberId = JwtInterceptor.getAuthenticatedMemberId();
         long cartId = memberId;
 
-        Order order =  orderService.createOrder(cartId, mapper.addressDtoToAddress(requestBody), memberId);
+        Order order =  orderService.createOrder(productId, quantity, mapper.addressDtoToAddress(requestBody), memberId);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/buy/cart")
+    public ResponseEntity buyOrder(@Valid @RequestBody OrderDto.Address requestBody){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+        long cartId = memberId;
+
+        Order order =  orderService.buyCart(cartId, mapper.addressDtoToAddress(requestBody), memberId);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.CREATED);
     }
@@ -68,12 +81,22 @@ public class OrderController {
                 new SingleResponseDto<>(mapper.orderToResponse(order)), HttpStatus.OK);
     }
 
-    //회원의 모든 정보 불러오기
+    //모든 주문 불러오기
     @GetMapping("/list")
     public ResponseEntity getOrderList(){
         long memberId = JwtInterceptor.getAuthenticatedMemberId();
 
         List<Order> orderList = orderService.getOrderList(memberId);
+
+        return new ResponseEntity<>(new ListResponseDto<>(mapper.orderListToOrderResponseList(orderList)), HttpStatus.OK);
+    }
+
+    //로그인한 회원의 주문들 불러오기
+    @GetMapping("/find")
+    public ResponseEntity getOrderListByMember(){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
+        List<Order> orderList = orderService.getOrderListByMember(memberId);
 
         return new ResponseEntity<>(new ListResponseDto<>(mapper.orderListToOrderResponseList(orderList)), HttpStatus.OK);
     }
