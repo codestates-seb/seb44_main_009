@@ -57,7 +57,7 @@ export default function LoginBtn() {
         setUserState(await getUser(authState.token));
       })();
     }
-  }, []);
+  }, [authState]);
 
   return <LoginButton onClick={handleOpenModal}>로그인</LoginButton>;
 }
