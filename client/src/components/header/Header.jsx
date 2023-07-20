@@ -13,13 +13,15 @@ import {
   faBasketShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { CartBadge } from "./styles/CartBadge.styled";
+import { useRecoilValue } from "recoil";
+import { auth } from "../../atoms/auth";
 
 function Header({ cartItemsCount }) {
+  const { isLogin } = useRecoilValue(auth);
   const navigate = useNavigate();
 
   const handleBasketClick = () => {
-    const isLoggedIn = false;
-    if (isLoggedIn) {
+    if (isLogin) {
       navigate("/cart");
     } else {
       alert("로그인이 필요합니다.");

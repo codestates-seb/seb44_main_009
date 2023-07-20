@@ -22,8 +22,11 @@ import {
   EmptyCartContainer,
 } from "./styles/EmptyCart/EmptyCartStyles";
 import axios from "axios";
+import { useRecoilValue } from "recoil";
+import { auth } from "../../../atoms/auth";
 
 function CartPage() {
+  const { token } = useRecoilValue(auth);
   const [isChecked, setIsChecked] = useState(false);
   // const [isModalOpen, setIsModalOpen] = useState(false);
   const [cart, setCart] = useState({ cartProductList: [] });
@@ -32,7 +35,7 @@ function CartPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchCart();
+        const data = await fetchCart(token);
         setCart(data);
         console.log(data);
       } catch (error) {
