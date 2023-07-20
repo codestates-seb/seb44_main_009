@@ -25,9 +25,10 @@ export const deleteCart = async (token, cartProductId) => {
 };
 
 // 장바구니 수량 변경 (401error??)
-export const updateCart = async (token, cartProductId, newQuantity) => {
+export const updateCart = async (token, cartProductId, newQuantity, data) => {
   const response = await axios.patch(
     `/carts/items/${cartProductId}?quantity=${newQuantity}`,
+    data,
     {
       headers: { Authorization: `${token}` },
     },
@@ -35,10 +36,21 @@ export const updateCart = async (token, cartProductId, newQuantity) => {
   return response;
 };
 
+// 주문 상품 상세조회
+export const fetchOrder = async (token, orderId) => {
+  const response = await axios.get(`/orders/${orderId}`, {
+    headers: { Authorization: `${token}` },
+  });
+  return response.data;
+};
+
 // 장바구니 상품 주문 요청
-// export const postAfterPayment = async data => {
-//   await axios.post(`/order/buy/${cartId}/${memberId}`, data);
-// };
+export const postAfterPayment = async (token, data) => {
+  const response = await axios.post("/orders/buy/cart", data, {
+    headers: { Authorization: `${token}` },
+  });
+  return response.data;
+};
 
 // 리뷰 등록 (orderId,productId->undefined)
 export const updateReview = async (token, data, orderId, productId) => {

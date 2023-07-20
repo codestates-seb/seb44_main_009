@@ -186,11 +186,16 @@ export const BuyFooterModal = ({ closeModal }) => {
             </DropdownButton>
           </DropContainer>
           <DropdownOptions open={dropQuantityOpen}>
-            <DropContainer
-              onClick={() => handleSelectedQuantityClick(product.count)}
-            >
-              <DropOptionText>{product.count}</DropOptionText>
-            </DropContainer>
+            {Array.from({ length: product.count }, (_, index) => index + 1).map(
+              quantity => (
+                <DropContainer
+                  key={quantity}
+                  onClick={() => handleSelectedQuantityClick(quantity)}
+                >
+                  <DropOptionText>{quantity}</DropOptionText>
+                </DropContainer>
+              ),
+            )}
           </DropdownOptions>
           <BottomMargin />
         </DropAllContainer>

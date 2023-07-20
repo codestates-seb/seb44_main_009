@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchCart, updateCart } from "../../../api/orderAPIs";
+import {
+  fetchCart,
+  updateCart,
+  postAfterPayment,
+} from "../../../api/orderAPIs";
+import { getUser } from "../../../api/userAPI";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
 import CartProductList from "../../../components/attribute/CartProductList";
@@ -58,6 +63,25 @@ function CartPage() {
     }
   };
 
+  // 장바구니 구매하기
+  const updatePayment = async () => {
+    const user = await getUser(token);
+    const data = {
+      receiverName: user.korName,
+      zipcode: null,
+      addressName: user.address,
+      addressDetails: user.address,
+      telNum: user.phoneNumber,
+      request: null,
+    };
+    try {
+      const response = await postAfterPayment(token, data);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleCheckboxChange = e => {
     setIsChecked(e.target.checked);
   };
@@ -105,7 +129,7 @@ function CartPage() {
         <button>리뷰</button>
       </Link>
       <Link to="/order">
-        <Footer_oneBtn text="상품 주문하기" />
+        <Footer_oneBtn text="상품 주문하기" onClick={updatePayment} />
       </Link>
     </BackContainer>
   );

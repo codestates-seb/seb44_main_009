@@ -12,8 +12,28 @@ import { OrderContainer } from "./styles/OrderContainer.styled";
 import { OrderProductContainer } from "./styles/OrderProductContainer.styled";
 import { OrderWrapper } from "./styles/OrderWrapper.styled";
 import { Title } from "./styles/Title.styled";
+import { fetchOrder } from "../../../../api/orderAPIs";
+import { useRecoilValue } from "recoil";
+import { auth } from "../../../../atoms/auth";
 
 function OrderPage() {
+  const authData = useRecoilValue(auth);
+
+  // 주문 전체 조회
+  useEffect(() => {
+    const { token } = authData;
+    const orderData = async () => {
+      try {
+        const data = await fetchOrder(token);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    orderData();
+  }, []);
+
   const [showOrderProduct, setShowOrderProduct] = useState(false);
   const [editAddress, setEditAddress] = useState(false);
 
