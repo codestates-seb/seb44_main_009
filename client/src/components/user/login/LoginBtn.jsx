@@ -44,11 +44,11 @@ export default function LoginBtn() {
         setAuthState(prev => ({ ...prev, token: accessToken }));
 
         setValidation("로그인에 성공하였습니다");
+        setShowModal(true);
       } catch (error) {
         setValidation(error.message);
       }
     })();
-    setShowModal(true);
   };
 
   useEffect(() => {
