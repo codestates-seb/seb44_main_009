@@ -44,7 +44,31 @@ public interface ProductMapper {
         return product;
     }
 
-    Product productPatchDtoToProduct(ProductPatchDto productPatchDto);
+    default Product productPatchDtoToProduct(ProductDto.ProductPatchDto productPatchDto) {
+        if ( productPatchDto == null ) {
+            return null;
+        }
+
+        Product product = new Product();
+
+        product.setProductId( productPatchDto.getProductId() );
+        product.setName( productPatchDto.getName() );
+        product.setPrice( productPatchDto.getPrice() );
+        product.setContent( productPatchDto.getContent() );
+        product.setCount( productPatchDto.getCount() );
+        List<Color> list = productPatchDto.getColors();
+        if ( list != null ) {
+            product.setColors( new ArrayList<Color>( list ) );
+        }
+        product.setPersonalColor( productPatchDto.getPersonalColor() );
+        List<Size> sizes = productPatchDto.getSizes();
+        if (sizes != null) {
+            product.setSize(new ArrayList<Size>(sizes));
+        }
+        product.setPersonalColor( productPatchDto.getPersonalColor() );
+
+        return product;
+    }
 
     //@Mapping(source = "category.name", target = "categoryName")
     default ProductResponseDto productToProductResponseDto(Product product) {
