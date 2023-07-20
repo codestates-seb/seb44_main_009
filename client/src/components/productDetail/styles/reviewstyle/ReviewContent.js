@@ -55,7 +55,6 @@ const RecoForm = ({ vote }) => {
       setIsRecommended(true);
     }
   };
-  //console.log(recommendation);
 
   return (
     <RecommendationForm>
@@ -86,64 +85,58 @@ export const ReviewContent = ({ review }) => {
     vote,
   } = review;
 
-  // const reviewMatchesFilter = () => {
-  //   if (selectedFilter === "latest") {
-  //     // Sort by the latest review (you may need to have a timestamp in your review data)
-  //     return true;
-  //   } else if (selectedFilter === "warm") {
-  //     // Filter reviews with warm tone
-  //     return productPersonalColor === "WARM_TONE";
-  //   } else if (selectedFilter === "cool") {
-  //     // Filter reviews with cool tone
-  //     return productPersonalColor === "COOL_TONE";
-  //   }
-  // };
-
   return (
-    <ReviewContainer>
-      <ReviewHeaderContainer>
-        <ReviewFormDiv>
-          <ProfileImage></ProfileImage>
-          <ReviewInfo>
-            <StarRatingForm readOnly rating={3}></StarRatingForm>
-            <AuthorInfoContainer>
-              <Nickname>
-                {memberName}{" "}
-                <FontAwesomeIcon
-                  icon={faPalette}
-                  style={{
-                    fontSize: "18px",
-                    color:
-                      productPersonalColor === "COOL_TONE" ? "pink" : "orange",
-                  }}
-                />
-                {"  "}| {productName}
-              </Nickname>
-            </AuthorInfoContainer>
-            <PostDate dateTime={formattedDate}>
-              {date.toLocaleDateString()}
-            </PostDate>
-          </ReviewInfo>
-        </ReviewFormDiv>
+    <>
+      {/* {filteredAndSortedReviews.map(filteredReview => ( */}
+      {/* <ReviewContainer key={filteredReview.id}> */}
+      <ReviewContainer>
+        <ReviewHeaderContainer>
+          <ReviewFormDiv>
+            <ProfileImage></ProfileImage>
+            <ReviewInfo>
+              <StarRatingForm readOnly rating={3}></StarRatingForm>
+              <AuthorInfoContainer>
+                <Nickname>
+                  {memberName}{" "}
+                  <FontAwesomeIcon
+                    icon={faPalette}
+                    style={{
+                      fontSize: "18px",
+                      color:
+                        productPersonalColor === "COOL_TONE"
+                          ? "pink"
+                          : "orange",
+                    }}
+                  />
+                  {"  "}| {productName}
+                </Nickname>
+              </AuthorInfoContainer>
+              <PostDate dateTime={formattedDate}>
+                {date.toLocaleDateString()}
+              </PostDate>
+            </ReviewInfo>
+          </ReviewFormDiv>
 
-        <RecoForm vote={vote}></RecoForm>
-      </ReviewHeaderContainer>
-      <ReviewImage></ReviewImage>
-      <PersonalInfoDiv>
-        <PersonalInfoText>
-          상품 퍼스널 컬러 :{" "}
-          <ReiviewText>{productPersonalColorStatus}</ReiviewText>
-        </PersonalInfoText>
-        <PersonalInfoText>
-          사이즈 후기 : <ReiviewText>{sizeStatus}</ReiviewText>
-        </PersonalInfoText>
-        <PersonalInfoText>
-          색상 : <ReiviewText>{productColor}</ReiviewText>
-        </PersonalInfoText>
-        <PersonalInfoText>
-          후기 : <ReiviewText>{content}</ReiviewText>
-        </PersonalInfoText>
-      </PersonalInfoDiv>
-    </ReviewContainer>
+          <RecoForm vote={vote}></RecoForm>
+        </ReviewHeaderContainer>
+        <ReviewImage></ReviewImage>
+        <PersonalInfoDiv>
+          <PersonalInfoText>
+            상품 퍼스널 컬러 :{" "}
+            <ReiviewText>{productPersonalColorStatus}</ReiviewText>
+          </PersonalInfoText>
+          <PersonalInfoText>
+            사이즈 후기 : <ReiviewText>{sizeStatus}</ReiviewText>
+          </PersonalInfoText>
+          <PersonalInfoText>
+            색상 : <ReiviewText>{productColor}</ReiviewText>
+          </PersonalInfoText>
+          <PersonalInfoText>
+            후기 : <ReiviewText>{content}</ReiviewText>
+          </PersonalInfoText>
+        </PersonalInfoDiv>
+      </ReviewContainer>
+      {/* ))} */}
+    </>
   );
 };

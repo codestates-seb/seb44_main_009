@@ -4,8 +4,7 @@ import { animateScroll as scroll } from "react-scroll";
 //import { dummyproducts } from "../../../dummyDate/dummyProducts";
 import { dummyReview } from "../../../dummyDate/dummyReview";
 import { reviewfilter } from "../../../dummyDate/reviewfilter";
-//import { fetchReviews } from "../../../api/product";
-import { fetchProducts } from "../../../api/product";
+import { fetchReviews, fetchProducts } from "../../../api/product";
 
 // ----  퍼블릭 스타일
 import {
@@ -43,11 +42,12 @@ const ProductDetailStyles = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [reviews, setReviews] = useState([]);
 
-  // 1. 더미데이터
+  // 1. Product 더미데이터
   // const product = dummyproducts.find(p => p.productId === parseInt(productId));
 
-  // 2. api 데이터
+  // 2. Product api 데이터
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -66,22 +66,20 @@ const ProductDetailStyles = () => {
     fetchData();
   }, [productId]);
 
-  //리뷰 받아오는 곳
+  //1. 리뷰 받아오는 곳 - api 데이터
 
-  // const [reviews, setReviews] = useState([""]);
+  useEffect(() => {
+    const getReviews = async () => {
+      try {
+        const reviews = await fetchReviews(productId);
+        setReviews(reviews);
+      } catch (error) {
+        console.error("Error getting reviews:", error);
+      }
+    };
 
-  // useEffect(() => {
-  //   const getReviews = async () => {
-  //     try {
-  //       const reviews = await fetchReviews(productId);
-  //       setReviews(reviews);
-  //     } catch (error) {
-  //       console.error("Error getting reviews:", error);
-  //     }
-  //   };
-
-  //   getReviews();
-  // }, [productId]); // productId가 변경될 때마다 리뷰 바뀜.
+    getReviews();
+  }, [productId]); // productId가 변경될 때마다 리뷰 바뀜.
 
   // Tab 기능
   const [activeTab, setActiveTab] = useState("product-info");
@@ -90,7 +88,7 @@ const ProductDetailStyles = () => {
   const [selectedDropOption, setSelectedDropOption] = useState(
     reviewfilter[0].slug,
   );
-  // console.log("asd", selectedDropOption);
+  console.log("asd", selectedDropOption);
   // console.log("aaaasd", product);
 
   const onFilterChange = selectedDropOption => {
@@ -115,6 +113,25 @@ const ProductDetailStyles = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  function sortReviews(Dropoption) {
+    switch (Dropoption) {
+      case "coolColor":
+        return dummyReview[0].data.responseList.filter(
+          review => review.productPersonalColor === "COOL_TONE",
+        );
+      case "warmColor":
+        return dummyReview[0].data.responseList.filter(
+          review => review.productPersonalColor === "WARM_TONE",
+        );
+      case "highVote":
+        return dummyReview[0].data.responseList.sort((a, b) => b.vote - a.vote);
+    }
+  }
+  const sortedReviews = sortReviews(selectedDropOption);
+
+  console.log("reviews", reviews);
+  console.log("sortedReviews", sortedReviews);
   return (
     <ProductDetailContainer>
       <ProductDetailContent>
@@ -158,7 +175,7 @@ const ProductDetailStyles = () => {
         </TabContent>
 
         {/* 탭2. 리뷰  */}
-        {/* ToDo : selectedDropOption Option값에 따라 리뷰 배열을 Filter */}
+        {/* ToDo :  vote 에러 수정. API 나오면 덮어쓰기 */}
         <TabContent
           isexpanded={isReviewExpanded ? "expanded" : ""}
           style={{ display: activeTab === "reviews" ? "block" : "none" }}
@@ -172,10 +189,10 @@ const ProductDetailStyles = () => {
             coolToneCount={dummyReview[0].data.personalColorCoolCount}
             warmToneCount={dummyReview[0].data.personalColorWormCount} // 오타
           />
-          {dummyReview[0].data.responseList.map(review => (
+          {sortedReviews.map(sortedReviews => (
             <ReviewContent
-              key={review.id}
-              review={review}
+              key={sortedReviews.id}
+              review={sortedReviews}
               selectedDropOption={selectedDropOption}
             />
           ))}
