@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchCart } from "../../../api/orderAPIs";
+import { fetchCart, updateCart } from "../../../api/orderAPIs";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
 import CartProductList from "../../../components/attribute/CartProductList";
@@ -21,14 +21,12 @@ import {
   Subtitle,
   EmptyCartContainer,
 } from "./styles/EmptyCart/EmptyCartStyles";
-import axios from "axios";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../../atoms/auth";
 
 function CartPage() {
   const { token } = useRecoilValue(auth);
   const [isChecked, setIsChecked] = useState(false);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
   const [cart, setCart] = useState({ cartProductList: [] });
 
   // 장바구니 전체 조회
@@ -50,12 +48,7 @@ function CartPage() {
   // 장바구니 수량 변경
   const updateCartItemQuantity = async (cartProductId, newQuantity) => {
     try {
-      const response = await axios.patch(
-        `carts/items/${cartProductId}?quantity=${newQuantity}`,
-        {
-          headers: { Authorization: `${token}` },
-        },
-      );
+      const response = await updateCart(token, cartProductId, newQuantity);
       console.log(response.data);
       const updatedCartData = await fetchCart(token);
       setCart(updatedCartData);
@@ -68,10 +61,6 @@ function CartPage() {
   const handleCheckboxChange = e => {
     setIsChecked(e.target.checked);
   };
-
-  // const handleCartToggle = () => {
-  //   setIsModalOpen(!isModalOpen);
-  // };
 
   return (
     <BackContainer>

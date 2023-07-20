@@ -24,17 +24,17 @@ export const deleteCart = async (token, cartProductId) => {
   return response;
 };
 
-// 장바구니 수량 변경
-export const upadateCart = async (data, token, cartProductId, quantity) => {
+// 장바구니 수량 변경 (401error??)
+export const updateCart = async (token, cartProductId, newQuantity) => {
   const response = await axios.patch(
-    `/carts/items/${cartProductId}?quantity=${quantity}`,
-    data,
+    `/carts/items/${cartProductId}?quantity=${newQuantity}`,
     {
       headers: { Authorization: `${token}` },
     },
   );
   return response;
 };
+
 // 장바구니 상품 주문 요청
 // export const postAfterPayment = async data => {
 //   await axios.post(`/order/buy/${cartId}/${memberId}`, data);
