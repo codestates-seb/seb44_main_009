@@ -59,6 +59,7 @@ public interface CategoryMapper {
         productResponseDto.name( product.getName() );
         productResponseDto.price( product.getPrice() );
         productResponseDto.content( product.getContent() );
+        productResponseDto.count( product.getCount() );
         productResponseDto.sizes( product.getSize() );
         productResponseDto.colors( colorListToResponseList( product.getColors() ) );
         productResponseDto.personalColor( product.getPersonalColor() );

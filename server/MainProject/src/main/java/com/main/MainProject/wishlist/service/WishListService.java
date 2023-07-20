@@ -28,8 +28,8 @@ public class WishListService {
         this.productService = productService;
     }
 
-    public WishList addWish(WishList wishList) {
-        Member member = memberService.findVerifiedMember(wishList.getMemberId());
+    public WishList addWish(WishList wishList, long memberId) {
+        Member member = memberService.findVerifiedMember(memberId);
         Product product = productService.findVerifiedProduct(wishList.getProductId());
         List<Product> products = wishList.getProducts();
         wishList.setMember(member);
@@ -50,8 +50,8 @@ public class WishListService {
         return products;
     }
 
-    public void deleteWish(WishList wishList) {
-        Member member = memberService.findVerifiedMember(wishList.getMemberId());
+    public void deleteWish(WishList wishList, long memberId) {
+        Member member = memberService.findVerifiedMember(memberId);
         Product findProduct = productService.findProduct(wishList.getProductId());
         WishList findWish = member.getWishList();
         List<Product> products = findWish.getProducts();
@@ -62,10 +62,5 @@ public class WishListService {
         }
         }
         wishListRepository.save(findWish);
-    }
-    public void createWishList(Member member) {
-        WishList wishList = new WishList();
-        wishList.setMember(member);
-        wishListRepository.save(wishList);
     }
 }
