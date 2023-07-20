@@ -11,6 +11,7 @@ import {
 import { PurchasedWraaper } from "./styles/PurchasedWraaper";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../../../../../atoms/auth";
+import { NoProductsContainer } from "./styles/NoProductsContainer.styled";
 
 // Context >> 생성
 export const PurchasedContext = createContext();
@@ -37,7 +38,7 @@ export default function Purchased() {
 
   return (
     <>
-      {purchasedProduct ? (
+      {purchasedProduct && purchasedProduct.cartProductList.length !== 0 ? (
         <PurchasedContext.Provider value={{ purchasedProduct }}>
           {purchasedProduct.cartProductList.map((product, index) => (
             <PurchasedContainer key={index}>
@@ -50,7 +51,9 @@ export default function Purchased() {
             </PurchasedContainer>
           ))}
         </PurchasedContext.Provider>
-      ) : null}
+      ) : (
+        <NoProductsContainer>구매한 이력이 없습니다.</NoProductsContainer>
+      )}
     </>
   );
 }

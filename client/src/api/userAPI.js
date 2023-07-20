@@ -29,7 +29,7 @@ export const getUser = async token => {
 //
 // 유저 주문 내역 불러오기
 export const getUserBuyList = async token => {
-  const response = await axios.get("/orders/list", {
+  const response = await axios.get("/orders/find", {
     headers: { Authorization: `${token}` },
   });
   return response.data;
