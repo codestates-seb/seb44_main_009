@@ -1,16 +1,17 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext } from "react";
 import MyPersonalColorEdit from "./myPersonalColorEdit/MyPersonalColorEdit";
 import MyProfileEdit from "./myProfileEdit/MyProfileEdit";
 import MyProfileEditBtn from "./myProfileEditBtn/MyProfileEditBtn";
 import { ProfileEditWrapper } from "./styles/ProfileEditWrapper.styled";
-import { getUser } from "../../../../api/userAPI";
+import { user } from "../../../../atoms/user";
+import { useRecoilState } from "recoil";
 
 // Context >> 생성
 export const MyProfileEditsContext = createContext();
 
 export default function MyProfileEditsProvider({ children }) {
-  // State >> API로 불러온 회원 정보
-  const [userData, setUserData] = useState({});
+  // recoil
+  const [userData, setUserData] = useRecoilState(user);
 
   // 유효성 검사 정규식 >> 이메일
   const emailRegEx =
@@ -22,13 +23,6 @@ export default function MyProfileEditsProvider({ children }) {
   // handleEvent >> 회원 정보 변경
   const handleChange = e =>
     setUserData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-
-  // Effect >> API로 회원 정보 불러오기
-  useEffect(() => {
-    (async () => {
-      setUserData(await getUser());
-    })();
-  }, []);
 
   return (
     <>

@@ -15,13 +15,13 @@ import { ProductInfo } from "./styles/ProductInfo.styled";
 import { OptionContainer } from "./styles/OptionContainer.styled";
 import { Button } from "./styles/Button.styled";
 import { CheckboxWrapper } from "./styles/CheckboxWrapper.styled";
-import { Prepare } from "../../image/index";
+import { Prepare } from "../../image";
 
 function CartProductItem({
-  isChecked,
-  handleCheckboxChange,
   product,
   updateCartItemQuantity,
+  isChecked,
+  handleCheckboxChange,
 }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   // const [products, setProducts] = useState(cart.cartProductList);
@@ -39,6 +39,13 @@ function CartProductItem({
   //       console.error("error");
   //     });
   // };
+
+  const [bChecked, setChecked] = useState(isChecked);
+
+  const checkHandler = ({ target }) => {
+    setChecked(!bChecked);
+    handleCheckboxChange(product.cartProductId, target.checked);
+  };
 
   const handleQuantityChange = e => {
     const newQuantity = e.target.value;
@@ -59,7 +66,7 @@ function CartProductItem({
         <Checkbox
           type="checkbox"
           checked={isChecked}
-          onChange={handleCheckboxChange}
+          onChange={e => checkHandler(e)}
         />
       </CheckboxWrapper>
       <ColumnStyle>

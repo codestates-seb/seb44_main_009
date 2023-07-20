@@ -44,10 +44,10 @@ function CartPage() {
   }, []);
 
   // 장바구니 수량 변경
-  const updateCartItemQuantity = async (cartItemId, newQuantity) => {
+  const updateCartItemQuantity = async (cartProductId, newQuantity) => {
     try {
       const response = await axios.patch(
-        `carts/1/items/${cartItemId}?quantity=${newQuantity}`,
+        `carts/items/${cartProductId}?quantity=${newQuantity}`,
       );
       console.log(response.data);
 
@@ -66,15 +66,10 @@ function CartPage() {
   //   setIsModalOpen(!isModalOpen);
   // };
 
-  //장바구니 아이템 갯수
-  const cartItemsCount = cart.cartProductList.reduce(
-    (total, item) => total + item.quantity,
-    0,
-  );
   return (
     <BackContainer>
       <StickyStyle>
-        <Header_back cartItemsCount={cartItemsCount} />
+        <Header_back />
       </StickyStyle>
       {cart.cartProductList.length === 0 ? (
         <EmptyCartContainer>
