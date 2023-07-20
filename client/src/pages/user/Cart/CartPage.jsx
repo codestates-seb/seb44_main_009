@@ -100,6 +100,10 @@ function CartPage() {
           </PaymentContainer>
         </CartBackContainer>
       )}
+      {/* 확인용 지울것 */}
+      <Link to="/review">
+        <button>리뷰</button>
+      </Link>
       <Link to="/order">
         <Footer_oneBtn text="상품 주문하기" />
       </Link>

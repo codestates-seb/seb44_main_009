@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import ReviewForm from "../../../components/review/ReviewForm";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
@@ -8,8 +7,12 @@ import { ReviewContainer } from "./styles/ReviewContainer.styled";
 import { ReviewWrapper } from "./styles/ReviewWrapper.styled";
 import { Title } from "./styles/Title.styled";
 import { FooterContainer } from "./styles/FooterContainer.styled";
+import { useRecoilValue } from "recoil";
+import { auth } from "../../../atoms/auth";
+import { updateReview } from "../../../api/orderAPIs";
 
 function ReviewUpdatePage() {
+  const { token } = useRecoilValue(auth);
   const [enjoyStatus, setEnjoyStatus] = useState("");
   const [productPersonalColorStatus, setProductPersonalColorStatus] =
     useState("");
@@ -23,23 +26,22 @@ function ReviewUpdatePage() {
     console.log(value);
   };
 
-  const submitReview = () => {
-    const reviewData = {
-      enjoyStatus,
-      productPersonalColorStatus,
-      sizeStatus,
-      productColorStatus,
-      content: reviewText,
-    };
-    console.log("Review Data:", reviewData);
-    axios
-      .post(`/review/create/1/2/1`, reviewData)
-      .then(res => {
-        console.log("성공", res.data);
-      })
-      .catch(error => {
-        console.error("에러", error);
-      });
+  // 리뷰 등록
+  const submitReview = async () => {
+    try {
+      const reviewData = {
+        enjoyStatus,
+        productPersonalColorStatus,
+        sizeStatus,
+        productColorStatus,
+        content: reviewText,
+      };
+
+      const response = await updateReview(token, reviewData);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const isSubmitDisabled = reviewText.trim().length === 0;

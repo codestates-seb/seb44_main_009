@@ -39,3 +39,15 @@ export const updateCart = async (token, cartProductId, newQuantity) => {
 // export const postAfterPayment = async data => {
 //   await axios.post(`/order/buy/${cartId}/${memberId}`, data);
 // };
+
+// 리뷰 등록 (orderId,productId->undefined)
+export const updateReview = async (token, data, orderId, productId) => {
+  const response = await axios.post(
+    `/reviews/create/${orderId}/${productId}`,
+    data,
+    {
+      headers: { Authorization: `${token}` },
+    },
+  );
+  return response.data;
+};
