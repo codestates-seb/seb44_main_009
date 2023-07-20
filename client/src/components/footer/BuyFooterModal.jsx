@@ -7,12 +7,10 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 import { dummyproducts } from "../../dummyDate/dummyProducts";
 
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { auth } from "../../atoms/auth";
-
-// import axios from "axios";
-// import { useRecoilState } from "recoil";
-// import { productsState } from "../../atoms/product";
+import { productsState } from "../../atoms/product";
+import { addToCart } from "../../api/orderAPIs";
 
 import {
   DropText,
@@ -33,7 +31,8 @@ import {
 const ModalContent = styled.div``;
 
 export const BuyFooterModal = ({ closeModal }) => {
-  const { isLogin } = useRecoilValue(auth);
+  const { isLogin, token } = useRecoilValue(auth);
+  const [cartItems, setCartItems] = useRecoilState(productsState);
   const navigate = useNavigate();
 
   const { productId } = useParams();
@@ -42,10 +41,12 @@ export const BuyFooterModal = ({ closeModal }) => {
   const [dropPersonalOpen, setDropPersonalOpen] = useState(false);
   const [dropColorOpen, setDropColorOpen] = useState(false);
   const [dropSizeOpen, setDropSizeOpen] = useState(false);
+  const [dropQuantityOpen, setDropQuantityOpen] = useState(false);
 
   const [selectedPersonalColor, setSelectedPersonalColor] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedQuantity, setSelectedQuantity] = useState(null);
 
   const handleDropPersonalToggle = () => {
     setDropPersonalOpen(prevState => !prevState);
@@ -55,6 +56,10 @@ export const BuyFooterModal = ({ closeModal }) => {
   };
   const handleDropSizeToggle = () => {
     setDropSizeOpen(prevState => !prevState);
+  };
+
+  const handleDropQuantityToggle = () => {
+    setDropQuantityOpen(prevState => !prevState);
   };
 
   const handleSelectedPersonalColor = personalColor => {
@@ -72,12 +77,31 @@ export const BuyFooterModal = ({ closeModal }) => {
     setDropSizeOpen(false);
   };
 
-  const handleCartButtonClick = () => {
-    if (isLogin) {
-      navigate("/cart");
-    } else {
-      alert("로그인이 필요합니다.");
-      navigate("/login");
+  const handleSelectedQuantityClick = quantity => {
+    setSelectedQuantity(quantity);
+    setDropQuantityOpen(false);
+  };
+
+  const handleCartButtonClick = async () => {
+    try {
+      if (isLogin && token) {
+        const itemData = {
+          productId: product.productId,
+          quantity: selectedQuantity,
+          size: selectedSize,
+          color: selectedColor,
+        };
+
+        const addItem = await addToCart(token, itemData);
+        const updatedCart = [...cartItems, addItem];
+        setCartItems(updatedCart);
+        navigate("/cart");
+      } else {
+        alert("로그인이 필요합니다.");
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -149,6 +173,24 @@ export const BuyFooterModal = ({ closeModal }) => {
                 <DropOptionText>{size} </DropOptionText>
               </DropContainer>
             ))}
+          </DropdownOptions>
+          <BottomMargin />
+
+          {/* 수량 선택하기 드롭 */}
+          <DropContainer>
+            <DropText>
+              {selectedQuantity ? selectedQuantity + " 수량" : "수량 선택하기"}
+            </DropText>
+            <DropdownButton onClick={handleDropQuantityToggle}>
+              <FontAwesomeIcon icon={faAngleDown} />
+            </DropdownButton>
+          </DropContainer>
+          <DropdownOptions open={dropQuantityOpen}>
+            <DropContainer
+              onClick={() => handleSelectedQuantityClick(product.count)}
+            >
+              <DropOptionText>{product.count}</DropOptionText>
+            </DropContainer>
           </DropdownOptions>
           <BottomMargin />
         </DropAllContainer>

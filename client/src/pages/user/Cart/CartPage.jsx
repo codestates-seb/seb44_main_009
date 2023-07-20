@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchCart } from "../../../api/orderAPIs";
+import { fetchCart, updateCart } from "../../../api/orderAPIs";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
 import CartProductList from "../../../components/attribute/CartProductList";
@@ -21,19 +21,21 @@ import {
   Subtitle,
   EmptyCartContainer,
 } from "./styles/EmptyCart/EmptyCartStyles";
-import axios from "axios";
+import { useRecoilValue } from "recoil";
+import { auth } from "../../../atoms/auth";
 
 function CartPage() {
+  const { token } = useRecoilValue(auth);
   const [isChecked, setIsChecked] = useState(false);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
   const [cart, setCart] = useState({ cartProductList: [] });
 
   // 장바구니 전체 조회
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchCart();
+        const data = await fetchCart(token);
         setCart(data);
+        localStorage.setItem("cartLength", cart.cartProductList.length);
         console.log(data);
       } catch (error) {
         console.error(error);
@@ -46,14 +48,12 @@ function CartPage() {
   // 장바구니 수량 변경
   const updateCartItemQuantity = async (cartProductId, newQuantity) => {
     try {
-      const response = await axios.patch(
-        `carts/items/${cartProductId}?quantity=${newQuantity}`,
-      );
+      const response = await updateCart(token, cartProductId, newQuantity);
       console.log(response.data);
-
-      const updatedCartData = await fetchCart();
+      const updatedCartData = await fetchCart(token);
       setCart(updatedCartData);
     } catch (error) {
+      console.log("Token:", token);
       console.error(error);
     }
   };
@@ -62,14 +62,10 @@ function CartPage() {
     setIsChecked(e.target.checked);
   };
 
-  // const handleCartToggle = () => {
-  //   setIsModalOpen(!isModalOpen);
-  // };
-
   return (
     <BackContainer>
       <StickyStyle>
-        <Header_back />
+        <Header_back cartItemsCount={cart.cartProductList.length} />
       </StickyStyle>
       {cart.cartProductList.length === 0 ? (
         <EmptyCartContainer>
@@ -104,6 +100,10 @@ function CartPage() {
           </PaymentContainer>
         </CartBackContainer>
       )}
+      {/* 확인용 지울것 */}
+      <Link to="/review">
+        <button>리뷰</button>
+      </Link>
       <Link to="/order">
         <Footer_oneBtn text="상품 주문하기" />
       </Link>

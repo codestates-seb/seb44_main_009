@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CartOptionModal from "./CartOptionModal";
@@ -16,6 +16,9 @@ import { OptionContainer } from "./styles/OptionContainer.styled";
 import { Button } from "./styles/Button.styled";
 import { CheckboxWrapper } from "./styles/CheckboxWrapper.styled";
 import { Prepare } from "../../image";
+import { useRecoilValue } from "recoil";
+import { auth } from "../../atoms/auth";
+import { deleteCart } from "../../api/orderAPIs";
 
 function CartProductItem({
   product,
@@ -24,21 +27,18 @@ function CartProductItem({
   handleCheckboxChange,
 }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  // const [products, setProducts] = useState(cart.cartProductList);
+  const { token } = useRecoilValue(auth);
+  const navigate = useNavigate();
 
-  // const handleRemove = () => {
-  //   axios
-  //     .delete(`/carts/${cart.id}/items/${product.productId}`)
-  //     .then(res => {
-  //       const updatedProducts = products.filter(
-  //         item => item.productId !== product.productId,
-  //       );
-  //       setProducts(updatedProducts);
-  //     })
-  //     .catch(error => {
-  //       console.error("error");
-  //     });
-  // };
+  const deleteItem = async () => {
+    try {
+      await deleteCart(token, product.cartProductId);
+      navigate("/");
+      console.log("성공");
+    } catch (error) {
+      console.error("실패");
+    }
+  };
 
   const [bChecked, setChecked] = useState(isChecked);
 
@@ -78,12 +78,14 @@ function CartProductItem({
               <p>{product.productPrice}</p>
             </div>
           </ProductView>
-          <RemoveButton>
+          <RemoveButton onClick={deleteItem}>
             <FontAwesomeIcon icon={faXmark} />
           </RemoveButton>
         </ProductDetail>
         <ProductInfo>
-          <div>색상/사이즈</div>
+          <div>
+            {product.color}/{product.size}
+          </div>
         </ProductInfo>
         <OptionContainer>
           <Button onClick={handleCartToggle}>옵션변경</Button>

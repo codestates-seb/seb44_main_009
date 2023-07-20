@@ -20,4 +20,5 @@ export const ModalContainer = styled.div`
   justify-content: center;
   align-items: flex-end;
   animation: ${slideUpAnimation} 0.3s ease-in-out;
+  z-index: 3;
 `;

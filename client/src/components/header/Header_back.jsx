@@ -13,15 +13,27 @@ import {
   faBasketShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { CartBadge } from "./styles/CartBadge.styled";
-import CartItemsAdd from "../attribute/CartItemsAdd";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { auth } from "../../atoms/auth";
+import { productsState } from "../../atoms/product";
 
-function Header_back() {
+function Header_back({ cartItemsCount }) {
+  const { isLogin } = useRecoilValue(auth);
   const navigate = useNavigate();
-
-  const cartItemsCount = CartItemsAdd();
+  const cartItems = useRecoilState(productsState);
+  console.log(cartItems);
 
   const onClickBtn = () => {
     navigate(-1);
+  };
+
+  const handleBasketClick = () => {
+    if (isLogin) {
+      navigate("/cart");
+    } else {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+    }
   };
 
   return (
@@ -36,7 +48,7 @@ function Header_back() {
       </HeaderWrapper>
       <ButtonContainer>
         <Link to="/cart">
-          <IconStyle>
+          <IconStyle onClick={handleBasketClick}>
             <FontAwesomeIcon icon={faBasketShopping} />
           </IconStyle>
           {cartItemsCount > 0 && <CartBadge>{cartItemsCount}</CartBadge>}
