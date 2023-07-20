@@ -12,11 +12,16 @@ const ReviewFormDiv = styled.div`
   flex-direction: column;
 `;
 
-export const ReviewHeaderForm = () => {
+export const ReviewHeaderForm = ({ reviewfilter, onFilterChange }) => {
   return (
     <ReviewFormDiv>
       <ReviewImg></ReviewImg>
-      <ReviewDrop></ReviewDrop>
+      <ReviewDrop
+        reviewfilter={reviewfilter}
+        onFilterChange={onFilterChange}
+
+        // selectedValue={selectedValue} 테스트용
+      ></ReviewDrop>
     </ReviewFormDiv>
   );
 };

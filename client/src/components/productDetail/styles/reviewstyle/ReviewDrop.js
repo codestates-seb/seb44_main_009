@@ -1,61 +1,21 @@
 import { useState } from "react";
-import { styled } from "styled-components";
 
-const FilterContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100px;
-`;
-const DropdownContainer = styled.div`
-  display: flex;
-  margin-bottom: 10px;
-  justify-content: center;
-  align-items: center;
-  margin-left: 50px;
-`;
+import {
+  DropdownContainer,
+  DropdownLabel,
+  DropdownSelect,
+  FilterContainer,
+  PersonalColorReviews,
+  ToggleButton,
+  ToggleContainer,
+} from "./reviewContentstyle";
 
-const DropdownLabel = styled.label`
-  margin-right: 5px;
-  font-size: 24px;
-  padding: 5px;
-`;
-
-const DropdownSelect = styled.select`
-  padding: 5px;
-  width: 120px;
-  height: 40px;
-  font-size: 18px;
-  margin-right: 25px;
-`;
-
-const ToggleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  margin-left: 30px;
-`;
-
-const ToggleButton = styled.button`
-  padding: 10px 15px;
-  background-color: ${({ active }) => (active ? "green" : "gray")};
-  color: white;
-  border: none;
-  border-radius: 50px;
-  margin-right: 5px;
-`;
-
-const PersonalColorReviews = styled.span`
-  font-size: 24px;
-`;
-
-export const ReviewDrop = () => {
-  const [selectedFilter, setSelectedFilter] = useState("latest"); // 선택한 필터 값 상태 관리
+export const ReviewDrop = ({ reviewfilter, onFilterChange }) => {
+  const [selectedFilter, setSelectedFilter] = useState(reviewfilter[0].slug); // 선택한 필터 값 상태 관리
 
   const handleFilterChange = event => {
     setSelectedFilter(event.target.value);
-    // 필터링 작업 수행 및 결과 업데이트
+    onFilterChange(event.target.value); // 선택한 필터 값을 상위 컴포넌트로 전달
   };
 
   const [showPersonalColorReviews, setShowPersonalColorReviews] =
@@ -64,6 +24,8 @@ export const ReviewDrop = () => {
   const handleToggleClick = () => {
     setShowPersonalColorReviews(!showPersonalColorReviews);
   };
+  // console.log("ReviewDrop", selectedFilter);
+  // console.log("Header2Drop", selectedDropOption);
 
   return (
     <FilterContainer>
@@ -84,8 +46,9 @@ export const ReviewDrop = () => {
           onChange={handleFilterChange}
           value={selectedFilter}
         >
-          <option value="latest">최신순</option>
-          <option value="recommend">추천순</option>
+          <option value={reviewfilter[0].slug}>{reviewfilter[0].name}</option>
+          <option value={reviewfilter[1].slug}>{reviewfilter[1].name}</option>
+          <option value={reviewfilter[2].slug}>{reviewfilter[2].name}</option>
         </DropdownSelect>
       </DropdownContainer>
     </FilterContainer>

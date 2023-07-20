@@ -1,9 +1,10 @@
 import axios from "axios";
 
+// 모든 상품 가져오기 GET
 export const fetchProducts = async () => {
   try {
     const response = await axios.get("/products", {
-      params: { page: 1, size: 10 },
+      params: { page: 1, size: 100 },
     });
 
     const data = response.data;
@@ -14,15 +15,16 @@ export const fetchProducts = async () => {
   }
 };
 
-//
+// 해당 상품의 리뷰 가져오기
 export const fetchReviews = async productId => {
   try {
-    const response = await axios.get(`/review/findByProduct/${productId}`); // API_URL에 실제 API 엔드포인트를 입력해야 합니다.
+    const response = await axios.get(`/review/findByProduct/${productId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching reviews:", error);
   }
 };
+
 //recoil로 관리
 // import axios from "axios";
 // import { productsState } from "../atoms/product";

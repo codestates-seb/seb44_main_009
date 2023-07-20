@@ -14,9 +14,9 @@ export const ProductPublicInfo = ({ name, price, color, count }) => {
     <ProductNameContainer>
       <ProductDiv>
         <ProductName>
-          상품명 : {name} <FontAwesomeIcon icon={faPalette} color={color} />
+          <FontAwesomeIcon icon={faPalette} color={color} /> 상품명 : {name}
         </ProductName>
-        <ProductCount>남은 수량: 총 {count} 개</ProductCount>
+        <ProductCount>잔량: 총 {count} 개</ProductCount>
       </ProductDiv>
       <ProductPrice>가격 : {price} 원</ProductPrice>
     </ProductNameContainer>

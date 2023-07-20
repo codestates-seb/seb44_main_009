@@ -31,11 +31,13 @@ export const ColorCategory = ({ labelText, iconColor, ToneSlug }) => {
 export const WarmToneCategory = () => {
   return (
     <>
-      <ColorCategory labelText="웜톤" iconColor="orange" ToneSlug="Warm" />
+      <ColorCategory labelText="웜톤" iconColor="orange" ToneSlug="WARM_TONE" />
     </>
   );
 };
 
 export const CoolToneCategory = () => {
-  return <ColorCategory labelText="쿨톤" iconColor="pink" ToneSlug="Cool" />;
+  return (
+    <ColorCategory labelText="쿨톤" iconColor="pink" ToneSlug="COOL_TONE" />
+  );
 };

@@ -21,9 +21,14 @@ export const ProductDiv = styled.div`
   justify-content: space-between;
 `;
 export const ProductName = styled.div`
+  width: 80%;
+  height: 45px;
   font-size: ${fontSize24};
   font-weight: 400;
   margin-bottom: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 export const ProductCount = styled.div`
   font-size: 18px;
