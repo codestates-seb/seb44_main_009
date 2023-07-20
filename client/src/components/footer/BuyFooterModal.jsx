@@ -82,12 +82,17 @@ export const BuyFooterModal = ({ closeModal }) => {
     setDropQuantityOpen(false);
   };
 
-  const handleCartButtonClick = async item => {
+  const handleCartButtonClick = async () => {
     try {
-      console.log(item);
       if (isLogin && token) {
-        const itemCopy = JSON.parse(JSON.stringify(item));
-        const addItem = await addToCart(token, itemCopy);
+        const itemData = {
+          productId: product.productId,
+          quantity: selectedQuantity,
+          size: selectedSize,
+          color: selectedColor,
+        };
+
+        const addItem = await addToCart(token, itemData);
         const updatedCart = [...cartItems, addItem];
         setCartItems(updatedCart);
         navigate("/cart");
@@ -96,7 +101,7 @@ export const BuyFooterModal = ({ closeModal }) => {
         navigate("/login");
       }
     } catch (error) {
-      console.error("Error adding item to cart:", error);
+      console.error(error);
     }
   };
 
