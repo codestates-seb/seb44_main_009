@@ -26,13 +26,6 @@ const Product = ({ productId, url, name, price, color }) => {
         <Link
           to={{
             pathname: `/product-detail/${productId}`,
-            // state: {
-            //   productId,
-            //   url,
-            //   name,
-            //   price,
-            //   color,
-            // },
           }}
         >
           <ProductImageContainer>

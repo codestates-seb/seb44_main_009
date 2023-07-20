@@ -125,7 +125,7 @@ const ProductDetailStyles = () => {
         <ProductPublicInfo
           name={product.name}
           price={product.price}
-          color={product.personalColor === "Warm" ? "orange" : "pink"}
+          color={product.personalColor === "WARM_TONE" ? "orange" : "pink"}
           count={product.count}
         />
 
