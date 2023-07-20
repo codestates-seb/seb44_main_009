@@ -20,16 +20,13 @@ export default function MyList({ children }) {
 
   // State >> API로 불러온 회원 주문 내역
   const [userBuyList, setUserBuyList] = useState();
-  console.log("userBuyList", userBuyList);
 
   // State >> API로 불러온 회원 리뷰 내역
   const [userReviewList, setUserReviewList] = useState();
-  console.log("userReviewList", userReviewList);
 
   // State >> API로 불러온 회원 질문 내역
 
   const [userQuestionList, setUserQuestionList] = useState();
-  console.log("userQuestionList", userQuestionList);
 
   // Effet >> API 요청으로 회원 내역 불러오기
   useEffect(() => {

@@ -1,10 +1,11 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import MyPersonalColorEdit from "./myPersonalColorEdit/MyPersonalColorEdit";
 import MyProfileEdit from "./myProfileEdit/MyProfileEdit";
 import MyProfileEditBtn from "./myProfileEditBtn/MyProfileEditBtn";
 import { ProfileEditWrapper } from "./styles/ProfileEditWrapper.styled";
 import { user } from "../../../../atoms/user";
 import { useRecoilState } from "recoil";
+import ProfileEditModal from "./profileEditModal/ProfileEditModal";
 
 // Context >> 생성
 export const MyProfileEditsContext = createContext();
@@ -12,6 +13,12 @@ export const MyProfileEditsContext = createContext();
 export default function MyProfileEditsProvider({ children }) {
   // recoil
   const [userData, setUserData] = useRecoilState(user);
+
+  // State >> 유효성 검사 불통과 시, 모달 오픈
+  const [showModal, setShowModal] = useState(false);
+
+  // State >> 유효성 검사 메세지
+  const [validation, setValidation] = useState("");
 
   // 유효성 검사 정규식 >> 이메일
   const emailRegEx =
@@ -34,9 +41,13 @@ export default function MyProfileEditsProvider({ children }) {
             handleChange,
             emailRegEx,
             phoneNumberRegEx,
+            validation,
+            setValidation,
+            setShowModal,
           }}
         >
           <ProfileEditWrapper>{children}</ProfileEditWrapper>
+          {showModal && <ProfileEditModal />}
         </MyProfileEditsContext.Provider>
       ) : null}
     </>
