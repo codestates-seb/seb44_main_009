@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
-import { dummyproducts } from "../../../dummyDate/dummyProducts";
+//import { dummyproducts } from "../../../dummyDate/dummyProducts";
 import { dummyReview } from "../../../dummyDate/dummyReview";
+import { reviewfilter } from "../../../dummyDate/reviewfilter";
 //import { fetchReviews } from "../../../api/product";
+import { fetchProducts } from "../../../api/product";
 
 // ----  퍼블릭 스타일
 import {
@@ -39,7 +41,30 @@ import { ReviewPersonalBar } from "./reviewstyle/ReviewPersonalBar";
 
 const ProductDetailStyles = () => {
   const { productId } = useParams();
-  const product = dummyproducts.find(p => p.productId === parseInt(productId));
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // 1. 더미데이터
+  // const product = dummyproducts.find(p => p.productId === parseInt(productId));
+
+  // 2. api 데이터
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const products = await fetchProducts();
+        const foundProduct = products.find(
+          p => p.productId === parseInt(productId),
+        );
+        setProduct(foundProduct);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching product data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [productId]);
 
   //리뷰 받아오는 곳
 
@@ -62,7 +87,15 @@ const ProductDetailStyles = () => {
   const [activeTab, setActiveTab] = useState("product-info");
   const [isExpanded, setIsExpanded] = useState(false);
   const [isReviewExpanded, setIsReviewExpanded] = useState(false);
+  const [selectedDropOption, setSelectedDropOption] = useState(
+    reviewfilter[0].slug,
+  );
+  // console.log("asd", selectedDropOption);
+  // console.log("aaaasd", product);
 
+  const onFilterChange = selectedDropOption => {
+    setSelectedDropOption(selectedDropOption);
+  };
   const openTab = tabName => {
     setActiveTab(tabName);
   };
@@ -79,6 +112,9 @@ const ProductDetailStyles = () => {
     scroll.scrollToBottom();
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <ProductDetailContainer>
       <ProductDetailContent>
@@ -122,17 +158,26 @@ const ProductDetailStyles = () => {
         </TabContent>
 
         {/* 탭2. 리뷰  */}
+        {/* ToDo : selectedDropOption Option값에 따라 리뷰 배열을 Filter */}
         <TabContent
           isexpanded={isReviewExpanded ? "expanded" : ""}
           style={{ display: activeTab === "reviews" ? "block" : "none" }}
         >
-          <ReviewHeaderForm />
+          <ReviewHeaderForm
+            reviewfilter={reviewfilter}
+            onFilterChange={onFilterChange}
+            selectedDropOption={selectedDropOption}
+          />
           <ReviewPersonalBar
             coolToneCount={dummyReview[0].data.personalColorCoolCount}
             warmToneCount={dummyReview[0].data.personalColorWormCount} // 오타
           />
           {dummyReview[0].data.responseList.map(review => (
-            <ReviewContent key={review.id} review={review} />
+            <ReviewContent
+              key={review.id}
+              review={review}
+              selectedDropOption={selectedDropOption}
+            />
           ))}
 
           <ProductInfoButton

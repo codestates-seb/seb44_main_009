@@ -86,6 +86,19 @@ export const ReviewContent = ({ review }) => {
     vote,
   } = review;
 
+  // const reviewMatchesFilter = () => {
+  //   if (selectedFilter === "latest") {
+  //     // Sort by the latest review (you may need to have a timestamp in your review data)
+  //     return true;
+  //   } else if (selectedFilter === "warm") {
+  //     // Filter reviews with warm tone
+  //     return productPersonalColor === "WARM_TONE";
+  //   } else if (selectedFilter === "cool") {
+  //     // Filter reviews with cool tone
+  //     return productPersonalColor === "COOL_TONE";
+  //   }
+  // };
+
   return (
     <ReviewContainer>
       <ReviewHeaderContainer>

@@ -12,8 +12,7 @@ export const ProductContainer = styled.div`
 
   border-radius: 4px;
   margin-bottom: 20px;
-  margin: 8px;
+  margin: 12px;
 
   overflow: hidden;
-  //margin-left: 50px;
 `;

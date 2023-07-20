@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
-import { dummyproducts } from "../../dummyDate/dummyProducts";
+//import { dummyproducts } from "../../dummyDate/dummyProducts";
+import { fetchProducts } from "../../api/product";
 
 import { useRecoilValue } from "recoil";
 import { auth } from "../../atoms/auth";
@@ -37,7 +38,28 @@ export const BuyFooterModal = ({ closeModal }) => {
   const navigate = useNavigate();
 
   const { productId } = useParams();
-  const product = dummyproducts.find(p => p.productId === parseInt(productId));
+  //const product = dummyproducts.find(p => p.productId === parseInt(productId));
+
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const products = await fetchProducts();
+        const foundProduct = products.find(
+          p => p.productId === parseInt(productId),
+        );
+        setProduct(foundProduct);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching product data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [productId]);
 
   const [dropPersonalOpen, setDropPersonalOpen] = useState(false);
   const [dropColorOpen, setDropColorOpen] = useState(false);
@@ -81,6 +103,10 @@ export const BuyFooterModal = ({ closeModal }) => {
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  console.log("product", product);
   return (
     <ModalContainer>
       <ModalContent>
