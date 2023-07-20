@@ -13,9 +13,11 @@ import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.util.UriCreator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -54,12 +56,13 @@ public class MemberController {
         return ResponseEntity.created(location).build();
     }
 
-    @PatchMapping()
-    public ResponseEntity patchMember(@Valid @RequestBody MemberPatchDto memberPatchDto){
+    @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity patchMember(@Valid @RequestPart MemberPatchDto memberPatchDto,
+                                      @RequestPart MultipartFile image){
         long memberId = JwtInterceptor.getAuthenticatedMemberId();
 
         Member member = memberService.updateMember(
-                mapper.memberPatchDtoToMember(memberPatchDto),memberId);
+                mapper.memberPatchDtoToMember(memberPatchDto),memberId, image);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.memberToMemberResponseDto(member)), HttpStatus.ACCEPTED);

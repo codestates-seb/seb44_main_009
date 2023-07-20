@@ -1,5 +1,6 @@
 package com.main.MainProject.member.service;
 
+import com.main.MainProject.StorageService;
 import com.main.MainProject.auth.utils.CustomAuthorityUtils;
 import com.main.MainProject.cart.service.CartService;
 import com.main.MainProject.exception.BusinessLogicException;
@@ -10,8 +11,10 @@ import com.main.MainProject.member.repository.MemberRepository;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Positive;
+import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,18 +26,22 @@ public class MemberService {
     private final ApplicationEventPublisher publisher;
     private final CustomAuthorityUtils authorityUtils;
 
-    public MemberService(MemberRepository memberRepository, CartService cartService,
-                         PasswordEncoder passwordEncoder, ApplicationEventPublisher applicationEventPublisher, CustomAuthorityUtils authorityUtils) {
+    private final StorageService storageService;
+
+    public MemberService(MemberRepository memberRepository, CartService cartService, PasswordEncoder passwordEncoder,
+                         ApplicationEventPublisher publisher, CustomAuthorityUtils authorityUtils, StorageService storageService) {
         this.memberRepository = memberRepository;
         this.cartService = cartService;
         this.passwordEncoder = passwordEncoder;
-        this.publisher = applicationEventPublisher;
+        this.publisher = publisher;
         this.authorityUtils = authorityUtils;
+        this.storageService = storageService;
     }
 
     public Member createMember(Member member) {
         verifyEmailExists(member.getEmail());
         verifyNickNameExists(member.getNickName());
+
         // 추가: Password 암호화
         String encryptedPassword = passwordEncoder.encode(member.getPassword());
         member.setPassword(encryptedPassword);
@@ -85,8 +92,14 @@ public class MemberService {
                 .orElseThrow(() -> new LogicalException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 
-    public Member updateMember(Member member, long memberId) {
+    public Member updateMember(Member member, long memberId, MultipartFile image) {
         Member findMember = findVerifiedMember(memberId);
+
+        // 이미지 정보 추가
+        member.setMemberImageName(image.getOriginalFilename());
+
+        // 커피 이미지 저장
+        storageService.store(image);
 
         Optional.ofNullable(member.getKorName())
                         .ifPresent(korName -> findMember.setKorName(korName));

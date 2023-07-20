@@ -43,6 +43,9 @@ public class Member extends Auditable {
     @Column(nullable = false)
     private String password;
 
+    @Column(length = 100)
+    private String memberImageName;
+
     @Enumerated(value = EnumType.STRING)
     @Column(length = 20, nullable = false)
     private MemberStatus memberStatus = MemberStatus.MEMBER_ACTIVE;
