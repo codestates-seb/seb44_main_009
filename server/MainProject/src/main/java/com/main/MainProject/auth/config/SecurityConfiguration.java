@@ -100,6 +100,10 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.DELETE, "/reviews/delete/*").hasRole("USER")
                         //qna
                         //wishlist
+                        .antMatchers(HttpMethod.POST, "/wishlist").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/wishlist").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/wishlist").hasRole("USER")
+
 
                         .anyRequest().permitAll()
                 );
