@@ -94,7 +94,6 @@ export const BuyFooterModal = ({ closeModal }) => {
 
         const addItem = await addToCart(token, itemData);
         const updatedCart = [...cartItems, addItem];
-        console.log("Updated Cart Items:", updatedCart);
         setCartItems(updatedCart);
         navigate("/cart");
       } else {

@@ -17,10 +17,11 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { auth } from "../../atoms/auth";
 import { productsState } from "../../atoms/product";
 
-function Header_back() {
+function Header_back({ cartItemsCount }) {
   const { isLogin } = useRecoilValue(auth);
   const navigate = useNavigate();
   const cartItems = useRecoilState(productsState);
+  console.log(cartItems);
 
   const onClickBtn = () => {
     navigate(-1);
@@ -50,9 +51,7 @@ function Header_back() {
           <IconStyle onClick={handleBasketClick}>
             <FontAwesomeIcon icon={faBasketShopping} />
           </IconStyle>
-          {cartItems[0].length > 0 && (
-            <CartBadge>{cartItems[0].length}</CartBadge>
-          )}
+          {cartItemsCount > 0 && <CartBadge>{cartItemsCount}</CartBadge>}
         </Link>
         <LoginBtn />
       </ButtonContainer>

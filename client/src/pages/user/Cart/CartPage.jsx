@@ -37,6 +37,7 @@ function CartPage() {
       try {
         const data = await fetchCart(token);
         setCart(data);
+        localStorage.setItem("cartLength", cart.cartProductList.length);
         console.log(data);
       } catch (error) {
         console.error(error);
@@ -47,14 +48,17 @@ function CartPage() {
   }, []);
 
   // 장바구니 수량 변경
-  const updateCartItemQuantity = async (cartProductId, newQuantity) => {
+  const updateCartItemQuantity = async (token, cartProductId, newQuantity) => {
     try {
       const response = await axios.patch(
         `carts/items/${cartProductId}?quantity=${newQuantity}`,
+        {
+          headers: { Authorization: `${token}` },
+        },
       );
       console.log(response.data);
 
-      const updatedCartData = await fetchCart();
+      const updatedCartData = await fetchCart(token);
       setCart(updatedCartData);
     } catch (error) {
       console.error(error);
@@ -72,7 +76,7 @@ function CartPage() {
   return (
     <BackContainer>
       <StickyStyle>
-        <Header_back />
+        <Header_back cartItemsCount={cart.cartProductList.length} />
       </StickyStyle>
       {cart.cartProductList.length === 0 ? (
         <EmptyCartContainer>
