@@ -13,11 +13,13 @@ import {
   faBasketShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { CartBadge } from "./styles/CartBadge.styled";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { auth } from "../../atoms/auth";
+import { productsState } from "../../atoms/product";
 
-function Header({ cartItemsCount }) {
+function Header() {
   const { isLogin } = useRecoilValue(auth);
+  const cartItems = useRecoilState(productsState);
   const navigate = useNavigate();
 
   const handleBasketClick = () => {
@@ -44,7 +46,9 @@ function Header({ cartItemsCount }) {
         <IconStyle onClick={handleBasketClick}>
           <FontAwesomeIcon icon={faBasketShopping} />
         </IconStyle>
-        {cartItemsCount > 0 && <CartBadge>{cartItemsCount}</CartBadge>}
+        {cartItems[0].length > 0 && (
+          <CartBadge>{cartItems[0].length}</CartBadge>
+        )}
         <LoginBtn />
       </ButtonContainer>
     </HeaderContainer>
