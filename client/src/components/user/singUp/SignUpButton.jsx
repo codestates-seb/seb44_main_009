@@ -17,12 +17,17 @@ export default function SignUpButton() {
 
   // handleEvent >> 유효성 검사 및 showModal(state) 변경
   const handleOpenModal = () => {
-    for (let i in signUpData) {
-      if (signUpData[i].length === 0) {
-        setValidation("미입력한 부분이 없는지 확인해주세요");
-        setShowModal(true);
-        return;
-      }
+    // for (let i in signUpData) {
+    //   if (signUpData[i].length === 0) {
+    //     setValidation("미입력한 부분이 없는지 확인해주세요");
+    //     setShowModal(true);
+    //     return;
+    //   }
+    // }
+
+    if (Object.values(signUpData).some(data => !data)) {
+      setValidation("미입력한 부분이 없는지 확인해주세요.");
+      setShowModal(true);
     }
 
     if (signUpData.email.match(emailRegEx) === null) {
