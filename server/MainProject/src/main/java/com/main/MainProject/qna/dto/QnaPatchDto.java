@@ -10,9 +10,6 @@ import javax.validation.constraints.Positive;
 @Getter
 @Setter
 public class QnaPatchDto {
-    @Positive
-    private Long memberId;
-
     @NotBlank(message = "제목을 입력하세요")
     @Column(nullable = false)
     private String title;
