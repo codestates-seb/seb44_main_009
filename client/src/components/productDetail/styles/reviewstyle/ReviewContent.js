@@ -92,7 +92,7 @@ export const ReviewContent = ({ review }) => {
     <ReviewContainer>
       <ReviewHeaderContainer>
         <ReviewFormDiv>
-          <ProfileImage></ProfileImage>
+          <ProfileImage src="https://cdn.discordapp.com/attachments/1123429312377397379/1131816695690960967/profile_image_default.jpg"></ProfileImage>
           <ReviewInfo>
             <StarRatingForm readOnly rating={3}></StarRatingForm>
             <AuthorInfoContainer>
@@ -115,10 +115,10 @@ export const ReviewContent = ({ review }) => {
 
         <RecoForm vote={vote}></RecoForm>
       </ReviewHeaderContainer>
-      <ReviewImage></ReviewImage>
+      <ReviewImage src="https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0"></ReviewImage>
       <PersonalInfoDiv>
         <PersonalInfoText>
-          상품 퍼스널 컬러 :{" "}
+          상품 퍼스널 컬러 :{"  "}
           <ReiviewText>{productPersonalColorStatus}</ReiviewText>
         </PersonalInfoText>
         <PersonalInfoText>
