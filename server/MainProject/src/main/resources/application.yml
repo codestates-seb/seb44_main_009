@@ -16,14 +16,14 @@ spring:
 cloud:
   aws:
     credentials:
-      accessKey: ${AWS_ACCESSORY}
-      secretKey: ${AWS_SECRECY_ACCESSORY}
+      accessKey: ${AWS_ACCESS_KEY}
+      secretKey: ${AWS_SECRET_ACCESS_KEY}
     region:
-      static: ${AWS_REGION}
+      static: ${REGION}
     stack:
       auto: false
     s3:
-      bucket: ${AWS_BUCKET}
+      bucket: ${S3_BUCKET_NAME}
 
 
 server:
