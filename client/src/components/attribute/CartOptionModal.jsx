@@ -12,16 +12,25 @@ import { DropdownMenu } from "./styles/OptionModal/DropdownMenu.styled";
 import { DropdownMenuItem } from "./styles/OptionModal/DropdownMenuItem.styled";
 import { ButtonContainer } from "./styles/OptionModal/ButtonContainer.styled";
 function CartOptionModal({ isCartOpen, handleCancel }) {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [sizeDropdownOpen, setSizeDropdownOpen] = useState(false);
+  const [colorDropdownOpen, setColorDropdownOpen] = useState(false);
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
 
-  const handleDropdownToggle = () => {
-    setDropdownOpen(!dropdownOpen);
+  const handleDropdownToggle = type => {
+    if (type === "size") setSizeDropdownOpen(!sizeDropdownOpen);
+    if (type === "color") setColorDropdownOpen(!colorDropdownOpen);
   };
 
-  const handleOptionSelect = option => {
-    setSelectedOption(option);
-    setDropdownOpen(false);
+  const handleSelect = (type, value) => {
+    if (type === "size") {
+      setSelectedSize(value);
+      setSizeDropdownOpen(false);
+    }
+    if (type === "color") {
+      setSelectedColor(value);
+      setColorDropdownOpen(false);
+    }
   };
 
   return (
@@ -29,22 +38,40 @@ function CartOptionModal({ isCartOpen, handleCancel }) {
       <ModalContainer>
         <ModalContent>
           <DropdownContainer>
-            <DropdownButton onClick={handleDropdownToggle}>
-              {selectedOption ? selectedOption : "옵션 선택"}
-              <DropdownIcon isOpen={dropdownOpen}>
+            <DropdownButton onClick={() => handleDropdownToggle("size")}>
+              {selectedSize ? selectedSize : "옵션 사이즈 선택"}
+              <DropdownIcon isOpen={sizeDropdownOpen}>
                 <FontAwesomeIcon icon={faChevronDown} />
               </DropdownIcon>
             </DropdownButton>
-            {dropdownOpen && (
+            {sizeDropdownOpen && (
               <DropdownMenu>
-                <DropdownMenuItem onClick={() => handleOptionSelect("옵션 1")}>
-                  옵션 1
+                <DropdownMenuItem onClick={() => handleSelect("size", "S")}>
+                  Size S
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleOptionSelect("옵션 2")}>
-                  옵션 2
+                <DropdownMenuItem onClick={() => handleSelect("size", "M")}>
+                  Size M
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleOptionSelect("옵션 3")}>
-                  옵션 3
+                <DropdownMenuItem onClick={() => handleSelect("size", "L")}>
+                  Size L
+                </DropdownMenuItem>
+              </DropdownMenu>
+            )}
+          </DropdownContainer>
+          <DropdownContainer>
+            <DropdownButton onClick={() => handleDropdownToggle("color")}>
+              {selectedColor ? selectedColor : "옵션 색상 선택"}
+              <DropdownIcon isOpen={colorDropdownOpen}>
+                <FontAwesomeIcon icon={faChevronDown} />
+              </DropdownIcon>
+            </DropdownButton>
+            {colorDropdownOpen && (
+              <DropdownMenu>
+                <DropdownMenuItem onClick={() => handleSelect("color", "Red")}>
+                  Red
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleSelect("color", "Blue")}>
+                  Blue
                 </DropdownMenuItem>
               </DropdownMenu>
             )}

@@ -24,7 +24,7 @@ export const deleteCart = async (token, cartProductId) => {
   return response;
 };
 
-// 장바구니 수량 변경 (401error??)
+// 장바구니 수량 변경
 export const updateCart = async (token, cartProductId, newQuantity, data) => {
   const response = await axios.patch(
     `/carts/items/${cartProductId}?quantity=${newQuantity}`,

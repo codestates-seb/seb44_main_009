@@ -39,7 +39,7 @@ function App() {
           <Route path="/review/management" element={<MyReviewPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/edit" element={<ProfileEditPage />} />
-          <Route path="/order" element={<OrderPage />} />
+          <Route path="/order/:orderId" element={<OrderPage />} />
           <Route path="/category" element={<CategoryPage />} />
           <Route path="/picks" element={<PicksPage />} />
           <Route path="/preparing" element={<Preparing />} />
