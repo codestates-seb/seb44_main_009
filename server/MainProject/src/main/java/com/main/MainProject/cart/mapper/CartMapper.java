@@ -62,9 +62,10 @@ public interface CartMapper {
         String productName =  cartProduct.getProduct().getName();
         int productPrice = cartProduct.getProduct().getPrice();
         int totalProductPrice = cartProduct.getProduct().getPrice() * quentity;
+        String productImageName = cartProduct.getProduct().getProductImageName();
 
         CartDto.cartProductResponse cartProductResponse =
-                new CartDto.cartProductResponse( cartProductId,productName, quentity, size, color,personalColor, productPrice, totalProductPrice );
+                new CartDto.cartProductResponse( cartProductId,productName, quentity, size, color,personalColor, productPrice, totalProductPrice, productImageName );
 
         return cartProductResponse;
     }

@@ -30,7 +30,7 @@ public class S3Uploader {
 
     public String upload(MultipartFile multipartFile, String dirName) throws IOException {
 
-        String objectKey = dirName + File.separator + File.separator +multipartFile.getName();
+        String objectKey = dirName + "." + multipartFile.getOriginalFilename();
 
         InputStream inputStream = multipartFile.getInputStream();
 
@@ -38,7 +38,8 @@ public class S3Uploader {
         metadata.setContentLength(multipartFile.getSize());
         metadata.setContentType(multipartFile.getContentType());
 
-        return upload(inputStream, objectKey, metadata);
+        String response = upload(inputStream, objectKey, metadata);
+        return response;
     }
 
     private String upload(InputStream inputStream,String objectKey, ObjectMetadata metadata) {

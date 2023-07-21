@@ -96,7 +96,7 @@ public class MemberService {
 
         if(!image.isEmpty()) {
             String storedFileName = s3Uploader.upload(image, "member");
-            member.setMemberImageName(storedFileName);
+            findMember.setMemberImageName(storedFileName);
         }
 
         Optional.ofNullable(member.getKorName())

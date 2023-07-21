@@ -58,6 +58,8 @@ public class Product extends Auditable {
     @Enumerated(value = EnumType.STRING)
     private PersonalColor personalColor;
 
+    private String productImageName = "https://jeonhyebeenbucket.s3.ap-northeast-2.amazonaws.com/product.background-of-coming-soon.jpg";
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;

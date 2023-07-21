@@ -43,8 +43,7 @@ public class Member extends Auditable {
     @Column(nullable = false)
     private String password;
 
-    @Column(length = 100)
-    private String memberImageName;
+    private String memberImageName = "https://jeonhyebeenbucket.s3.ap-northeast-2.amazonaws.com/member.profile_image_default.jpg";
 
     @Enumerated(value = EnumType.STRING)
     @Column(length = 20, nullable = false)
