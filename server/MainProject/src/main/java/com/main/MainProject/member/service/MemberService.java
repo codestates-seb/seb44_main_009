@@ -1,6 +1,6 @@
 package com.main.MainProject.member.service;
 
-import com.main.MainProject.S3Uploader;
+import com.main.MainProject.s3upload.S3Uploader;
 import com.main.MainProject.auth.utils.CustomAuthorityUtils;
 import com.main.MainProject.cart.service.CartService;
 import com.main.MainProject.exception.ExceptionCode;
@@ -95,7 +95,7 @@ public class MemberService {
         Member findMember = findVerifiedMember(memberId);
 
         if(!image.isEmpty()) {
-            String storedFileName = s3Uploader.upload(image, "member");
+            String storedFileName = s3Uploader.upload(image, "member", findMember.getMemberId());
             findMember.setMemberImageName(storedFileName);
         }
 

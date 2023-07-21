@@ -1,4 +1,4 @@
-package com.main.MainProject;
+package com.main.MainProject.s3upload;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

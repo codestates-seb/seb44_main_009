@@ -45,7 +45,7 @@ public class ProductController {
 
     @PatchMapping(name = "/{product-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> patchProduct(@PathVariable("product-id") @Positive long productId,
-                                          @Valid @RequestBody ProductPatchDto requestBody,
+                                          @Valid @RequestPart ProductPatchDto requestBody,
                                           @RequestPart MultipartFile image) throws IOException {
         requestBody.setProductId(productId);
         Category category = categoryService.findVerifiedCategory(requestBody.getCategoryId());

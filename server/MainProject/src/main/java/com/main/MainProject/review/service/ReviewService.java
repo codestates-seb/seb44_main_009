@@ -1,6 +1,6 @@
 package com.main.MainProject.review.service;
 
-import com.main.MainProject.S3Uploader;
+import com.main.MainProject.s3upload.S3Uploader;
 import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.member.entity.Member;
@@ -49,12 +49,6 @@ public class ReviewService {
         orderService.isOrderByMember(findOrder, findMember);
         OrderProduct findOrderProduct = orderService.findOrderProduct(findOrder, findProduct);
 
-        if(!image.isEmpty()) {
-            String storedFileName = s3Uploader.upload(image, "review");
-            review.setReviewImageName(storedFileName);
-        }
-
-
         if (findOrderProduct.getReviewstatus() == OrderProduct.Reviewstatus.POSSIBLE_REVIEW) {
             review.setMember(findMember);
             review.setProduct(findProduct);
@@ -64,7 +58,12 @@ public class ReviewService {
             throw new BusinessLogicException(ExceptionCode.CAN_NOT_WRITE_REVIEW);
         }
 
-        return review;
+        if(!image.isEmpty()) {
+            String storedFileName = s3Uploader.upload(image, "review", review.getReviewId());
+            review.setReviewImageName(storedFileName);
+        }
+
+        return reviewRepository.save(review);
     }
 
     //리뷰 수정
@@ -77,7 +76,7 @@ public class ReviewService {
         }
 
         if(!image.isEmpty()) {
-            String storedFileName = s3Uploader.upload(image, "review");
+            String storedFileName = s3Uploader.upload(image, "review", findReview.getReviewId());
             findReview.setReviewImageName(storedFileName);
         }
 

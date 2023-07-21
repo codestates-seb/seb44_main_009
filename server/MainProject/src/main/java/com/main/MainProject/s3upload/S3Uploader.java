@@ -1,4 +1,4 @@
-package com.main.MainProject;
+package com.main.MainProject.s3upload;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
@@ -28,9 +28,9 @@ public class S3Uploader {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
-    public String upload(MultipartFile multipartFile, String dirName) throws IOException {
+    public String upload(MultipartFile multipartFile, String dirName, long code) throws IOException {
 
-        String objectKey = dirName + "." + multipartFile.getOriginalFilename();
+        String objectKey = dirName + File.separator + code;
 
         InputStream inputStream = multipartFile.getInputStream();
 

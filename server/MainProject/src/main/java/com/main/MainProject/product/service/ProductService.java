@@ -1,23 +1,19 @@
 package com.main.MainProject.product.service;
 
-import com.main.MainProject.S3Uploader;
+import com.main.MainProject.s3upload.S3Uploader;
 import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.product.category.entity.Category;
-import com.main.MainProject.product.category.repository.CategoryRepository;
 import com.main.MainProject.product.category.service.CategoryService;
 import com.main.MainProject.product.color.service.ColorService;
 import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.product.repository.ProductRepository;
-import com.main.MainProject.qna.entity.Qna;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,7 +44,7 @@ public class ProductService {
         Product findProduct = findVerifiedProduct(product.getProductId());
 
         if(!image.isEmpty()) {
-            String storedFileName = s3Uploader.upload(image, "product");
+            String storedFileName = s3Uploader.upload(image, "product", findProduct.getProductId());
             findProduct.setProductImageName(storedFileName);
         }
 

@@ -37,7 +37,7 @@ public class ReviewController {
     @PostMapping(name = "/create/{order-id}/{product-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity createReview(@PathVariable("order-id")long orderId,
                                        @PathVariable("product-id")long productId,
-                                       @Valid @RequestBody ReviewDto.RequestDTO requestBody,
+                                       @Valid @RequestPart ReviewDto.RequestDTO requestBody,
                                        @RequestPart MultipartFile image) throws IOException {
         long memberId = JwtInterceptor.getAuthenticatedMemberId();
 
@@ -49,7 +49,7 @@ public class ReviewController {
     //리뷰 수정
     @PatchMapping(name = "/update/{review-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity updateReview(@PathVariable("review-id")long reviewId,
-                                       @Valid @RequestBody ReviewDto.RequestDTO requestBody,
+                                       @Valid @RequestPart ReviewDto.RequestDTO requestBody,
                                        @RequestPart MultipartFile image) throws IOException {
         long memberId = JwtInterceptor.getAuthenticatedMemberId();
 
