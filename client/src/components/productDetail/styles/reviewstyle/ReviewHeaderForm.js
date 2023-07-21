@@ -12,10 +12,14 @@ const ReviewFormDiv = styled.div`
   flex-direction: column;
 `;
 
-export const ReviewHeaderForm = ({ reviewfilter, onFilterChange }) => {
+export const ReviewHeaderForm = ({
+  reviewfilter,
+  onFilterChange,
+  reviewCount,
+}) => {
   return (
     <ReviewFormDiv>
-      <ReviewImg></ReviewImg>
+      <ReviewImg reviewCount={reviewCount}></ReviewImg>
       <ReviewDrop
         reviewfilter={reviewfilter}
         onFilterChange={onFilterChange}

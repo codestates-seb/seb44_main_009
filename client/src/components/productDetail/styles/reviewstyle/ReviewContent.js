@@ -71,21 +71,22 @@ const RecoForm = ({ vote }) => {
   );
 };
 
-const date = new Date(); // 날짜 데이터 가져오기
-const formattedDate = date.toISOString();
-
 export const ReviewContent = ({ review }) => {
   const {
     memberName,
     productName,
-    productColor,
+    productColorStatus,
     productPersonalColor,
-
     productPersonalColorStatus,
     sizeStatus,
     content,
     vote,
+    createdAt,
   } = review;
+
+  const time = { createdAt };
+  const timeString = time.createdAt.toString();
+  const dateOnly = timeString.slice(0, 10);
 
   return (
     <ReviewContainer>
@@ -108,9 +109,7 @@ export const ReviewContent = ({ review }) => {
                 {"  "}| {productName}
               </Nickname>
             </AuthorInfoContainer>
-            <PostDate dateTime={formattedDate}>
-              {date.toLocaleDateString()}
-            </PostDate>
+            <PostDate>{dateOnly}</PostDate>
           </ReviewInfo>
         </ReviewFormDiv>
 
@@ -126,7 +125,7 @@ export const ReviewContent = ({ review }) => {
           사이즈 후기 : <ReiviewText>{sizeStatus}</ReiviewText>
         </PersonalInfoText>
         <PersonalInfoText>
-          색상 : <ReiviewText>{productColor}</ReiviewText>
+          색상 상태 : <ReiviewText>{productColorStatus}</ReiviewText>
         </PersonalInfoText>
         <PersonalInfoText>
           후기 : <ReiviewText>{content}</ReiviewText>

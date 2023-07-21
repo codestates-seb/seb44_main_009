@@ -116,11 +116,12 @@ const reviewImages = [
   { src: "", alt: "리뷰 이미지 10" },
 ];
 
-export const ReviewImg = () => {
+export const ReviewImg = reviewCount => {
   const previewCenterImages = reviewImages.slice(0, 3);
   const [showModal, setShowModal] = useState(false);
   const [previewImages, setPreviewImages] = useState(previewCenterImages); // 리뷰 전체
 
+  console.log("reviewCount", reviewCount);
   const handleShowModal = () => {
     setShowModal(true);
   };
