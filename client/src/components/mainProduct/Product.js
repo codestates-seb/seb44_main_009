@@ -1,0 +1,56 @@
+import { styled } from "styled-components";
+import { Link } from "react-router-dom";
+
+import {
+  ProductContainer,
+  ProductImage,
+  ProductName,
+  ProductPrice,
+  ProductPriceInfo,
+  ProductNameInfo,
+  ProductColor,
+  ProductImageContainer,
+} from "./Styles/Product/ProductStyles";
+
+const ProductColorContainer = styled.div`
+  display: flex; // 가로 정렬을 위한 flex 설정
+  max-width: 100%;
+  max-height: 100%;
+  justify-content: flex-end;
+`;
+
+// const Product = ({ productId, url, name, price, color }) => {
+const Product = ({ productId, name, price, color }) => {
+  return (
+    <span>
+      <ProductContainer>
+        <Link
+          to={{
+            pathname: `/product-detail/${productId}`,
+          }}
+        >
+          <ProductImageContainer>
+            <ProductImage
+              src={
+                "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0"
+              }
+              alt="Product Image"
+            />
+          </ProductImageContainer>
+        </Link>
+        <ProductNameInfo>
+          <ProductName>{name}</ProductName>
+        </ProductNameInfo>
+        <ProductColorContainer>
+          {color.map((c, index) => (
+            <ProductColor key={index} color={c.name} />
+          ))}
+        </ProductColorContainer>
+        <ProductPriceInfo>
+          <ProductPrice>{price}원</ProductPrice>
+        </ProductPriceInfo>
+      </ProductContainer>
+    </span>
+  );
+};
+export default Product;
