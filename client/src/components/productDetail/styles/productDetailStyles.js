@@ -81,7 +81,6 @@ const ProductDetailStyles = () => {
     getReviews();
   }, [productId]); // productId가 변경될 때마다 리뷰 바뀜.
 
-  console.log("reviews0", reviews);
   // Tab 기능
   const [activeTab, setActiveTab] = useState("product-info");
   const [isExpanded, setIsExpanded] = useState(false);
@@ -89,6 +88,10 @@ const ProductDetailStyles = () => {
   const [selectedDropOption, setSelectedDropOption] = useState(
     reviewfilter[0].slug,
   );
+
+  useEffect(() => {
+    setIsReviewExpanded(false);
+  }, [selectedDropOption]);
 
   const onFilterChange = selectedDropOption => {
     setSelectedDropOption(selectedDropOption);
@@ -133,6 +136,7 @@ const ProductDetailStyles = () => {
   }
   const sortedReviews = sortReviews(selectedDropOption);
 
+  console.log("reviews", reviews);
   return (
     <ProductDetailContainer>
       <ProductDetailContent>
@@ -185,7 +189,9 @@ const ProductDetailStyles = () => {
             reviewfilter={reviewfilter}
             onFilterChange={onFilterChange}
             selectedDropOption={selectedDropOption}
+            reviewCount={reviews.data.responseList.length}
           />
+
           {/* 더미데이터 Review */}
           {/* <ReviewPersonalBar
             coolToneCount={reviews[0].data.personalColorCoolCount}
@@ -199,26 +205,31 @@ const ProductDetailStyles = () => {
               warmToneCount={reviews.data.personalColorWormCount}
             />
           ) : null}
-          {sortedReviews.length > 0 ? (
-            sortedReviews.map(sortedReviews => (
-              <ReviewContent
-                key={sortedReviews.id}
-                review={sortedReviews}
-                selectedDropOption={selectedDropOption}
-                vote={sortedReviews.vote}
-              />
-            ))
-          ) : (
+
+          {sortedReviews.length > 0 && (
+            <div>
+              {sortedReviews.map(sortedReviews => (
+                <ReviewContent
+                  key={sortedReviews.id}
+                  review={sortedReviews}
+                  selectedDropOption={selectedDropOption}
+                  vote={sortedReviews.vote}
+                />
+              ))}
+              <ProductInfoButton
+                onClick={() => {
+                  toggleReviewExpanded();
+                  scrollToBottom();
+                }}
+              >
+                {isReviewExpanded ? "접기" : "리뷰 전체 보기"}
+              </ProductInfoButton>
+            </div>
+          )}
+
+          {sortedReviews.length === 0 && (
             <NoReviews>리뷰가 없습니다.</NoReviews>
           )}
-          <ProductInfoButton
-            onClick={() => {
-              toggleReviewExpanded();
-              scrollToBottom();
-            }}
-          >
-            {isReviewExpanded ? "접기" : "리뷰 전체 보기"}
-          </ProductInfoButton>
         </TabContent>
 
         {/* 탭3. 문의 */}
