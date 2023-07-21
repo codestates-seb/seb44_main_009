@@ -81,11 +81,11 @@ const ProductDetailStyles = () => {
     getReviews();
   }, [productId]); // productId가 변경될 때마다 리뷰 바뀜.
 
-  console.log("reviews0", reviews.data);
+  console.log("reviews0", reviews);
   // Tab 기능
   const [activeTab, setActiveTab] = useState("product-info");
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isReviewExpanded, setIsReviewExpanded] = useState(true);
+  const [isReviewExpanded, setIsReviewExpanded] = useState(false);
   const [selectedDropOption, setSelectedDropOption] = useState(
     reviewfilter[0].slug,
   );
@@ -120,20 +120,18 @@ const ProductDetailStyles = () => {
 
     switch (Dropoption) {
       case "coolColor":
-        return reviews[0].data.responseList.filter(
+        return reviews.data.responseList.filter(
           review => review.productPersonalColor === "COOL_TONE",
         );
       case "warmColor":
-        return reviews[0].data.responseList.filter(
+        return reviews.data.responseList.filter(
           review => review.productPersonalColor === "WARM_TONE",
         );
       case "highVote":
-        return reviews[0].data.responseList.sort((a, b) => b.vote - a.vote);
+        return reviews.data.responseList.sort((a, b) => b.vote - a.vote);
     }
   }
   const sortedReviews = sortReviews(selectedDropOption);
-
-  console.log("sortedReviews", sortedReviews);
 
   return (
     <ProductDetailContainer>
@@ -219,7 +217,7 @@ const ProductDetailStyles = () => {
               scrollToBottom();
             }}
           >
-            {isReviewExpanded ? "리뷰 전체 보기" : "접기"}
+            {isReviewExpanded ? "접기" : "리뷰 전체 보기"}
           </ProductInfoButton>
         </TabContent>
 
