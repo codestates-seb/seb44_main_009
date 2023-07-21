@@ -54,6 +54,8 @@ public class ReviewDto {
         private LocalDateTime createdAt;
 
         private LocalDateTime lastModifiedAt;
+
+        private String reviewImageName;
     }
 
     @Getter

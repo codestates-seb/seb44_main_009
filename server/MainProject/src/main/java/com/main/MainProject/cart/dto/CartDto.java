@@ -55,5 +55,6 @@ public class CartDto {
         private PersonalColor personalColor;
         private int productPrice;
         private int totalProductPrice;
+        private String productImageName;
     }
 }

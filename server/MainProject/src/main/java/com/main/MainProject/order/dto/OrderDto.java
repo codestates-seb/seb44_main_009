@@ -85,5 +85,6 @@ public class OrderDto {
         private int quantity;
         private int totalProductPrice;
         private OrderProduct.Reviewstatus reviewStatus;
+        private String productImageName;
     }
 }

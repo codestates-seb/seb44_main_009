@@ -8,11 +8,18 @@ import lombok.SneakyThrows;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+<<<<<<< HEAD
+=======
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+<<<<<<< HEAD
 import javax.servlet.http.Cookie;
+=======
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -31,11 +38,19 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @SneakyThrows
     @Override
+<<<<<<< HEAD
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         ObjectMapper objectMapper = new ObjectMapper();
         LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class);
         UsernamePasswordAuthenticationToken authenticationToken =
                                                 new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
+=======
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse  response) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class);
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword());
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d
 
         return authenticationManager.authenticate(authenticationToken);
     }
@@ -48,6 +63,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         Member member = (Member) authResult.getPrincipal();
 
         String accessToken = delegateAccessToken(member);
+<<<<<<< HEAD
         //refreshTokenCookie 쿠키생성
         Cookie refreshTokenCookie = delegateRefreshTokenCookie(member);
 
@@ -56,12 +72,24 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.addCookie(refreshTokenCookie);
 
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);  // 추가
+=======
+        String refreshToken = delegateRefreshToken(member);
+
+        response.setHeader("Authorization", "Bearer " + accessToken);
+        response.setHeader("Refresh", refreshToken);
+
+        this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d
     }
 
     private String delegateAccessToken(Member member) {
         Map<String, Object> claims = new HashMap<>();
+<<<<<<< HEAD
         claims.put("memberId", member.getMemberId());  // 식별자도 포함할 수 있다.
         claims.put("username", member.getEmail());
+=======
+        claims.put("email", member.getEmail());
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d
         claims.put("roles", member.getRoles());
 
         String subject = member.getEmail();
@@ -74,11 +102,16 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         return accessToken;
     }
 
+<<<<<<< HEAD
     private Cookie delegateRefreshTokenCookie(Member member) {
+=======
+    private String delegateRefreshToken(Member member) {
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d
         String subject = member.getEmail();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
 
+<<<<<<< HEAD
         //쿠키 생성
         String refreshToken = jwtTokenizer.generateRefreshToken(subject, expiration, base64EncodedSecretKey);
         Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
@@ -89,3 +122,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         return refreshTokenCookie;
     }
 }
+=======
+        String refreshToken = jwtTokenizer.generateRefreshToken(subject, expiration, base64EncodedSecretKey);
+
+        return refreshToken;
+    }
+}
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d

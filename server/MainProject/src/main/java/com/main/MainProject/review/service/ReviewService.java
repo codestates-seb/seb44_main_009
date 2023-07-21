@@ -1,5 +1,6 @@
 package com.main.MainProject.review.service;
 
+import com.main.MainProject.s3upload.S3Uploader;
 import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.member.entity.Member;
@@ -12,7 +13,9 @@ import com.main.MainProject.product.service.ProductService;
 import com.main.MainProject.review.entity.Review;
 import com.main.MainProject.review.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,23 +29,25 @@ public class ReviewService {
 
     private final OrderService orderService;
 
+    private final S3Uploader s3Uploader;
+
     public ReviewService(ReviewRepository reviewRepository, MemberService memberService,
-                         ProductService productService, OrderService orderService) {
+                         ProductService productService, OrderService orderService, S3Uploader s3Uploader) {
         this.reviewRepository = reviewRepository;
         this.memberService = memberService;
         this.productService = productService;
         this.orderService = orderService;
+        this.s3Uploader = s3Uploader;
     }
 
     //리뷰 생성
-    public Review createReview(Review review, long orderId, long productId, long memberId){
+    public Review createReview(Review review, long orderId, long productId, long memberId, MultipartFile image) throws IOException {
         Order findOrder = orderService.findVerficatedOrder(orderId);
         Member findMember = memberService.findVerifiedMember(memberId);
         Product findProduct = productService.findVerifiedProduct(productId);
 
         orderService.isOrderByMember(findOrder, findMember);
         OrderProduct findOrderProduct = orderService.findOrderProduct(findOrder, findProduct);
-
 
         if (findOrderProduct.getReviewstatus() == OrderProduct.Reviewstatus.POSSIBLE_REVIEW) {
             review.setMember(findMember);
@@ -53,11 +58,16 @@ public class ReviewService {
             throw new BusinessLogicException(ExceptionCode.CAN_NOT_WRITE_REVIEW);
         }
 
-        return review;
+        if(!image.isEmpty()) {
+            String storedFileName = s3Uploader.upload(image, "review", review.getReviewId());
+            review.setReviewImageName(storedFileName);
+        }
+
+        return reviewRepository.save(review);
     }
 
     //리뷰 수정
-    public Review updateReview(long reviewId, long memberId, Review review){
+    public Review updateReview(long reviewId, long memberId, Review review, MultipartFile image) throws IOException {
         Member findMember = memberService.findVerifiedMember(memberId);
         Review findReview = findVerifiedReview(reviewId);
 
@@ -65,6 +75,10 @@ public class ReviewService {
             new BusinessLogicException(ExceptionCode.YOU_ARE_NOT_WRITER);
         }
 
+        if(!image.isEmpty()) {
+            String storedFileName = s3Uploader.upload(image, "review", findReview.getReviewId());
+            findReview.setReviewImageName(storedFileName);
+        }
 
         Optional.ofNullable(review.getContent())
                 .ifPresent(content ->findReview.setContent(content));

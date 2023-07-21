@@ -100,11 +100,18 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.PATCH, "/reviews/update/*").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/reviews/findByMember").hasRole("USER")
                         .antMatchers(HttpMethod.DELETE, "/reviews/delete/*").hasRole("USER")
-                        //qna
+                        
                         //wishlist
                         .antMatchers(HttpMethod.POST, "/wishlist").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/wishlist").hasRole("USER")
-                        .antMatchers(HttpMethod.DELETE, "/wishlist").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/wishlist").hasRole("USER")          
+                        //qna
+                        .antMatchers(HttpMethod.POST, "/qnas/").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "qnas/request/").hasRole("USER")
+                        .antMatchers(HttpMethod.POST,"/qnas/postqna").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH,"/qnas/").hasRole("USER")
+                        .antMatchers(HttpMethod.GET,"/qnas/qnabymember").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE,"/qnas/").hasRole("USER")
 
                         .anyRequest().permitAll()
                 );
@@ -116,6 +123,7 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
+  
     // 커스텀 LogoutSuccessHandler 구현 및 반환
     public LogoutSuccessHandler customLogoutSuccessHandler() {
         return  null;//new CustomLogoutSuccessHandler();
@@ -141,6 +149,7 @@ public class SecurityConfiguration {
         }
     }
 
+
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -157,3 +166,5 @@ public class SecurityConfiguration {
         return source;
     }
 }
+
+

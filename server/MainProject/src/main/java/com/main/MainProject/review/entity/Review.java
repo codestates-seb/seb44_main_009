@@ -39,6 +39,8 @@ public class Review extends Auditable {
     @Enumerated(value = EnumType.STRING)
     private ProductColorStatus productColorStatus = ProductColorStatus.DISPLAY;
 
+    private String reviewImageName;
+
     public enum EnjoyStatus{
 
         NO,
