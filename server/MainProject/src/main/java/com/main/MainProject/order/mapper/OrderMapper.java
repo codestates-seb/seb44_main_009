@@ -74,8 +74,10 @@ public interface OrderMapper {
         int totalProductPrice = orderProduct.getProduct().getPrice() * quantity;
         OrderProduct.Reviewstatus reviewStatus = orderProduct.getReviewstatus();
 
+        String productImageName = orderProduct.getProduct().getProductImageName();
+
         OrderDto.orderProductResponse orderProductResponse =
-                new OrderDto.orderProductResponse( productId, productName, productPrice, quantity, totalProductPrice, reviewStatus);
+                new OrderDto.orderProductResponse( productId, productName, productPrice, quantity, totalProductPrice, reviewStatus, productImageName);
 
         return orderProductResponse;
     }

@@ -102,8 +102,7 @@ public class SecurityConfiguration {
                         //wishlist
                         .antMatchers(HttpMethod.POST, "/wishlist").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/wishlist").hasRole("USER")
-                        .antMatchers(HttpMethod.DELETE, "/wishlist").hasRole("USER")
-                                   
+                        .antMatchers(HttpMethod.DELETE, "/wishlist").hasRole("USER")          
                         //qna
                         .antMatchers(HttpMethod.POST, "/qnas/").hasRole("USER")
                         .antMatchers(HttpMethod.PATCH, "qnas/request/").hasRole("USER")
@@ -111,7 +110,6 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.PATCH,"/qnas/").hasRole("USER")
                         .antMatchers(HttpMethod.GET,"/qnas/qnabymember").hasRole("USER")
                         .antMatchers(HttpMethod.DELETE,"/qnas/").hasRole("USER")
-                                   
                         .anyRequest().permitAll()
                 );
         return http.build();

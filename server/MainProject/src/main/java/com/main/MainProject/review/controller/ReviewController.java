@@ -9,10 +9,13 @@ import com.main.MainProject.review.mapper.ReviewMapper;
 import com.main.MainProject.review.service.ReviewService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -31,24 +34,26 @@ public class ReviewController {
     }
 
     //리뷰 생성
-    @PostMapping("/create/{order-id}/{product-id}")
+    @PostMapping(name = "/create/{order-id}/{product-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity createReview(@PathVariable("order-id")long orderId,
                                        @PathVariable("product-id")long productId,
-                                       @Valid @RequestBody ReviewDto.RequestDTO requestBody){
+                                       @Valid @RequestPart ReviewDto.RequestDTO requestBody,
+                                       @RequestPart MultipartFile image) throws IOException {
         long memberId = JwtInterceptor.getAuthenticatedMemberId();
 
-        Review review = reviewService.createReview(mapper.reviewDtoToReview(requestBody), orderId, productId, memberId);
+        Review review = reviewService.createReview(mapper.reviewDtoToReview(requestBody), orderId, productId, memberId, image);
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewToResponse(review)), HttpStatus.CREATED);
     }
 
     //리뷰 수정
-    @PatchMapping("/update/{review-id}")
+    @PatchMapping(name = "/update/{review-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity updateReview(@PathVariable("review-id")long reviewId,
-                                       @Valid @RequestBody ReviewDto.RequestDTO requestBody){
+                                       @Valid @RequestPart ReviewDto.RequestDTO requestBody,
+                                       @RequestPart MultipartFile image) throws IOException {
         long memberId = JwtInterceptor.getAuthenticatedMemberId();
 
-        Review review = reviewService.updateReview(reviewId, memberId, mapper.reviewDtoToReview(requestBody));
+        Review review = reviewService.updateReview(reviewId, memberId, mapper.reviewDtoToReview(requestBody), image);
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewToResponse(review)), HttpStatus.OK);
     }

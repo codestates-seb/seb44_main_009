@@ -1,20 +1,19 @@
 package com.main.MainProject.product.service;
 
+import com.main.MainProject.s3upload.S3Uploader;
 import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.product.category.entity.Category;
-import com.main.MainProject.product.category.repository.CategoryRepository;
 import com.main.MainProject.product.category.service.CategoryService;
 import com.main.MainProject.product.color.service.ColorService;
 import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.product.repository.ProductRepository;
-import com.main.MainProject.qna.entity.Qna;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.io.IOException;
 import java.util.Optional;
 
 @Service
@@ -23,10 +22,14 @@ public class ProductService {
     private final CategoryService categoryService;
     private final ColorService colorService;
 
-    public ProductService(ProductRepository productRepository, CategoryService categoryService, ColorService colorService) {
+    private final S3Uploader s3Uploader;
+
+    public ProductService(ProductRepository productRepository, CategoryService categoryService,
+                          ColorService colorService, S3Uploader s3Uploader) {
         this.productRepository = productRepository;
         this.categoryService = categoryService;
         this.colorService = colorService;
+        this.s3Uploader = s3Uploader;
     }
 
     public Product createProduct(Product product, Category category) {
@@ -37,8 +40,13 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Product updateProduct(Product product, Category category) {
+    public Product updateProduct(Product product, Category category, MultipartFile image) throws IOException {
         Product findProduct = findVerifiedProduct(product.getProductId());
+
+        if(!image.isEmpty()) {
+            String storedFileName = s3Uploader.upload(image, "product", findProduct.getProductId());
+            findProduct.setProductImageName(storedFileName);
+        }
 
         Optional.ofNullable(product.getName()).ifPresent(findProduct::setName);
         Optional.of(product.getCount()).ifPresent(findProduct::setCount);
