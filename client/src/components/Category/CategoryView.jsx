@@ -5,7 +5,7 @@ import { CategoryViewContainer } from "./Styles/CategoryView/CategoryViewContain
 import { Section } from "./Styles/CategoryView/Section.styled";
 
 function CategoryView({ categories }) {
-  const slug = ["tops", "dress", "pants", "skirts", "outerwear", "accessories"];
+  const slug = ["상의", "원피스", "하의", "스커트", "아우터", "악세사리"];
   return (
     <CategoryViewContainer>
       {categories.map((category, index) => (

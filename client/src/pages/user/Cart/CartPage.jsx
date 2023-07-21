@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { fetchCart, updateCart } from "../../../api/orderAPIs";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  fetchCart,
+  updateCart,
+  postAfterPayment,
+} from "../../../api/orderAPIs";
+import { getUser } from "../../../api/userAPI";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
 import CartProductList from "../../../components/attribute/CartProductList";
@@ -26,6 +31,7 @@ import { auth } from "../../../atoms/auth";
 
 function CartPage() {
   const { token } = useRecoilValue(auth);
+  const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const [cart, setCart] = useState({ cartProductList: [] });
 
@@ -53,7 +59,27 @@ function CartPage() {
       const updatedCartData = await fetchCart(token);
       setCart(updatedCartData);
     } catch (error) {
-      console.log("Token:", token);
+      console.error(error);
+    }
+  };
+
+  // 장바구니 구매하기
+  const updatePayment = async () => {
+    const user = await getUser(token);
+    const data = {
+      receiverName: user.korName,
+      zipcode: null,
+      addressName: user.address,
+      addressDetails: user.address,
+      telNum: user.phoneNumber,
+      request: null,
+    };
+    try {
+      const response = await postAfterPayment(token, data);
+      console.log(response.data);
+      const orderId = response.data.orderId;
+      navigate(`/order/${orderId}`);
+    } catch (error) {
       console.error(error);
     }
   };
@@ -100,13 +126,7 @@ function CartPage() {
           </PaymentContainer>
         </CartBackContainer>
       )}
-      {/* 확인용 지울것 */}
-      <Link to="/review">
-        <button>리뷰</button>
-      </Link>
-      <Link to="/order">
-        <Footer_oneBtn text="상품 주문하기" />
-      </Link>
+      <Footer_oneBtn text="상품 주문하기" onClick={updatePayment} />
     </BackContainer>
   );
 }

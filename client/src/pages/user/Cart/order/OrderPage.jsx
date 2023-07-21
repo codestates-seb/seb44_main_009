@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Header_back from "../../../../components/header/Header_back";
 import Footer_oneBtn from "../../../../components/footer/Footer_oneBtn";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import OrderProductList from "../../../../components/attribute/OrderPay/OrderProductList";
-import { dummyproducts } from "../../../../dummyDate/dummyProducts";
 import Delivery from "../../../../components/attribute/OrderPay/Delivery";
 import PaymentMethod from "../../../../components/attribute/OrderPay/PaymentMethod";
 import Payment from "../../../../components/attribute/OrderPay/Payment";
@@ -12,8 +12,15 @@ import { OrderContainer } from "./styles/OrderContainer.styled";
 import { OrderProductContainer } from "./styles/OrderProductContainer.styled";
 import { OrderWrapper } from "./styles/OrderWrapper.styled";
 import { Title } from "./styles/Title.styled";
+import { fetchOrder, patchAddress } from "../../../../api/orderAPIs";
+import { useRecoilValue } from "recoil";
+import { auth } from "../../../../atoms/auth";
 
 function OrderPage() {
+  const authData = useRecoilValue(auth);
+  const { orderId } = useParams();
+
+  const [orderData, setOrderData] = useState({});
   const [showOrderProduct, setShowOrderProduct] = useState(false);
   const [editAddress, setEditAddress] = useState(false);
 
@@ -23,56 +30,65 @@ function OrderPage() {
 
   const toggleEditAddress = () => {
     setEditAddress(!editAddress);
+    if (!editAddress) {
+      updateAddress();
+    }
   };
 
-  const [orderData, setOrderData] = useState(() => {
-    const storedOrderData = localStorage.getItem("orderData");
-    return storedOrderData
-      ? JSON.parse(storedOrderData)
-      : {
-          data: {
-            orderId: 1,
-            cartProductList: [
-              {
-                productId: 1,
-                productName: "Product1",
-                productPrice: 200,
-                quantity: 5,
-                totalProductPrice: 1000,
-                reviewStatus: "IMPOSSIBLE_REVIEW",
-              },
-              {
-                productId: 2,
-                productName: "Product2",
-                productPrice: 100,
-                quantity: 5,
-                totalProductPrice: 500,
-                reviewStatus: "IMPOSSIBLE_REVIEW",
-              },
-            ],
-            shippingCost: 3000,
-            productTotalPrice: 1500,
-            totalPrice: 4500,
-            address: {
-              receiverName: "JohnDoe",
-              zipcode: 12345,
-              addressName: "123_Main_St",
-              addressDetails: "Apt_4B",
-              telNum: "010-456-7890",
-              request: "Leave_at_doorstep",
-            },
-            shippingStatus: "BEFORE_PAYMENT",
-            createdAt: "2023-07-10T16:33:38.518034",
-            lastModifiedAt: "2023-07-10T16:33:38.518034",
-          },
-        };
-  });
+  // 주문 전체 조회
+  useEffect(() => {
+    const { token } = authData;
+    const orderData = async () => {
+      try {
+        const data = await fetchOrder(token, orderId);
+        setOrderData(data);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const { totalPrice, productTotalPrice, shippingCost, address } =
-    orderData.data;
+    orderData();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("orderData", JSON.stringify(orderData));
+  }, [orderData]);
+
+  if (!orderData.data) {
+    return <div>Loading...</div>;
+  }
+
+  const {
+    totalPrice,
+    productTotalPrice,
+    shippingCost,
+    address,
+    cartProductList,
+  } = orderData.data;
 
   const paymentMethods = ["간편결제", "카드결제", "현금결제", "휴대폰결제"];
 
+  // 배송지 정보 변경
+  const updateAddress = async () => {
+    const { token } = authData;
+    const data = {
+      receiverName: "",
+      zipcode: 111,
+      addressName: "",
+      addressDetails: "",
+      telNum: "",
+      request: "Leave at doorstep",
+    };
+    console.log(data);
+    try {
+      const response = await patchAddress(token, orderId, data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(data);
+      console.error(error);
+    }
+  };
   const handleChangeAddress = newAddress => {
     setOrderData(prevOrderData => ({
       ...prevOrderData,
@@ -84,11 +100,8 @@ function OrderPage() {
         },
       },
     }));
+    updateAddress();
   };
-
-  useEffect(() => {
-    localStorage.setItem("orderData", JSON.stringify(orderData));
-  }, [orderData]);
 
   return (
     <OrderContainer>
@@ -104,13 +117,14 @@ function OrderPage() {
         </Title>
         <OrderProductContainer show={showOrderProduct ? 1 : 0}>
           <h3>배송 상품</h3>
-          <OrderProductList products={dummyproducts}></OrderProductList>
+          <OrderProductList products={cartProductList}></OrderProductList>
         </OrderProductContainer>
         <Delivery
           address={address}
           editAddress={editAddress}
           handleChangeAddress={handleChangeAddress}
           toggleEditAddress={toggleEditAddress}
+          updateAddress={updateAddress}
         />
         <Payment
           totalPrice={totalPrice}
