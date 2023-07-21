@@ -1,15 +1,12 @@
 package com.main.MainProject.review.mapper;
 
-import com.main.MainProject.product.color.dto.ColorDto;
-import com.main.MainProject.product.color.entity.Color;
-import com.main.MainProject.product.entity.Product;
+import com.main.MainProject.product.color.Color;
 import com.main.MainProject.review.dto.ReviewDto;
 import com.main.MainProject.review.entity.Review;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +20,7 @@ public interface ReviewMapper {
     @Mapping(source = "product.name", target = "productName")
     ReviewDto.Response reviewToResponse(Review review);
 
-    List<ColorDto.Response> colorListToColorDtoList(List<Color> colorList);
+    List<Color> colorListToColorDtoList(List<Color> colorList);
 
 
     default ReviewDto.ResponseList reviewListToResponses(List<Review> reviewList) {
@@ -43,6 +40,4 @@ public interface ReviewMapper {
 
          return response;
     }
-
-
 }

@@ -3,12 +3,9 @@ package com.main.MainProject.product.service;
 import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.product.category.entity.Category;
-import com.main.MainProject.product.category.repository.CategoryRepository;
 import com.main.MainProject.product.category.service.CategoryService;
-import com.main.MainProject.product.color.service.ColorService;
 import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.product.repository.ProductRepository;
-import com.main.MainProject.qna.entity.Qna;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -21,12 +18,10 @@ import java.util.Optional;
 public class ProductService {
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
-    private final ColorService colorService;
 
-    public ProductService(ProductRepository productRepository, CategoryService categoryService, ColorService colorService) {
+    public ProductService(ProductRepository productRepository, CategoryService categoryService) {
         this.productRepository = productRepository;
         this.categoryService = categoryService;
-        this.colorService = colorService;
     }
 
     public Product createProduct(Product product, Category category) {
