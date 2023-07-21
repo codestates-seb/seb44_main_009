@@ -114,7 +114,7 @@ const ProductDetailStyles = () => {
   }
 
   function sortReviews(Dropoption) {
-    if (!reviews || reviews.data.totalCount === 0) {
+    if (!reviews || !reviews.data || reviews.data.totalCount === 0) {
       return [];
     }
 
@@ -196,14 +196,7 @@ const ProductDetailStyles = () => {
             coolToneCount={reviews.data.personalColorCoolCount}
             warmToneCount={reviews.data.personalColorWormCount}
           />
-          {/* {sortedReviews.map(sortedReviews => (
-            <ReviewContent
-              key={sortedReviews.id}
-              review={sortedReviews}
-              selectedDropOption={selectedDropOption}
-              vote={sortedReviews.vote}
-            />
-          ))} */}
+
           {sortedReviews.length > 0 ? (
             sortedReviews.map(sortedReviews => (
               <ReviewContent
