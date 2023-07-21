@@ -5,5 +5,5 @@ export const ProfileImage = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 100%;
-  border: 2px solid red;
+  border: 2px solid black;
 `;

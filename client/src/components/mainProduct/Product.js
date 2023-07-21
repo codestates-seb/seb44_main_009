@@ -19,7 +19,8 @@ const ProductColorContainer = styled.div`
   justify-content: flex-end;
 `;
 
-const Product = ({ productId, url, name, price, color }) => {
+// const Product = ({ productId, url, name, price, color }) => {
+const Product = ({ productId, name, price, color }) => {
   return (
     <span>
       <ProductContainer>
@@ -29,7 +30,12 @@ const Product = ({ productId, url, name, price, color }) => {
           }}
         >
           <ProductImageContainer>
-            <ProductImage src={url} alt="Product Image" />
+            <ProductImage
+              src={
+                "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0"
+              }
+              alt="Product Image"
+            />
           </ProductImageContainer>
         </Link>
         <ProductNameInfo>
