@@ -64,13 +64,15 @@ const RecoForm = ({ vote }) => {
       >
         추천
       </RecommendationButton>
-      <RecommendationCount>{recommendation}</RecommendationCount>
+      <RecommendationCount>
+        {vote + (isRecommended ? 1 : 0)}
+      </RecommendationCount>
     </RecommendationForm>
   );
 };
 
 const date = new Date(); // 날짜 데이터 가져오기
-const formattedDate = date.toISOString(); // ISO 8601 형식으로 변환
+const formattedDate = date.toISOString();
 
 export const ReviewContent = ({ review }) => {
   const {

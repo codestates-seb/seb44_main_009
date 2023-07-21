@@ -194,6 +194,7 @@ const ProductDetailStyles = () => {
               key={sortedReviews.id}
               review={sortedReviews}
               selectedDropOption={selectedDropOption}
+              vote={sortedReviews.vote}
             />
           ))}
 
