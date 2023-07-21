@@ -34,7 +34,7 @@ public class OrderProduct {
     public enum Reviewstatus{
         IMPOSSIBLE_REVIEW("리뷰 작성 불가"),
         POSSIBLE_REVIEW("리뷰 작성 가능"),
-        REVIEW_WIITE("리뷰 작성 완료");
+        REVIEW_WRITE("리뷰 작성 완료");
 
         @Getter
         private String status;

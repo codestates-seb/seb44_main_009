@@ -62,37 +62,56 @@ public class SecurityConfiguration {
 //                .logoutUrl("/logout")
 //                .logoutSuccessHandler(customLogoutSuccessHandler())
 //                .invalidateHttpSession(true)
-//                .deleteCookies("JSESSIONID", "refreshToken")
+//                .deleteCookies("refreshToken")
 //                .and()
                 .authorizeRequests(authorize -> authorize
+                        //members
                         .antMatchers(HttpMethod.POST,"/members/signup").permitAll()
-                        .antMatchers(HttpMethod.PATCH,"/members/").hasRole("USER")
-                        .antMatchers(HttpMethod.GET,"/members").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET,"/members/").hasAnyRole("USER","ADMIN")
-                        .antMatchers(HttpMethod.DELETE,"/members/").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH,"/members").hasRole("USER")
+                        .antMatchers(HttpMethod.GET,"/members").hasRole("USER")
+                        .antMatchers(HttpMethod.GET,"/members/list").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.DELETE,"/members").hasRole("USER")
+                        //products
                         .antMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.PATCH, "/products/").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "/products/").hasAnyRole("ADMIN", "USER")
-                        .antMatchers(HttpMethod.GET, "/products").hasAnyRole("ADMIN", "USER")
-                        .antMatchers(HttpMethod.DELETE, "/products/").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.PATCH, "/products/*").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.DELETE, "/products/*").hasRole("ADMIN")
+                        //category
                         .antMatchers(HttpMethod.POST, "/category").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.PATCH, "/category/").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "/category/").hasAnyRole("ADMIN", "USER")
-                        .antMatchers(HttpMethod.DELETE, "/category/").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.POST, "order/").hasRole("USER")
-                        .antMatchers(HttpMethod.PATCH, "order/request/").hasRole("USER")
-                        .antMatchers(HttpMethod.PATCH, "order/update/").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "order/buylist/").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "order/").hasAnyRole("USER", "ADMIN")
-                        .antMatchers(HttpMethod.DELETE, "order/**").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/category/*").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.DELETE, "/category/*").hasRole("ADMIN")
+                        //orders
+                        .antMatchers(HttpMethod.POST, "/orders/buy/cart").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/orders/buy/**").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/orders/request/*").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/orders/update/*").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "/orders/list").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "/orders/find").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/orders/*").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/orders/delete/*").hasRole("USER")
+                        //cart
+                        .antMatchers(HttpMethod.POST, "/carts/items").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/carts/items/**").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/carts").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/carts/items/*").hasRole("USER")
+                        //review
+                        .antMatchers(HttpMethod.POST, "/reviews/create/*/*").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/reviews/update/*").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/reviews/findByMember").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/reviews/delete/*").hasRole("USER")
+                        
+                        //wishlist
+                        .antMatchers(HttpMethod.POST, "/wishlist").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/wishlist").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/wishlist").hasRole("USER")
+                                   
+                        //qna
                         .antMatchers(HttpMethod.POST, "/qnas/").hasRole("USER")
                         .antMatchers(HttpMethod.PATCH, "qnas/request/").hasRole("USER")
                         .antMatchers(HttpMethod.POST,"/qnas/postqna").hasRole("USER")
                         .antMatchers(HttpMethod.PATCH,"/qnas/").hasRole("USER")
-                        .antMatchers(HttpMethod.GET,"/qnas").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET,"/qnas/").hasAnyRole("USER","ADMIN")
+                        .antMatchers(HttpMethod.GET,"/qnas/qnabymember").hasRole("USER")
                         .antMatchers(HttpMethod.DELETE,"/qnas/").hasRole("USER")
-
+                                   
                         .anyRequest().permitAll()
                 );
         return http.build();
@@ -113,10 +132,11 @@ public class SecurityConfiguration {
         return source;
     }
 
-//    // 커스텀 LogoutSuccessHandler 구현 및 반환
-//    public LogoutSuccessHandler customLogoutSuccessHandler() {
-//        return new CustomLogoutSuccessHandler();
-//    }
+
+    // 커스텀 LogoutSuccessHandler 구현 및 반환
+    public LogoutSuccessHandler customLogoutSuccessHandler() {
+        return  null;//new CustomLogoutSuccessHandler();
+    }
 
 
     public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {

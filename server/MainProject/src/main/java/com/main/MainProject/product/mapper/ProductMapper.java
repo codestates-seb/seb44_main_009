@@ -5,6 +5,7 @@ import com.main.MainProject.product.color.dto.ColorDto;
 import com.main.MainProject.product.color.entity.Color;
 import com.main.MainProject.product.dto.ProductDto;
 import com.main.MainProject.product.entity.Product;
+import com.main.MainProject.product.size.Size;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -26,7 +27,7 @@ public interface ProductMapper {
         product.setName( productPostDto.getName() );
         product.setPrice( productPostDto.getPrice() );
         product.setContent( productPostDto.getContent() );
-        product.setCount( productPostDto.getCount() );
+        product.setCount(productPostDto.getCount() );
         List<Color> list = productPostDto.getColors();
         if ( list != null ) {
             for (Color color : list) {
@@ -34,12 +35,40 @@ public interface ProductMapper {
             }
             product.setColors( new ArrayList<Color>( list ) );
         }
+        List<Size> sizes = productPostDto.getSizes();
+        if (sizes != null) {
+            product.setSize(new ArrayList<Size>(sizes));
+        }
         product.setPersonalColor( productPostDto.getPersonalColor() );
 
         return product;
     }
 
-    Product productPatchDtoToProduct(ProductPatchDto productPatchDto);
+    default Product productPatchDtoToProduct(ProductDto.ProductPatchDto productPatchDto) {
+        if ( productPatchDto == null ) {
+            return null;
+        }
+
+        Product product = new Product();
+
+        product.setProductId( productPatchDto.getProductId() );
+        product.setName( productPatchDto.getName() );
+        product.setPrice( productPatchDto.getPrice() );
+        product.setContent( productPatchDto.getContent() );
+        product.setCount( productPatchDto.getCount() );
+        List<Color> list = productPatchDto.getColors();
+        if ( list != null ) {
+            product.setColors( new ArrayList<Color>( list ) );
+        }
+        product.setPersonalColor( productPatchDto.getPersonalColor() );
+        List<Size> sizes = productPatchDto.getSizes();
+        if (sizes != null) {
+            product.setSize(new ArrayList<Size>(sizes));
+        }
+        product.setPersonalColor( productPatchDto.getPersonalColor() );
+
+        return product;
+    }
 
     //@Mapping(source = "category.name", target = "categoryName")
     default ProductResponseDto productToProductResponseDto(Product product) {
@@ -50,15 +79,15 @@ public interface ProductMapper {
 
         productResponseDto.categoryName(productCategoryName(product));
         productResponseDto.productId(product.getProductId());
-        productResponseDto.count(product.getCount());
         productResponseDto.price(product.getPrice());
         productResponseDto.name(product.getName());
         productResponseDto.content(product.getContent());
+        productResponseDto.count(product.getCount());
         productResponseDto.personalColor(product.getPersonalColor());
         productResponseDto.colors(colorListToResponseList(product.getColors()));
-        List<String> size = product.getSize();
-        if (size != null) {
-            productResponseDto.size(new ArrayList<>(size));
+        List<Size> sizes = product.getSize();
+        if (sizes != null) {
+            productResponseDto.sizes(new ArrayList<>(sizes));
         }
         return productResponseDto.build();
     }

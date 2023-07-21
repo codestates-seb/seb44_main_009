@@ -13,6 +13,15 @@ spring:
   sql:
     init:
       data-locations: classpath*:db/h2/data.sql
+  cloud:
+    aws:
+      credentials:
+        accessKey: ${AWS_ACCESS_KEY}
+        secretKey: ${AWS_SECRET_ACCESS_KEY}
+    s3:
+      bucket: jeonhyebeenbucket
+    region:
+      static: ap-northeast-2
 
 logging:
   level:
@@ -28,7 +37,7 @@ mail:
   address:
     admin: admin@gmail.com
 jwt:
-  key: qwertyuiop[sdfghjklzxcvbnm1234567890!@#$%^&*
+  key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 40
   refresh-token-expiration-minutes: 420
 

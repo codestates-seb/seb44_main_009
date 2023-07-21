@@ -31,6 +31,11 @@ public class CartProduct {
     @Column(nullable = false)
     private int quantity;
 
+    @Column(nullable = false)
+    private String size;
+
+    private String color;
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;

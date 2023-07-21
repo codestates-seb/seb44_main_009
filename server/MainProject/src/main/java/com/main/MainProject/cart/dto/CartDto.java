@@ -1,9 +1,12 @@
 package com.main.MainProject.cart.dto;
 
 import com.main.MainProject.product.cartProduct.CartProduct;
+import com.main.MainProject.product.entity.Product;
 import lombok.*;
 
 import java.util.List;
+
+import static com.main.MainProject.product.entity.Product.*;
 
 public class CartDto {
 
@@ -14,6 +17,8 @@ public class CartDto {
         private long cartId;
         private long productId;
         private int quantity;
+        private String size;
+        private String color;
     }
 
 //    @Getter
@@ -34,7 +39,6 @@ public class CartDto {
     @Getter
     public static class Response{
         private List<cartProductResponse> cartProductList;
-
         private int shippingCost;
         private int totalProductPrice;
         private int totalOrderPrice;
@@ -46,6 +50,9 @@ public class CartDto {
         private long cartProductId;
         private String productName;
         private int quantity;
+        private String size;
+        private String color;
+        private PersonalColor personalColor;
         private int productPrice;
         private int totalProductPrice;
     }
