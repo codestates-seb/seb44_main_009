@@ -8,9 +8,11 @@ import {
 export const ReviewPersonalBar = ({ coolToneCount, warmToneCount }) => {
   const totalReviews = warmToneCount + coolToneCount;
 
-  const warmTonePercentage = (warmToneCount / totalReviews) * 100;
-  const coolTonePercentage = (coolToneCount / totalReviews) * 100;
-  console.log(coolTonePercentage);
+  const warmTonePercentage =
+    totalReviews === 0 ? 0 : (warmToneCount / totalReviews) * 100;
+  const coolTonePercentage =
+    totalReviews === 0 ? 0 : (coolToneCount / totalReviews) * 100;
+
   return (
     <PersonalBarContainer>
       퍼스널 컬러 리뷰 비율
@@ -18,7 +20,7 @@ export const ReviewPersonalBar = ({ coolToneCount, warmToneCount }) => {
         <PersonalBar
           style={{ backgroundColor: "orange", width: `${warmTonePercentage}%` }}
         >
-          <Margin>Warm</Margin>
+          {totalReviews > 0 && <Margin>Warm</Margin>}
         </PersonalBar>
         <PersonalBar
           style={{
@@ -26,7 +28,7 @@ export const ReviewPersonalBar = ({ coolToneCount, warmToneCount }) => {
             width: `${coolTonePercentage}%`,
           }}
         >
-          <Margin>Cool</Margin>
+          {totalReviews > 0 && <Margin>Cool</Margin>}
         </PersonalBar>
       </PersonalPercentBar>
     </PersonalBarContainer>
