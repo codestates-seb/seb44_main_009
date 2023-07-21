@@ -12,9 +12,6 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class QnaPostDto {
     @Positive
-    private Long memberId;
-
-    @Positive
     private Long productId;
 
     @NotBlank(message="제목을 입력하세요")
@@ -22,12 +19,6 @@ public class QnaPostDto {
 
     @NotBlank(message="질문을 입력하세요")
     private String content;
-
-    public Member getMember() {
-        Member member = new Member();
-        member.setMemberId(memberId);
-        return member;
-    }
 
     public Product getProduct() {
         Product product = new Product();

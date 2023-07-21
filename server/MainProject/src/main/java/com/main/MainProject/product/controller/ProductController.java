@@ -43,8 +43,8 @@ public class ProductController {
         return new ResponseEntity<>(mapper.productToProductResponseDto(product), HttpStatus.CREATED);
     }
 
-    @PatchMapping(name = "/{product-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<?> patchProduct(@PathVariable("product-id") @Positive long productId,
+    @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<?> patchProduct(@Positive @RequestParam long productId,
                                           @Valid @RequestPart ProductPatchDto requestBody,
                                           @RequestPart MultipartFile image) throws IOException {
         requestBody.setProductId(productId);

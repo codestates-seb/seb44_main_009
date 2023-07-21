@@ -1,6 +1,8 @@
-package com.main.MainProject.auth.interceptor;
+package com.main.MainProject.config;
 
+import com.main.MainProject.auth.interceptor.JwtInterceptor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -17,7 +19,13 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor)
                 .addPathPatterns("/**");// 경로에 대해 인터셉터 적용
-//                .excludePathPatterns("/public/**"); // 인터셉터 제외할 경로 지정 (예: public 리소스)
     }
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://jeonhyebeenbucket.s3-website.ap-northeast-2.amazonaws.com")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowCredentials(true);
+    }
 }

@@ -30,7 +30,7 @@ public class S3Uploader {
 
     public String upload(MultipartFile multipartFile, String dirName, long code) throws IOException {
 
-        String objectKey = dirName + File.separator + code;
+        String objectKey = dirName + "-" + code;
 
         InputStream inputStream = multipartFile.getInputStream();
 

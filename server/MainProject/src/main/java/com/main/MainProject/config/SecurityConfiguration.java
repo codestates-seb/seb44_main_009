@@ -8,6 +8,7 @@ import com.main.MainProject.auth.handler.MemberAuthenticationFailureHandler;
 import com.main.MainProject.auth.handler.MemberAuthenticationSuccessHandler;
 import com.main.MainProject.auth.jwt.JwtTokenizer;
 import com.main.MainProject.auth.utils.CustomAuthorityUtils;
+import com.main.MainProject.member.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,6 +20,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -31,16 +33,16 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity(debug = true)
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
-    private final CustomAuthorityUtils authorityUtils;
+    private final CustomAuthorityUtils authorityUtils; // 추가
 
     public SecurityConfiguration(JwtTokenizer jwtTokenizer,
-                                   CustomAuthorityUtils authorityUtils) {
+                                 CustomAuthorityUtils authorityUtils) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, MemberService memberService) throws Exception {
         http
                 .headers().frameOptions().sameOrigin()
                 .and()
@@ -56,12 +58,56 @@ public class SecurityConfiguration {
                 .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
-                .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers(HttpMethod.POST, "/*/members").permitAll()
-                        .antMatchers(HttpMethod.PATCH, "/*/members/**").hasRole("USER")
-                        .antMatchers(HttpMethod.GET, "/*/members").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "/*/members/**").hasAnyRole("USER", "ADMIN")
-                        .antMatchers(HttpMethod.DELETE, "/*/members/**").hasRole("USER")
+//                .logout() // 로그아웃 설정 추가
+//                .logoutUrl("/logout")
+//                .logoutSuccessHandler(customLogoutSuccessHandler())
+//                .invalidateHttpSession(true)
+//                .deleteCookies("refreshToken")
+//                .and()
+                .authorizeRequests(authorize -> authorize
+                        //members
+                        .antMatchers(HttpMethod.POST,"/members/signup").permitAll()
+                        .antMatchers(HttpMethod.PATCH,"/members").hasRole("USER")
+                        .antMatchers(HttpMethod.GET,"/members").hasRole("USER")
+                        .antMatchers(HttpMethod.GET,"/members/list").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.DELETE,"/members").hasRole("USER")
+                        //products
+                        .antMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.PATCH, "/products").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.DELETE, "/products/*").hasRole("ADMIN")
+                        //category
+                        .antMatchers(HttpMethod.POST, "/category").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.PATCH, "/category/*").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.DELETE, "/category/*").hasRole("ADMIN")
+                        //orders
+                        .antMatchers(HttpMethod.POST, "/orders/buy/cart").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/orders/buy/**").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/orders/request/*").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/orders/update/*").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "/orders/list").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, "/orders/find").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/orders/*").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/orders/delete/*").hasRole("USER")
+                        //cart
+                        .antMatchers(HttpMethod.POST, "/carts/items").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/carts/items/**").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/carts").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/carts/items/*").hasRole("USER")
+                        //review
+                        .antMatchers(HttpMethod.POST, "/reviews").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/reviews").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/reviews/findByMember").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/reviews/delete/*").hasRole("USER")
+                        
+                        //wishlist
+                        .antMatchers(HttpMethod.POST, "/wishlist").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/wishlist").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/wishlist").hasRole("USER")          
+                        //qna
+                        .antMatchers(HttpMethod.POST, "/qnas/postqna").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH,"/qnas/*").hasRole("USER")
+                        .antMatchers(HttpMethod.GET,"/qnas/qnabymember").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE,"/qnas/*").hasRole("USER")
                         .anyRequest().permitAll()
                 );
         return http.build();
@@ -73,13 +119,19 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+
+    // 커스텀 LogoutSuccessHandler 구현 및 반환
+    public LogoutSuccessHandler customLogoutSuccessHandler() {
+        return  null;//new CustomLogoutSuccessHandler();
     }
 
 

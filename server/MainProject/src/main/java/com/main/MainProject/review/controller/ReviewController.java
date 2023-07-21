@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.io.IOException;
 import java.util.List;
 
@@ -34,9 +35,9 @@ public class ReviewController {
     }
 
     //리뷰 생성
-    @PostMapping(name = "/create/{order-id}/{product-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity createReview(@PathVariable("order-id")long orderId,
-                                       @PathVariable("product-id")long productId,
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity createReview(@Positive @RequestParam long orderId,
+                                       @Positive @RequestParam long productId,
                                        @Valid @RequestPart ReviewDto.RequestDTO requestBody,
                                        @RequestPart MultipartFile image) throws IOException {
         long memberId = JwtInterceptor.getAuthenticatedMemberId();
@@ -47,8 +48,8 @@ public class ReviewController {
     }
 
     //리뷰 수정
-    @PatchMapping(name = "/update/{review-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity updateReview(@PathVariable("review-id")long reviewId,
+    @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity updateReview(@Positive @RequestParam long reviewId,
                                        @Valid @RequestPart ReviewDto.RequestDTO requestBody,
                                        @RequestPart MultipartFile image) throws IOException {
         long memberId = JwtInterceptor.getAuthenticatedMemberId();

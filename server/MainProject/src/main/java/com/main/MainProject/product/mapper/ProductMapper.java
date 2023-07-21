@@ -85,6 +85,7 @@ public interface ProductMapper {
         productResponseDto.count(product.getCount());
         productResponseDto.personalColor(product.getPersonalColor());
         productResponseDto.colors(colorListToResponseList(product.getColors()));
+        productResponseDto.productImageName(product.getProductImageName());
         List<Size> sizes = product.getSize();
         if (sizes != null) {
             productResponseDto.sizes(new ArrayList<>(sizes));
