@@ -1,6 +1,7 @@
 package com.main.MainProject.qna.service;
 
 
+import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.exception.LogicalException;
 import com.main.MainProject.member.entity.Member;
@@ -11,7 +12,6 @@ import com.main.MainProject.qna.entity.Qna;
 import com.main.MainProject.qna.repository.QnaRepository;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -28,19 +28,36 @@ public class QnaService {
         this.productService = productService;
     }
 
-    public Qna createQna (Qna qna) {
-        memberService.findVerifiedMember(qna.getMember().getMemberId());
+    public Qna createQna (Qna qna, long memberId) {
+        Member findMember = memberService.findVerifiedMember(memberId);
+        qna.setMember(findMember);
         productService.findVerifiedProduct(qna.getProduct().getProductId());
-        return qnaRepository.save(qna);
+        Qna qnaex = qnaRepository.save(qna);
+
+        System.out.println(qna.getQnaId() + "new qna id");
+        return qnaex;
     }
 
-    public void deleteQna(long qnaId) {
+    public void deleteQna(long qnaId, long memberId) {
+        Member findMember = memberService.findVerifiedMember(memberId);
         Qna findQna = findVerifiedQna(qnaId);
+
+        if (findMember != findQna.getMember()){
+            new BusinessLogicException(ExceptionCode.YOU_ARE_NOT_WRITER);
+        }
         qnaRepository.delete(findQna);
     }
 
-    public Qna updateQna(Qna qna, Long qnaId) {
+    public Qna updateQna(Qna qna, Long qnaId, long memberId) {
         Qna findQna = findVerifiedQna(qnaId);
+
+        Member findMember = memberService.findVerifiedMember(memberId);
+        qna.setMember(findMember);
+
+        if (findMember != findQna.getMember()){
+            new BusinessLogicException(ExceptionCode.YOU_ARE_NOT_WRITER);
+        }
+
         Optional.ofNullable(qna.getContent())
                 .ifPresent(contents -> findQna.setContent(contents));
         Optional.ofNullable(qna.getTitle())
@@ -55,8 +72,8 @@ public class QnaService {
     }
 
     public List<Qna> findMemberQna(Long memberId) {
-        Member member = memberService.findVerifiedMember(memberId);
-        return qnaRepository.findAllByMember(member);
+        Member findMember = memberService.findVerifiedMember(memberId);
+        return qnaRepository.findAllByMember(findMember);
     }
 
     public List<Qna> findProductQna(Long productId) {
@@ -71,8 +88,18 @@ public class QnaService {
     private Qna findVerifiedQna(long qnaId) {
         Optional<Qna> optionalQna = qnaRepository.findById(qnaId);
 
+        Qna findQna = optionalQna.orElseThrow(()->
+                new BusinessLogicException(ExceptionCode.QNA_NOT_FOUND));
+
         return optionalQna
                 .orElseThrow(() -> new LogicalException(ExceptionCode.QNA_NOT_FOUND));
     }
 
+
+    public void isQnaByMember(Qna qna, Member member){
+        if(!qna.getMember().equals(member)){
+            throw new BusinessLogicException(ExceptionCode.QNA_NOT_FOUND);
+        }
+    }
+    
 }

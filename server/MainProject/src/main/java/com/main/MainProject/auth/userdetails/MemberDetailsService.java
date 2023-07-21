@@ -14,10 +14,13 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 import java.util.Optional;
 
+<<<<<<< HEAD
 /**
  * - Custom UserDetails 사용
  * - User Role을 DB에서 조회한 후, HelloAuthorityUtils로 Spring Security에게 Role 정보 제공
  */
+=======
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d
 @Component
 public class MemberDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
@@ -30,7 +33,11 @@ public class MemberDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+<<<<<<< HEAD
         Optional<Member> optionalMember = memberRepository.findByEmail(username);
+=======
+        Optional<Member> optionalMember = memberRepository.findByEmailAndMemberStatus(username, Member.MemberStatus.MEMBER_ACTIVE);
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d
         Member findMember = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
 
         return new MemberDetails(findMember);
@@ -74,4 +81,8 @@ public class MemberDetailsService implements UserDetailsService {
             return true;
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d

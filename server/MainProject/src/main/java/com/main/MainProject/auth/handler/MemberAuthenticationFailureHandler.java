@@ -19,7 +19,11 @@ public class MemberAuthenticationFailureHandler implements AuthenticationFailure
     public void onAuthenticationFailure(HttpServletRequest request,
                                         HttpServletResponse response,
                                         AuthenticationException exception) throws IOException {
+<<<<<<< HEAD
         // 인증 실패 시, 에러 로그를 기록하거나 error response를 전송할 수 있다.
+=======
+
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d
         log.error("# Authentication failed: {}", exception.getMessage());
 
         sendErrorResponse(response);
@@ -32,4 +36,8 @@ public class MemberAuthenticationFailureHandler implements AuthenticationFailure
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.getWriter().write(gson.toJson(errorResponse, ErrorResponse.class));
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> aa5b4c26c8d75289cdf63a56e17c92f2fe1ad12d
