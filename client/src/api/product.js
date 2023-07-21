@@ -18,7 +18,7 @@ export const fetchProducts = async () => {
 // 해당 상품의 리뷰 가져오기
 export const fetchReviews = async productId => {
   try {
-    const response = await axios.get(`/review/findByProduct/${productId}`);
+    const response = await axios.get(`/reviews/findByProduct/${productId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching reviews:", error);

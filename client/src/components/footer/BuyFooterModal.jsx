@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
-import { dummyproducts } from "../../dummyDate/dummyProducts";
+//import { dummyproducts } from "../../dummyDate/dummyProducts";
+import { fetchProducts } from "../../api/product";
 
 import { useRecoilValue, useRecoilState } from "recoil";
 import { auth } from "../../atoms/auth";
@@ -31,12 +32,16 @@ import {
 const ModalContent = styled.div``;
 
 export const BuyFooterModal = ({ closeModal }) => {
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
   const { isLogin, token } = useRecoilValue(auth);
   const [cartItems, setCartItems] = useRecoilState(productsState);
   const navigate = useNavigate();
 
   const { productId } = useParams();
-  const product = dummyproducts.find(p => p.productId === parseInt(productId));
+  // 더미데이터 - product
+  // const product = dummyproducts.find(p => p.productId === parseInt(productId));
 
   const [dropPersonalOpen, setDropPersonalOpen] = useState(false);
   const [dropColorOpen, setDropColorOpen] = useState(false);
@@ -47,6 +52,27 @@ export const BuyFooterModal = ({ closeModal }) => {
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(null);
+
+  // API 데이터  - products
+  useEffect(() => {
+    const fetchProductData = async () => {
+      try {
+        const productsData = await fetchProducts();
+        const foundProduct = productsData.find(
+          p => p.productId === parseInt(productId),
+        );
+
+        setProducts(foundProduct);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProductData();
+  }, []);
+  console.log("Testproducts", products);
 
   const handleDropPersonalToggle = () => {
     setDropPersonalOpen(prevState => !prevState);
@@ -72,21 +98,21 @@ export const BuyFooterModal = ({ closeModal }) => {
     setDropColorOpen(false);
   };
 
-  const handleSelectedSizeClick = size => {
-    setSelectedSize(size);
-    setDropSizeOpen(false);
-  };
-
   const handleSelectedQuantityClick = quantity => {
     setSelectedQuantity(quantity);
     setDropQuantityOpen(false);
+  };
+
+  const handleSelectedSizeClick = size => {
+    setSelectedSize(size.size);
+    setDropSizeOpen(false);
   };
 
   const handleCartButtonClick = async () => {
     try {
       if (isLogin && token) {
         const itemData = {
-          productId: product.productId,
+          productId: products.productId,
           quantity: selectedQuantity,
           size: selectedSize,
           color: selectedColor,
@@ -105,6 +131,9 @@ export const BuyFooterModal = ({ closeModal }) => {
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <ModalContainer>
       <ModalContent>
@@ -126,9 +155,11 @@ export const BuyFooterModal = ({ closeModal }) => {
 
           <DropdownOptions open={dropPersonalOpen}>
             <DropContainer
-              onClick={() => handleSelectedPersonalColor(product.personalColor)}
+              onClick={() =>
+                handleSelectedPersonalColor(products.personalColor)
+              }
             >
-              <DropOptionText>{product.personalColor}</DropOptionText>
+              <DropOptionText>{products.personalColor}</DropOptionText>
             </DropContainer>
           </DropdownOptions>
 
@@ -144,7 +175,7 @@ export const BuyFooterModal = ({ closeModal }) => {
             </DropdownButton>
           </DropContainer>
           <DropdownOptions open={dropColorOpen}>
-            {product.colors.map((color, index) => (
+            {products.colors.map((color, index) => (
               <DropContainer
                 key={index}
                 onClick={() => handleSelectedColorClick(color.name)}
@@ -165,12 +196,13 @@ export const BuyFooterModal = ({ closeModal }) => {
             </DropdownButton>
           </DropContainer>
           <DropdownOptions open={dropSizeOpen}>
-            {product.size.map((size, index) => (
+            {products.sizes.map((sizeObj, index) => (
               <DropContainer
                 key={index}
-                onClick={() => handleSelectedSizeClick(size)}
+                onClick={() => handleSelectedSizeClick(sizeObj)}
               >
-                <DropOptionText>{size} </DropOptionText>
+                <DropOptionText>{sizeObj.size}</DropOptionText>{" "}
+                {/* Access the 'size' property */}
               </DropContainer>
             ))}
           </DropdownOptions>
@@ -186,16 +218,17 @@ export const BuyFooterModal = ({ closeModal }) => {
             </DropdownButton>
           </DropContainer>
           <DropdownOptions open={dropQuantityOpen}>
-            {Array.from({ length: product.count }, (_, index) => index + 1).map(
-              quantity => (
-                <DropContainer
-                  key={quantity}
-                  onClick={() => handleSelectedQuantityClick(quantity)}
-                >
-                  <DropOptionText>{quantity}</DropOptionText>
-                </DropContainer>
-              ),
-            )}
+            {Array.from(
+              { length: products.count },
+              (_, index) => index + 1,
+            ).map(quantity => (
+              <DropContainer
+                key={quantity}
+                onClick={() => handleSelectedQuantityClick(quantity)}
+              >
+                <DropOptionText>{quantity}</DropOptionText>
+              </DropContainer>
+            ))}
           </DropdownOptions>
           <BottomMargin />
         </DropAllContainer>

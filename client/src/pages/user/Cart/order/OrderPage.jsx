@@ -12,7 +12,7 @@ import { OrderContainer } from "./styles/OrderContainer.styled";
 import { OrderProductContainer } from "./styles/OrderProductContainer.styled";
 import { OrderWrapper } from "./styles/OrderWrapper.styled";
 import { Title } from "./styles/Title.styled";
-import { fetchOrder } from "../../../../api/orderAPIs";
+import { fetchOrder, patchAddress } from "../../../../api/orderAPIs";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../../../atoms/auth";
 
@@ -64,21 +64,33 @@ function OrderPage() {
     cartProductList,
   } = orderData.data;
 
-  console.log("cartProductList:", cartProductList);
   const paymentMethods = ["간편결제", "카드결제", "현금결제", "휴대폰결제"];
 
-  // const handleChangeAddress = newAddress => {
-  //   setOrderData(prevOrderData => ({
-  //     ...prevOrderData,
-  //     data: {
-  //       ...prevOrderData.data,
-  //       address: {
-  //         ...prevOrderData.data.address,
-  //         ...newAddress,
-  //       },
-  //     },
-  //   }));
-  // };
+  // 배송지 정보 변경
+  const updateAddress = async () => {
+    const { token } = authData;
+    try {
+      const response = await patchAddress(token, orderId);
+      const updatedOrderData = await fetchOrder(token, orderId);
+      setOrderData(updatedOrderData);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleChangeAddress = newAddress => {
+    setOrderData(prevOrderData => ({
+      ...prevOrderData,
+      data: {
+        ...prevOrderData.data,
+        address: {
+          ...prevOrderData.data.address,
+          ...newAddress,
+        },
+      },
+    }));
+    updateAddress();
+  };
 
   return (
     <OrderContainer>
@@ -99,8 +111,9 @@ function OrderPage() {
         <Delivery
           address={address}
           editAddress={editAddress}
-          // handleChangeAddress={handleChangeAddress}
+          handleChangeAddress={handleChangeAddress}
           toggleEditAddress={toggleEditAddress}
+          updateAddress={updateAddress}
         />
         <Payment
           totalPrice={totalPrice}

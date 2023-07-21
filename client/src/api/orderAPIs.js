@@ -52,6 +52,14 @@ export const postAfterPayment = async (token, data) => {
   return response.data;
 };
 
+// 주문 배송지 변경
+export const patchAddress = async (token, orderId, data) => {
+  const response = await axios.patch(`/orders/request/${orderId}`, data, {
+    headers: { Authorization: `${token}` },
+  });
+  return response;
+};
+
 // 리뷰 등록 (orderId,productId->undefined)
 export const updateReview = async (token, data, orderId, productId) => {
   const response = await axios.post(
