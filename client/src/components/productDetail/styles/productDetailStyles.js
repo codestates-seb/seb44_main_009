@@ -188,15 +188,19 @@ const ProductDetailStyles = () => {
             onFilterChange={onFilterChange}
             selectedDropOption={selectedDropOption}
           />
+          {/* 더미데이터 Review */}
           {/* <ReviewPersonalBar
             coolToneCount={reviews[0].data.personalColorCoolCount}
             warmToneCount={reviews[0].data.personalColorWormCount} // 오타
           /> */}
-          <ReviewPersonalBar
-            coolToneCount={reviews.data.personalColorCoolCount}
-            warmToneCount={reviews.data.personalColorWormCount}
-          />
 
+          {/* API Review */}
+          {reviews.data ? (
+            <ReviewPersonalBar
+              coolToneCount={reviews.data.personalColorCoolCount}
+              warmToneCount={reviews.data.personalColorWormCount}
+            />
+          ) : null}
           {sortedReviews.length > 0 ? (
             sortedReviews.map(sortedReviews => (
               <ReviewContent
