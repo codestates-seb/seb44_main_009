@@ -1,5 +1,8 @@
 import axios from "axios";
 
+axios.defaults.baseURL =
+  "http://ec2-43-201-65-189.ap-northeast-2.compute.amazonaws.com:8080";
+
 // 모든 상품 가져오기 GET
 export const fetchProducts = async () => {
   try {

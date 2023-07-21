@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // :: 배포 PR 시, 주석 해제
-// axios.defaults.baseURL = "";
+axios.defaults.baseURL =
+  "http://ec2-43-201-65-189.ap-northeast-2.compute.amazonaws.com:8080";
 
 // :: 로그인 기능 구현 시, 주석 해제
 axios.defaults.withCredentials = true;
