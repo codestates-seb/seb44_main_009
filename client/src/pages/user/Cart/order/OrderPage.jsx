@@ -30,6 +30,9 @@ function OrderPage() {
 
   const toggleEditAddress = () => {
     setEditAddress(!editAddress);
+    if (!editAddress) {
+      updateAddress();
+    }
   };
 
   // 주문 전체 조회
@@ -69,12 +72,20 @@ function OrderPage() {
   // 배송지 정보 변경
   const updateAddress = async () => {
     const { token } = authData;
+    const data = {
+      receiverName: "",
+      zipcode: 111,
+      addressName: "",
+      addressDetails: "",
+      telNum: "",
+      request: "Leave at doorstep",
+    };
+    console.log(data);
     try {
-      const response = await patchAddress(token, orderId);
-      const updatedOrderData = await fetchOrder(token, orderId);
-      setOrderData(updatedOrderData);
+      const response = await patchAddress(token, orderId, data);
       console.log(response.data);
     } catch (error) {
+      console.log(data);
       console.error(error);
     }
   };

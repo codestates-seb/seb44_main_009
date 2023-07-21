@@ -126,10 +126,6 @@ function CartPage() {
           </PaymentContainer>
         </CartBackContainer>
       )}
-      {/* 확인용 지울것 */}
-      <Link to="/review">
-        <button>리뷰</button>
-      </Link>
       <Footer_oneBtn text="상품 주문하기" onClick={updatePayment} />
     </BackContainer>
   );
