@@ -1,6 +1,5 @@
 package com.main.MainProject.auth.config;
 
-import com.main.MainProject.auth.CustomLogoutSuccessHandler;
 import com.main.MainProject.auth.filter.JwtAuthenticationFilter;
 import com.main.MainProject.auth.filter.JwtVerificationFilter;
 import com.main.MainProject.auth.handler.MemberAccessDeniedHandler;
@@ -86,6 +85,13 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.GET, "order/buylist/").hasRole("ADMIN")
                         .antMatchers(HttpMethod.GET, "order/").hasAnyRole("USER", "ADMIN")
                         .antMatchers(HttpMethod.DELETE, "order/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/qnas/").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "qnas/request/").hasRole("USER")
+                        .antMatchers(HttpMethod.POST,"/qnas/postqna").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH,"/qnas/").hasRole("USER")
+                        .antMatchers(HttpMethod.GET,"/qnas").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET,"/qnas/").hasAnyRole("USER","ADMIN")
+                        .antMatchers(HttpMethod.DELETE,"/qnas/").hasRole("USER")
 
                         .anyRequest().permitAll()
                 );
@@ -107,10 +113,10 @@ public class SecurityConfiguration {
         return source;
     }
 
-    // 커스텀 LogoutSuccessHandler 구현 및 반환
-    public LogoutSuccessHandler customLogoutSuccessHandler() {
-        return new CustomLogoutSuccessHandler();
-    }
+//    // 커스텀 LogoutSuccessHandler 구현 및 반환
+//    public LogoutSuccessHandler customLogoutSuccessHandler() {
+//        return new CustomLogoutSuccessHandler();
+//    }
 
 
     public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {

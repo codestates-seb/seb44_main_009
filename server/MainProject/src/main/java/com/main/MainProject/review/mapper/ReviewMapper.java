@@ -35,7 +35,7 @@ public interface ReviewMapper {
                 .filter(review -> review.getProductPersonalColorStatus() == Review.ProductPersonalColorStatus.COOL)
                 .count();
         int PersonalColorWormCount = (int) reviewList.stream()
-                .filter(review -> review.getProductPersonalColorStatus() == Review.ProductPersonalColorStatus.WORM)
+                .filter(review -> review.getProductPersonalColorStatus() == Review.ProductPersonalColorStatus.WARM)
                 .count();
 
          ReviewDto.ResponseList response =
