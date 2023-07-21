@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
 //import { dummyproducts } from "../../../dummyDate/dummyProducts";
-import { dummyReview } from "../../../dummyDate/dummyReview";
+//import { dummyReview } from "../../../dummyDate/dummyReview";
 import { reviewfilter } from "../../../dummyDate/reviewfilter";
 import { fetchReviews, fetchProducts } from "../../../api/product";
 
@@ -37,6 +37,7 @@ import { ProductPublicInquiryEx } from "./inquirystyle/ProductPublicInquiryEx";
 import { ReviewHeaderForm } from "./reviewstyle/ReviewHeaderForm";
 import { ReviewContent } from "./reviewstyle/ReviewContent";
 import { ReviewPersonalBar } from "./reviewstyle/ReviewPersonalBar";
+import { NoReviews } from "./reviewstyle/reviewContentstyle/reviewcontentstyles/NoReviews";
 
 const ProductDetailStyles = () => {
   const { productId } = useParams();
@@ -67,7 +68,6 @@ const ProductDetailStyles = () => {
   }, [productId]);
 
   //1. 리뷰 받아오는 곳 - api 데이터
-
   useEffect(() => {
     const getReviews = async () => {
       try {
@@ -81,15 +81,14 @@ const ProductDetailStyles = () => {
     getReviews();
   }, [productId]); // productId가 변경될 때마다 리뷰 바뀜.
 
+  console.log("reviews0", reviews.data);
   // Tab 기능
   const [activeTab, setActiveTab] = useState("product-info");
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isReviewExpanded, setIsReviewExpanded] = useState(false);
+  const [isReviewExpanded, setIsReviewExpanded] = useState(true);
   const [selectedDropOption, setSelectedDropOption] = useState(
     reviewfilter[0].slug,
   );
-  console.log("asd", selectedDropOption);
-  // console.log("aaaasd", product);
 
   const onFilterChange = selectedDropOption => {
     setSelectedDropOption(selectedDropOption);
@@ -115,23 +114,27 @@ const ProductDetailStyles = () => {
   }
 
   function sortReviews(Dropoption) {
+    if (!reviews || reviews.data.totalCount === 0) {
+      return [];
+    }
+
     switch (Dropoption) {
       case "coolColor":
-        return dummyReview[0].data.responseList.filter(
+        return reviews[0].data.responseList.filter(
           review => review.productPersonalColor === "COOL_TONE",
         );
       case "warmColor":
-        return dummyReview[0].data.responseList.filter(
+        return reviews[0].data.responseList.filter(
           review => review.productPersonalColor === "WARM_TONE",
         );
       case "highVote":
-        return dummyReview[0].data.responseList.sort((a, b) => b.vote - a.vote);
+        return reviews[0].data.responseList.sort((a, b) => b.vote - a.vote);
     }
   }
   const sortedReviews = sortReviews(selectedDropOption);
 
-  console.log("reviews", reviews);
   console.log("sortedReviews", sortedReviews);
+
   return (
     <ProductDetailContainer>
       <ProductDetailContent>
@@ -175,7 +178,7 @@ const ProductDetailStyles = () => {
         </TabContent>
 
         {/* 탭2. 리뷰  */}
-        {/* ToDo :  vote 에러 수정. API 나오면 덮어쓰기 */}
+
         <TabContent
           isexpanded={isReviewExpanded ? "expanded" : ""}
           style={{ display: activeTab === "reviews" ? "block" : "none" }}
@@ -185,26 +188,41 @@ const ProductDetailStyles = () => {
             onFilterChange={onFilterChange}
             selectedDropOption={selectedDropOption}
           />
+          {/* <ReviewPersonalBar
+            coolToneCount={reviews[0].data.personalColorCoolCount}
+            warmToneCount={reviews[0].data.personalColorWormCount} // 오타
+          /> */}
           <ReviewPersonalBar
-            coolToneCount={dummyReview[0].data.personalColorCoolCount}
-            warmToneCount={dummyReview[0].data.personalColorWormCount} // 오타
+            coolToneCount={reviews.data.personalColorCoolCount}
+            warmToneCount={reviews.data.personalColorWormCount}
           />
-          {sortedReviews.map(sortedReviews => (
+          {/* {sortedReviews.map(sortedReviews => (
             <ReviewContent
               key={sortedReviews.id}
               review={sortedReviews}
               selectedDropOption={selectedDropOption}
               vote={sortedReviews.vote}
             />
-          ))}
-
+          ))} */}
+          {sortedReviews.length > 0 ? (
+            sortedReviews.map(sortedReviews => (
+              <ReviewContent
+                key={sortedReviews.id}
+                review={sortedReviews}
+                selectedDropOption={selectedDropOption}
+                vote={sortedReviews.vote}
+              />
+            ))
+          ) : (
+            <NoReviews>리뷰가 없습니다.</NoReviews>
+          )}
           <ProductInfoButton
             onClick={() => {
               toggleReviewExpanded();
               scrollToBottom();
             }}
           >
-            {isReviewExpanded ? "접기" : "리뷰 전체 보기"}
+            {isReviewExpanded ? "리뷰 전체 보기" : "접기"}
           </ProductInfoButton>
         </TabContent>
 
