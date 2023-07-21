@@ -5,30 +5,27 @@ spring:
     active: h2 #실행 profile 설정
   jpa:
     hibernate:
-      ddl-auto: create-drop  # (1) 스키마 자동 생성 자동 업데이트
+      ddl-auto: create  # (1) 스키마 자동 생성 자동 업데이트
     show-sql: true      # (2) SQL 쿼리 출력
     properties:
       hibernate:
         format_sql: true  # (3) SQL pretty print
-  sql:
-    init:
-      data-locations: classpath*:db/h2/data.sql
-  cloud:
-    aws:
-      credentials:
-        accessKey: ${AWS_ACCESS_KEY}
-        secretKey: ${AWS_SECRET_ACCESS_KEY}
-    s3:
-      bucket: jeonhyebeenbucket
+#  sql:
+#    init:
+#      data-locations: classpath:data.sql
+cloud:
+  aws:
+    credentials:
+      accessKey: ${AWS_ACCESSORY}
+      secretKey: ${AWS_SECRECY_ACCESSORY}
     region:
-      static: ap-northeast-2
+      static: ${AWS_REGION}
+    stack:
+      auto: false
+    s3:
+      bucket: ${AWS_BUCKET}
 
-logging:
-  level:
-    org:
-      springframework:
-        orm:
-          jpa: DEBUG
+
 server:
   servlet:
     encoding:

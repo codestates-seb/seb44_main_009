@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class MemberController {
 
     @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity patchMember(@Valid @RequestPart MemberPatchDto memberPatchDto,
-                                      @RequestPart MultipartFile image){
+                                      @RequestPart MultipartFile image) throws IOException {
         long memberId = JwtInterceptor.getAuthenticatedMemberId();
 
         Member member = memberService.updateMember(

@@ -1,9 +1,8 @@
 package com.main.MainProject.member.service;
 
-import com.main.MainProject.StorageService;
+import com.main.MainProject.S3Uploader;
 import com.main.MainProject.auth.utils.CustomAuthorityUtils;
 import com.main.MainProject.cart.service.CartService;
-import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.exception.LogicalException;
 import com.main.MainProject.member.entity.Member;
@@ -13,8 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.Positive;
-import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,17 +23,18 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final ApplicationEventPublisher publisher;
     private final CustomAuthorityUtils authorityUtils;
+    private final S3Uploader s3Uploader;
 
-    private final StorageService storageService;
 
-    public MemberService(MemberRepository memberRepository, CartService cartService, PasswordEncoder passwordEncoder,
-                         ApplicationEventPublisher publisher, CustomAuthorityUtils authorityUtils, StorageService storageService) {
+    public MemberService(MemberRepository memberRepository, CartService cartService,
+                         PasswordEncoder passwordEncoder, ApplicationEventPublisher publisher,
+                         CustomAuthorityUtils authorityUtils, S3Uploader s3Uploader) {
         this.memberRepository = memberRepository;
         this.cartService = cartService;
         this.passwordEncoder = passwordEncoder;
         this.publisher = publisher;
         this.authorityUtils = authorityUtils;
-        this.storageService = storageService;
+        this.s3Uploader = s3Uploader;
     }
 
     public Member createMember(Member member) {
@@ -92,14 +91,13 @@ public class MemberService {
                 .orElseThrow(() -> new LogicalException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 
-    public Member updateMember(Member member, long memberId, MultipartFile image) {
+    public Member updateMember(Member member, long memberId, MultipartFile image) throws IOException {
         Member findMember = findVerifiedMember(memberId);
 
-        // 이미지 정보 추가
-        member.setMemberImageName(image.getOriginalFilename());
-
-        // 커피 이미지 저장
-        storageService.store(image);
+        if(!image.isEmpty()) {
+            String storedFileName = s3Uploader.upload(image, "member");
+            member.setMemberImageName(storedFileName);
+        }
 
         Optional.ofNullable(member.getKorName())
                         .ifPresent(korName -> findMember.setKorName(korName));
