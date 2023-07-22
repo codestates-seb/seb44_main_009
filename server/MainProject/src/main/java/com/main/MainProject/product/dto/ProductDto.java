@@ -81,6 +81,7 @@ public class ProductDto {
         private List<Color> colors;
         private PersonalColor personalColor;
         private String categoryName;
+        private String productImageName;
     }
 
 //    @Getter
