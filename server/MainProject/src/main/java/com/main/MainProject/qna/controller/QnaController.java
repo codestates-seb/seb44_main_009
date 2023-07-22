@@ -76,8 +76,6 @@ public class QnaController {
 
     @GetMapping("/qnabyproduct/{product-id}")
     public ResponseEntity getProductQna(@PathVariable("product-id") @Positive long productId) {
-        long memberId = JwtInterceptor.getAuthenticatedMemberId();
-
         List<Qna> qnas = qnaService.findProductQna(productId);
         return new ResponseEntity(new ListResponseDto<>(mapper.qnasToQnaResponses(qnas)), HttpStatus.OK);
     }

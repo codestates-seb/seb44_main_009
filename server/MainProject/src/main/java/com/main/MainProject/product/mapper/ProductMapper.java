@@ -79,7 +79,6 @@ public interface ProductMapper {
         productResponseDto.content(product.getContent());
         productResponseDto.count(product.getCount());
         productResponseDto.personalColor(product.getPersonalColor());
-        productResponseDto.colors(colorListToResponseList(product.getColors()));
         productResponseDto.productImageName(product.getProductImageName());
         List<Color> colors = product.getColors();
         if (colors != null) {
