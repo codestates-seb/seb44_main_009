@@ -124,11 +124,11 @@ const ProductDetailStyles = () => {
     switch (Dropoption) {
       case "coolColor":
         return reviews.data.responseList.filter(
-          review => review.productPersonalColor === "COOL_TONE",
+          review => review.productPersonalColorStatus === "COOL",
         );
       case "warmColor":
         return reviews.data.responseList.filter(
-          review => review.productPersonalColor === "WARM_TONE",
+          review => review.productPersonalColorStatus === "WARM",
         );
       case "highVote":
         return reviews.data.responseList.sort((a, b) => b.vote - a.vote);
@@ -136,6 +136,8 @@ const ProductDetailStyles = () => {
   }
   const sortedReviews = sortReviews(selectedDropOption);
 
+  // console.log("reviews", reviews);
+  //console.log("product", product);
   return (
     <ProductDetailContainer>
       <ProductDetailContent>
