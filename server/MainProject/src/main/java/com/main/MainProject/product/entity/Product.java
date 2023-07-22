@@ -7,7 +7,7 @@ import com.main.MainProject.product.category.entity.Category;
 import com.main.MainProject.product.size.Size;
 import com.main.MainProject.qna.entity.Qna;
 
-import com.main.MainProject.product.color.entity.Color;
+import com.main.MainProject.product.color.Color;
 import com.main.MainProject.review.entity.Review;
 import com.main.MainProject.wishlist.entity.WishList;
 import lombok.*;
@@ -15,7 +15,6 @@ import lombok.*;
 import javax.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -51,7 +50,9 @@ public class Product extends Auditable {
     @Enumerated(value = EnumType.STRING)
     private ProductStatus productStatus = ProductStatus.PRODUCT_ON_SALE;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @ElementCollection
+    @CollectionTable(name = "product_color", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "color")
     private List<Color> colors = new ArrayList<>();
 
     @Column
@@ -63,7 +64,6 @@ public class Product extends Auditable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
-
 
     @OneToMany(mappedBy = "product")
     private List<Qna> qnaList = new ArrayList<>();
@@ -106,5 +106,5 @@ public class Product extends Auditable {
     private List<OrderProduct> orderProductList = new ArrayList<>();
 
     @ManyToMany(mappedBy = "products")
-    private List<WishList> wishLists;
+    private List<WishList> wishLists = new ArrayList<>();
 }

@@ -1,9 +1,6 @@
 package com.main.MainProject.product.dto;
 
-import com.main.MainProject.product.category.entity.Category;
-import com.main.MainProject.product.color.dto.ColorDto;
-import com.main.MainProject.product.color.entity.Color;
-import com.main.MainProject.product.entity.Product;
+import com.main.MainProject.product.color.Color;
 import com.main.MainProject.product.size.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -81,7 +78,7 @@ public class ProductDto {
         private String content;
         private int count;
         private List<Size> sizes;
-        private List<ColorDto.Response> colors;
+        private List<Color> colors;
         private PersonalColor personalColor;
         private String categoryName;
         private String productImageName;

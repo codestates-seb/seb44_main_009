@@ -5,7 +5,6 @@ import com.main.MainProject.exception.BusinessLogicException;
 import com.main.MainProject.exception.ExceptionCode;
 import com.main.MainProject.product.category.entity.Category;
 import com.main.MainProject.product.category.service.CategoryService;
-import com.main.MainProject.product.color.service.ColorService;
 import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.product.repository.ProductRepository;
 import org.springframework.data.domain.Page;
@@ -20,15 +19,12 @@ import java.util.Optional;
 public class ProductService {
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
-    private final ColorService colorService;
-
     private final S3Uploader s3Uploader;
 
     public ProductService(ProductRepository productRepository, CategoryService categoryService,
-                          ColorService colorService, S3Uploader s3Uploader) {
+                           S3Uploader s3Uploader) {
         this.productRepository = productRepository;
         this.categoryService = categoryService;
-        this.colorService = colorService;
         this.s3Uploader = s3Uploader;
     }
 

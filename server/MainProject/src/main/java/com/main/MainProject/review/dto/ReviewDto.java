@@ -1,16 +1,10 @@
 package com.main.MainProject.review.dto;
 
-import com.main.MainProject.product.color.dto.ColorDto;
-import com.main.MainProject.product.color.entity.Color;
-import com.main.MainProject.review.entity.Review;
+import com.main.MainProject.product.color.Color;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -43,7 +37,7 @@ public class ReviewDto {
 
         private String productName;
         private String productPersonalColor;
-        private List<ColorDto.Response> colorDtoList;
+        private List<Color> colorDtoList;
 
         private String content;
 
