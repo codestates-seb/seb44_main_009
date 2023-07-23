@@ -8,24 +8,24 @@ import { MyProfileEditsContext } from "../../../MyProfileEdit";
 
 export default function MyToneTypeEdit() {
   // Context >> 사용
-  const { userData, setUserData } = useContext(MyProfileEditsContext);
+  const { userInfo, setUserInfo } = useContext(MyProfileEditsContext);
 
   return (
     <MyToneTypeEditContainer>
       <WarmToneWrapper
         onClick={() => {
-          setUserData(prev => ({ ...prev, personalColor: "웜톤" }));
+          setUserInfo(prev => ({ ...prev, personalColor: "웜톤" }));
         }}
-        personalColor={userData.personalColor}
+        personalColor={userInfo.personalColor}
       >
         <FontAwesomeIcon icon={faPalette} fontSize={50} />
         <div>Warm</div>
       </WarmToneWrapper>
       <CoolToneWrapper
         onClick={() => {
-          setUserData(prev => ({ ...prev, personalColor: "쿨톤" }));
+          setUserInfo(prev => ({ ...prev, personalColor: "쿨톤" }));
         }}
-        personalColor={userData.personalColor}
+        personalColor={userInfo.personalColor}
       >
         <FontAwesomeIcon icon={faPalette} fontSize={50} />
         <div>Cool</div>

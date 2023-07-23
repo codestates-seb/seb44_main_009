@@ -7,7 +7,7 @@ import { ProfileEditInputTitleWrapper } from "./styles/ProfileEditInputTitleWrap
 import { ValidationMessage } from "../../../../singUp/styles/ValidationMessage.styled";
 
 export default function MyEmailEdit() {
-  const { userData, handleChange, emailRegEx } = useContext(
+  const { userInfo, handleChange, emailRegEx } = useContext(
     MyProfileEditsContext,
   );
 
@@ -17,15 +17,15 @@ export default function MyEmailEdit() {
   // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
     if (
-      Object.keys(userData).length !== 0 &&
-      userData.email.match(emailRegEx) === null
+      Object.keys(userInfo).length !== 0 &&
+      userInfo.email.match(emailRegEx) === null
     ) {
       setMessage("이메일 형식에 맞춰 입력해주세요");
       return;
     }
 
     setMessage("");
-  }, [userData.email]);
+  }, [userInfo.email]);
 
   return (
     <MyInfoEditWrapper>
@@ -36,7 +36,7 @@ export default function MyEmailEdit() {
       <MyInfoEditeInput
         type="email"
         placeholder="이메일 입력"
-        defaultValue={userData.email}
+        defaultValue={userInfo.email}
         name="email"
         onChange={handleChange}
       />

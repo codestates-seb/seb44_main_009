@@ -13,6 +13,10 @@ export const MyProfileEditsContext = createContext();
 export default function MyProfileEditsProvider({ children }) {
   // recoil
   const [userData, setUserData] = useRecoilState(user);
+  console.log("userData", userData);
+
+  const [userInfo, setUserInfo] = useState(userData);
+  console.log("userInfo", userInfo);
 
   // State >> 유효성 검사 불통과 시, 모달 오픈
   const [showModal, setShowModal] = useState(false);
@@ -29,14 +33,15 @@ export default function MyProfileEditsProvider({ children }) {
 
   // handleEvent >> 회원 정보 변경
   const handleChange = e =>
-    setUserData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setUserInfo(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
   return (
     <>
       {userData ? (
         <MyProfileEditsContext.Provider
           value={{
-            userData,
+            userInfo,
+            setUserInfo,
             setUserData,
             handleChange,
             emailRegEx,
