@@ -34,7 +34,7 @@ export default function MyList({ children }) {
       const [buyList, reviewList, questionList] = await Promise.all([
         getUserBuyList(token),
         getUserReviewList(token),
-        getUserQuestionList(),
+        getUserQuestionList(token),
       ]);
       setUserBuyList(buyList);
       setUserReviewList(reviewList);

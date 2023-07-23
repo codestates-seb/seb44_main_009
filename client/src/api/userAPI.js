@@ -46,12 +46,13 @@ export const getUserReviewList = async token => {
 };
 
 // 유저 질문 내역 불러오기
-export const getUserQuestionList = async (memberId = 3) => {
-  const response = await axios.get(`/qnas/qnabymember/${memberId}`);
+export const getUserQuestionList = async token => {
+  const response = await axios.get(`/qnas/qnabymember`, {
+    headers: { Authorization: `${token}` },
+  });
   return response.data;
 };
 
-// FIXME 지속적인 404 error
 // 유저 주문 상세 내역 불러오기
 export const getUserBuyProdutList = async (orderId, token) => {
   const response = await axios.get(`/orders/${orderId}`, {
