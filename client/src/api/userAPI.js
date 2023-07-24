@@ -62,6 +62,7 @@ export const getUserBuyProdutList = async (orderId, token) => {
 };
 
 // 유저 정보 수정하기
+
 export const patchUser = async (data, token) => {
   const response = await axios.patch("/members", data, {
     headers: { Authorization: `${token}` },

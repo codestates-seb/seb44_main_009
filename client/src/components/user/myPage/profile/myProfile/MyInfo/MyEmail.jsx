@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import { useRecoilValue } from "recoil";
 import { MyInfo } from "./styles/MyInfo";
 import { MyInfoTitle } from "./styles/MyInfoTitle";
 import { MyInfoWrapper } from "./styles/MyInfoWrapper";
-import { MyProfileContext } from "../MyProfile";
+import { user } from "../../../../../../atoms/user";
 
 export default function MyEmail() {
-  const { userData } = useContext(MyProfileContext);
+  // recoil
+  const userData = useRecoilValue(user);
 
   return (
     <MyInfoWrapper>

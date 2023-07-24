@@ -13,10 +13,8 @@ export const MyProfileEditsContext = createContext();
 export default function MyProfileEditsProvider({ children }) {
   // recoil
   const [userData, setUserData] = useRecoilState(user);
-  console.log("userData", userData);
 
   const [userInfo, setUserInfo] = useState(userData);
-  console.log("userInfo", userInfo);
 
   // State >> 유효성 검사 불통과 시, 모달 오픈
   const [showModal, setShowModal] = useState(false);
