@@ -23,8 +23,6 @@ export const ReviewHeaderForm = ({
       <ReviewDrop
         reviewfilter={reviewfilter}
         onFilterChange={onFilterChange}
-
-        // selectedValue={selectedValue} 테스트용
       ></ReviewDrop>
     </ReviewFormDiv>
   );

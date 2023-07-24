@@ -27,21 +27,3 @@ export const fetchReviews = async productId => {
     console.error("Error fetching reviews:", error);
   }
 };
-
-//recoil로 관리
-// import axios from "axios";
-// import { productsState } from "../atoms/product";
-
-// export const fetchProducts = async () => {
-//   try {
-//     const response = await axios.get("/products", {
-//       params: { page: 1, size: 10 },
-//     });
-
-//     const data = response.data;
-//     productsState(data); // Recoil 상태 업데이트
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };

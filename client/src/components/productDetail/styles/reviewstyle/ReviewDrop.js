@@ -24,8 +24,6 @@ export const ReviewDrop = ({ reviewfilter, onFilterChange }) => {
   const handleToggleClick = () => {
     setShowPersonalColorReviews(!showPersonalColorReviews);
   };
-  // console.log("ReviewDrop", selectedFilter);
-  // console.log("Header2Drop", selectedDropOption);
 
   return (
     <FilterContainer>
