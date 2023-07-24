@@ -13,9 +13,9 @@ export default function ProfileEditButton() {
   // Context >> 사용
   const {
     setShowModal,
-    userData,
+    userInfo,
+    setUserData,
     emailRegEx,
-    passworedRegEx,
     phoneNumberRegEx,
     setValidation,
   } = useContext(MyProfileEditsContext);
@@ -25,30 +25,25 @@ export default function ProfileEditButton() {
 
   // handleEvent >> 유효성 검사 및 showModal(state) 변경
   const handleOpenModal = () => {
-    // for (let i in userData) {
-    //   if (userData[i].length === 0) {
+    // for (let i in userInfo) {
+    //   if (userInfo[i].length === 0) {
     //     setValidation("미입력한 부분이 없는지 확인해주세요");
     //     setShowModal(true);
     //     return;
     //   }
     // }
 
-    if (Object.values(userData).some(data => !data)) {
+    if (Object.values(userInfo).some(data => !data)) {
       setValidation("미입력한 부분이 없는지 확인해주세요.");
       return setShowModal(true);
     }
 
-    if (userData.email.match(emailRegEx) === null) {
+    if (userInfo.email.match(emailRegEx) === null) {
       setValidation("형식에 맞춰 입력해주세요");
       return setShowModal(true);
     }
 
-    if (userData.password.match(passworedRegEx) === null) {
-      setValidation("형식에 맞춰 입력해주세요");
-      return setShowModal(true);
-    }
-
-    if (userData.phoneNumber.match(phoneNumberRegEx) === null) {
+    if (userInfo.phoneNumber.match(phoneNumberRegEx) === null) {
       setValidation("형식에 맞춰 입력해주세요");
       return setShowModal(true);
     }
@@ -56,7 +51,8 @@ export default function ProfileEditButton() {
     // 유효성 검사 통과 시, api 요청
     (async () => {
       try {
-        await patchUser(userData, token);
+        await patchUser(userInfo, token);
+        setUserData(userInfo);
         nav("/profile");
       } catch (error) {
         setValidation(error.message);

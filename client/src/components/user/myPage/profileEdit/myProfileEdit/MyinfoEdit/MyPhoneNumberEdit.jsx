@@ -7,7 +7,7 @@ import { ProfileEditInputTitleWrapper } from "./styles/ProfileEditInputTitleWrap
 import { ValidationMessage } from "../../../../singUp/styles/ValidationMessage.styled";
 
 export default function MyPhoneNumberEdit() {
-  const { userData, handleChange, phoneNumberRegEx } = useContext(
+  const { userInfo, handleChange, phoneNumberRegEx } = useContext(
     MyProfileEditsContext,
   );
 
@@ -17,15 +17,15 @@ export default function MyPhoneNumberEdit() {
   // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
     if (
-      Object.keys(userData).length !== 0 &&
-      userData.phoneNumber.match(phoneNumberRegEx) === null
+      Object.keys(userInfo).length !== 0 &&
+      userInfo.phoneNumber.match(phoneNumberRegEx) === null
     ) {
       setMessage("010-XXX(X)-XXXX 형식에 맞춰 입력해주세요");
       return;
     }
 
     setMessage("");
-  }, [userData.phoneNumber]);
+  }, [userInfo.phoneNumber]);
 
   return (
     <MyInfoEditWrapper>
@@ -36,7 +36,7 @@ export default function MyPhoneNumberEdit() {
       <MyInfoEditeInput
         type="tel"
         placeholder="전화번호 입력"
-        defaultValue={userData.phoneNumber}
+        defaultValue={userInfo.phoneNumber}
         name="phoneNumber"
         onChange={handleChange}
       />
