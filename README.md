@@ -87,7 +87,7 @@
 ## ✨ Pages & Features
 | Home 페이지 / ProductList 페이지  | Login / Join 페이지|
 |:---:|:---:|
-|<img width="100%"  src="https://github.com/codestates-seb/seb44_main_009/assets/124784742/ba80f974-4bd4-41b6-8033-2f68a4bb4190"/>|<img width="100%"  src=""/>|
+|<img width="100%"  src="https://github.com/codestates-seb/seb44_main_009/assets/124784742/ba80f974-4bd4-41b6-8033-2f68a4bb4190"/>|<img width="100%"  src="https://github.com/codestates-seb/seb44_main_009/assets/124784742/50f56295-bcab-49e6-b441-88eba6f63d72"/>|
 |**My 페이지**|**Profile / Profile(Edit) 페이지**|
 |<img width="100%" src="https://github.com/codestates-seb/seb44_main_009/assets/124784742/c9166813-674d-43c5-96be-e565d88bd1cb"/>|<img width="100%" src="https://github.com/codestates-seb/seb44_main_009/assets/124784742/7d873745-6829-4c14-9cdf-89c4f1aeabf6"/>|
 |**Product-detail 페이지(상품, 문의)**|**Product-detail 페이지(리뷰)**|
@@ -142,5 +142,13 @@ https://docs.google.com/presentation/d/1s_pOdFSAUp-iXYLq_AFu2ZReSPgSpK19sNPEnAFs
 ### 서비스 메뉴얼
 
 https://docs.google.com/presentation/d/12V2IkJ9J15pmNul3nquDYozlMad_hGmlfXUeTgSAOmw/edit#slide=id.p1
+
+
+<br /> 
+
+
+### 노션 페이지 
+https://www.notion.so/codestates/bb5aea5c8b984c21a69a6f6676a84d94
+
 
  
