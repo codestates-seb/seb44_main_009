@@ -124,8 +124,9 @@
 <br/>
 
 
-### 사용자 요구 사항 정의서 ( API 명세서, ERD )
-https://docs.google.com/spreadsheets/d/1INiB5MykahNYBG-1nZT7sB15yGFIW9qN0bQl95D48Y0/edit#gid=1318115205
+### 사용자 요구 사항 정의서 
+https://drive.google.com/file/d/1RgtFFY_foETksMZ4zk1UTMBgQTKIR8Vw/view?usp=sharing
+
 
 <br/>
 
@@ -135,13 +136,20 @@ https://www.figma.com/file/07uIEAYfKSwEI2B9D4Bgop/Untitled?type=design&node-id=1
 <br/>
 
 ### 화면 정의서
-https://docs.google.com/presentation/d/1s_pOdFSAUp-iXYLq_AFu2ZReSPgSpK19sNPEnAFsiuM/edit#slide=id.p1
+https://drive.google.com/file/d/1iX4I0pxFB5LU0OLF6cZOeZzKU4gzb6Cl/view?usp=sharing
+
+<br/>
+
+###  API 명세서, ERD 
+<div>API 명세서 : https://drive.google.com/file/d/128pYGAGTMnFzUo1a1ssa7Rw4AqrvL4gl/view?usp=sharing</div>
+<div>ERD        : https://drive.google.com/file/d/10c9W_zjHqUWGew6Gd9nPl2L0bYiXN01y/view?usp=sharing</div>
+
 
 <br/>
 
 ### 서비스 메뉴얼
 
-https://docs.google.com/presentation/d/12V2IkJ9J15pmNul3nquDYozlMad_hGmlfXUeTgSAOmw/edit#slide=id.p1
+https://drive.google.com/file/d/1t9qKIJ0ezEDPzzEWKq1-5fjZ-xIjgmTZ/view?usp=sharing
 
 
 <br /> 
