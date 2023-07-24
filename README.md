@@ -87,7 +87,7 @@
 ## ✨ Pages & Features
 | Home 페이지 / ProductList 페이지  | Login / Join 페이지|
 |:---:|:---:|
-|<img width="100%"  src="https://github.com/codestates-seb/seb44_main_009/assets/124784742/ba80f974-4bd4-41b6-8033-2f68a4bb4190"/>|<img width="100%"  src="https://github.com/codestates-seb/seb44_main_009/assets/124784742/50f56295-bcab-49e6-b441-88eba6f63d72"/>|
+|<img width="100%"  src="https://github.com/codestates-seb/seb44_main_009/assets/124784742/ba80f974-4bd4-41b6-8033-2f68a4bb4190"/>|<img width="100%"  src="https://media.discordapp.net/attachments/1123429312377397379/1132553589903069204/0113c18a27b6b9ee.gif?width=631&height=662"/>|
 |**My 페이지**|**Profile / Profile(Edit) 페이지**|
 |<img width="100%" src="https://github.com/codestates-seb/seb44_main_009/assets/124784742/c9166813-674d-43c5-96be-e565d88bd1cb"/>|<img width="100%" src="https://github.com/codestates-seb/seb44_main_009/assets/124784742/7d873745-6829-4c14-9cdf-89c4f1aeabf6"/>|
 |**Product-detail 페이지(상품, 문의)**|**Product-detail 페이지(리뷰)**|
