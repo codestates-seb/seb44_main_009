@@ -2,8 +2,6 @@ package com.main.MainProject.review.entity;
 
 import com.main.MainProject.audit.Auditable;
 import com.main.MainProject.member.entity.Member;
-import com.main.MainProject.order.entity.Order;
-import com.main.MainProject.order.entity.OrderProduct;
 import com.main.MainProject.product.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 @Getter
 @Setter
@@ -49,7 +45,7 @@ public class Review extends Auditable {
 
     public enum ProductPersonalColorStatus{
         COOL,
-        WORM;
+        WARM;
     }
 
     public enum SizeStatus{
