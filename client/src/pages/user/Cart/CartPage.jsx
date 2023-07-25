@@ -42,7 +42,6 @@ function CartPage() {
         const data = await fetchCart(token);
         setCart(data);
         localStorage.setItem("cartLength", cart.cartProductList.length);
-        console.log(data);
       } catch (error) {
         console.error(error);
       }
