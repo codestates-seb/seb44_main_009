@@ -38,7 +38,7 @@ import { ReviewHeaderForm } from "./reviewstyle/ReviewHeaderForm";
 import { ReviewContent } from "./reviewstyle/ReviewContent";
 import { ReviewPersonalBar } from "./reviewstyle/ReviewPersonalBar";
 import { NoReviews } from "./reviewstyle/reviewContentstyle/reviewcontentstyles/NoReviews";
-
+import { Prepare } from "../../../image";
 const ProductDetailStyles = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
@@ -137,7 +137,7 @@ const ProductDetailStyles = () => {
     <ProductDetailContainer>
       <ProductDetailContent>
         {/* 제품 이미지 */}
-        <ProductPublicImage url={product.url} />
+        <ProductPublicImage url={Prepare} />
 
         {/* 제품 명 , 제품 가격*/}
         <ProductPublicInfo
@@ -161,7 +161,7 @@ const ProductDetailStyles = () => {
           isexpanded={isExpanded ? "expanded" : ""}
           style={{ display: activeTab === "product-info" ? "block" : "none" }}
         >
-          <ProductPublicImage url={product.url} />
+          <ProductPublicImage url={Prepare} />
           <ProductInfoButton
             onClick={() => {
               toggleExpanded();

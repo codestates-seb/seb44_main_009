@@ -10,6 +10,7 @@ import { FooterContainer } from "./styles/FooterContainer.styled";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../../atoms/auth";
 import { updateReview } from "../../../api/orderAPIs";
+import { Link } from "react-router-dom";
 
 function ReviewUpdatePage() {
   const { token } = useRecoilValue(auth);
@@ -30,13 +31,13 @@ function ReviewUpdatePage() {
   const submitReview = async () => {
     try {
       const reviewData = {
-        enjoyStatus,
-        productPersonalColorStatus,
-        sizeStatus,
-        productColorStatus,
+        enjoyStatus: enjoyStatus,
+        productPersonalColorStatus: productPersonalColorStatus,
+        sizeStatus: sizeStatus,
+        productColorStatus: productColorStatus,
         content: reviewText,
       };
-
+      console.log(reviewData);
       const response = await updateReview(token, reviewData);
       console.log(response.data);
     } catch (error) {
@@ -87,7 +88,7 @@ function ReviewUpdatePage() {
           title="색상은 어떤가요?"
           options={["쿨톤", "웜톤"]}
           onSelect={option => {
-            setProductPersonalColorStatus(option === "쿨톤" ? "COOL" : "WORM");
+            setProductPersonalColorStatus(option === "쿨톤" ? "COOL" : "WARM");
           }}
         />
 
@@ -121,11 +122,13 @@ function ReviewUpdatePage() {
         <ReviewForm value={reviewText} onChange={handleReviewTextChange} />
       </ReviewWrapper>
       <FooterContainer>
-        <Footer_oneBtn
-          text="리뷰 등록하기"
-          onClick={submitReview}
-          disabled={isSubmitDisabled}
-        />
+        <Link to="/">
+          <Footer_oneBtn
+            text="리뷰 등록하기"
+            onClick={submitReview}
+            disabled={isSubmitDisabled}
+          />
+        </Link>
       </FooterContainer>
     </ReviewContainer>
   );

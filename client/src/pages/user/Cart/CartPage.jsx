@@ -5,7 +5,7 @@ import {
   updateCart,
   postAfterPayment,
 } from "../../../api/orderAPIs";
-import { getUser } from "../../../api/userAPI";
+// import { getUser } from "../../../api/userAPI";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
 import CartProductList from "../../../components/attribute/CartProductList";
@@ -65,14 +65,14 @@ function CartPage() {
 
   // 장바구니 구매하기
   const updatePayment = async () => {
-    const user = await getUser(token);
+    // const user = await getUser(token);
     const data = {
-      receiverName: user.korName,
-      zipcode: null,
-      addressName: user.address,
-      addressDetails: user.address,
-      telNum: user.phoneNumber,
-      request: null,
+      receiverName: "John_Doe",
+      zipcode: 12345,
+      addressName: "123_Main_St",
+      addressDetails: "Apt 4B",
+      telNum: "010-456-7890",
+      request: "Leave at doorstep",
     };
     try {
       const response = await postAfterPayment(token, data);
@@ -126,10 +126,6 @@ function CartPage() {
           </PaymentContainer>
         </CartBackContainer>
       )}
-      {/* 확인용 지울것 */}
-      <Link to="/review">
-        <button>리뷰</button>
-      </Link>
       <Footer_oneBtn text="상품 주문하기" onClick={updatePayment} />
     </BackContainer>
   );

@@ -40,6 +40,7 @@ function Footer_doubleBtn() {
       (total, item) => total + item.quantity,
       0,
     );
+    console.log("cartItemCount:", cartItemCount);
     setCount(cartItemCount);
   }, [cartItems]);
 
@@ -56,7 +57,7 @@ function Footer_doubleBtn() {
       <ButtonContainer>
         <IconWrapper onClick={handleClick}>
           <FontAwesomeIcon icon={isLiked ? solidHeart : regularHeart} />
-          <CountWrapper>{iscount}</CountWrapper>
+          <CountWrapper>0</CountWrapper>
         </IconWrapper>
         <PurchaseButton onClick={handlePurchaseClick}>구매하기</PurchaseButton>
       </ButtonContainer>
