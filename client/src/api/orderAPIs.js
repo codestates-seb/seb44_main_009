@@ -97,6 +97,14 @@ export const deleteReview = async (token, reviewId) => {
   return response;
 };
 
+// 리뷰 수정
+export const editReview = async (token, reviewId, data) => {
+  const response = await axios.patch(`/reviews?reviewId=${reviewId}`, data, {
+    headers: { Authorization: `${token}` },
+  });
+  return response;
+};
+
 // 개별 리뷰 조회
 export const findReview = async (token, reviewId) => {
   const response = await axios.get(`/reviews/find/${reviewId}`, {

@@ -6,7 +6,6 @@ import { ReviewContainer } from "./styles/ReviewContainer.styled";
 import { ReviewWrapper } from "./styles/ReviewWrapper.styled";
 import { Title } from "./styles/Title.styled";
 import MyReviewList from "../../../components/review/MyReviewList";
-// import { findReview } from "../../../api/orderAPIs";
 import { getUserReviewList } from "../../../api/userAPI";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../../atoms/auth";
@@ -14,35 +13,6 @@ import { auth } from "../../../atoms/auth";
 function MyReviewPage() {
   const { token } = useRecoilValue(auth);
   const [reviews, setReviews] = useState([]);
-  // const [reviewId, setReviewId] = useState(null);
-
-  // useEffect(() => {
-  //   const reviewResponseData = JSON.parse(
-  //     localStorage.getItem("reviewResponseData"),
-  //   );
-
-  //   if (reviewResponseData) {
-  //     const { reviewId } = reviewResponseData;
-
-  //     setReviewId(reviewId);
-  //     console.log(reviewId);
-  //   } else {
-  //     console.log("Invalid data format or missing data.");
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchReview = async () => {
-  //     try {
-  //       const data = await findReview(token, reviewId);
-  //       console.log(data);
-  //     } catch (error) {
-  //       console.error("Error fetching review:", error);
-  //     }
-  //   };
-
-  //   fetchReview();
-  // }, []);
 
   useEffect(() => {
     const fetchReview = async () => {

@@ -20,6 +20,7 @@ function ReviewUpdatePage() {
   const [sizeStatus, setSizeStatus] = useState("");
   const [productColorStatus, setProductColorStatus] = useState("");
   const [reviewText, setReviewText] = useState("");
+
   const [imageFile, setImageFile] = useState(null);
   const [orderId, setOrderId] = useState(null);
   const [productId, setProductId] = useState(null);
@@ -105,6 +106,7 @@ function ReviewUpdatePage() {
         <ReviewSection
           title="구매하신 상품은 만족하시나요?"
           options={["별로예요", "만족해요"]}
+          selectedOption={enjoyStatus}
           onSelect={option => {
             setEnjoyStatus(option === "만족해요" ? "YES" : "NO");
           }}

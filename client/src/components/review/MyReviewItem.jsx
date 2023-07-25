@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 // import { Prepare } from "../../image";
+import { useState } from "react";
 import { ProductImage } from "../attribute/styles/ProdcutImage.styled";
 import { ProductDetail } from "../attribute/styles/ProductDetail.styled";
 import { ProductView } from "../attribute/styles/ProductView.styled";
@@ -12,11 +13,13 @@ import { Score } from "./styles/myreview/Score.styled";
 import { deleteReview } from "../../api/orderAPIs";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../atoms/auth";
+import Modal from "../attribute/Modaldev/Modaldev";
 
 function MyReviewItem({ review }) {
   const { token } = useRecoilValue(auth);
   const navigate = useNavigate();
-
+  // const [, setStoredReviewId] = useState(localStorage.getItem("reviewId"));
+  const [showModal, setShowModal] = useState(false);
   const deleteReviewItem = async () => {
     try {
       await deleteReview(token, review.reviewId);
@@ -25,6 +28,22 @@ function MyReviewItem({ review }) {
       console.error("실패");
     }
   };
+
+  // 수정 구현 중
+  // const handleEditReviewClick = () => {
+  //   localStorage.setItem("reviewId", review.reviewId);
+  //   setStoredReviewId(review.reviewId);
+  //   navigate("/review/edit");
+  // };
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleHideModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <ReviewItemContainer>
       <ProductDetail>
@@ -36,7 +55,8 @@ function MyReviewItem({ review }) {
           <Score>{review.vote}</Score>
         </ProductView>
         <ButtonWrapper>
-          <Button>수정</Button>
+          <Button onClick={handleShowModal}>수정</Button>
+          {showModal && <Modal onClose={handleHideModal} />}
           <Button onClick={deleteReviewItem}>삭제</Button>
         </ButtonWrapper>
       </ProductDetail>
