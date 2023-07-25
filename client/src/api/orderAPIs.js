@@ -47,11 +47,23 @@ export const fetchOrder = async (token, orderId) => {
   return response.data;
 };
 
-// 장바구니 상품 주문 요청
+// 장바구니 상품 전체 구매
 export const postAfterPayment = async (token, data) => {
   const response = await axios.post("/orders/buy/cart", data, {
     headers: { Authorization: `${token}` },
   });
+  return response.data;
+};
+
+// 장바구니 상품 개별 구매
+export const postPayment = async (token, data, productId, quantity) => {
+  const response = await axios.post(
+    `/orders/buy?productId=${productId}&quantity=${quantity}`,
+    data,
+    {
+      headers: { Authorization: `${token}` },
+    },
+  );
   return response.data;
 };
 

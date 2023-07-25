@@ -23,7 +23,6 @@ function CartProductList({ cart, updateCartItemQuantity }) {
         for (const cartProductId of selectedItems) {
           await deleteCart(token, cartProductId);
           navigate("/");
-          console.log("성공");
         }
       } catch (error) {
         console.error("실패");

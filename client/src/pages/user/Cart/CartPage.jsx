@@ -53,7 +53,8 @@ function CartPage() {
   // 장바구니 수량 변경
   const updateCartItemQuantity = async (cartProductId, newQuantity) => {
     try {
-      await updateCart(token, cartProductId, newQuantity);
+      const response = await updateCart(token, cartProductId, newQuantity);
+      console.log(response.data);
       const updatedCartData = await fetchCart(token);
       setCart(updatedCartData);
     } catch (error) {
@@ -74,6 +75,7 @@ function CartPage() {
     };
     try {
       const response = await postAfterPayment(token, data);
+      console.log(response.data);
       const orderId = response.data.orderId;
       navigate(`/order/${orderId}`);
     } catch (error) {
