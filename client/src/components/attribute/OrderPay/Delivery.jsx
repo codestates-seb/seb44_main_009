@@ -8,6 +8,7 @@ function Delivery({
   handleChangeAddress,
   toggleEditAddress,
 }) {
+  console.log("Address data:", address);
   return (
     <DeliveryContainerBox>
       {address && editAddress ? (

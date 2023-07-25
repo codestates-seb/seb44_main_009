@@ -1,12 +1,12 @@
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MyToneTypeWrapper } from "./styles/MyToneTypeWrapper.styled";
-import { useContext } from "react";
-import { MyPersonalColorContext } from "../MyPersonalColor";
+import { useRecoilValue } from "recoil";
+import { user } from "../../../../../../atoms/user";
 
 export default function MyToneType() {
-  // Context >> 사용
-  const { userData } = useContext(MyPersonalColorContext);
+  // recoil
+  const userData = useRecoilValue(user);
 
   return (
     <MyToneTypeWrapper personalColor={userData.personalColor}>

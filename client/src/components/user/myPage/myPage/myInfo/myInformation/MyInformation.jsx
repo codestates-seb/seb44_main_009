@@ -3,23 +3,23 @@ import { MyInformationContainer } from "./styles/MyInformationContainer.styled";
 import { MyNickName } from "./styles/MyNickName";
 import { MyPersonalColor } from "./styles/MyPersonalColor";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
-import { useContext } from "react";
-import { MyInfoContext } from "../MyInfo";
+import { useRecoilValue } from "recoil";
+import { user } from "../../../../../../atoms/user";
 
 export default function MyInformation() {
-  // Context >> 사용
-  const { userInfo } = useContext(MyInfoContext);
+  // recoil
+  const userData = useRecoilValue(user);
 
   return (
     <MyInformationContainer>
-      <MyNickName>{userInfo.korName}</MyNickName>
+      <MyNickName>{userData.korName}</MyNickName>
       <div>
-        {userInfo.personalColor === "웜톤" ? (
+        {userData.personalColor === "웜톤" ? (
           <FontAwesomeIcon icon={faPalette} style={{ color: "orange" }} />
         ) : (
           <FontAwesomeIcon icon={faPalette} style={{ color: "skyblue" }} />
         )}
-        <MyPersonalColor>{userInfo.personalColor}</MyPersonalColor>
+        <MyPersonalColor>{userData.personalColor}</MyPersonalColor>
       </div>
     </MyInformationContainer>
   );

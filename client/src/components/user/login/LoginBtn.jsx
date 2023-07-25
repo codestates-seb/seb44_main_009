@@ -47,6 +47,7 @@ export default function LoginBtn() {
         setShowModal(true);
       } catch (error) {
         setValidation(error.message);
+        setShowModal(true);
       }
     })();
   };

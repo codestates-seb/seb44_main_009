@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // :: 배포 PR 시, 주석 해제
-// axios.defaults.baseURL = "";
+axios.defaults.baseURL =
+  "http://ec2-43-201-65-189.ap-northeast-2.compute.amazonaws.com:8080";
 
 // :: 로그인 기능 구현 시, 주석 해제
 axios.defaults.withCredentials = true;
@@ -45,12 +46,13 @@ export const getUserReviewList = async token => {
 };
 
 // 유저 질문 내역 불러오기
-export const getUserQuestionList = async (memberId = 3) => {
-  const response = await axios.get(`/qnas/qnabymember/${memberId}`);
+export const getUserQuestionList = async token => {
+  const response = await axios.get(`/qnas/qnabymember`, {
+    headers: { Authorization: `${token}` },
+  });
   return response.data;
 };
 
-// FIXME 지속적인 404 error
 // 유저 주문 상세 내역 불러오기
 export const getUserBuyProdutList = async (orderId, token) => {
   const response = await axios.get(`/orders/${orderId}`, {
@@ -60,6 +62,7 @@ export const getUserBuyProdutList = async (orderId, token) => {
 };
 
 // 유저 정보 수정하기
+
 export const patchUser = async (data, token) => {
   const response = await axios.patch("/members", data, {
     headers: { Authorization: `${token}` },

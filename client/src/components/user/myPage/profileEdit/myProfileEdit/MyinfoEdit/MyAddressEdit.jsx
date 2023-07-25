@@ -7,20 +7,20 @@ import { ValidationMessage } from "../../../../singUp/styles/ValidationMessage.s
 import { ProfileEditInputTitleWrapper } from "./styles/ProfileEditInputTitleWrapper.styled";
 
 export default function MyAddressEdit() {
-  const { userData, handleChange } = useContext(MyProfileEditsContext);
+  const { userInfo, handleChange } = useContext(MyProfileEditsContext);
 
   // State >> 유효성 검사에 따른 메세지
   const [message, setMessage] = useState("");
 
   // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
-    if (Object.keys(userData).length !== 0 && userData.address.length === 0) {
+    if (Object.keys(userInfo).length !== 0 && userInfo.address.length === 0) {
       setMessage("주소를 입력해주세요");
       return;
     }
 
     setMessage("");
-  }, [userData.address]);
+  }, [userInfo.address]);
 
   return (
     <MyInfoEditWrapper>
@@ -31,7 +31,7 @@ export default function MyAddressEdit() {
       <MyInfoEditeInput
         type="text"
         placeholder="주소 입력"
-        defaultValue={userData.address}
+        defaultValue={userInfo.address}
         name="address"
         onChange={handleChange}
       />

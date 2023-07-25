@@ -104,16 +104,46 @@ const ModalCloseButton = styled.button`
 `;
 
 const reviewImages = [
-  { src: "", alt: "리뷰 이미지 1" },
-  { src: "", alt: "리뷰 이미지 2" },
-  { src: "", alt: "리뷰 이미지 3" },
-  { src: "", alt: "리뷰 이미지 4" },
-  { src: "", alt: "리뷰 이미지 5" },
-  { src: "", alt: "리뷰 이미지 6" },
-  { src: "", alt: "리뷰 이미지 7" },
-  { src: "", alt: "리뷰 이미지 8" },
-  { src: "", alt: "리뷰 이미지 9" },
-  { src: "", alt: "리뷰 이미지 10" },
+  {
+    src: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    alt: "리뷰 이미지 1",
+  },
+  {
+    src: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    alt: "리뷰 이미지 2",
+  },
+  {
+    src: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    alt: "리뷰 이미지 3",
+  },
+  {
+    src: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    alt: "리뷰 이미지 4",
+  },
+  {
+    src: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    alt: "리뷰 이미지 5",
+  },
+  {
+    src: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    alt: "리뷰 이미지 6",
+  },
+  {
+    src: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    alt: "리뷰 이미지 7",
+  },
+  {
+    src: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    alt: "리뷰 이미지 8",
+  },
+  {
+    src: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    alt: "리뷰 이미지 9",
+  },
+  {
+    src: "https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0",
+    alt: "리뷰 이미지 10",
+  },
 ];
 
 export const ReviewImg = () => {

@@ -7,20 +7,20 @@ import { ProfileEditInputTitleWrapper } from "./styles/ProfileEditInputTitleWrap
 import { ValidationMessage } from "../../../../singUp/styles/ValidationMessage.styled";
 
 export default function MyNameEdit() {
-  const { userData, handleChange } = useContext(MyProfileEditsContext);
+  const { userInfo, handleChange } = useContext(MyProfileEditsContext);
 
   // State >> 유효성 검사에 따른 메세지
   const [message, setMessage] = useState("");
 
   // Effect >> 유효성 검사에 따른 message(state) 변경
   useEffect(() => {
-    if (Object.keys(userData).length !== 0 && userData.korName.length === 0) {
+    if (Object.keys(userInfo).length !== 0 && userInfo.korName.length === 0) {
       setMessage("이름을 입력해주세요");
       return;
     }
 
     setMessage("");
-  }, [userData.korName]);
+  }, [userInfo.korName]);
 
   return (
     <MyInfoEditWrapper>
@@ -31,7 +31,7 @@ export default function MyNameEdit() {
       <MyInfoEditeInput
         type="text"
         placeholder="이름 입력"
-        defaultValue={userData.korName}
+        defaultValue={userInfo.korName}
         name="korName"
         onChange={handleChange}
       />

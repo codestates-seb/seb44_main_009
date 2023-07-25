@@ -1,6 +1,10 @@
-import profile from "../../../../../../image/profileImg.jpg";
-import MyProfileImg from "../../../profile/myPersonalColor/myProfileImg/MyProfileImg";
+import { useRecoilValue } from "recoil";
+import { user } from "../../../../../../atoms/user";
+import { MyProfileImage } from "../../../profile/myPersonalColor/myProfileImg/styles/MyProfileImage.styled";
 
 export default function MyInfoImg() {
-  return <MyProfileImg src={profile} alt="프로필" />;
+  // recoil
+  const userData = useRecoilValue(user);
+
+  return <MyProfileImage src={userData.memberImageName} alt="프로필" />;
 }

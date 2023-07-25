@@ -38,7 +38,7 @@ import { ReviewHeaderForm } from "./reviewstyle/ReviewHeaderForm";
 import { ReviewContent } from "./reviewstyle/ReviewContent";
 import { ReviewPersonalBar } from "./reviewstyle/ReviewPersonalBar";
 import { NoReviews } from "./reviewstyle/reviewContentstyle/reviewcontentstyles/NoReviews";
-import { Prepare } from "../../../image";
+
 const ProductDetailStyles = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
@@ -81,7 +81,6 @@ const ProductDetailStyles = () => {
     getReviews();
   }, [productId]); // productId가 변경될 때마다 리뷰 바뀜.
 
-  console.log("reviews0", reviews);
   // Tab 기능
   const [activeTab, setActiveTab] = useState("product-info");
   const [isExpanded, setIsExpanded] = useState(false);
@@ -89,6 +88,10 @@ const ProductDetailStyles = () => {
   const [selectedDropOption, setSelectedDropOption] = useState(
     reviewfilter[0].slug,
   );
+
+  useEffect(() => {
+    setIsReviewExpanded(false);
+  }, [selectedDropOption]);
 
   const onFilterChange = selectedDropOption => {
     setSelectedDropOption(selectedDropOption);
@@ -121,11 +124,11 @@ const ProductDetailStyles = () => {
     switch (Dropoption) {
       case "coolColor":
         return reviews.data.responseList.filter(
-          review => review.productPersonalColor === "COOL_TONE",
+          review => review.productPersonalColorStatus === "COOL",
         );
       case "warmColor":
         return reviews.data.responseList.filter(
-          review => review.productPersonalColor === "WARM_TONE",
+          review => review.productPersonalColorStatus === "WARM",
         );
       case "highVote":
         return reviews.data.responseList.sort((a, b) => b.vote - a.vote);
@@ -133,11 +136,13 @@ const ProductDetailStyles = () => {
   }
   const sortedReviews = sortReviews(selectedDropOption);
 
+  // console.log("reviews", reviews);
+  //console.log("product", product);
   return (
     <ProductDetailContainer>
       <ProductDetailContent>
         {/* 제품 이미지 */}
-        <ProductPublicImage url={Prepare} />
+        <ProductPublicImage url={product.productImageName} />
 
         {/* 제품 명 , 제품 가격*/}
         <ProductPublicInfo
@@ -161,7 +166,8 @@ const ProductDetailStyles = () => {
           isexpanded={isExpanded ? "expanded" : ""}
           style={{ display: activeTab === "product-info" ? "block" : "none" }}
         >
-          <ProductPublicImage url={Prepare} />
+          {/* <ProductPublicImage url={product.url} /> */}
+          <ProductPublicImage url=" https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0" />
           <ProductInfoButton
             onClick={() => {
               toggleExpanded();
@@ -186,6 +192,7 @@ const ProductDetailStyles = () => {
             onFilterChange={onFilterChange}
             selectedDropOption={selectedDropOption}
           />
+
           {/* 더미데이터 Review */}
           {/* <ReviewPersonalBar
             coolToneCount={reviews[0].data.personalColorCoolCount}
@@ -199,26 +206,31 @@ const ProductDetailStyles = () => {
               warmToneCount={reviews.data.personalColorWormCount}
             />
           ) : null}
-          {sortedReviews.length > 0 ? (
-            sortedReviews.map(sortedReviews => (
-              <ReviewContent
-                key={sortedReviews.id}
-                review={sortedReviews}
-                selectedDropOption={selectedDropOption}
-                vote={sortedReviews.vote}
-              />
-            ))
-          ) : (
+
+          {sortedReviews.length > 0 && (
+            <div>
+              {sortedReviews.map(sortedReviews => (
+                <ReviewContent
+                  key={sortedReviews.id}
+                  review={sortedReviews}
+                  selectedDropOption={selectedDropOption}
+                  vote={sortedReviews.vote}
+                />
+              ))}
+              <ProductInfoButton
+                onClick={() => {
+                  toggleReviewExpanded();
+                  scrollToBottom();
+                }}
+              >
+                {isReviewExpanded ? "접기" : "리뷰 전체 보기"}
+              </ProductInfoButton>
+            </div>
+          )}
+
+          {sortedReviews.length === 0 && (
             <NoReviews>리뷰가 없습니다.</NoReviews>
           )}
-          <ProductInfoButton
-            onClick={() => {
-              toggleReviewExpanded();
-              scrollToBottom();
-            }}
-          >
-            {isReviewExpanded ? "접기" : "리뷰 전체 보기"}
-          </ProductInfoButton>
         </TabContent>
 
         {/* 탭3. 문의 */}

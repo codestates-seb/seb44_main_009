@@ -8,7 +8,7 @@ import { CategoryNavigator } from "./styles/CategoryNavigator.styled";
 
 function CategoryPage() {
   const categories = ["상의", "원피스", "팬츠", "스커트", "아우터", "잡화"];
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const handleCategoryClick = category => {
     setSelectedCategory(category);
@@ -23,7 +23,10 @@ function CategoryPage() {
           selectedCategory={selectedCategory}
           handleCategoryClick={handleCategoryClick}
         />
-        <CategoryView categories={categories} />
+        <CategoryView
+          categories={categories}
+          selectedCategory={selectedCategory}
+        />
       </CategoryNavigator>
       <Footer />
     </OrderContainer>

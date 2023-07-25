@@ -1,6 +1,5 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
-import { Prepare } from "../../image";
 
 import {
   ProductContainer,
@@ -20,7 +19,8 @@ const ProductColorContainer = styled.div`
   justify-content: flex-end;
 `;
 
-const Product = ({ productId, name, price, color }) => {
+const Product = ({ productId, productImageName, name, price, color }) => {
+  // const Product = ({ productId, name, price, color }) => {
   return (
     <span>
       <ProductContainer>
@@ -30,7 +30,7 @@ const Product = ({ productId, name, price, color }) => {
           }}
         >
           <ProductImageContainer>
-            <ProductImage src={Prepare} alt="Product Image" />
+            <ProductImage src={productImageName} alt="Product Image" />
           </ProductImageContainer>
         </Link>
         <ProductNameInfo>
