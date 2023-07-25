@@ -128,9 +128,7 @@ function OrderPage() {
   const deliveryResponseData = localStorage.getItem("deliveryResponseData");
 
   if (deliveryResponseData) {
-    const parsedData = JSON.parse(deliveryResponseData);
-
-    console.log(parsedData);
+    JSON.parse(deliveryResponseData);
   }
   return (
     <OrderContainer>

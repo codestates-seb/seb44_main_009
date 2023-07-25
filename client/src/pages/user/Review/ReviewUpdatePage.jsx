@@ -74,11 +74,17 @@ function ReviewUpdatePage() {
       const response = await updateReview(token, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log(response.data);
+      localStorage.setItem("reviewResponseData", JSON.stringify(response.data));
     } catch (error) {
       console.error(error);
     }
   };
+
+  const reviewResponseData = localStorage.getItem("reviewResponseData");
+
+  if (reviewResponseData) {
+    JSON.parse(reviewResponseData);
+  }
 
   const isSubmitDisabled = reviewText.trim().length === 0;
 

@@ -76,7 +76,7 @@ export const patchAddress = async (token, orderId, data) => {
   return response;
 };
 
-// 리뷰 등록 (orderId,productId->undefined)
+// 리뷰 등록
 export const updateReview = async (token, data) => {
   const { orderId, productId } = data;
   const response = await axios.post(
@@ -89,7 +89,21 @@ export const updateReview = async (token, data) => {
   return response.data;
 };
 
+// 리뷰 삭제
+export const deleteReview = async (token, reviewId) => {
+  const response = await axios.delete(`/reviews/delete/${reviewId}`, {
+    headers: { Authorization: `${token}` },
+  });
+  return response;
+};
+
 // 개별 리뷰 조회
+export const findReview = async (token, reviewId) => {
+  const response = await axios.get(`/reviews/find/${reviewId}`, {
+    headers: { Authorization: `${token}` },
+  });
+  return response.data;
+};
 
 // 주문 배송 완료
 export const patchDelivery = async (token, data) => {

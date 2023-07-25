@@ -6,26 +6,56 @@ import { ReviewContainer } from "./styles/ReviewContainer.styled";
 import { ReviewWrapper } from "./styles/ReviewWrapper.styled";
 import { Title } from "./styles/Title.styled";
 import MyReviewList from "../../../components/review/MyReviewList";
+// import { findReview } from "../../../api/orderAPIs";
+import { getUserReviewList } from "../../../api/userAPI";
+import { useRecoilValue } from "recoil";
+import { auth } from "../../../atoms/auth";
 
 function MyReviewPage() {
+  const { token } = useRecoilValue(auth);
   const [reviews, setReviews] = useState([]);
-  const tempReview = {
-    reviewId: 1,
-    productName: "꽈배기 카라 집업[웜톤]",
-    content: " 38000 원",
-    vote: 5,
-  };
-  useEffect(() => {
-    setReviews([tempReview]);
-  }, []);
+  // const [reviewId, setReviewId] = useState(null);
 
-  // 해당 유저 리뷰 목록 데이터 조회 + {member-id}로 변경하기
   // useEffect(() => {
-  //   axios
-  //     .get("/review/findByMember/1")
-  //     .then(response => setReviews(response.data.data.responseList))
-  //     .catch(error => console.error("Error fetching data:", error));
+  //   const reviewResponseData = JSON.parse(
+  //     localStorage.getItem("reviewResponseData"),
+  //   );
+
+  //   if (reviewResponseData) {
+  //     const { reviewId } = reviewResponseData;
+
+  //     setReviewId(reviewId);
+  //     console.log(reviewId);
+  //   } else {
+  //     console.log("Invalid data format or missing data.");
+  //   }
   // }, []);
+
+  // useEffect(() => {
+  //   const fetchReview = async () => {
+  //     try {
+  //       const data = await findReview(token, reviewId);
+  //       console.log(data);
+  //     } catch (error) {
+  //       console.error("Error fetching review:", error);
+  //     }
+  //   };
+
+  //   fetchReview();
+  // }, []);
+
+  useEffect(() => {
+    const fetchReview = async () => {
+      try {
+        const data = await getUserReviewList(token);
+        setReviews(data.responseList);
+      } catch (error) {
+        console.error("Error fetching review:", error);
+      }
+    };
+
+    fetchReview();
+  }, [token]);
 
   return (
     <ReviewContainer>
