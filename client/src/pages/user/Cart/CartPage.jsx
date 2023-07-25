@@ -76,7 +76,6 @@ function CartPage() {
     };
     try {
       const response = await postAfterPayment(token, data);
-      console.log(response.data);
       const orderId = response.data.orderId;
       navigate(`/order/${orderId}`);
     } catch (error) {

@@ -74,3 +74,11 @@ export const updateReview = async (token, data, orderId, productId) => {
   );
   return response.data;
 };
+
+// 주문 배송 완료
+export const patchDelivery = async (token, orderId, data) => {
+  const response = await axios.patch(`/orders/update/${orderId}`, data, {
+    headers: { Authorization: `${token}` },
+  });
+  return response;
+};

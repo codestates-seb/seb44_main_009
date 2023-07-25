@@ -72,7 +72,6 @@ export const BuyFooterModal = ({ closeModal }) => {
 
     fetchProductData();
   }, []);
-  console.log("Testproducts", products);
 
   const handleDropPersonalToggle = () => {
     setDropPersonalOpen(prevState => !prevState);
