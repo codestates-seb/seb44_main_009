@@ -12,6 +12,7 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { auth } from "../../atoms/auth";
 import { productsState } from "../../atoms/product";
 import { addToCart, postPayment } from "../../api/orderAPIs";
+import { getUser } from "../../api/userAPI";
 
 import {
   DropText,
@@ -133,13 +134,13 @@ export const BuyFooterModal = ({ closeModal }) => {
 
   // 구매하기 post api
   const handlePaymentButtonClick = async () => {
-    // const user = await getUser(token);
+    const user = await getUser(token);
     const data = {
-      receiverName: "John_Doe",
+      receiverName: user.korName,
       zipcode: 12345,
-      addressName: "123_Main_St",
-      addressDetails: "Apt 4B",
-      telNum: "010-456-7890",
+      addressName: user.address,
+      addressDetails: user.address,
+      telNum: user.phoneNumber,
       request: "Leave at doorstep",
       productId: products.productId,
       quantity: selectedQuantity,
@@ -147,7 +148,6 @@ export const BuyFooterModal = ({ closeModal }) => {
     console.log(data);
     try {
       const response = await postPayment(token, data);
-      console.log(response.data);
       const orderId = response.data.orderId;
       navigate(`/order/${orderId}`);
     } catch (error) {

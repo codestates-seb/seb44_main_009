@@ -10,10 +10,11 @@ import { FooterContainer } from "./styles/FooterContainer.styled";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../../atoms/auth";
 import { updateReview } from "../../../api/orderAPIs";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function ReviewUpdatePage() {
   const { token } = useRecoilValue(auth);
+  const { orderId } = useParams();
   const [enjoyStatus, setEnjoyStatus] = useState("");
   const [productPersonalColorStatus, setProductPersonalColorStatus] =
     useState("");
@@ -36,8 +37,8 @@ function ReviewUpdatePage() {
         sizeStatus: sizeStatus,
         productColorStatus: productColorStatus,
         content: reviewText,
+        orderId: orderId,
       };
-      console.log(reviewData);
       const response = await updateReview(token, reviewData);
       console.log(response.data);
     } catch (error) {
@@ -47,29 +48,13 @@ function ReviewUpdatePage() {
 
   const isSubmitDisabled = reviewText.trim().length === 0;
 
-  useEffect(() => {
-    if (enjoyStatus !== "") {
-      console.log("enjoyStatus:", enjoyStatus);
-    }
-  }, [enjoyStatus]);
+  useEffect(() => {}, [enjoyStatus]);
 
-  useEffect(() => {
-    if (productPersonalColorStatus !== "") {
-      console.log("productPersonalColorStatus:", productPersonalColorStatus);
-    }
-  }, [productPersonalColorStatus]);
+  useEffect(() => {}, [productPersonalColorStatus]);
 
-  useEffect(() => {
-    if (sizeStatus !== "") {
-      console.log("sizeStatus:", sizeStatus);
-    }
-  }, [sizeStatus]);
+  useEffect(() => {}, [sizeStatus]);
 
-  useEffect(() => {
-    if (productColorStatus !== "") {
-      console.log("productColorStatus:", productColorStatus);
-    }
-  }, [productColorStatus]);
+  useEffect(() => {}, [productColorStatus]);
 
   return (
     <ReviewContainer>

@@ -5,7 +5,7 @@ import {
   updateCart,
   postAfterPayment,
 } from "../../../api/orderAPIs";
-// import { getUser } from "../../../api/userAPI";
+import { getUser } from "../../../api/userAPI";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
 import CartProductList from "../../../components/attribute/CartProductList";
@@ -64,13 +64,13 @@ function CartPage() {
 
   // 장바구니 구매하기
   const updatePayment = async () => {
-    // const user = await getUser(token);
+    const user = await getUser(token);
     const data = {
-      receiverName: "John_Doe",
+      receiverName: user.korName,
       zipcode: 12345,
-      addressName: "123_Main_St",
-      addressDetails: "Apt 4B",
-      telNum: "010-456-7890",
+      addressName: user.address,
+      addressDetails: user.address,
+      telNum: user.phoneNumber,
       request: "Leave at doorstep",
     };
     try {

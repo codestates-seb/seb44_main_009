@@ -78,14 +78,20 @@ export const patchAddress = async (token, orderId, data) => {
 
 // 리뷰 등록 (orderId,productId->undefined)
 export const updateReview = async (token, data) => {
-  const response = await axios.post(`/reviews?orderId=6&productId=33`, data, {
-    headers: { Authorization: `${token}` },
-  });
+  const { orderId, productId } = data;
+  const response = await axios.post(
+    `/reviews?orderId=${orderId}&productId=${productId}`,
+    data,
+    {
+      headers: { Authorization: `${token}` },
+    },
+  );
   return response.data;
 };
 
 // 주문 배송 완료
-export const patchDelivery = async (token, orderId, data) => {
+export const patchDelivery = async (token, data) => {
+  const { orderId } = data;
   const response = await axios.patch(`/orders/update/${orderId}`, data, {
     headers: { Authorization: `${token}` },
   });
