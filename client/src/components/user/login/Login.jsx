@@ -21,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 // Context >> 생성
 export const LogInContext = createContext();
 
+// 로그인 컴포넌트
 export default function LoginProvider({ children }) {
   // State >> HTTP body 부분
   const [logInData, setLogInData] = useState({ username: "", password: "" });
@@ -61,6 +62,7 @@ export default function LoginProvider({ children }) {
   );
 }
 
+// 개별 로그인 컴포넌트
 export const Login = Object.assign(LoginProvider, {
   Email: EmailInput,
   Password: PasswordInput,
@@ -68,6 +70,7 @@ export const Login = Object.assign(LoginProvider, {
   LinkBtn: LinkBtn,
 });
 
+// 이메일 입력
 function EmailInput() {
   // Context >> 사용
   const { handleChange, logInData, emailRegEx } = useContext(LogInContext);
@@ -101,6 +104,7 @@ function EmailInput() {
   );
 }
 
+// 비밀번호 입력
 function PasswordInput() {
   // Context >> 사용
   const { handleChange, passworedRegEx, logInData } = useContext(LogInContext);
@@ -134,6 +138,7 @@ function PasswordInput() {
   );
 }
 
+// 로그인 버튼
 function LoginBtn() {
   // Context >> 사용
   const { setShowModal, setValidation, emailRegEx, passworedRegEx, logInData } =
@@ -191,6 +196,7 @@ function LoginBtn() {
   return <LoginButton onClick={handleOpenModal}>로그인</LoginButton>;
 }
 
+// 회원가입 버튼
 function LinkBtn() {
   return (
     <LoginLinkBtnWrapper>
@@ -199,6 +205,7 @@ function LinkBtn() {
   );
 }
 
+// 로그인 모달
 function LoginModal() {
   // Context >> 사용
   const { setShowModal, validation } = useContext(LogInContext);
