@@ -28,7 +28,6 @@ function ReviewUpdatePage() {
     const deliveryResponseData = JSON.parse(
       localStorage.getItem("deliveryResponseData"),
     );
-    console.log("deliveryResponseData:", deliveryResponseData);
 
     if (deliveryResponseData && deliveryResponseData.data) {
       const { orderId } = deliveryResponseData.data;
@@ -36,9 +35,6 @@ function ReviewUpdatePage() {
 
       setOrderId(orderId);
       setProductId(productId);
-
-      console.log("orderId:", orderId);
-      console.log("productId:", productId);
     } else {
       console.log("Invalid data format or missing data.");
     }
@@ -74,14 +70,12 @@ function ReviewUpdatePage() {
       formData.append("image", imageFile);
       formData.append("orderId", orderId);
       formData.append("productId", productId);
-      console.log(formData);
 
       const response = await updateReview(token, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log(response.data);
     } catch (error) {
-      console.log(orderId, productId);
       console.error(error);
     }
   };
