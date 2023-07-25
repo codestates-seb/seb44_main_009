@@ -124,11 +124,11 @@ const ProductDetailStyles = () => {
     switch (Dropoption) {
       case "coolColor":
         return reviews.data.responseList.filter(
-          review => review.productPersonalColor === "COOL_TONE",
+          review => review.productPersonalColorStatus === "COOL",
         );
       case "warmColor":
         return reviews.data.responseList.filter(
-          review => review.productPersonalColor === "WARM_TONE",
+          review => review.productPersonalColorStatus === "WARM",
         );
       case "highVote":
         return reviews.data.responseList.sort((a, b) => b.vote - a.vote);
@@ -136,13 +136,14 @@ const ProductDetailStyles = () => {
   }
   const sortedReviews = sortReviews(selectedDropOption);
 
-  console.log("reviews", reviews);
+  // console.log("reviews", reviews);
+  //console.log("product", product);
   return (
     <ProductDetailContainer>
       <ProductDetailContent>
         {/* 제품 이미지 */}
-        {/* <ProductPublicImage url={product.url} /> */}
-        <ProductPublicImage url=" https://img.freepik.com/free-vector/background-of-coming-soon-with-a-clock_1017-5059.jpg?w=826&t=st=1688544622~exp=1688545222~hmac=9340ba92730b0d3c10f8db2ad9d60b2f564990234e283bac6fb44d2159e6aee0" />
+        <ProductPublicImage url={product.productImageName} />
+
         {/* 제품 명 , 제품 가격*/}
         <ProductPublicInfo
           name={product.name}

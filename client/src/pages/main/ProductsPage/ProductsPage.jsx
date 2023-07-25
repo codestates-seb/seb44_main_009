@@ -1,3 +1,63 @@
+//Api데이터;
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { fetchProducts } from "../../../api/product";
+import ProductList from "../../../components/mainProduct/ProductList";
+import Header from "../../../components/header/Header";
+import Footer from "../../../components/footer/Footer";
+import { MainContainer, Borderdiv } from "./styles/ProductPageStyle";
+
+function ProductsPage() {
+  const [products, setProducts] = useState([]);
+  const { category } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchProducts();
+      setProducts(data);
+    };
+
+    fetchData();
+  }, []);
+
+  const filteredCategoryProducts = category
+    ? products.filter(product => product.categoryName === category)
+    : products;
+
+  const filteredPersonalProducts = category
+    ? products.filter(product => product.personalColor === category)
+    : products;
+
+  let filteredProducts;
+  if (category === "WARM_TONE") {
+    filteredProducts = filteredPersonalProducts.filter(
+      product => product.personalColor === "WARM_TONE",
+    );
+  } else if (category === "COOL_TONE") {
+    filteredProducts = filteredPersonalProducts.filter(
+      product => product.personalColor === "COOL_TONE",
+    );
+  } else {
+    filteredProducts = filteredCategoryProducts;
+  }
+
+  return (
+    <div>
+      <MainContainer>
+        <Header />
+        <Borderdiv>
+          <ProductList products={filteredProducts} />
+        </Borderdiv>
+        <Footer />
+      </MainContainer>
+    </div>
+  );
+}
+
+export default ProductsPage;
+
+// 더미데이터 - 서버가 만료될 시 테스트용
+
 // import { useState } from "react";
 // import { useParams } from "react-router-dom";
 
@@ -19,7 +79,6 @@
 //   const filteredPersonalProducts = category
 //     ? products.filter(product => product.personalColor === category)
 //     : products;
-//   // console.log("cate", category);
 
 //   let filteredProducts;
 //   if (category === "Warm") {
@@ -50,64 +109,3 @@
 // }
 
 // export default ProductsPage;
-
-//Api데이터;
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { fetchProducts } from "../../../api/product";
-import ProductList from "../../../components/mainProduct/ProductList";
-import Header from "../../../components/header/Header";
-import Footer from "../../../components/footer/Footer";
-import { MainContainer, Borderdiv } from "./styles/ProductPageStyle";
-
-function ProductsPage() {
-  const [products, setProducts] = useState([]);
-  const { category } = useParams();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchProducts();
-      setProducts(data);
-    };
-
-    fetchData();
-  }, []);
-
-  console.log("카테고리", category);
-
-  const filteredCategoryProducts = category
-    ? products.filter(product => product.categoryName === category)
-    : products;
-
-  const filteredPersonalProducts = category
-    ? products.filter(product => product.personalColor === category)
-    : products;
-
-  console.log("filteredPersonalProducts", filteredPersonalProducts);
-  let filteredProducts;
-  if (category === "WARM_TONE") {
-    filteredProducts = filteredPersonalProducts.filter(
-      product => product.personalColor === "WARM_TONE",
-    );
-  } else if (category === "COOL_TONE") {
-    filteredProducts = filteredPersonalProducts.filter(
-      product => product.personalColor === "COOL_TONE",
-    );
-  } else {
-    filteredProducts = filteredCategoryProducts;
-  }
-
-  return (
-    <div>
-      <MainContainer>
-        <Header />
-        <Borderdiv>
-          <ProductList products={filteredProducts} />
-        </Borderdiv>
-        <Footer />
-      </MainContainer>
-    </div>
-  );
-}
-
-export default ProductsPage;
