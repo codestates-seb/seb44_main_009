@@ -42,7 +42,6 @@ function CartPage() {
         const data = await fetchCart(token);
         setCart(data);
         localStorage.setItem("cartLength", cart.cartProductList.length);
-        console.log(data);
       } catch (error) {
         console.error(error);
       }
@@ -54,8 +53,7 @@ function CartPage() {
   // 장바구니 수량 변경
   const updateCartItemQuantity = async (cartProductId, newQuantity) => {
     try {
-      const response = await updateCart(token, cartProductId, newQuantity);
-      console.log(response.data);
+      await updateCart(token, cartProductId, newQuantity);
       const updatedCartData = await fetchCart(token);
       setCart(updatedCartData);
     } catch (error) {
