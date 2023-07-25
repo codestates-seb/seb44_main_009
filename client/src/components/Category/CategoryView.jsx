@@ -8,7 +8,7 @@ function CategoryView({ categories, selectedCategory }) {
   const slugMap = {
     상의: "상의",
     원피스: "원피스",
-    팬츠: "팬츠",
+    팬츠: "하의",
     스커트: "스커트",
     아우터: "아우터",
     잡화: "악세사리",

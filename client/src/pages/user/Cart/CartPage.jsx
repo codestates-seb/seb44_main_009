@@ -66,11 +66,11 @@ function CartPage() {
     const user = await getUser(token);
     const data = {
       receiverName: user.korName,
-      zipcode: null,
+      zipcode: 12345,
       addressName: user.address,
       addressDetails: user.address,
       telNum: user.phoneNumber,
-      request: null,
+      request: "Leave at doorstep",
     };
     try {
       const response = await postAfterPayment(token, data);
