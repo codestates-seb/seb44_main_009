@@ -1,9 +1,11 @@
 import Login from "../../../../components/user/login/Login";
-import { LoginPageWrapper } from "./styles/LoginPageWrapper.styled";
-import { LoginPageTitle } from "./styles/LoginPageTitle";
-import { LoginPageContainer } from "./styles/LoginPageContainer.styled";
 import Header from "../../../../components/header/Header";
 import Inputs from "../../../../components/user/login/Inputs";
+import {
+  LoginPageContainer,
+  LoginPageTitle,
+  LoginPageWrapper,
+} from "./LoginPage.styled";
 
 function LoginPage() {
   return (
