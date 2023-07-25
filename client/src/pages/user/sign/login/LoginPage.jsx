@@ -1,7 +1,7 @@
 import Login from "../../../../components/user/login/Login";
 import Header from "../../../../components/header/Header";
-import Inputs from "../../../../components/user/login/Inputs";
 import {
+  LoginInputWrapper,
   LoginPageContainer,
   LoginPageTitle,
   LoginPageWrapper,
@@ -14,10 +14,10 @@ function LoginPage() {
       <LoginPageWrapper>
         <LoginPageTitle>로그인</LoginPageTitle>
         <Login>
-          <Login.Inputs>
-            <Inputs.Email />
-            <Inputs.Password />
-          </Login.Inputs>
+          <LoginInputWrapper>
+            <Login.Email />
+            <Login.Password />
+          </LoginInputWrapper>
           <Login.LoginBtn />
           <Login.LinkBtn />
         </Login>
