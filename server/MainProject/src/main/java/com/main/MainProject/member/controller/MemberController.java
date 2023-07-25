@@ -57,13 +57,24 @@ public class MemberController {
         return ResponseEntity.created(location).build();
     }
 
-    @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity patchMember(@Valid @RequestPart MemberPatchDto memberPatchDto,
-                                      @RequestPart MultipartFile image) throws IOException {
+//    @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+//    public ResponseEntity patchMember(@Valid @RequestPart MemberPatchDto memberPatchDto,
+//                                      @RequestPart MultipartFile image) throws IOException {
+//        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+//
+//        Member member = memberService.updateMember(
+//                mapper.memberPatchDtoToMember(memberPatchDto),memberId, image);
+//
+//        return new ResponseEntity<>(
+//                new SingleResponseDto<>(mapper.memberToMemberResponseDto(member)), HttpStatus.ACCEPTED);
+//    }
+
+    @PatchMapping()
+    public ResponseEntity patchMember(@Valid @RequestBody MemberPatchDto memberPatchDto) {
         long memberId = JwtInterceptor.getAuthenticatedMemberId();
 
         Member member = memberService.updateMember(
-                mapper.memberPatchDtoToMember(memberPatchDto),memberId, image);
+                mapper.memberPatchDtoToMember(memberPatchDto),memberId);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.memberToMemberResponseDto(member)), HttpStatus.ACCEPTED);

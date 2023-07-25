@@ -91,13 +91,14 @@ public class MemberService {
                 .orElseThrow(() -> new LogicalException(ExceptionCode.MEMBER_NOT_FOUND));
     }
 
-    public Member updateMember(Member member, long memberId, MultipartFile image) throws IOException {
+    public Member updateMember(Member member, long memberId) /*, MultipartFile image) throws IOException*/ {
         Member findMember = findVerifiedMember(memberId);
 
-        if(!image.isEmpty()) {
-            String storedFileName = s3Uploader.upload(image, "member", findMember.getMemberId());
-            findMember.setMemberImageName(storedFileName);
-        }
+        //이미지 추가 부분
+//        if(!image.isEmpty()) {
+//            String storedFileName = s3Uploader.upload(image, "member", findMember.getMemberId());
+//            findMember.setMemberImageName(storedFileName);
+//        }
 
         Optional.ofNullable(member.getKorName())
                         .ifPresent(korName -> findMember.setKorName(korName));
@@ -117,8 +118,8 @@ public class MemberService {
         Optional.ofNullable(member.getPersonalColor())
                 .ifPresent(personalColor -> findMember.setPersonalColor(personalColor));
 
-        Optional.ofNullable(member.getPassword())
-                .ifPresent(password -> findMember.setPassword(password));
+//        Optional.ofNullable(member.getPassword())
+//                .ifPresent(password -> findMember.setPassword(password));
 
          return memberRepository.save(findMember);
     }
