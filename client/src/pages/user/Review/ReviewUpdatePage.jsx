@@ -10,22 +10,47 @@ import { FooterContainer } from "./styles/FooterContainer.styled";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../../atoms/auth";
 import { updateReview } from "../../../api/orderAPIs";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ReviewUpdatePage() {
   const { token } = useRecoilValue(auth);
-  const { orderId } = useParams();
   const [enjoyStatus, setEnjoyStatus] = useState("");
   const [productPersonalColorStatus, setProductPersonalColorStatus] =
     useState("");
   const [sizeStatus, setSizeStatus] = useState("");
   const [productColorStatus, setProductColorStatus] = useState("");
   const [reviewText, setReviewText] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+  const [orderId, setOrderId] = useState(null);
+  const [productId, setProductId] = useState(null);
+
+  useEffect(() => {
+    const deliveryResponseData = JSON.parse(
+      localStorage.getItem("deliveryResponseData"),
+    );
+    console.log("deliveryResponseData:", deliveryResponseData);
+
+    if (deliveryResponseData && deliveryResponseData.data) {
+      const { orderId } = deliveryResponseData.data;
+      const productId = deliveryResponseData.data.cartProductList[0].productId;
+
+      setOrderId(orderId);
+      setProductId(productId);
+
+      console.log("orderId:", orderId);
+      console.log("productId:", productId);
+    } else {
+      console.log("Invalid data format or missing data.");
+    }
+  }, []);
 
   const handleReviewTextChange = e => {
     const value = e.target.value;
     setReviewText(value);
-    console.log(value);
+  };
+
+  const handleImageFileChange = file => {
+    setImageFile(file);
   };
 
   // 리뷰 등록
@@ -37,17 +62,33 @@ function ReviewUpdatePage() {
         sizeStatus: sizeStatus,
         productColorStatus: productColorStatus,
         content: reviewText,
-        orderId: orderId,
       };
-      const response = await updateReview(token, reviewData);
+
+      const formData = new FormData();
+      formData.append(
+        "requestBody",
+        new Blob([JSON.stringify(reviewData)], {
+          type: "application/json",
+        }),
+      );
+      formData.append("image", imageFile);
+      formData.append("orderId", orderId);
+      formData.append("productId", productId);
+      console.log(formData);
+
+      const response = await updateReview(token, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       console.log(response.data);
     } catch (error) {
+      console.log(orderId, productId);
       console.error(error);
     }
   };
 
   const isSubmitDisabled = reviewText.trim().length === 0;
 
+  // 콘솔 찍어 봤던 것
   useEffect(() => {}, [enjoyStatus]);
 
   useEffect(() => {}, [productPersonalColorStatus]);
@@ -104,7 +145,11 @@ function ReviewUpdatePage() {
             }
           }}
         />
-        <ReviewForm value={reviewText} onChange={handleReviewTextChange} />
+        <ReviewForm
+          value={reviewText}
+          onChange={handleReviewTextChange}
+          onImageFileChange={handleImageFileChange}
+        />
       </ReviewWrapper>
       <FooterContainer>
         <Link to="/">

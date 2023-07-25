@@ -89,6 +89,8 @@ export const updateReview = async (token, data) => {
   return response.data;
 };
 
+// 개별 리뷰 조회
+
 // 주문 배송 완료
 export const patchDelivery = async (token, data) => {
   const { orderId } = data;

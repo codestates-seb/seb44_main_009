@@ -145,7 +145,7 @@ export const BuyFooterModal = ({ closeModal }) => {
       productId: products.productId,
       quantity: selectedQuantity,
     };
-    console.log(data);
+
     try {
       const response = await postPayment(token, data);
       const orderId = response.data.orderId;

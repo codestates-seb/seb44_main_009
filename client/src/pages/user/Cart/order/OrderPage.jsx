@@ -115,13 +115,23 @@ function OrderPage() {
     };
     try {
       const response = await patchDelivery(token, data);
-      console.log(response.data);
+      localStorage.setItem(
+        "deliveryResponseData",
+        JSON.stringify(response.data),
+      );
       navigate("/");
     } catch (error) {
       console.error(error);
     }
   };
 
+  const deliveryResponseData = localStorage.getItem("deliveryResponseData");
+
+  if (deliveryResponseData) {
+    const parsedData = JSON.parse(deliveryResponseData);
+
+    console.log(parsedData);
+  }
   return (
     <OrderContainer>
       <Header_back />

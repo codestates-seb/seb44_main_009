@@ -15,8 +15,8 @@ function PicksPage() {
         <Button>기본 폴더</Button>
         <PicksItemWrapper>
           <PicksItemCount />
-          <PicksItem />
         </PicksItemWrapper>
+        <PicksItem />
       </PicksPageWrapper>
       <Footer />
     </PicksPageContainer>
