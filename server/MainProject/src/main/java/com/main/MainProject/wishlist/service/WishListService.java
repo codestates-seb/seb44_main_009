@@ -35,7 +35,11 @@ public class WishListService {
 
         Product product = productService.findVerifiedProduct(requestBody.getProductId());
 
-        findWishList.getProducts().add(product);
+        if(findWishList.getProducts().contains(product)){
+            findWishList.getProducts().remove(product);
+        }else {
+            findWishList.getProducts().add(product);
+        }
 
         return wishListRepository.save(findWishList);
     }

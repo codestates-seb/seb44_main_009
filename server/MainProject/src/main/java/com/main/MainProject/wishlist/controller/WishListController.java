@@ -38,7 +38,7 @@ public class WishListController {
 
         wishListService.addWish(requestBody, memberId);
 
-        return ResponseEntity.ok("찜목록에 추가되었습니다.");
+        return ResponseEntity.ok("찜목록에 변경되었습니다.");
     }
 
     @GetMapping
