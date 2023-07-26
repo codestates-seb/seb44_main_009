@@ -121,3 +121,28 @@ export const patchDelivery = async (token, data) => {
   });
   return response;
 };
+
+// 찜 생성
+export const updateLike = async (token, data) => {
+  const response = await axios.post(`/wishlist`, data, {
+    headers: { Authorization: `${token}` },
+  });
+  return response.data;
+};
+
+// 찜 조회
+export const fetchLike = async token => {
+  const response = await axios.get(`/wishlist`, {
+    headers: { Authorization: `${token}` },
+  });
+  return response.data;
+};
+
+//찜 삭제
+export const deleteLike = async (token, productData) => {
+  const response = await axios.delete(`/wishlist`, {
+    headers: { Authorization: `${token}` },
+    data: productData,
+  });
+  return response;
+};

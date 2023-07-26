@@ -68,7 +68,12 @@ function ReviewUpdatePage() {
           type: "application/json",
         }),
       );
-      formData.append("image", imageFile);
+      if (imageFile) {
+        formData.append("image", imageFile);
+      } else {
+        const imageData = null;
+        formData.append("image", imageData);
+      }
       formData.append("orderId", orderId);
       formData.append("productId", productId);
 
