@@ -1,6 +1,7 @@
 package com.main.MainProject.wishlist.controller;
 
 import com.main.MainProject.auth.interceptor.JwtInterceptor;
+import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.product.mapper.ProductMapper;
 import com.main.MainProject.wishlist.entity.WishList;
@@ -34,8 +35,8 @@ public class WishListController {
     @PostMapping
     public ResponseEntity<?> postWish(@RequestBody PostDto requestBody) {
         Long memberId = JwtInterceptor.getAuthenticatedMemberId();
-        WishList wishList = mapper.wishPostDtoToWish(requestBody);
-        wishListService.addWish(wishList, memberId);
+
+        wishListService.addWish(requestBody, memberId);
 
         return ResponseEntity.ok("찜목록에 추가되었습니다.");
     }
@@ -45,7 +46,7 @@ public class WishListController {
         Long memberId = JwtInterceptor.getAuthenticatedMemberId();
         List<Product> wishList = wishListService.findWishList(memberId);
 
-        return new ResponseEntity<>(productMapper.productsToProductResponseDtos(wishList), HttpStatus.OK);
+        return new ResponseEntity<>(new ListResponseDto<>(productMapper.productsToProductResponseDtos(wishList)), HttpStatus.OK);
     }
 
     @DeleteMapping
