@@ -9,6 +9,7 @@ import com.main.MainProject.product.cartProduct.CartProduct;
 import com.main.MainProject.product.cartProduct.repository.CartProductRepository;
 import com.main.MainProject.product.entity.Product;
 import com.main.MainProject.product.service.ProductService;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.stereotype.Service;
 import com.main.MainProject.member.service.MemberService;
 import com.main.MainProject.product.cartProduct.CartProduct;
@@ -97,7 +98,7 @@ public class CartService {
 
     private CartProduct findVerifiedCartItem(long cartProductId) {
         Optional<CartProduct> optionalCartProduct = cartProductRepository.findById(cartProductId);
-        return optionalCartProduct.orElseThrow(() -> new RuntimeException("존재하지 않는 상품입니다."));
+        return optionalCartProduct.orElseThrow(() -> new BusinessLogicException(ExceptionCode.PRODUCT_NOT_FOUND));
     }
 }
 

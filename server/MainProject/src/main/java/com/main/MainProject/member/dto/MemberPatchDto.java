@@ -31,7 +31,7 @@ public class MemberPatchDto {
     private String personalColor;
 
 //    @NotBlank(message = "비밀번호를 입력하세요.")
-    private String password;
+//    private String password;
 
     public void setMemberId(long memberId) {
         this.memberId = memberId;

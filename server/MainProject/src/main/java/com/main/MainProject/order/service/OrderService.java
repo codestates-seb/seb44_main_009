@@ -14,8 +14,10 @@ import com.main.MainProject.address.Address;
 import com.main.MainProject.address.AddressRepository;
 import com.main.MainProject.product.cartProduct.CartProduct;
 import com.main.MainProject.product.entity.Product;
+import com.main.MainProject.product.service.ProductService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,17 +33,44 @@ public class OrderService {
 
     private final OrderProductRepository orderProductRepository;
 
+    private final ProductService productService;
+
     public OrderService(OrderRepository orderRepository, CartService cartService, AddressRepository addressRepository,
-                        MemberService memberService, OrderProductRepository orderProductRepository) {
+                        MemberService memberService, OrderProductRepository orderProductRepository, ProductService productService) {
         this.orderRepository = orderRepository;
         this.cartService = cartService;
         this.addressRepository = addressRepository;
         this.memberService = memberService;
         this.orderProductRepository = orderProductRepository;
+        this.productService = productService;
     }
 
-    public Order createOrder(long cartId, Address address, long memberId){
+    public Order createOrder(long productId, int quantity, Address address, long memberId){
+        Member findMember = memberService.findVerifiedMember(memberId);
+        Order order = new Order();
+        order.setMember(findMember);
+        order.setAddress(address);
+
+        OrderProduct orderProduct = new OrderProduct();
+        Product product = productService.findProduct(productId);
+        orderProduct.setProduct(product);
+        orderProduct.setQuantity(quantity);
+        orderProduct.setOrder(order);
+        List<OrderProduct> orderProductList = new ArrayList<>();
+        orderProductList.add(orderProduct);
+
+        order.setOrderProductList(orderProductList);
+
+        address.setOrder(order);
+
+        return orderRepository.saveAndFlush(order);
+    }
+
+    public Order buyCart(long cartId, Address address, long memberId){
         Cart findCart = cartService.findVerifiedCart(cartId);
+        if(findCart.getCartProductList().size() < 1){
+            new BusinessLogicException(ExceptionCode.CART_IS_EMPTY);
+        }
         Member findMember = memberService.findVerifiedMember(memberId);
 
         Order order = new Order();
@@ -63,7 +92,7 @@ public class OrderService {
     private OrderProduct cartProductToOrderProduct(Order order, CartProduct cartProduct){
         OrderProduct orderProduct = new OrderProduct(cartProduct.getQuantity(), cartProduct.getProduct());
         if(orderProduct.getProduct().getCount() < orderProduct.getQuantity()){
-            new BusinessLogicException(ExceptionCode.QUANTITY_IS_MORE_THAN_PRODUCT_COUNT);
+            throw new BusinessLogicException(ExceptionCode.QUANTITY_IS_MORE_THAN_PRODUCT_COUNT);
         }else {
             orderProduct.getProduct().setCount(orderProduct.getProduct().getCount() - orderProduct.getQuantity());
         }
@@ -78,7 +107,7 @@ public class OrderService {
         Address findAddress = order.getAddress();
 
         Optional.ofNullable(address.getReceiverName())
-                .ifPresent(reciverName->findAddress.setReceiverName(reciverName));
+                .ifPresent(receiverName->findAddress.setReceiverName(receiverName));
         Optional.ofNullable(address.getZipcode())
                 .ifPresent(zipCode->findAddress.setZipcode(zipCode));
         Optional.ofNullable(address.getAddressDetails())
@@ -98,6 +127,13 @@ public class OrderService {
         return orderList;
     }
 
+    public List<Order> getOrderListByMember(long memberId){
+        Member findMember = memberService.findVerifiedMember(memberId);
+
+        List<Order> orderList = orderRepository.findAllByMember(findMember);
+        return orderList;
+    }
+
     public Order findOrder(long memberId, long orderId){
         Order order = findVerficatedOrder(orderId);
         isOrderByMember(order, memberService.findVerifiedMember(memberId));
@@ -111,7 +147,7 @@ public class OrderService {
         if(getShippingStatus(orderId) < 4){
             findOrder.setOrderStatus(Order.OrderStatus.ORDER_CANCEL);
         }else {
-            throw new BusinessLogicException(ExceptionCode.ORDER_NOT_FOUND);
+            throw new BusinessLogicException(ExceptionCode.CANNOT_CHANGE_ORDER);
         }
 
         orderRepository.save(findOrder);
@@ -146,7 +182,7 @@ public class OrderService {
     //해당 회원이 주문한 회원인지 확인
     public void isOrderByMember(Order order, Member member){
         if(!order.getMember().equals(member)){
-            new BusinessLogicException(ExceptionCode.MEMBER_IS_NOT_MATCH_ORDER);
+            throw new BusinessLogicException(ExceptionCode.MEMBER_IS_NOT_MATCH_ORDER);
         }
     }
 

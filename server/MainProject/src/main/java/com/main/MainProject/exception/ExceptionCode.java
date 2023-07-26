@@ -4,6 +4,12 @@ import lombok.Getter;
 
 //오류를 작성해주세요
 public enum ExceptionCode {
+
+    //이미 존재하는 카테고리
+    CATEGORY_EXISTS(404, "category already exists"),
+
+    //존재하지 않는 카테고리
+    CATEGORY_NOT_FOUND(404,"category not found"),
     //제품 수량이 부족합니다
     QUANTITY_IS_MORE_THAN_PRODUCT_COUNT(500, "quantity is more than product count"),
 
@@ -18,12 +24,13 @@ public enum ExceptionCode {
     QNA_NOT_FOUND(404, "Qna not found"),
 
     //상품이 존재하지 않음
+    PRODUCT_NOT_FOUND(404, "product not found"),
 
-    //상품 수량이 부족
+    PRODUCT_EXISTS(404, "product already exists"),
+
 
     //배송이 시작된 상품
-
-    //로그인 되지 않은 회원입니다
+    SHIPPING_IS_START(409, "shipping is start"),
 
     //상품이 주문에 포함되어있지 않습니다
     PRODUCT_IS_NOT_MATCH_ORDER(404, "product is not match order"),

@@ -16,8 +16,8 @@ public class MemberResponseDto {
     private String nickName;
     private String address;
     private String personalColor;
-    private String password;
     private Member.MemberStatus memberStatus;
+    private String memberImageName;
 
     public String getMemberStatus() {
         return memberStatus.getStatus();

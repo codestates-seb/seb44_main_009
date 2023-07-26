@@ -43,6 +43,8 @@ public class Member extends Auditable {
     @Column(nullable = false)
     private String password;
 
+    private String memberImageName = "https://jeonhyebeenbucket.s3.ap-northeast-2.amazonaws.com/member.profile_image_default.jpg";
+
     @Enumerated(value = EnumType.STRING)
     @Column(length = 20, nullable = false)
     private MemberStatus memberStatus = MemberStatus.MEMBER_ACTIVE;
@@ -87,4 +89,7 @@ public class Member extends Auditable {
 
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
     private WishList wishList;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 }

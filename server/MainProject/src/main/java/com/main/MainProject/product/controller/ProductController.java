@@ -7,12 +7,15 @@ import com.main.MainProject.product.mapper.ProductMapper;
 import com.main.MainProject.product.service.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.io.IOException;
 import java.util.List;
 
 import static com.main.MainProject.product.dto.ProductDto.*;
@@ -40,12 +43,13 @@ public class ProductController {
         return new ResponseEntity<>(mapper.productToProductResponseDto(product), HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{product-id}")
-    public ResponseEntity<?> patchProduct(@PathVariable("product-id") @Positive long productId,
-                                       @Valid @RequestBody ProductPatchDto requestBody) {
+    @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<?> patchProduct(@Positive @RequestParam long productId,
+                                          @Valid @RequestPart ProductPatchDto requestBody,
+                                          @RequestPart MultipartFile image) throws IOException {
         requestBody.setProductId(productId);
         Category category = categoryService.findVerifiedCategory(requestBody.getCategoryId());
-        Product product = productService.updateProduct(mapper.productPatchDtoToProduct(requestBody), category);
+        Product product = productService.updateProduct(mapper.productPatchDtoToProduct(requestBody), category, image);
 
         return new ResponseEntity<>(mapper.productToProductResponseDto(product), HttpStatus.OK);
     }

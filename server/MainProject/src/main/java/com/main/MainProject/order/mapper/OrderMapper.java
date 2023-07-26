@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface OrderMapper {
+
     Address addressDtoToAddress(OrderDto.Address addressDto);
 
     OrderDto.Address addressToAddressDto(Address address);
@@ -22,6 +23,7 @@ public interface OrderMapper {
     List<OrderDto.OrderResponse> orderListToOrderResponseList(List<Order> orderList);
 
     @Mapping(source = "order.orderStatus", target = "shippingStatus")
+    @Mapping(source = "order.member.memberId", target = "memberId")
     OrderDto.OrderResponse orderToOrderResponse(Order order);
 
     default OrderDto.ResponseDetail orderToResponse(Order order){
@@ -72,8 +74,10 @@ public interface OrderMapper {
         int totalProductPrice = orderProduct.getProduct().getPrice() * quantity;
         OrderProduct.Reviewstatus reviewStatus = orderProduct.getReviewstatus();
 
+        String productImageName = orderProduct.getProduct().getProductImageName();
+
         OrderDto.orderProductResponse orderProductResponse =
-                new OrderDto.orderProductResponse( productId, productName, productPrice, quantity, totalProductPrice, reviewStatus);
+                new OrderDto.orderProductResponse( productId, productName, productPrice, quantity, totalProductPrice, reviewStatus, productImageName);
 
         return orderProductResponse;
     }

@@ -1,5 +1,6 @@
 package com.main.MainProject.review.mapper;
 
+import com.main.MainProject.product.color.Color;
 import com.main.MainProject.review.dto.ReviewDto;
 import com.main.MainProject.review.entity.Review;
 import org.mapstruct.Mapper;
@@ -15,9 +16,11 @@ public interface ReviewMapper {
 
     @Mapping(source = "member.nickName", target = "memberName")
     @Mapping(source = "product.personalColor", target = "productPersonalColor")
-    @Mapping(source = "product.colors", target = "colors")
+    @Mapping(source = "product.colors", target = "colorDtoList")
     @Mapping(source = "product.name", target = "productName")
     ReviewDto.Response reviewToResponse(Review review);
+
+    List<Color> colorListToColorDtoList(List<Color> colorList);
 
 
     default ReviewDto.ResponseList reviewListToResponses(List<Review> reviewList) {
@@ -29,7 +32,7 @@ public interface ReviewMapper {
                 .filter(review -> review.getProductPersonalColorStatus() == Review.ProductPersonalColorStatus.COOL)
                 .count();
         int PersonalColorWormCount = (int) reviewList.stream()
-                .filter(review -> review.getProductPersonalColorStatus() == Review.ProductPersonalColorStatus.WORM)
+                .filter(review -> review.getProductPersonalColorStatus() == Review.ProductPersonalColorStatus.WARM)
                 .count();
 
          ReviewDto.ResponseList response =
@@ -37,6 +40,4 @@ public interface ReviewMapper {
 
          return response;
     }
-
-
 }

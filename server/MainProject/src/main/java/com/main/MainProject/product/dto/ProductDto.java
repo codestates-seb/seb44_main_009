@@ -1,9 +1,7 @@
 package com.main.MainProject.product.dto;
 
-import com.main.MainProject.product.category.entity.Category;
-import com.main.MainProject.product.color.dto.ColorDto;
-import com.main.MainProject.product.color.entity.Color;
-import com.main.MainProject.product.entity.Product;
+import com.main.MainProject.product.color.Color;
+import com.main.MainProject.product.size.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,6 +31,8 @@ public class ProductDto {
 
         private List<Color> colors;
 
+        private List<Size> sizes;
+
         private PersonalColor personalColor;
 
         @Positive
@@ -57,6 +57,8 @@ public class ProductDto {
 
         private int count;
 
+        private List<Size> sizes;
+
         private List<Color> colors;
 
         private PersonalColor personalColor;
@@ -75,10 +77,11 @@ public class ProductDto {
         private int price;
         private String content;
         private int count;
-        private List<ColorDto.Response> colors;
+        private List<Size> sizes;
+        private List<Color> colors;
         private PersonalColor personalColor;
         private String categoryName;
-        private List<String> size;
+        private String productImageName;
     }
 
 //    @Getter

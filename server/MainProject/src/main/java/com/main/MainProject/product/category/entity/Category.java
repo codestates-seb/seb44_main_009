@@ -21,6 +21,9 @@ public class Category {
     @Column(nullable = false, length = 20)
     private String name;
 
+    @Column(nullable = false, length = 20)
+    private String slug;
+
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 //    @Builder.Default
     private List<Product> products = new ArrayList<>();

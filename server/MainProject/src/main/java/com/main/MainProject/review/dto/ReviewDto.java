@@ -1,14 +1,10 @@
 package com.main.MainProject.review.dto;
 
-import com.main.MainProject.product.color.entity.Color;
-import com.main.MainProject.review.entity.Review;
+import com.main.MainProject.product.color.Color;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,6 +27,7 @@ public class ReviewDto {
     }
 
     @Getter
+    @Builder
     @AllArgsConstructor
     public static class Response{
 
@@ -40,7 +37,7 @@ public class ReviewDto {
 
         private String productName;
         private String productPersonalColor;
-        private List<Color> colors;
+        private List<Color> colorDtoList;
 
         private String content;
 
@@ -57,10 +54,13 @@ public class ReviewDto {
         private LocalDateTime createdAt;
 
         private LocalDateTime lastModifiedAt;
+
+        private String reviewImageName;
     }
 
     @Getter
     @AllArgsConstructor
+    @Builder
     public static class ResponseList{
         private List<Response> responseList;
         private int totalCount;

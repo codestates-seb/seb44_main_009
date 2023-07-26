@@ -1,6 +1,11 @@
 #aws rds 환경설정
 spring:
   profiles: rds
+  datasource:
+    url: ${RDS_URL}
+    username: ${RDS_USERNAME}
+    password: ${RDS_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     properties:

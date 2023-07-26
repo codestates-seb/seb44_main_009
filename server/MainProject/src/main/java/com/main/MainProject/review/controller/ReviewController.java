@@ -1,5 +1,6 @@
 package com.main.MainProject.review.controller;
 
+import com.main.MainProject.auth.interceptor.JwtInterceptor;
 import com.main.MainProject.dto.ListResponseDto;
 import com.main.MainProject.dto.SingleResponseDto;
 import com.main.MainProject.review.entity.Review;
@@ -8,18 +9,22 @@ import com.main.MainProject.review.mapper.ReviewMapper;
 import com.main.MainProject.review.service.ReviewService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/review")
+@RequestMapping("/reviews")
 @Slf4j
 public class ReviewController {
 
-    private final static String REVIEW_DEFAULT_URL = "/review";
+    private final static String REVIEW_DEFAULT_URL = "/reviews";
 
     private final ReviewService reviewService;
     private final ReviewMapper mapper;
@@ -30,22 +35,26 @@ public class ReviewController {
     }
 
     //리뷰 생성
-    @PostMapping("/create/{order-id}/{product-id}/{member-id}")
-    public ResponseEntity createReview(@PathVariable("order-id")long orderId,
-                                       @PathVariable("product-id")long productId,
-                                       @PathVariable("member-id")long memberId,
-                                       @Valid @RequestBody ReviewDto.RequestDTO requestBody){
-        Review review = reviewService.createReview(mapper.reviewDtoToReview(requestBody), orderId, productId, memberId);
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity createReview(@Positive @RequestParam long orderId,
+                                       @Positive @RequestParam long productId,
+                                       @Valid @RequestPart ReviewDto.RequestDTO requestBody,
+                                       @RequestPart MultipartFile image) throws IOException {
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
+        Review review = reviewService.createReview(mapper.reviewDtoToReview(requestBody), orderId, productId, memberId, image);
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewToResponse(review)), HttpStatus.CREATED);
     }
 
     //리뷰 수정
-    @PatchMapping("/update/{review-id}/{member-id}")
-    public ResponseEntity updateReview(@PathVariable("review-id")long reviewId,
-                                       @PathVariable("member-id")long memberId,
-                                       @Valid @RequestBody ReviewDto.RequestDTO requestBody){
-        Review review = reviewService.updateReview(reviewId, memberId, mapper.reviewDtoToReview(requestBody));
+    @PatchMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity updateReview(@Positive @RequestParam long reviewId,
+                                       @Valid @RequestPart ReviewDto.RequestDTO requestBody,
+                                       @RequestPart MultipartFile image) throws IOException {
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
+        Review review = reviewService.updateReview(reviewId, memberId, mapper.reviewDtoToReview(requestBody), image);
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewToResponse(review)), HttpStatus.OK);
     }
@@ -73,17 +82,20 @@ public class ReviewController {
     }
 
     //멤버별 리뷰 조회
-    @GetMapping("/findByMember/{member-id}")
-    public ResponseEntity getAllReviewsByMember(@PathVariable("member-id")long memberId){
+    @GetMapping("/findByMember")
+    public ResponseEntity getAllReviewsByMember(){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         List<Review> reviewList = reviewService.getAllReviewsByMember(memberId);
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.reviewListToResponses(reviewList)), HttpStatus.OK);
     }
 
     //리뷰 삭제
-    @DeleteMapping("/delete/{review-id}/{member-id}")
-    public ResponseEntity deleteReview(@PathVariable("review-id")long reviewId,
-                                       @PathVariable("member-id")long memberId){
+    @DeleteMapping("/delete/{review-id}")
+    public ResponseEntity deleteReview(@PathVariable("review-id")long reviewId){
+        long memberId = JwtInterceptor.getAuthenticatedMemberId();
+
         reviewService.deleteReview(reviewId, memberId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
