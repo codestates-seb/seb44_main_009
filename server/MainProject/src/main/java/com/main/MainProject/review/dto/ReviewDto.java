@@ -35,6 +35,7 @@ public class ReviewDto {
 
         private String memberName;
 
+        private long productId;
         private String productName;
         private String productPersonalColor;
         private List<Color> colorDtoList;
