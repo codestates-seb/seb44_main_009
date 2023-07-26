@@ -45,8 +45,12 @@ function OrderPage() {
     const { token } = authData;
     const orderData = async () => {
       try {
-        const data = await fetchOrder(token, orderId);
-        setOrderData(data);
+        const response = await fetchOrder(token, orderId);
+        localStorage.setItem(
+          "orderResponseData",
+          JSON.stringify(response.data),
+        );
+        setOrderData(response);
       } catch (error) {
         console.error(error);
       }
@@ -84,7 +88,6 @@ function OrderPage() {
       telNum: "",
       request: "Leave at doorstep",
     };
-    console.log(data);
     try {
       const response = await patchAddress(token, orderId, data);
       console.log(response.data);
@@ -121,15 +124,19 @@ function OrderPage() {
       );
       navigate("/");
     } catch (error) {
-      console.error(error);
+      navigate("/mypage");
     }
   };
+  const orderResponseData = localStorage.getItem("orderResponseData");
 
-  const deliveryResponseData = localStorage.getItem("deliveryResponseData");
-
-  if (deliveryResponseData) {
-    JSON.parse(deliveryResponseData);
+  if (orderResponseData) {
+    JSON.parse(orderResponseData);
   }
+  // const deliveryResponseData = localStorage.getItem("deliveryResponseData");
+
+  // if (deliveryResponseData) {
+  //   JSON.parse(deliveryResponseData);
+  // }
   return (
     <OrderContainer>
       <Header_back />

@@ -26,14 +26,15 @@ function ReviewUpdatePage() {
   const [productId, setProductId] = useState(null);
 
   useEffect(() => {
-    const deliveryResponseData = JSON.parse(
-      localStorage.getItem("deliveryResponseData"),
+    const orderResponseData = JSON.parse(
+      localStorage.getItem("orderResponseData"),
     );
+    if (orderResponseData) {
+      const { orderId } = orderResponseData;
+      const productId = orderResponseData.cartProductList[0].productId;
 
-    if (deliveryResponseData && deliveryResponseData.data) {
-      const { orderId } = deliveryResponseData.data;
-      const productId = deliveryResponseData.data.cartProductList[0].productId;
-
+      console.log(orderId);
+      console.log(productId);
       setOrderId(orderId);
       setProductId(productId);
     } else {
@@ -47,7 +48,12 @@ function ReviewUpdatePage() {
   };
 
   const handleImageFileChange = file => {
-    setImageFile(file);
+    if (file) {
+      setImageFile(file);
+    } else {
+      const emptyFile = new File([], "empty.jpg", { type: "image/jpeg" });
+      setImageFile(emptyFile);
+    }
   };
 
   // 리뷰 등록
@@ -159,7 +165,7 @@ function ReviewUpdatePage() {
         />
       </ReviewWrapper>
       <FooterContainer>
-        <Link to="/">
+        <Link to="/mypage">
           <Footer_oneBtn
             text="리뷰 등록하기"
             onClick={submitReview}

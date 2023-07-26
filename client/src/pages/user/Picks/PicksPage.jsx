@@ -39,7 +39,6 @@ function PicksPage() {
       try {
         const data = await fetchLike(token);
         setProducts(data);
-        console.log(data);
       } catch (error) {
         console.error(error);
       }
