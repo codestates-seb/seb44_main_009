@@ -33,8 +33,6 @@ function ReviewUpdatePage() {
       const { orderId } = orderResponseData;
       const productId = orderResponseData.cartProductList[0].productId;
 
-      console.log(orderId);
-      console.log(productId);
       setOrderId(orderId);
       setProductId(productId);
     } else {
@@ -77,8 +75,8 @@ function ReviewUpdatePage() {
       if (imageFile) {
         formData.append("image", imageFile);
       } else {
-        const imageData = null;
-        formData.append("image", imageData);
+        const emptyFile = new File([], "empty.jpg", { type: "image/jpeg" });
+        formData.append("image", emptyFile);
       }
       formData.append("orderId", orderId);
       formData.append("productId", productId);
