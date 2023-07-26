@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-// import { Prepare } from "../../image";
+import { Prepare } from "../../image";
 import { useState } from "react";
 import { ProductImage } from "../attribute/styles/ProdcutImage.styled";
 import { ProductDetail } from "../attribute/styles/ProductDetail.styled";
@@ -20,6 +20,8 @@ function MyReviewItem({ review }) {
   const navigate = useNavigate();
   // const [, setStoredReviewId] = useState(localStorage.getItem("reviewId"));
   const [showModal, setShowModal] = useState(false);
+  const defaultImageUrl = Prepare;
+
   const deleteReviewItem = async () => {
     try {
       await deleteReview(token, review.reviewId);
@@ -47,7 +49,10 @@ function MyReviewItem({ review }) {
   return (
     <ReviewItemContainer>
       <ProductDetail>
-        <ProductImage src={review.reviewImageName} alt="Product" />
+        <ProductImage
+          src={review.reviewImageName || defaultImageUrl}
+          alt="Product"
+        />
         <ProductView>
           <h2>{review.productName}</h2>
           <p>{review.content}</p>
