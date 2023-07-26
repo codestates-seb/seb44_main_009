@@ -47,7 +47,12 @@ export default function Purchased() {
                 <PurchasedName name={product.productName} />
                 <PurchasedPrice price={product.productPrice} />
               </PurchasedWraaper>
-              <PurchasedReviewBtn />
+              {product.reviewStatus === "POSSIBLE_REVIEW" ? (
+                <PurchasedReviewBtn
+                  orderId={purchasedProduct.orderId}
+                  productId={product.productId}
+                />
+              ) : null}
             </PurchasedContainer>
           ))}
         </PurchasedContext.Provider>

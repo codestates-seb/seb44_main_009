@@ -34,7 +34,10 @@ function App() {
             path="/product-detail/:productId"
             element={<ProductDetailPage />}
           />
-          <Route path="/review" element={<ReviewUpdatePage />} />
+          <Route
+            path="/review/:orderId/:productId"
+            element={<ReviewUpdatePage />}
+          />
           <Route path="/review/edit" element={<ReviewEditPage />} />
           <Route path="/review/management" element={<MyReviewPage />} />
           <Route path="/profile" element={<ProfilePage />} />

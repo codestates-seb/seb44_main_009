@@ -66,7 +66,7 @@ export const patchAddress = async (token, orderId, data) => {
 // 리뷰 등록 (orderId,productId->undefined)
 export const updateReview = async (token, data, orderId, productId) => {
   const response = await axios.post(
-    `/reviews/create/${orderId}/${productId}`,
+    `/reviews?orderId=${orderId}&productId=${productId}`,
     data,
     {
       headers: { Authorization: `${token}` },
