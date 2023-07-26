@@ -42,7 +42,6 @@ function CartPage() {
         const data = await fetchCart(token);
         setCart(data);
         localStorage.setItem("cartLength", cart.cartProductList.length);
-        console.log(data);
       } catch (error) {
         console.error(error);
       }
@@ -68,15 +67,14 @@ function CartPage() {
     const user = await getUser(token);
     const data = {
       receiverName: user.korName,
-      zipcode: null,
+      zipcode: 12345,
       addressName: user.address,
       addressDetails: user.address,
       telNum: user.phoneNumber,
-      request: null,
+      request: "Leave at doorstep",
     };
     try {
       const response = await postAfterPayment(token, data);
-      console.log(response.data);
       const orderId = response.data.orderId;
       navigate(`/order/${orderId}`);
     } catch (error) {

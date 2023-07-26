@@ -13,15 +13,12 @@ import {
   faBasketShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { CartBadge } from "./styles/CartBadge.styled";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { auth } from "../../atoms/auth";
-import { productsState } from "../../atoms/product";
 
 function Header_back({ cartItemsCount }) {
   const { isLogin } = useRecoilValue(auth);
   const navigate = useNavigate();
-  const cartItems = useRecoilState(productsState);
-  console.log(cartItems);
 
   const onClickBtn = () => {
     navigate(-1);

@@ -1,10 +1,10 @@
 import { PicksItemCountWrapper } from "./styles/PicksItemCountWrapper.styled";
 
-function PicksItemCount() {
+function PicksItemCount({ products }) {
   return (
     <PicksItemCountWrapper>
       <div>찜한 아이템</div>
-      <div>0</div>
+      <div>{products}</div>
     </PicksItemCountWrapper>
   );
 }

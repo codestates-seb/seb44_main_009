@@ -9,7 +9,7 @@ import { ImageButton } from "./styles/ImageButton.styled";
 import { RemoveImageButton } from "./styles/RemoveImageButton.styled";
 import { InputErrorMessage } from "./styles/InputErrorMessage.styled";
 
-function ReviewForm({ value, onChange }) {
+function ReviewForm({ value, onChange, onImageFileChange }) {
   const [reviewText, setReviewText] = useState(value);
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
@@ -31,6 +31,7 @@ function ReviewForm({ value, onChange }) {
   const handleFileChange = e => {
     const file = e.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
+    onImageFileChange(file);
   };
 
   return (

@@ -1,11 +1,50 @@
-import { PicksItemContainer } from "./styles/PicksItemContainer.styled";
+import { styled } from "styled-components";
+import {
+  ProductContainer,
+  ProductImage,
+  ProductName,
+  ProductPrice,
+  ProductPriceInfo,
+  ProductNameInfo,
+  ProductColor,
+  ProductImageContainer,
+} from "../mainProduct/Styles/Product/ProductStyles";
+import { Link } from "react-router-dom";
 
-function PicksItem() {
+const Background = styled.div`
+  a {
+    text-decoration-line: none;
+    color: #383838;
+  }
+`;
+const ProductColorContainer = styled.div`
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+  justify-content: flex-end;
+`;
+function PicksItem({ productId, image, name, price, color }) {
   return (
-    <PicksItemContainer>
-      <div>찜한 상품이 없어요</div>
-      <div>하트를 눌러 마음에 드는 상품을 찜해보세요.</div>
-    </PicksItemContainer>
+    <Background>
+      <Link to={`/product-detail/${productId}`}>
+        <ProductContainer>
+          <ProductImageContainer>
+            <ProductImage src={image} alt="Product Image" />
+          </ProductImageContainer>
+          <ProductNameInfo>
+            <ProductName>{name}</ProductName>
+          </ProductNameInfo>
+          <ProductColorContainer>
+            {color.map((c, index) => (
+              <ProductColor key={index} color={c.name} />
+            ))}
+          </ProductColorContainer>
+          <ProductPriceInfo>
+            <ProductPrice>{price}원</ProductPrice>
+          </ProductPriceInfo>
+        </ProductContainer>
+      </Link>
+    </Background>
   );
 }
 

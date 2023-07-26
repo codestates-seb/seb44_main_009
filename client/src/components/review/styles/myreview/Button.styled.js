@@ -9,7 +9,11 @@ export const Button = styled.button`
   border-radius: 20px;
   font-size: 16px;
   cursor: pointer;
-
+  a {
+    color: #fff;
+    text-decoration-line: none;
+    font-size: 16px;
+  }
   &:hover {
     background-color: gray;
     transition: 0.6s;
