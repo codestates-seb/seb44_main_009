@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Prepare } from "../../image";
 import { useState } from "react";
 import { ProductImage } from "../attribute/styles/ProdcutImage.styled";
@@ -48,23 +48,25 @@ function MyReviewItem({ review }) {
 
   return (
     <ReviewItemContainer>
-      <ProductDetail>
-        <ProductImage
-          src={review.reviewImageName || defaultImageUrl}
-          alt="Product"
-        />
-        <ProductView>
-          <h2>{review.productName}</h2>
-          <p>{review.content}</p>
-          <VoteIcon icon={faThumbsUp} />
-          <Score>{review.vote}</Score>
-        </ProductView>
-        <ButtonWrapper>
-          <Button onClick={handleShowModal}>수정</Button>
-          {showModal && <Modal onClose={handleHideModal} />}
-          <Button onClick={deleteReviewItem}>삭제</Button>
-        </ButtonWrapper>
-      </ProductDetail>
+      <Link to={`/product-detail/${review.productId}`}>
+        <ProductDetail>
+          <ProductImage
+            src={review.reviewImageName || defaultImageUrl}
+            alt="Product"
+          />
+          <ProductView>
+            <h2>{review.productName}</h2>
+            <p>{review.content}</p>
+            <VoteIcon icon={faThumbsUp} />
+            <Score>{review.vote}</Score>
+          </ProductView>
+          <ButtonWrapper>
+            <Button onClick={handleShowModal}>수정</Button>
+            {showModal && <Modal onClose={handleHideModal} />}
+            <Button onClick={deleteReviewItem}>삭제</Button>
+          </ButtonWrapper>
+        </ProductDetail>
+      </Link>
     </ReviewItemContainer>
   );
 }
