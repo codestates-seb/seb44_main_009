@@ -1,7 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL =
-  "http://ec2-43-201-65-189.ap-northeast-2.compute.amazonaws.com:8080";
+axios.defaults.baseURL = "https://3c46-119-206-216-76.ngrok-free.app/";
 
 // 장바구니 전체 조회
 export const fetchCart = async token => {

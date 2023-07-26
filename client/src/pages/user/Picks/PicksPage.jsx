@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Header_back from "../../../components/header/Header_back";
 import Footer from "../../../components/footer/Footer";
 import PicksItemCount from "../../../components/picksitem/PicksItemCount";
-import PicksItem from "../../../components/picksitem/PicksItem";
+import PicksList from "../../../components/picksitem/PicksList";
 import { PicksPageContainer } from "./styles/PicksPageContainer.styled";
 import { PicksPageWrapper } from "./styles/PicksPageWrapper.styled";
 import { Button } from "./styles/Button.styled";
@@ -56,17 +56,7 @@ function PicksPage() {
           <PicksItemCount products={products.length} />
         </PicksItemWrapper>
         {products.length !== 0 ? (
-          products.map(product => (
-            <PicksItem
-              key={product.productId}
-              name={product.name}
-              price={product.price}
-              content={product.content}
-              count={product.count}
-              image={product.productImageName}
-              color={product.colors}
-            />
-          ))
+          <PicksList products={products} />
         ) : (
           <PicksItemContainer>
             <div>찜한 상품이 없어요</div>

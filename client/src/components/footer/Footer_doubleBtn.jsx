@@ -34,6 +34,7 @@ function Footer_doubleBtn() {
   // 찜 메시지 모달 상태
   const [showLikedMessage, setShowLikedMessage] = useState(false);
   const [likedMessage, setLikedMessage] = useState("");
+
   const [iscount, setCount] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달의 상태를 관리합니다.
 
@@ -41,6 +42,14 @@ function Footer_doubleBtn() {
   const initialProductId = "1";
   const { productId } = useParams();
 
+  useEffect(() => {
+    const initialIsLiked = localStorage.getItem("isLiked");
+    setIsLiked(initialIsLiked === "true");
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isLiked", isLiked);
+  }, [isLiked]);
   // 찜 생성 & 삭제
   const handleLikeBtn = async () => {
     try {
