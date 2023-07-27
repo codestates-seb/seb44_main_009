@@ -10,6 +10,7 @@ import { FooterContainer } from "./styles/FooterContainer.styled";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../../atoms/auth";
 import { updateReview } from "../../../api/orderAPIs";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function ReviewUpdatePage() {
@@ -21,6 +22,8 @@ function ReviewUpdatePage() {
   const [productColorStatus, setProductColorStatus] = useState("");
   const [reviewText, setReviewText] = useState("");
 
+  const { orderId, productId } = useParams();
+  
   const [imageFile, setImageFile] = useState(null);
   const [orderId, setOrderId] = useState(null);
   const [productId, setProductId] = useState(null);
@@ -64,6 +67,14 @@ function ReviewUpdatePage() {
         productColorStatus: productColorStatus,
         content: reviewText,
       };
+
+      const response = await updateReview(
+        token,
+        reviewData,
+        orderId,
+        productId,
+      );
+      console.log(response.data);
 
       const formData = new FormData();
       formData.append(
