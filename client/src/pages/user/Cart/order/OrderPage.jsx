@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Header_back from "../../../../components/header/Header_back";
 import Footer_oneBtn from "../../../../components/footer/Footer_oneBtn";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -12,13 +12,18 @@ import { OrderContainer } from "./styles/OrderContainer.styled";
 import { OrderProductContainer } from "./styles/OrderProductContainer.styled";
 import { OrderWrapper } from "./styles/OrderWrapper.styled";
 import { Title } from "./styles/Title.styled";
-import { fetchOrder, patchAddress } from "../../../../api/orderAPIs";
+import {
+  fetchOrder,
+  patchAddress,
+  patchDelivery,
+} from "../../../../api/orderAPIs";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../../../atoms/auth";
 
 function OrderPage() {
   const authData = useRecoilValue(auth);
   const { orderId } = useParams();
+  const navigate = useNavigate();
 
   const [orderData, setOrderData] = useState({});
   const [showOrderProduct, setShowOrderProduct] = useState(false);
@@ -40,9 +45,12 @@ function OrderPage() {
     const { token } = authData;
     const orderData = async () => {
       try {
-        const data = await fetchOrder(token, orderId);
-        setOrderData(data);
-        console.log(data);
+        const response = await fetchOrder(token, orderId);
+        localStorage.setItem(
+          "orderResponseData",
+          JSON.stringify(response.data),
+        );
+        setOrderData(response);
       } catch (error) {
         console.error(error);
       }
@@ -80,7 +88,6 @@ function OrderPage() {
       telNum: "",
       request: "Leave at doorstep",
     };
-    console.log(data);
     try {
       const response = await patchAddress(token, orderId, data);
       console.log(response.data);
@@ -103,6 +110,33 @@ function OrderPage() {
     updateAddress();
   };
 
+  // 배송 완료
+  const updateDeliveryState = async () => {
+    const { token } = authData;
+    const data = {
+      orderId: orderId,
+    };
+    try {
+      const response = await patchDelivery(token, data);
+      localStorage.setItem(
+        "deliveryResponseData",
+        JSON.stringify(response.data),
+      );
+      navigate("/");
+    } catch (error) {
+      navigate("/mypage");
+    }
+  };
+  const orderResponseData = localStorage.getItem("orderResponseData");
+
+  if (orderResponseData) {
+    JSON.parse(orderResponseData);
+  }
+  // const deliveryResponseData = localStorage.getItem("deliveryResponseData");
+
+  // if (deliveryResponseData) {
+  //   JSON.parse(deliveryResponseData);
+  // }
   return (
     <OrderContainer>
       <Header_back />
@@ -133,7 +167,7 @@ function OrderPage() {
         />
         <PaymentMethod paymentMethods={paymentMethods} />
       </OrderWrapper>
-      <Footer_oneBtn text="상품 결제하기" />
+      <Footer_oneBtn text="상품 결제하기" onClick={updateDeliveryState} />
     </OrderContainer>
   );
 }

@@ -1,13 +1,9 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { ButtonContainer } from "./styles/ButtonContainer.styled";
 import { DoubleButton } from "./styles/DoubleButton.styled";
 
-function ReviewSection({ title, options, selectedOption, onSelect }) {
-  const [localSelectedOption, setLocalSelectedOption] =
-    useState(selectedOption);
-
+function ReviewEditSection({ title, options, selectedOption, onSelect }) {
   const handleButtonClick = option => {
-    setLocalSelectedOption(option);
     onSelect(option);
   };
 
@@ -20,7 +16,7 @@ function ReviewSection({ title, options, selectedOption, onSelect }) {
             key={option}
             isfirst={index === 0 ? "true" : undefined}
             islast={index === options.length - 1 ? "true" : undefined}
-            selected={localSelectedOption === option}
+            selected={selectedOption === option}
             onClick={() => {
               handleButtonClick(option);
             }}
@@ -33,4 +29,4 @@ function ReviewSection({ title, options, selectedOption, onSelect }) {
   );
 }
 
-export default ReviewSection;
+export default ReviewEditSection;

@@ -9,7 +9,7 @@ import { ImageButton } from "./styles/ImageButton.styled";
 import { RemoveImageButton } from "./styles/RemoveImageButton.styled";
 import { InputErrorMessage } from "./styles/InputErrorMessage.styled";
 
-function ReviewForm({ value, onChange, onImageFileChange }) {
+function ReviewEditForm({ value, onChange, onImageFileChange }) {
   const [reviewText, setReviewText] = useState(value);
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
@@ -45,6 +45,7 @@ function ReviewForm({ value, onChange, onImageFileChange }) {
           </>
         )}
       </ReviewInputContainer>
+
       <ReviewInput value={reviewText} onChange={handleReviewChange} />
       {reviewText.length === 0 && (
         <InputErrorMessage>내용을 입력하세요.</InputErrorMessage>
@@ -63,4 +64,4 @@ function ReviewForm({ value, onChange, onImageFileChange }) {
   );
 }
 
-export default ReviewForm;
+export default ReviewEditForm;

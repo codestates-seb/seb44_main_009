@@ -11,7 +11,8 @@ import { fetchProducts } from "../../api/product";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { auth } from "../../atoms/auth";
 import { productsState } from "../../atoms/product";
-import { addToCart } from "../../api/orderAPIs";
+import { addToCart, postPayment } from "../../api/orderAPIs";
+import { getUser } from "../../api/userAPI";
 
 import {
   DropText,
@@ -72,7 +73,6 @@ export const BuyFooterModal = ({ closeModal }) => {
 
     fetchProductData();
   }, []);
-  console.log("Testproducts", products);
 
   const handleDropPersonalToggle = () => {
     setDropPersonalOpen(prevState => !prevState);
@@ -108,6 +108,7 @@ export const BuyFooterModal = ({ closeModal }) => {
     setDropSizeOpen(false);
   };
 
+  // 장바구니 post api
   const handleCartButtonClick = async () => {
     try {
       if (isLogin && token) {
@@ -126,6 +127,29 @@ export const BuyFooterModal = ({ closeModal }) => {
         alert("로그인이 필요합니다.");
         navigate("/login");
       }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // 구매하기 post api
+  const handlePaymentButtonClick = async () => {
+    const user = await getUser(token);
+    const data = {
+      receiverName: user.korName,
+      zipcode: 12345,
+      addressName: user.address,
+      addressDetails: user.address,
+      telNum: user.phoneNumber,
+      request: "Leave at doorstep",
+      productId: products.productId,
+      quantity: selectedQuantity,
+    };
+
+    try {
+      const response = await postPayment(token, data);
+      const orderId = response.data.orderId;
+      navigate(`/order/${orderId}`);
     } catch (error) {
       console.error(error);
     }
@@ -236,7 +260,7 @@ export const BuyFooterModal = ({ closeModal }) => {
         {/* 장바구니, 구매하기 버튼 */}
         <BuyContainer>
           <CartButton onClick={handleCartButtonClick}>장바구니</CartButton>
-          <BuyButton>구매하기</BuyButton>
+          <BuyButton onClick={handlePaymentButtonClick}>구매하기</BuyButton>
         </BuyContainer>
         <BottomMargin />
       </ModalContent>

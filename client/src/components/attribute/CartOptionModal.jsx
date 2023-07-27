@@ -11,11 +11,14 @@ import { DropdownIcon } from "./styles/OptionModal/DropdownIcon.styled";
 import { DropdownMenu } from "./styles/OptionModal/DropdownMenu.styled";
 import { DropdownMenuItem } from "./styles/OptionModal/DropdownMenuItem.styled";
 import { ButtonContainer } from "./styles/OptionModal/ButtonContainer.styled";
+import Modal from "./Modaldev/Modaldev";
+
 function CartOptionModal({ isCartOpen, handleCancel }) {
   const [sizeDropdownOpen, setSizeDropdownOpen] = useState(false);
   const [colorDropdownOpen, setColorDropdownOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDropdownToggle = type => {
     if (type === "size") setSizeDropdownOpen(!sizeDropdownOpen);
@@ -31,6 +34,14 @@ function CartOptionModal({ isCartOpen, handleCancel }) {
       setSelectedColor(value);
       setColorDropdownOpen(false);
     }
+  };
+
+  const handleSearchInputClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -78,7 +89,10 @@ function CartOptionModal({ isCartOpen, handleCancel }) {
           </DropdownContainer>
           <ButtonContainer>
             <CancelButton onClick={handleCancel}>취소</CancelButton>
-            <ChangeButton>변경하기</ChangeButton>
+            <ChangeButton onClick={handleSearchInputClick}>
+              변경하기
+            </ChangeButton>
+            {isModalOpen && <Modal onClose={handleCloseModal} />}
           </ButtonContainer>
         </ModalContent>
       </ModalContainer>
