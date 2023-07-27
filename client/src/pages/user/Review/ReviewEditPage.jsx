@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import ReviewForm from "../../../components/review/ReviewForm";
+import ReviewEditForm from "../../../components/review/ReviewForm";
 import Header_back from "../../../components/header/Header_back";
 import Footer_oneBtn from "../../../components/footer/Footer_oneBtn";
-import ReviewSection from "../../../components/review/ReviewSection";
+import ReviewEditSection from "../../../components/review/ReviewEditSection";
 import { ReviewContainer } from "./styles/ReviewContainer.styled";
 import { ReviewWrapper } from "./styles/ReviewWrapper.styled";
 import { Title } from "./styles/Title.styled";
@@ -21,6 +21,10 @@ function ReviewEditPage() {
   const [reviewText, setReviewText] = useState("");
   const [imageFile, setImageFile] = useState(null);
 
+  const [enjoyOption, setEnjoyOption] = useState("");
+  const [personalColorOption, setPersonalColorOption] = useState("");
+  const [sizeOption, setSizeOption] = useState("");
+  const [productColorOption, setProductColorOption] = useState("");
   // const [enjoyOption, setEnjoyOption] = useState("");
   // const [personalColorOption, setPersonalColorOption] = useState("");
   // const [sizeOption, setSizeOption] = useState("");
@@ -58,13 +62,35 @@ function ReviewEditPage() {
         }
 
         const data = await findReview(token, storedReviewId);
-        console.log(data);
         setEnjoyStatus(data.data.enjoyStatus);
+        setEnjoyOption(
+          data.data.enjoyStatus === "YES" ? "만족해요" : "별로예요",
+        );
+
         setProductPersonalColorStatus(data.data.productPersonalColorStatus);
+        setPersonalColorOption(
+          data.data.productPersonalColorStatus === "COOL" ? "쿨톤" : "웜톤",
+        );
+
         setSizeStatus(data.data.sizeStatus);
+        setSizeOption(
+          data.data.sizeStatus === "SMALL"
+            ? "작아요"
+            : data.data.sizeStatus === "FIT"
+            ? "잘 맞아요"
+            : "커요",
+        );
+
         setProductColorStatus(data.data.productColorStatus);
+        setProductColorOption(
+          data.data.productColorStatus === "BRIGHT"
+            ? "밝아요"
+            : data.data.productColorStatus === "DISPLAY"
+            ? "화면과 같아요"
+            : "어두워요",
+        );
+
         setReviewText(data.data.content);
-        console.log(data.data.content);
       } catch (error) {
         console.error("Error fetching review:", error);
       }
@@ -133,34 +159,28 @@ function ReviewEditPage() {
       <Header_back />
       <ReviewWrapper>
         <Title>리뷰 등록</Title>
-        <ReviewSection
+        <ReviewEditSection
           title="구매하신 상품은 만족하시나요?"
           options={["별로예요", "만족해요"]}
-          selectedOption={enjoyStatus === "YES" ? "만족해요" : "별로예요"}
-          onSelect={option =>
-            setEnjoyStatus(option === "만족해요" ? "YES" : "NO")
-          }
+          selectedOption={enjoyOption}
+          onSelect={option => {
+            setEnjoyStatus(option === "만족해요" ? "YES" : "NO");
+            setEnjoyOption(option);
+          }}
         />
-        <ReviewSection
+        <ReviewEditSection
           title="색상은 어떤가요?"
           options={["쿨톤", "웜톤"]}
-          selectedOption={
-            productPersonalColorStatus === "COOL" ? "쿨톤" : "웜톤"
-          }
-          onSelect={option =>
-            setProductPersonalColorStatus(option === "쿨톤" ? "COOL" : "WARM")
-          }
+          selectedOption={personalColorOption}
+          onSelect={option => {
+            setProductPersonalColorStatus(option === "쿨톤" ? "COOL" : "WARM");
+            setPersonalColorOption(option);
+          }}
         />
-        <ReviewSection
+        <ReviewEditSection
           title="사이즈는 어떤가요?"
           options={["작아요", "잘 맞아요", "커요"]}
-          selectedOption={
-            sizeStatus === "SMALL"
-              ? "작아요"
-              : sizeStatus === "FIT"
-              ? "잘 맞아요"
-              : "커요"
-          }
+          selectedOption={sizeOption}
           onSelect={option => {
             if (option === "작아요") {
               setSizeStatus("SMALL");
@@ -169,18 +189,13 @@ function ReviewEditPage() {
             } else {
               setSizeStatus("BIG");
             }
+            setSizeOption(option);
           }}
         />
-        <ReviewSection
+        <ReviewEditSection
           title="상품 색상은 어떤가요?"
           options={["밝아요", "화면과 같아요", "어두워요"]}
-          selectedOption={
-            productColorStatus === "BRIGHT"
-              ? "밝아요"
-              : productColorStatus === "DISPLAY"
-              ? "화면과 같아요"
-              : "어두워요"
-          }
+          selectedOption={productColorOption}
           onSelect={option => {
             if (option === "밝아요") {
               setProductColorStatus("BRIGHT");
@@ -189,10 +204,11 @@ function ReviewEditPage() {
             } else {
               setProductColorStatus("DARK");
             }
+            setProductColorOption(option);
           }}
         />
-
-        <ReviewForm
+        {/* console.log(reviewText); */}
+        <ReviewEditForm
           value={reviewText}
           onChange={handleReviewTextChange}
           onImageFileChange={handleImageFileChange}

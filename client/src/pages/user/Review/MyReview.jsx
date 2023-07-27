@@ -19,7 +19,6 @@ function MyReviewPage() {
     const fetchReview = async () => {
       try {
         const data = await getUserReviewList(token);
-        console.log(data);
         setReviews(data.responseList);
       } catch (error) {
         console.error("Error fetching review:", error);

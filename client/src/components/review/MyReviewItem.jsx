@@ -14,7 +14,12 @@ import { deleteReview } from "../../api/orderAPIs";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../atoms/auth";
 import Modal from "../attribute/Modaldev/Modaldev";
+import { styled } from "styled-components";
 
+const ProductWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
 function MyReviewItem({ review }) {
   const { token } = useRecoilValue(auth);
   const navigate = useNavigate();
@@ -38,6 +43,7 @@ function MyReviewItem({ review }) {
   //   navigate("/review/edit");
   // };
 
+  // 수정 모달 창
   const handleShowModal = () => {
     setShowModal(true);
   };
@@ -48,25 +54,27 @@ function MyReviewItem({ review }) {
 
   return (
     <ReviewItemContainer>
-      <Link to={`/product-detail/${review.productId}`}>
-        <ProductDetail>
-          <ProductImage
-            src={review.reviewImageName || defaultImageUrl}
-            alt="Product"
-          />
-          <ProductView>
-            <h2>{review.productName}</h2>
-            <p>{review.content}</p>
-            <VoteIcon icon={faThumbsUp} />
-            <Score>{review.vote}</Score>
-          </ProductView>
-          <ButtonWrapper>
-            <Button onClick={handleShowModal}>수정</Button>
-            {showModal && <Modal onClose={handleHideModal} />}
-            <Button onClick={deleteReviewItem}>삭제</Button>
-          </ButtonWrapper>
-        </ProductDetail>
-      </Link>
+      <ProductDetail>
+        <Link to={`/product-detail/${review.productId}`}>
+          <ProductWrapper>
+            <ProductImage
+              src={review.reviewImageName || defaultImageUrl}
+              alt="Product"
+            />
+            <ProductView>
+              <h2>{review.productName}</h2>
+              <p>{review.content}</p>
+              <VoteIcon icon={faThumbsUp} />
+              <Score>{review.vote}</Score>
+            </ProductView>
+          </ProductWrapper>
+        </Link>
+        <ButtonWrapper>
+          <Button onClick={handleShowModal}>수정</Button>
+          {showModal && <Modal onClose={handleHideModal} />}
+          <Button onClick={deleteReviewItem}>삭제</Button>
+        </ButtonWrapper>
+      </ProductDetail>
     </ReviewItemContainer>
   );
 }
