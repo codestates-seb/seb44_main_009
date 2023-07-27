@@ -10,7 +10,7 @@ import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { BuyFooterModal } from "./BuyFooterModal";
 import { useRecoilValue } from "recoil";
 import { productsState } from "../../atoms/product";
-import { updateLike, deleteLike, fetchLike } from "../../api/orderAPIs";
+import { updateLike, deleteLike } from "../../api/orderAPIs";
 import { auth } from "../../atoms/auth";
 import { styled } from "styled-components";
 
@@ -50,6 +50,7 @@ function Footer_doubleBtn() {
   useEffect(() => {
     localStorage.setItem("isLiked", isLiked);
   }, [isLiked]);
+
   // 찜 생성 & 삭제
   const handleLikeBtn = async () => {
     try {
@@ -79,27 +80,6 @@ function Footer_doubleBtn() {
       console.error(error);
     }
   };
-  // 찜 전체 조회
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchLike(token);
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  // const handleClick = () => {
-  //   if (!isLiked) {
-  //     setCount(prevCount => prevCount + 1);
-  //   } else {
-  //     setCount(prevCount => prevCount - 1);
-  //   }
-  //   setIsLiked(prevIsLiked => !prevIsLiked);
-  // };
 
   const handlePurchaseClick = () => {
     setIsModalOpen(true);

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Prepare } from "../../image";
 import { useState } from "react";
 import { ProductImage } from "../attribute/styles/ProdcutImage.styled";
@@ -14,7 +14,12 @@ import { deleteReview } from "../../api/orderAPIs";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../atoms/auth";
 import Modal from "../attribute/Modaldev/Modaldev";
+import { styled } from "styled-components";
 
+const ProductWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
 function MyReviewItem({ review }) {
   const { token } = useRecoilValue(auth);
   const navigate = useNavigate();
@@ -38,6 +43,7 @@ function MyReviewItem({ review }) {
   //   navigate("/review/edit");
   // };
 
+  // 수정 모달 창
   const handleShowModal = () => {
     setShowModal(true);
   };
@@ -49,16 +55,20 @@ function MyReviewItem({ review }) {
   return (
     <ReviewItemContainer>
       <ProductDetail>
-        <ProductImage
-          src={review.reviewImageName || defaultImageUrl}
-          alt="Product"
-        />
-        <ProductView>
-          <h2>{review.productName}</h2>
-          <p>{review.content}</p>
-          <VoteIcon icon={faThumbsUp} />
-          <Score>{review.vote}</Score>
-        </ProductView>
+        <Link to={`/product-detail/${review.productId}`}>
+          <ProductWrapper>
+            <ProductImage
+              src={review.reviewImageName || defaultImageUrl}
+              alt="Product"
+            />
+            <ProductView>
+              <h2>{review.productName}</h2>
+              <p>{review.content}</p>
+              <VoteIcon icon={faThumbsUp} />
+              <Score>{review.vote}</Score>
+            </ProductView>
+          </ProductWrapper>
+        </Link>
         <ButtonWrapper>
           <Button onClick={handleShowModal}>수정</Button>
           {showModal && <Modal onClose={handleHideModal} />}

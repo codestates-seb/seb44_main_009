@@ -14,11 +14,11 @@ function MyReviewPage() {
   const { token } = useRecoilValue(auth);
   const [reviews, setReviews] = useState([]);
 
+  // 유저가 작성한 리뷰 목록 조회
   useEffect(() => {
     const fetchReview = async () => {
       try {
         const data = await getUserReviewList(token);
-        console.log(data);
         setReviews(data.responseList);
       } catch (error) {
         console.error("Error fetching review:", error);
