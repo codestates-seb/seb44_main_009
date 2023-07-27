@@ -10,8 +10,7 @@ import { FooterContainer } from "./styles/FooterContainer.styled";
 import { useRecoilValue } from "recoil";
 import { auth } from "../../../atoms/auth";
 import { updateReview } from "../../../api/orderAPIs";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function ReviewUpdatePage() {
   const { token } = useRecoilValue(auth);
@@ -23,25 +22,25 @@ function ReviewUpdatePage() {
   const [reviewText, setReviewText] = useState("");
 
   const { orderId, productId } = useParams();
-  
+
   const [imageFile, setImageFile] = useState(null);
-  const [orderId, setOrderId] = useState(null);
-  const [productId, setProductId] = useState(null);
+  // const [orderId, setOrderId] = useState(null);
+  // const [productId, setProductId] = useState(null);
 
-  useEffect(() => {
-    const orderResponseData = JSON.parse(
-      localStorage.getItem("orderResponseData"),
-    );
-    if (orderResponseData) {
-      const { orderId } = orderResponseData;
-      const productId = orderResponseData.cartProductList[0].productId;
+  // useEffect(() => {
+  //   const orderResponseData = JSON.parse(
+  //     localStorage.getItem("orderResponseData"),
+  //   );
+  //   if (orderResponseData) {
+  //     const { orderId } = orderResponseData;
+  //     const productId = orderResponseData.cartProductList[0].productId;
 
-      setOrderId(orderId);
-      setProductId(productId);
-    } else {
-      console.log("Invalid data format or missing data.");
-    }
-  }, []);
+  //     setOrderId(orderId);
+  //     setProductId(productId);
+  //   } else {
+  //     console.log("Invalid data format or missing data.");
+  //   }
+  // }, []);
 
   const handleReviewTextChange = e => {
     const value = e.target.value;
@@ -68,13 +67,13 @@ function ReviewUpdatePage() {
         content: reviewText,
       };
 
-      const response = await updateReview(
-        token,
-        reviewData,
-        orderId,
-        productId,
-      );
-      console.log(response.data);
+      // const response = await updateReview(
+      //   token,
+      //   reviewData,
+      //   orderId,
+      //   productId,
+      // );
+      // console.log(response.data);
 
       const formData = new FormData();
       formData.append(
